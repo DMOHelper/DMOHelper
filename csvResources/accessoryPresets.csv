@@ -1,6 +1,6 @@
 type,name,option1,option2,option3,option4,option5,value1,value2,value3,value4,value5
 ring,"Radiant Holy Beast Ring / AT AT Att Att",Attack,Attack,Attribute,Attribute,None,78000,78000,1400,1400,0
-ring,"Zero Unit Ring / AT AT Att Att CT",Attack,Attack,Attribute,Attribute,Critical,72000,72000,1200,1200,1200,
+ring,"Zero Unit Ring / AT AT Att Att CT",Attack,Attack,Attribute,Attribute,Critical,72000,72000,1200,1200,1200
 ring,"Zero Unit Ring / AT AT Att Att HP",Attack,Attack,Attribute,Attribute,HP,72000,72000,1200,1200,192000
 necklace,"Radiant Holy Beast Necklace / AS CD Att Att",AttackSpeed,CriticalDamage,Attribute,Attribute,None,3000,5200,1400,1400,0
 necklace,"Radiant Holy Beast Necklace / AS CD AT Att",AttackSpeed,CriticalDamage,Attack,Attribute,None,3000,5200,52000,1400,0
