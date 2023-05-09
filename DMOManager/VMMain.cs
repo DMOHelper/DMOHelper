@@ -126,8 +126,7 @@ namespace DMOManager
 
         public VMMain()
         {
-            UpdatePresets();
-
+            Task.Run(UpdatePresets);
             Source = "/Images/Beer.png";
             Accounts = SQLiteDatabaseManager.Database.Table<Account>().ToListAsync().Result.ToCollection();
             Items = SQLiteDatabaseManager.Database.Table<Item>().ToListAsync().Result.ToCollection();
@@ -169,13 +168,15 @@ namespace DMOManager
 
         public async void UpdatePresets()
         {
-            try
+
+            using (HttpClient client = new HttpClient())
             {
-                using (HttpClient client = new HttpClient())
+                StreamReader reader;
+                List<StatFormula> formulas = new List<StatFormula>();
+                List<DigimonPresets> presets = new List<DigimonPresets>();
+                //Stat Formula
+                try
                 {
-                    StreamReader reader;
-                    List<StatFormula> formulas = new List<StatFormula>();
-                    //Stat Formula
                     using (HttpResponseMessage response = await client.GetAsync("https://raw.githubusercontent.com/DMOHelper/DMOHelper/master/csvResources/statformula.csv"))
                     using (Stream streamToReadFrom = await response.Content.ReadAsStreamAsync())
                     {
@@ -197,10 +198,54 @@ namespace DMOManager
                                 formulas.Add(record);
                             }
                         }
+                        if (formulas.Count == 30)
+                        {
+                            await SQLiteDatabaseManager.Database.DeleteAllAsync<StatFormula>();
+                            await SQLiteDatabaseManager.Database.InsertAllAsync(formulas);
+                        }
                     }
                 }
+                catch { return; }
+                //Digimon Presets
+                try
+                {
+                    using (HttpResponseMessage response = await client.GetAsync("https://raw.githubusercontent.com/DMOHelper/DMOHelper/master/csvResources/digimonPresets.csv"))
+                    using (Stream streamToReadFrom = await response.Content.ReadAsStreamAsync())
+                    {
+                        reader = new StreamReader(streamToReadFrom);
+                        using (var csv = new CsvReader(reader, CultureInfo.InvariantCulture))
+                        {
+                            csv.Read();
+                            csv.ReadHeader();
+                            while (csv.Read())
+                            {
+                                var record = new DigimonPresets();
+                                record.Name = csv.GetField("name");
+                                record.Rank = csv.GetField("rank");
+                                bool result = Enum.TryParse(csv.GetField("evolution"), out Evolution evo);
+                                if (result)
+                                {
+                                    record.Evolution = evo;
+                                }
+                                record.Type = csv.GetField("type");
+                                record.BaseHP = int.Parse(csv.GetField("baseHP"));
+                                record.BaseDS = int.Parse(csv.GetField("baseDS"));
+                                record.BaseAT = int.Parse(csv.GetField("baseAT"));
+                                record.AS = int.Parse(csv.GetField("AS"));
+                                record.BaseCT = int.Parse(csv.GetField("baseCT"));
+                                record.HT = int.Parse(csv.GetField("HT"));
+                                record.BaseDE = int.Parse(csv.GetField("baseDE"));
+                                record.EV = int.Parse(csv.GetField("EV"));
+                                presets.Add(record);
+                            }
+                            await SQLiteDatabaseManager.Database.DeleteAllAsync<DigimonPresets>();
+                            await SQLiteDatabaseManager.Database.InsertAllAsync(presets);
+                        }
+                    }
+                }
+                catch { return; }
             }
-            catch { return; }
+
         }
     }
 }
