@@ -1,0 +1,93 @@
+﻿<UserControl x:Class="DMOManager.Views.TrueViceView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:helper="clr-namespace:DMOManager.Helper"
+             xmlns:syncfusion="http://schemas.syncfusion.com/wpf"
+             xmlns:local="clr-namespace:DMOManager.Views"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <!--True Vice-->
+        <Grid Margin="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="60"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <!--Accounts-->
+        <syncfusion:SfDataGrid x:Name="TVAccountsList" AutoGenerateColumns="False" HeaderStyle="{StaticResource SfHeaderStyle}" SelectedIndex="{Binding AccIndex, Mode=TwoWay}" SelectionChanged="TVAccountsList_SelectionChanged" ItemsSource="{Binding Accounts}" Margin="1" Grid.Row="0" Grid.Column="0" Grid.RowSpan="3">
+            <syncfusion:SfDataGrid.Columns>
+                <syncfusion:GridTextColumn TextAlignment="Center" MappingName="Name" />
+            </syncfusion:SfDataGrid.Columns>
+        </syncfusion:SfDataGrid>
+            <!--TV-->
+            <StackPanel Orientation="Horizontal" Grid.Row="0" Grid.Column="1">
+                <Button x:Name="AddViceButton" Content="+" Width="40" Click="AddViceButton_Click" Margin="2"/>
+                <Button x:Name="DeleteViceButton" Content="-" Width="40" Click="DeleteViceButton_Click" Margin="2" IsEnabled="{Binding ElementName=ViceList, Path=SelectedIndex, Converter={StaticResource HasSelectionConverter}}"/>
+                <Button x:Name="UpgradeViceButton" Content="Upgrade" Width="70" Click="UpgradeViceButton_Click" Margin="2">
+                    <Button.IsEnabled>
+                        <MultiBinding Converter="{StaticResource MultiBoolConverter}" FallbackValue="False">
+                            <Binding Path="SelectedResources.IsUpgradeable" />
+                            <Binding ElementName="ViceList" Path="SelectedIndex" Converter="{StaticResource HasSelectionConverter}"/>
+                        </MultiBinding>
+                    </Button.IsEnabled>
+                </Button>
+            </StackPanel>
+            <ListView x:Name="ViceList" Background="{StaticResource Background}" BorderThickness="0" SelectionChanged="ViceList_SelectionChanged" ItemsSource="{Binding SelectedAccountVices}" Margin="1" Grid.Row="1" Grid.Column="1">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid>
+                            <!-- Rounded mask (stretches to fill Grid) -->
+                            <Border Name="mask" Background="{Binding Type, Converter={StaticResource ViceColorConverter}}" CornerRadius="7" Margin="2"/>
+                            <StackPanel>
+                                <!-- Use a VisualBrush of 'mask' as the opacity mask -->
+                                <StackPanel.OpacityMask>
+                                    <VisualBrush Visual="{Binding ElementName=mask}"/>
+                                </StackPanel.OpacityMask>
+                                <TextBlock Text="{Binding Type}" Foreground="Black" Padding="15" />
+                            </StackPanel>
+                        </Grid>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+                <ListView.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <WrapPanel/>
+                    </ItemsPanelTemplate>
+                </ListView.ItemsPanel>
+            </ListView>
+            <Grid Grid.Row="2" Grid.Column="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <StackPanel Orientation="Horizontal" Margin="0,1,0,4" Grid.Row="0" Grid.Column="0">
+                    <Button x:Name="EditResourceBtn" Click="EditResourceBtn_Click" IsEnabled="{Binding ElementName=ResourceList, Path=SelectedIndex, Converter={StaticResource HasSelectionConverter}}" Width="90" Content="Edit Amount" Margin="2"/>
+                    <Button x:Name="MakeAEOE" Click="MakeAEOE_Click" Content="Make Absolute EOE" IsEnabled="{Binding SelectedResources.AEOEMakeable, FallbackValue=False}" Width="140" Margin="2"/>
+                    <Button x:Name="MakeHeinous" Click="MakeHeinous_Click" Content="Make Heinous Core" IsEnabled="{Binding SelectedResources.HeinousMakeable, FallbackValue=False}" Width="140" Margin="2"/>
+                    <Button x:Name="MakeCondensed" Click="MakeCondensed_Click" Content="Make Condensed Dark Energy" IsEnabled="{Binding SelectedResources.CondensedMakeable, FallbackValue=False}" Width="210" Margin="2"/>
+                </StackPanel>
+            <syncfusion:SfDataGrid x:Name="ResourceList" HeaderStyle="{StaticResource SfHeaderStyle}" AutoGenerateColumns="False" ItemsSource="{Binding SelectedResources.Resources}" SelectionUnit="Row" Margin="1,-1,1,1" Grid.Row="1" Grid.Column="0">
+                <syncfusion:SfDataGrid.Columns>
+                    <syncfusion:GridTemplateColumn HeaderText="Resource" MinimumWidth="200">
+                        <syncfusion:GridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock TextAlignment="Center" Text="{Binding Resource, Converter={StaticResource GetEnumDescriptionConverter}}"/>
+                            </DataTemplate>
+                        </syncfusion:GridTemplateColumn.CellTemplate>
+                    </syncfusion:GridTemplateColumn>
+                    <syncfusion:GridTextColumn TextAlignment="Center" MappingName="Amount" Width="90"/>
+                    <syncfusion:GridTextColumn TextAlignment="Center" MappingName="Upgrade" HeaderText="Amount for Upgrade" MinimumWidth="160"/>
+                    <syncfusion:GridTextColumn TextAlignment="Center" MappingName="TrueVice" HeaderText="Amount for True Vice" MinimumWidth="160"/>
+                </syncfusion:SfDataGrid.Columns>
+            </syncfusion:SfDataGrid>
+            </Grid>
+        </Grid>
+</UserControl>

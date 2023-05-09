@@ -1,0 +1,40 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net6.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <UseWPF>true</UseWPF>
+    <ApplicationIcon>Images\Icon.ico</ApplicationIcon>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Images\Beer.png" />
+    <None Remove="Images\Icon48.png" />
+    <None Remove="Images\Money.png" />
+    <None Remove="Images\Suspicious.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Images\Icon.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="CsvHelper" Version="30.0.1" />
+    <PackageReference Include="MahApps.Metro.IconPacks.Material" Version="4.11.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+    <PackageReference Include="sqlite-net-pcl" Version="1.8.116" />
+    <PackageReference Include="Syncfusion.SfChromelessWindow.WPF" Version="21.1.35" />
+    <PackageReference Include="Syncfusion.SfGrid.WPF" Version="21.1.35" />
+    <PackageReference Include="Syncfusion.SfSkinManager.WPF" Version="21.1.35" />
+    <PackageReference Include="Syncfusion.Shared.WPF" Version="21.1.35" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Images\Beer.png" />
+    <Resource Include="Images\Icon48.png" />
+    <Resource Include="Images\Money.png" />
+    <Resource Include="Images\Suspicious.png" />
+  </ItemGroup>
+
+</Project>

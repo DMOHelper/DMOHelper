@@ -1,0 +1,108 @@
+﻿<Window x:Class="DMOManager.Dialogs.AccessoryDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:DMOManager.Dialogs"
+        xmlns:models="clr-namespace:DMOManager.Models"
+        xmlns:syncfusion="http://schemas.syncfusion.com/wpf" 
+        mc:Ignorable="d"
+        xmlns:skin="clr-namespace:Syncfusion.SfSkinManager;assembly=Syncfusion.SfSkinManager.WPF"
+        skin:SfSkinManager.Theme="{skin:SkinManagerExtension ThemeName=MaterialDark}" Background="{StaticResource Background}"
+        Title="Accessory Input" SizeToContent="WidthAndHeight" WindowStartupLocation="CenterOwner"  Width="450"
+        ContentRendered="Window_ContentRendered">
+    <Grid Margin="15">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <Label Name="lblQuestion" Grid.Column="0" Grid.ColumnSpan="3">Please enter your Accessory Informations:</Label>
+
+        <Grid Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="30" />
+                <RowDefinition Height="30" />
+                <RowDefinition Height="30" />
+                <RowDefinition Height="30" />
+                <RowDefinition Height="30" />
+                <RowDefinition Height="30" />
+                <RowDefinition Height="30" />
+                <RowDefinition Height="30" />
+                <RowDefinition Height="30" />
+            </Grid.RowDefinitions>
+
+            <Label HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Content="@200%" Grid.Row="0" Grid.Column="0"/>
+            <Label HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Content="Ring" Grid.Row="1" Grid.Column="0" Grid.RowSpan="2"/>
+            <Label HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Content="Necklace" Grid.Row="3" Grid.Column="0" Grid.RowSpan="2"/>
+            <Label HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Content="Earrings" Grid.Row="5" Grid.Column="0" Grid.RowSpan="2"/>
+            <Label HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Content="Bracelet" Grid.Row="7" Grid.Column="0" Grid.RowSpan="2"/>
+            <Label HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Content="Option 1" Grid.Row="0" Grid.Column="1"/>
+            <Label HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Content="Option 2" Grid.Row="0" Grid.Column="2"/>
+            <Label HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Content="Option 3" Grid.Row="0" Grid.Column="3"/>
+            <Label HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Content="Option 4" Grid.Row="0" Grid.Column="4"/>
+            <Label HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Content="Option 5" Grid.Row="0" Grid.Column="5"/>
+            <syncfusion:DoubleTextBox Height="28" Value="{Binding CurrentRing.Value1, Mode=TwoWay}" MaxValue="9999" MinValue="0" MinValueOnExceedMinDigit="True" MaxValueOnExceedMaxDigit="True" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" x:Name="ringValue1" Text="0" Grid.Row="2" Grid.Column="1"/>
+            <syncfusion:DoubleTextBox Height="28" Value="{Binding CurrentRing.Value2, Mode=TwoWay}" MaxValue="9999" MinValue="0" MinValueOnExceedMinDigit="True" MaxValueOnExceedMaxDigit="True" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" x:Name="ringValue2" Text="0" Grid.Row="2" Grid.Column="2"/>
+            <syncfusion:DoubleTextBox Height="28" Value="{Binding CurrentRing.Value3, Mode=TwoWay}" MaxValue="9999" MinValue="0" MinValueOnExceedMinDigit="True" MaxValueOnExceedMaxDigit="True" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" x:Name="ringValue3" Text="0" Grid.Row="2" Grid.Column="3"/>
+            <syncfusion:DoubleTextBox Height="28" Value="{Binding CurrentRing.Value4, Mode=TwoWay}" MaxValue="9999" MinValue="0" MinValueOnExceedMinDigit="True" MaxValueOnExceedMaxDigit="True" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" x:Name="ringValue4" Text="0" Grid.Row="2" Grid.Column="4"/>
+            <syncfusion:DoubleTextBox Height="28" Value="{Binding CurrentRing.Value5, Mode=TwoWay}" MaxValue="9999" MinValue="0" MinValueOnExceedMinDigit="True" MaxValueOnExceedMaxDigit="True" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" x:Name="ringValue5" Text="0" Grid.Row="2" Grid.Column="5"/>
+            <syncfusion:DoubleTextBox Height="28" Value="{Binding CurrentNecklace.Value1, Mode=TwoWay}" MaxValue="9999" MinValue="0" MinValueOnExceedMinDigit="True" MaxValueOnExceedMaxDigit="True" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" x:Name="neckValue1" Text="0" Grid.Row="4" Grid.Column="1"/>
+            <syncfusion:DoubleTextBox Height="28" Value="{Binding CurrentNecklace.Value2, Mode=TwoWay}" MaxValue="9999" MinValue="0" MinValueOnExceedMinDigit="True" MaxValueOnExceedMaxDigit="True" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" x:Name="neckValue2" Text="0" Grid.Row="4" Grid.Column="2"/>
+            <syncfusion:DoubleTextBox Height="28" Value="{Binding CurrentNecklace.Value3, Mode=TwoWay}" MaxValue="9999" MinValue="0" MinValueOnExceedMinDigit="True" MaxValueOnExceedMaxDigit="True" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" x:Name="neckValue3" Text="0" Grid.Row="4" Grid.Column="3"/>
+            <syncfusion:DoubleTextBox Height="28" Value="{Binding CurrentNecklace.Value4, Mode=TwoWay}" MaxValue="9999" MinValue="0" MinValueOnExceedMinDigit="True" MaxValueOnExceedMaxDigit="True" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" x:Name="neckValue4" Text="0" Grid.Row="4" Grid.Column="4"/>
+            <syncfusion:DoubleTextBox Height="28" Value="{Binding CurrentNecklace.Value5, Mode=TwoWay}" MaxValue="9999" MinValue="0" MinValueOnExceedMinDigit="True" MaxValueOnExceedMaxDigit="True" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" x:Name="neckValue5" Text="0" Grid.Row="4" Grid.Column="5"/>
+            <syncfusion:DoubleTextBox Height="28" Value="{Binding CurrentEarrings.Value1, Mode=TwoWay}" MaxValue="9999" MinValue="0" MinValueOnExceedMinDigit="True" MaxValueOnExceedMaxDigit="True" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" x:Name="earringValue1" Text="0" Grid.Row="6" Grid.Column="1"/>
+            <syncfusion:DoubleTextBox Height="28" Value="{Binding CurrentEarrings.Value2, Mode=TwoWay}" MaxValue="9999" MinValue="0" MinValueOnExceedMinDigit="True" MaxValueOnExceedMaxDigit="True" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" x:Name="earringValue2" Text="0" Grid.Row="6" Grid.Column="2"/>
+            <syncfusion:DoubleTextBox Height="28" Value="{Binding CurrentEarrings.Value3, Mode=TwoWay}" MaxValue="9999" MinValue="0" MinValueOnExceedMinDigit="True" MaxValueOnExceedMaxDigit="True" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" x:Name="earringValue3" Text="0" Grid.Row="6" Grid.Column="3"/>
+            <syncfusion:DoubleTextBox Height="28" Value="{Binding CurrentEarrings.Value4, Mode=TwoWay}" MaxValue="9999" MinValue="0" MinValueOnExceedMinDigit="True" MaxValueOnExceedMaxDigit="True" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" x:Name="earringValue4" Text="0" Grid.Row="6" Grid.Column="4"/>
+            <syncfusion:DoubleTextBox Height="28" Value="{Binding CurrentEarrings.Value5, Mode=TwoWay}" MaxValue="9999" MinValue="0" MinValueOnExceedMinDigit="True" MaxValueOnExceedMaxDigit="True" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" x:Name="earringValue5" Text="0" Grid.Row="6" Grid.Column="5"/>
+            <syncfusion:DoubleTextBox Height="28" Value="{Binding CurrentBracelet.Value1, Mode=TwoWay}" MaxValue="9999" MinValue="0" MinValueOnExceedMinDigit="True" MaxValueOnExceedMaxDigit="True" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" x:Name="braceletValue1" Text="0" Grid.Row="8" Grid.Column="1"/>
+            <syncfusion:DoubleTextBox Height="28" Value="{Binding CurrentBracelet.Value2, Mode=TwoWay}" MaxValue="9999" MinValue="0" MinValueOnExceedMinDigit="True" MaxValueOnExceedMaxDigit="True" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" x:Name="braceletValue2" Text="0" Grid.Row="8" Grid.Column="2"/>
+            <syncfusion:DoubleTextBox Height="28" Value="{Binding CurrentBracelet.Value3, Mode=TwoWay}" MaxValue="9999" MinValue="0" MinValueOnExceedMinDigit="True" MaxValueOnExceedMaxDigit="True" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" x:Name="braceletValue3" Text="0" Grid.Row="8" Grid.Column="3"/>
+            <syncfusion:DoubleTextBox Height="28" Value="{Binding CurrentBracelet.Value4, Mode=TwoWay}" MaxValue="9999" MinValue="0" MinValueOnExceedMinDigit="True" MaxValueOnExceedMaxDigit="True" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" x:Name="braceletValue4" Text="0" Grid.Row="8" Grid.Column="4"/>
+            <syncfusion:DoubleTextBox Height="28" Value="{Binding CurrentBracelet.Value5, Mode=TwoWay}" MaxValue="9999" MinValue="0" MinValueOnExceedMinDigit="True" MaxValueOnExceedMaxDigit="True" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" x:Name="braceletValue5" Text="0" Grid.Row="8" Grid.Column="5"/>
+            <ComboBox x:Name="ringOption1" SelectedItem="{Binding CurrentRing.Option1, Mode=TwoWay}" Grid.Row="1" Grid.Column="1" ItemsSource="{Binding Ring}"/>
+            <ComboBox x:Name="ringOption2" SelectedItem="{Binding CurrentRing.Option2, Mode=TwoWay}" Grid.Row="1" Grid.Column="2" ItemsSource="{Binding Ring}"/>
+            <ComboBox x:Name="ringOption3" SelectedItem="{Binding CurrentRing.Option3, Mode=TwoWay}" Grid.Row="1" Grid.Column="3" ItemsSource="{Binding Ring}"/>
+            <ComboBox x:Name="ringOption4" SelectedItem="{Binding CurrentRing.Option4, Mode=TwoWay}" Grid.Row="1" Grid.Column="4" ItemsSource="{Binding Ring}"/>
+            <ComboBox x:Name="ringOption5" SelectedItem="{Binding CurrentRing.Option5, Mode=TwoWay}" Grid.Row="1" Grid.Column="5" ItemsSource="{Binding Ring}"/>
+            <ComboBox x:Name="neckOption1" SelectedItem="{Binding CurrentNecklace.Option1, Mode=TwoWay}" Grid.Row="3" Grid.Column="1" ItemsSource="{Binding Necklace}"/>
+            <ComboBox x:Name="neckOption2" SelectedItem="{Binding CurrentNecklace.Option2, Mode=TwoWay}" Grid.Row="3" Grid.Column="2" ItemsSource="{Binding Necklace}"/>
+            <ComboBox x:Name="neckOption3" SelectedItem="{Binding CurrentNecklace.Option3, Mode=TwoWay}" Grid.Row="3" Grid.Column="3" ItemsSource="{Binding Necklace}"/>
+            <ComboBox x:Name="neckOption4" SelectedItem="{Binding CurrentNecklace.Option4, Mode=TwoWay}" Grid.Row="3" Grid.Column="4" ItemsSource="{Binding Necklace}"/>
+            <ComboBox x:Name="neckOption5" SelectedItem="{Binding CurrentNecklace.Option5, Mode=TwoWay}" Grid.Row="3" Grid.Column="5" ItemsSource="{Binding Necklace}"/>
+            <ComboBox x:Name="earringOption1" SelectedItem="{Binding CurrentEarrings.Option1, Mode=TwoWay}" Grid.Row="5" Grid.Column="1" ItemsSource="{Binding Earrings}"/>
+            <ComboBox x:Name="earringOption2" SelectedItem="{Binding CurrentEarrings.Option2, Mode=TwoWay}" Grid.Row="5" Grid.Column="2" ItemsSource="{Binding Earrings}"/>
+            <ComboBox x:Name="earringOption3" SelectedItem="{Binding CurrentEarrings.Option3, Mode=TwoWay}" Grid.Row="5" Grid.Column="3" ItemsSource="{Binding Earrings}"/>
+            <ComboBox x:Name="earringOption4" SelectedItem="{Binding CurrentEarrings.Option4, Mode=TwoWay}" Grid.Row="5" Grid.Column="4" ItemsSource="{Binding Earrings}"/>
+            <ComboBox x:Name="earringOption5" SelectedItem="{Binding CurrentEarrings.Option5, Mode=TwoWay}" Grid.Row="5" Grid.Column="5" ItemsSource="{Binding Earrings}"/>
+            <ComboBox x:Name="braceOption1" SelectedItem="{Binding CurrentBracelet.Option1, Mode=TwoWay}" Grid.Row="7" Grid.Column="1" ItemsSource="{Binding Bracelet}"/>
+            <ComboBox x:Name="braceOption2" SelectedItem="{Binding CurrentBracelet.Option2, Mode=TwoWay}" Grid.Row="7" Grid.Column="2" ItemsSource="{Binding Bracelet}"/>
+            <ComboBox x:Name="braceOption3" SelectedItem="{Binding CurrentBracelet.Option3, Mode=TwoWay}" Grid.Row="7" Grid.Column="3" ItemsSource="{Binding Bracelet}"/>
+            <ComboBox x:Name="braceOption4" SelectedItem="{Binding CurrentBracelet.Option4, Mode=TwoWay}" Grid.Row="7" Grid.Column="4" ItemsSource="{Binding Bracelet}"/>
+            <ComboBox x:Name="braceOption5" SelectedItem="{Binding CurrentBracelet.Option5, Mode=TwoWay}" Grid.Row="7" Grid.Column="5" ItemsSource="{Binding Bracelet}"/>
+        </Grid>
+        <WrapPanel Grid.Row="2" Grid.ColumnSpan="2" Grid.Column="1" HorizontalAlignment="Right" Margin="0,15,0,0">
+            <Button IsDefault="True" Name="btnDialogOk" Click="btnDialogOk_Click" MinWidth="60" Margin="0,0,10,0">Ok</Button>
+            <Button IsCancel="True" MinWidth="60">Cancel</Button>
+        </WrapPanel>
+        <WrapPanel Grid.Column="0" Grid.Row="2" HorizontalAlignment="Left" Margin="0,15,0,0">
+            <Button Content="Presets" x:Name="PresetsButton" Click="PresetsButton_Click"  MinWidth="60"/>
+        </WrapPanel>
+    </Grid>
+</Window>
