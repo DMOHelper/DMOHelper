@@ -1,11 +1,20 @@
-﻿using DMOManager.Enums;
+﻿using CsvHelper;
+using DMOManager.Enums;
 using DMOManager.Helper;
 using DMOManager.Models;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Globalization;
+using System.IO;
 using System.Linq;
+using System.Net.Http;
+using System.Security.Policy;
+using System.Text.RegularExpressions;
+using System.Threading.Tasks;
+using System.Transactions;
+using System.Windows.Input;
 
 namespace DMOManager
 {
@@ -31,6 +40,8 @@ namespace DMOManager
         public List<ViceResources> Resources { get; set; }
         public ObservableCollection<ItemStack> SelectedAccountStacks { get; set; }
         public ObservableCollection<Digivice> SelectedAccountVices { get; set; }
+        public StatInformation StatInformation { get; set; }
+
         private ViceResources? _selectedResources;
         public ViceResources? SelectedResources
         {
@@ -115,12 +126,15 @@ namespace DMOManager
 
         public VMMain()
         {
+            UpdatePresets();
+
             Source = "/Images/Beer.png";
             Accounts = SQLiteDatabaseManager.Database.Table<Account>().ToListAsync().Result.ToCollection();
             Items = SQLiteDatabaseManager.Database.Table<Item>().ToListAsync().Result.ToCollection();
             ItemStacks = SQLiteDatabaseManager.Database.Table<ItemStack>().ToListAsync().Result;
             Digivices = SQLiteDatabaseManager.Database.Table<Digivice>().ToListAsync().Result;
             Resources = SQLiteDatabaseManager.Database.Table<ViceResources>().ToListAsync().Result;
+            StatInformation = StatInformation.LoadFromDatabase();
             SelectedAccountStacks = new ObservableCollection<ItemStack>();
             SelectedAccountVices = new ObservableCollection<Digivice>();
             ViceTypes = new List<EnumDropdownHelper>();
@@ -151,6 +165,42 @@ namespace DMOManager
         public void Refresh()
         {
             OnPropertyChanged(nameof(TotalAll));
+        }
+
+        public async void UpdatePresets()
+        {
+            try
+            {
+                using (HttpClient client = new HttpClient())
+                {
+                    StreamReader reader;
+                    List<StatFormula> formulas = new List<StatFormula>();
+                    //Stat Formula
+                    using (HttpResponseMessage response = await client.GetAsync("https://raw.githubusercontent.com/DMOHelper/DMOHelper/master/csvResources/statformula.csv"))
+                    using (Stream streamToReadFrom = await response.Content.ReadAsStreamAsync())
+                    {
+                        reader = new StreamReader(streamToReadFrom);
+                        using (var csv = new CsvReader(reader, CultureInfo.InvariantCulture))
+                        {
+                            csv.Read();
+                            csv.ReadHeader();
+                            while (csv.Read())
+                            {
+                                var record = new StatFormula();
+                                record.Stat = csv.GetField("stat");
+                                record.Stage = csv.GetField("stage");
+                                record.QA = int.Parse(csv.GetField("qa"));
+                                record.SA = int.Parse(csv.GetField("sa"));
+                                record.NA = int.Parse(csv.GetField("na"));
+                                record.DE = int.Parse(csv.GetField("de"));
+                                record.MaxLevel = int.Parse(csv.GetField("maxLevel"));
+                                formulas.Add(record);
+                            }
+                        }
+                    }
+                }
+            }
+            catch { return; }
         }
     }
 }

@@ -10,24 +10,23 @@ namespace DMOManager.Views
     /// </summary>
     public partial class StatCalculatorView : UserControl
     {
-        private static StatInformation StatInformation { get; set; }
-
+        VMMain viewModel;
         public StatCalculatorView()
         {
+            this.DataContext = viewModel = VMMain.GetInstance();
             InitializeComponent();
-            StatInformation = StatInformation.LoadFromDatabase();
         }
 
         private void Accessories_Click(object sender, RoutedEventArgs e)
         {
-            AccessoryDialog accDialog = new AccessoryDialog(StatInformation.Ring, StatInformation.Necklace, StatInformation.Earrings, StatInformation.Bracelet);
+            AccessoryDialog accDialog = new AccessoryDialog(viewModel.StatInformation.Ring, viewModel.StatInformation.Necklace, viewModel.StatInformation.Earrings, viewModel.StatInformation.Bracelet);
             if (accDialog.ShowDialog() == true)
             {
-                StatInformation.Ring = accDialog.Ring;
-                StatInformation.Necklace = accDialog.Necklace;
-                StatInformation.Earrings = accDialog.Earrings;
-                StatInformation.Bracelet = accDialog.Bracelet;
-                StatInformation.SaveToDatabase();
+                viewModel.StatInformation.Ring = accDialog.Ring;
+                viewModel.StatInformation.Necklace = accDialog.Necklace;
+                viewModel.StatInformation.Earrings = accDialog.Earrings;
+                viewModel.StatInformation.Bracelet = accDialog.Bracelet;
+                viewModel.StatInformation.SaveToDatabase();
             }
         }
     }

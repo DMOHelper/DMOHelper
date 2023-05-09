@@ -1,15 +1,15 @@
-name; rank; evolution; type; baseHP; baseDS; baseAT; AS; baseCT; HT; baseDE; EV
-"Lucemon Satan Mode (Shin)"; SSS+; BurstMode; SA; 16120; 5170; 5727; 230; 1110; 548; 313; 3210
-"Omegamon X"; SSS+; Jogress; SA; 13610; 5110; 5777; 240; 1030; 419; 414; 4510
-"Alphamon Ouryuken (Awaken)"; SSS+; Jogress; SA; 14480; 5110; 5608; 240; 920; 450; 414; 4270
-"Examon X"; SSS+; Jogress; SA; 15770; 5280; 6405; 250; 960; 482; 426; 4110
-"Omegamon Alter-B"; SSS+; Jogress; SA; 14650; 5170; 5403; 230; 1120; 500; 418; 4010
-"Omegamon Zwart D"; SSS+; Jogress; QA; 14990; 4980; 5526; 230; 1040; 430; 377; 3530
-"Shoutmon X7"; SSS+; Jogress; DE; 14130; 4820; 4654; 220; 1120; 392; 510; 3530
-"Susanoomon (Shin)"; SSS+; Jogress; SA; 13770; 5170; 4359; 220; 970; 510; 354; 4120
-"ZeedMilleniummon"; SSS+; Jogress; DE; 17260; 5790; 6251; 250; 870; 560; 1344; 4220
-"Agumon Kizuna"; SSS+; BurstMode; SA; 13710; 5230; 4285; 200; 1000; 490; 455; 3860
-"Darkness Bagramon"; SSS+; Jogress; SA; 17900; 5170; 4579; 200; 930; 510; 472; 1950
-"Alphamon Ouryuken X"; SSS; Jogress; SA; 10230; 3570; 3965; 240; 770; 450; 291; 3580
-"Fanglongmon (Shin)"; SSS; Jogress; DE; 13240; 4180; 4927; 240; 1080; 420; 354; 3060
-"Omegamon Alter-S"; SS+; Jogress; SA; 7310; 2550; 2969; 250; 840; 500; 208; 3360
+name, rank, evolution, type, baseHP, baseDS, baseAT, AS, baseCT, HT, baseDE, EV
+"Lucemon Satan Mode (Shin)", SSS+, BurstMode, SA, 16120, 5170, 5727, 230, 1110, 548, 313, 3210
+"Omegamon X", SSS+, Jogress, SA, 13610, 5110, 5777, 240, 1030, 419, 414, 4510
+"Alphamon Ouryuken (Awaken)", SSS+, Jogress, SA, 14480, 5110, 5608, 240, 920, 450, 414, 4270
+"Examon X", SSS+, Jogress, SA, 15770, 5280, 6405, 250, 960, 482, 426, 4110
+"Omegamon Alter-B", SSS+, Jogress, SA, 14650, 5170, 5403, 230, 1120, 500, 418, 4010
+"Omegamon Zwart D", SSS+, Jogress, QA, 14990, 4980, 5526, 230, 1040, 430, 377, 3530
+"Shoutmon X7", SSS+, Jogress, DE, 14130, 4820, 4654, 220, 1120, 392, 510, 3530
+"Susanoomon (Shin)", SSS+, Jogress, SA, 13770, 5170, 4359, 220, 970, 510, 354, 4120
+"ZeedMilleniummon", SSS+, Jogress, DE, 17260, 5790, 6251, 250, 870, 560, 1344, 4220
+"Agumon Kizuna", SSS+, BurstMode, SA, 13710, 5230, 4285, 200, 1000, 490, 455, 3860
+"Darkness Bagramon", SSS+, Jogress, SA, 17900, 5170, 4579, 200, 930, 510, 472, 1950
+"Alphamon Ouryuken X", SSS, Jogress, SA, 10230, 3570, 3965, 240, 770, 450, 291, 3580
+"Fanglongmon (Shin)", SSS, Jogress, DE, 13240, 4180, 4927, 240, 1080, 420, 354, 3060
+"Omegamon Alter-S", SS+, Jogress, SA, 7310, 2550, 2969, 250, 840, 500, 208, 3360

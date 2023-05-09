@@ -24,6 +24,7 @@ namespace DMOManager
                     database.CreateTableAsync<Digivice>().Wait();
                     database.CreateTableAsync<ViceResources>().Wait();
                     database.CreateTableAsync<StatInfoDatabase>().Wait();
+                    database.CreateTableAsync<StatFormula>().Wait();
                 }
                 return database;
             }
