@@ -1,5 +1,6 @@
 ﻿using DMOManager.Enums;
 using DMOManager.Helper;
+using SQLite;
 using System.Collections.Generic;
 
 namespace DMOManager.Models
@@ -19,8 +20,7 @@ namespace DMOManager.Models
         private double value5;
 
         public string Name { get; set; }
-        public int OptionsCount { get; set; }
-        public static List<AccessoryOptions> AllowedOptions { get; }
+        internal static List<AccessoryOptions> AllowedOptions { get; }
         public AccessoryOptions Option1
         {
             get { return option1; }
@@ -113,6 +113,90 @@ namespace DMOManager.Models
         }
 
         public Accessory() { }
+
+        public static List<Accessory> Presets
+        {
+            get
+            {
+                List<Accessory> output = new List<Accessory>();
+                var presets = SQLiteDatabaseManager.Database.Table<AccessoryPresetsDatabase>().ToListAsync().Result;
+                foreach(AccessoryPresetsDatabase preset in presets)
+                {
+                    switch(preset.Type)
+                    {
+                        case "Ring":
+                            output.Add(new Ring()
+                            {
+                                AccessoryType = AccessoryType.Ring,
+                                Name = preset.Name,
+                                Option1 = preset.Option1,
+                                Option2 = preset.Option2,
+                                Option3 = preset.Option3,
+                                Option4 = preset.Option4,
+                                Option5 = preset.Option5,
+                                Value1 = preset.Value1,
+                                Value2 = preset.Value2,
+                                Value3 = preset.Value3,
+                                Value4 = preset.Value4,
+                                Value5 = preset.Value5
+                            });
+                            break;
+                        case "Necklace":
+                            output.Add(new Necklace()
+                            {
+                                AccessoryType = AccessoryType.Necklace,
+                                Name = preset.Name,
+                                Option1 = preset.Option1,
+                                Option2 = preset.Option2,
+                                Option3 = preset.Option3,
+                                Option4 = preset.Option4,
+                                Option5 = preset.Option5,
+                                Value1 = preset.Value1,
+                                Value2 = preset.Value2,
+                                Value3 = preset.Value3,
+                                Value4 = preset.Value4,
+                                Value5 = preset.Value5
+                            });
+                            break;
+                        case "Earrings":
+                            output.Add(new Earrings()
+                            {
+                                AccessoryType = AccessoryType.Earrings,
+                                Name = preset.Name,
+                                Option1 = preset.Option1,
+                                Option2 = preset.Option2,
+                                Option3 = preset.Option3,
+                                Option4 = preset.Option4,
+                                Option5 = preset.Option5,
+                                Value1 = preset.Value1,
+                                Value2 = preset.Value2,
+                                Value3 = preset.Value3,
+                                Value4 = preset.Value4,
+                                Value5 = preset.Value5
+                            });
+                            break;
+                        case "Bracelet":
+                            output.Add(new Bracelet()
+                            {
+                                AccessoryType = AccessoryType.Bracelet,
+                                Name = preset.Name,
+                                Option1 = preset.Option1,
+                                Option2 = preset.Option2,
+                                Option3 = preset.Option3,
+                                Option4 = preset.Option4,
+                                Option5 = preset.Option5,
+                                Value1 = preset.Value1,
+                                Value2 = preset.Value2,
+                                Value3 = preset.Value3,
+                                Value4 = preset.Value4,
+                                Value5 = preset.Value5
+                            });
+                            break;
+                    }
+                }
+                return output;
+            }
+        }
     }
 
     public class Ring : Accessory
@@ -194,276 +278,22 @@ namespace DMOManager.Models
         };
     }
 
-    public static class AccessoryPresets
+
+    [Table("AccessoryPresets")]
+    public class AccessoryPresetsDatabase
     {
-        public static List<Accessory> Presets = new List<Accessory>()
-        {
-        #region Rings
-        new Ring()
-        {
-            Name = "Radiant Holy Beast Ring / AT AT Att Att",
-            OptionsCount = 4,
-            Option1 = AccessoryOptions.Attack,
-            Option2 = AccessoryOptions.Attack,
-            Option3 = AccessoryOptions.Attribute,
-            Option4 = AccessoryOptions.Attribute,
-            Value1 = 780.0,
-            Value2 = 780.0,
-            Value3 = 14.0,
-            Value4 = 14.0
-        },
-        new Ring()
-        {
-            Name = "Zero Unit Ring / AT AT Att Att CT",
-            OptionsCount = 5,
-            Option1 = AccessoryOptions.Attack,
-            Option2 = AccessoryOptions.Attack,
-            Option3 = AccessoryOptions.Attribute,
-            Option4 = AccessoryOptions.Attribute,
-            Option5 = AccessoryOptions.Critical,
-            Value1 = 720.0,
-            Value2 = 720.0,
-            Value3 = 12.0,
-            Value4 = 12.0,
-            Value5 = 12.0
-        },
-        new Ring()
-        {
-            Name = "Zero Unit Ring / AT AT Att Att HP",
-            OptionsCount = 5,
-            Option1 = AccessoryOptions.Attack,
-            Option2 = AccessoryOptions.Attack,
-            Option3 = AccessoryOptions.Attribute,
-            Option4 = AccessoryOptions.Attribute,
-            Option5 = AccessoryOptions.HP,
-            Value1 = 720.0,
-            Value2 = 720.0,
-            Value3 = 12.0,
-            Value4 = 12.0,
-            Value5 = 1920.0
-        },
-        #endregion
-        #region Necklaces
-        new Necklace()
-        {
-            Name = "Radiant Holy Beast Necklace/ AS CD Att Att",
-            OptionsCount = 4,
-            Option1 = AccessoryOptions.AttackSpeed,
-            Option2 = AccessoryOptions.CriticalDamage,
-            Option3 = AccessoryOptions.Attribute,
-            Option4 = AccessoryOptions.Attribute,
-            Value1 = 30.0,
-            Value2 = 52.0,
-            Value3 = 14.0,
-            Value4 = 14.0
-        },
-        new Necklace()
-        {
-            Name = "Radiant Holy Beast Necklace/ AS CD AT Att",
-            OptionsCount = 4,
-            Option1 = AccessoryOptions.AttackSpeed,
-            Option2 = AccessoryOptions.CriticalDamage,
-            Option3 = AccessoryOptions.Attack,
-            Option4 = AccessoryOptions.Attribute,
-            Value1 = 30.0,
-            Value2 = 52.0,
-            Value3 = 520.0,
-            Value4 = 14.0
-        },
-        new Necklace()
-        {
-            Name = "Zero Unit Necklace/ AS CD Att Att CT",
-            OptionsCount = 5,
-            Option1 = AccessoryOptions.AttackSpeed,
-            Option2 = AccessoryOptions.CriticalDamage,
-            Option3 = AccessoryOptions.Attribute,
-            Option4 = AccessoryOptions.Attribute,
-            Option5 = AccessoryOptions.Critical,
-            Value1 = 30.0,
-            Value2 = 48.0,
-            Value3 = 12.0,
-            Value4 = 12.0,
-            Value5 = 12.0
-        },
-        new Necklace()
-        {
-            Name = "Zero Unit Necklace/ AS CD AT Att CT",
-            OptionsCount = 5,
-            Option1 = AccessoryOptions.AttackSpeed,
-            Option2 = AccessoryOptions.CriticalDamage,
-            Option3 = AccessoryOptions.Attack,
-            Option4 = AccessoryOptions.Attribute,
-            Option5 = AccessoryOptions.Critical,
-            Value1 = 30.0,
-            Value2 = 48.0,
-            Value3 = 480.0,
-            Value4 = 12.0,
-            Value5 = 12.0
-        },
-        new Necklace()
-        {
-            Name = "Zero Unit Necklace/ AS CD AT Att HP",
-            OptionsCount = 5,
-            Option1 = AccessoryOptions.AttackSpeed,
-            Option2 = AccessoryOptions.CriticalDamage,
-            Option3 = AccessoryOptions.Attack,
-            Option4 = AccessoryOptions.Attribute,
-            Option5 = AccessoryOptions.HP,
-            Value1 = 30.0,
-            Value2 = 48.0,
-            Value3 = 480.0,
-            Value4 = 12.0,
-            Value5 = 1920.0
-        },
-        new Necklace()
-        {
-            Name = "Zero Unit Necklace/ AS CD Att Att HP",
-            OptionsCount = 5,
-            Option1 = AccessoryOptions.AttackSpeed,
-            Option2 = AccessoryOptions.CriticalDamage,
-            Option3 = AccessoryOptions.Attribute,
-            Option4 = AccessoryOptions.Attribute,
-            Option5 = AccessoryOptions.HP,
-            Value1 = 30.0,
-            Value2 = 48.0,
-            Value3 = 12.0,
-            Value4 = 12.0,
-            Value5 = 1920.0
-        },
-        #endregion
-        #region Earrings
-        new Earrings()
-        {
-            Name = "Radiant Holy Beast Earrings / CD CD Att Att",
-            OptionsCount = 4,
-            Option1 = AccessoryOptions.CriticalDamage,
-            Option2 = AccessoryOptions.CriticalDamage,
-            Option3 = AccessoryOptions.Attribute,
-            Option4 = AccessoryOptions.Attribute,
-            Value1 = 52.0,
-            Value2 = 52.0,
-            Value3 = 20.0,
-            Value4 = 20.0
-        },
-        new Earrings()
-        {
-            Name = "Radiant Holy Beast Earrings / CD CD Att HT",
-            OptionsCount = 4,
-            Option1 = AccessoryOptions.CriticalDamage,
-            Option2 = AccessoryOptions.CriticalDamage,
-            Option3 = AccessoryOptions.Attribute,
-            Option4 = AccessoryOptions.HitRate,
-            Value1 = 52.0,
-            Value2 = 52.0,
-            Value3 = 20.0,
-            Value4 = 1300.0
-        },
-         new Earrings()
-        {
-            Name = "Zero Unit Earrings / CD CD Att Att CT",
-            OptionsCount = 5,
-            Option1 = AccessoryOptions.CriticalDamage,
-            Option2 = AccessoryOptions.CriticalDamage,
-            Option3 = AccessoryOptions.Attribute,
-            Option4 = AccessoryOptions.Attribute,
-            Option5 = AccessoryOptions.Critical,
-            Value1 = 48.0,
-            Value2 = 48.0,
-            Value3 = 18.0,
-            Value4 = 18.0,
-            Value5 = 18.0
-        },
-        new Earrings()
-        {
-            Name = "Zero Unit Earrings / CD CD Att Att HT",
-            OptionsCount = 5,
-            Option1 = AccessoryOptions.CriticalDamage,
-            Option2 = AccessoryOptions.CriticalDamage,
-            Option3 = AccessoryOptions.Attribute,
-            Option4 = AccessoryOptions.Attribute,
-            Option5 = AccessoryOptions.HitRate,
-            Value1 = 48.0,
-            Value2 = 48.0,
-            Value3 = 18.0,
-            Value4 = 18.0,
-            Value5 = 1200.0
-        },
-        new Earrings()
-        {
-            Name = "Zero Unit Earrings / CD CD Att CT HT",
-            OptionsCount = 5,
-            Option1 = AccessoryOptions.CriticalDamage,
-            Option2 = AccessoryOptions.CriticalDamage,
-            Option3 = AccessoryOptions.Attribute,
-            Option4 = AccessoryOptions.Critical,
-            Option5 = AccessoryOptions.HitRate,
-            Value1 = 48.0,
-            Value2 = 48.0,
-            Value3 = 18.0,
-            Value4 = 18.0,
-            Value5 = 1200.0
-        },
-        new Earrings()
-        {
-            Name = "Boundless Advanced Earrings / CD CD HT HT",
-            OptionsCount = 4,
-            Option1 = AccessoryOptions.CriticalDamage,
-            Option2 = AccessoryOptions.CriticalDamage,
-            Option3 = AccessoryOptions.HitRate,
-            Option4 = AccessoryOptions.HitRate,
-            Value1 = 40.0,
-            Value2 = 40.0,
-            Value3 = 1000.0,
-            Value4 = 1000.0
-        },
-        #endregion
-        #region Bracelets
-        new Bracelet()
-        {
-            Name = "Royal: X-Knight's Bracelet / AT HT HT CD CD",
-            OptionsCount = 5,
-            Option1 = AccessoryOptions.Attack,
-            Option2 = AccessoryOptions.HitRate,
-            Option3 = AccessoryOptions.HitRate,
-            Option4 = AccessoryOptions.CriticalDamage,
-            Option5 = AccessoryOptions.CriticalDamage,
-            Value1 = 960.0,
-            Value2 = 1200.0,
-            Value3 = 1200.0,
-            Value4 = 48.0,
-            Value5 = 48.0
-        },
-        new Bracelet()
-        {
-            Name = "Zero Unit Bracelet / AT HT HT CD CD",
-            OptionsCount = 5,
-            Option1 = AccessoryOptions.Attack,
-            Option2 = AccessoryOptions.HitRate,
-            Option3 = AccessoryOptions.HitRate,
-            Option4 = AccessoryOptions.CriticalDamage,
-            Option5 = AccessoryOptions.CriticalDamage,
-            Value1 = 1440.0,
-            Value2 = 1800.0,
-            Value3 = 1800.0,
-            Value4 = 72.0,
-            Value5 = 72.0
-        },
-        new Bracelet()
-        {
-            Name = "Miracle Bracelet Special / AT HT HT CD CD",
-            OptionsCount = 5,
-            Option1 = AccessoryOptions.Attack,
-            Option2 = AccessoryOptions.HitRate,
-            Option3 = AccessoryOptions.HitRate,
-            Option4 = AccessoryOptions.CriticalDamage,
-            Option5 = AccessoryOptions.CriticalDamage,
-            Value1 = 1200.0,
-            Value2 = 1500.0,
-            Value3 = 1500.0,
-            Value4 = 60.0,
-            Value5 = 60.0
-        }
-        #endregion
-        };
+        public string Type { get; set; }
+        [PrimaryKey]
+        public string Name { get; set; }
+        public AccessoryOptions Option1 { get; set; }
+        public AccessoryOptions Option2 { get; set; }
+        public AccessoryOptions Option3 { get; set; }
+        public AccessoryOptions Option4 { get; set; }
+        public AccessoryOptions Option5 { get; set; }
+        public int Value1 { get; set; }
+        public int Value2 { get; set; }
+        public int Value3 { get; set; }
+        public int Value4 { get; set; }
+        public int Value5 { get; set; }
     }
 }

@@ -10,6 +10,7 @@ using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Net.Http;
+using System.Reflection.PortableExecutable;
 using System.Security.Policy;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
@@ -173,7 +174,8 @@ namespace DMOManager
             {
                 StreamReader reader;
                 List<StatFormula> formulas = new List<StatFormula>();
-                List<DigimonPresets> presets = new List<DigimonPresets>();
+                List<DigimonPresets> digiPresets = new List<DigimonPresets>();
+                List<AccessoryPresetsDatabase> accPresets = new List<AccessoryPresetsDatabase>();
                 //Stat Formula
                 try
                 {
@@ -236,16 +238,54 @@ namespace DMOManager
                                 record.HT = int.Parse(csv.GetField("HT"));
                                 record.BaseDE = int.Parse(csv.GetField("baseDE"));
                                 record.EV = int.Parse(csv.GetField("EV"));
-                                presets.Add(record);
+                                digiPresets.Add(record);
                             }
                             await SQLiteDatabaseManager.Database.DeleteAllAsync<DigimonPresets>();
-                            await SQLiteDatabaseManager.Database.InsertAllAsync(presets);
+                            await SQLiteDatabaseManager.Database.InsertAllAsync(digiPresets);
+                        }
+                    }
+                }
+                catch { return; }
+                //Accessory Presets
+                try
+                {
+                    using (HttpResponseMessage response = await client.GetAsync("https://raw.githubusercontent.com/DMOHelper/DMOHelper/master/csvResources/accessoryPresets.csv"))
+                    using (Stream streamToReadFrom = await response.Content.ReadAsStreamAsync())
+                    {
+                        reader = new StreamReader(streamToReadFrom);
+                        using (var csv = new CsvReader(reader, CultureInfo.InvariantCulture))
+                        {
+                            csv.Read();
+                            csv.ReadHeader();
+                            while (csv.Read())
+                            {
+                                var record = new AccessoryPresetsDatabase();
+                                record.Type = csv.GetField("type");
+                                record.Name = csv.GetField("name");
+                                bool result1 = Enum.TryParse(csv.GetField("option1"), out AccessoryOptions option1);
+                                bool result2 = Enum.TryParse(csv.GetField("option2"), out AccessoryOptions option2);
+                                bool result3 = Enum.TryParse(csv.GetField("option3"), out AccessoryOptions option3);
+                                bool result4 = Enum.TryParse(csv.GetField("option4"), out AccessoryOptions option4);
+                                bool result5 = Enum.TryParse(csv.GetField("option5"), out AccessoryOptions option5);
+                                record.Option1 = option1;
+                                record.Option2 = option2;
+                                record.Option3 = option3;
+                                record.Option4 = option4;
+                                record.Option5 = option5;
+                                record.Value1 = int.Parse(csv.GetField("value1"));
+                                record.Value2 = int.Parse(csv.GetField("value2"));
+                                record.Value3 = int.Parse(csv.GetField("value3"));
+                                record.Value4 = int.Parse(csv.GetField("value4"));
+                                record.Value5 = int.Parse(csv.GetField("value5"));
+                                accPresets.Add(record);
+                            }
+                            await SQLiteDatabaseManager.Database.DeleteAllAsync<AccessoryPresetsDatabase>();
+                            await SQLiteDatabaseManager.Database.InsertAllAsync(accPresets);
                         }
                     }
                 }
                 catch { return; }
             }
-
         }
     }
 }

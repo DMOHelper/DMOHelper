@@ -12,7 +12,7 @@ namespace DMOManager.Dialogs
         public PresetDialog()
         {
             InitializeComponent();
-            presetsBox.ItemsSource = AccessoryPresets.Presets;
+            presetsBox.ItemsSource = Accessory.Presets;
             PropertyGroupDescription group = new PropertyGroupDescription("AccessoryType");
             CollectionView view = (CollectionView)CollectionViewSource.GetDefaultView(presetsBox.ItemsSource);
             view.GroupDescriptions.Clear();
