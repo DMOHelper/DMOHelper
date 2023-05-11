@@ -1,5 +1,6 @@
 ﻿using DMOManager.Helper;
 using DMOManager.Models;
+using Syncfusion.Windows.Shared;
 using System;
 using System.Linq;
 using System.Windows;
@@ -9,7 +10,7 @@ namespace DMOManager.Dialogs
     /// <summary>
     /// Interaktionslogik für ChooseItemDialog.xaml
     /// </summary>
-    public partial class ChooseItemDialog : Window
+    public partial class ChooseItemDialog : ChromelessWindow
     {
         private VMMain viewModel;
         public ChooseItemDialog()

@@ -1,0 +1,62 @@
+﻿<syncfusion:ChromelessWindow x:Class="DMOManager.Dialogs.SealsDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:DMOManager.Dialogs"
+        xmlns:models="clr-namespace:DMOManager.Models"
+        xmlns:syncfusion="http://schemas.syncfusion.com/wpf" 
+        mc:Ignorable="d"
+        xmlns:skin="clr-namespace:Syncfusion.SfSkinManager;assembly=Syncfusion.SfSkinManager.WPF"
+        skin:SfSkinManager.Theme="{skin:SkinManagerExtension ThemeName=MaterialDark}" Background="{StaticResource Background}"
+        Title="Seals Input" SizeToContent="WidthAndHeight" WindowStartupLocation="CenterOwner"  Width="450"  ResizeBorderThickness="5" ResizeBorderBrush="{StaticResource Background}" Icon="/Images/Icon48.png" ShowIcon="True" AllowsTransparency="True" CornerRadius="10" TitleFontSize="15" TitleTextAlignment="Center" TitleBarForeground="{StaticResource Foreground}" TitleBarBackground="{StaticResource Background}"
+        ContentRendered="Window_ContentRendered">
+    <Grid Margin="15">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <Label Name="lblQuestion" Grid.Column="0" Grid.ColumnSpan="3">Please specify your Seal Informations:</Label>
+
+        <Grid Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="30" />
+                <RowDefinition Height="30" />
+                <RowDefinition Height="30" />
+                <RowDefinition Height="30" />
+            </Grid.RowDefinitions>
+
+            <Label HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Content="AT" Grid.Row="0" Grid.Column="0" />
+            <Label HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Content="CT" Grid.Row="0" Grid.Column="2" />
+            <Label HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Content="HT" Grid.Row="1" Grid.Column="0" />
+            <Label HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Content="HP" Grid.Row="1" Grid.Column="2" />
+            <Label HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Content="DS" Grid.Row="2" Grid.Column="0" />
+            <Label HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Content="DE" Grid.Row="2" Grid.Column="2" />
+            <Label HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Content="EV" Grid.Row="3" Grid.Column="0" />
+            <syncfusion:DoubleTextBox Height="28" Width="100" Value="{Binding AT, Mode=TwoWay}" MaxValue="99999" NumberDecimalDigits="0" MinValue="0" MinValueOnExceedMinDigit="True" MaxValueOnExceedMaxDigit="True" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" x:Name="atValue" Text="0" Grid.Row="0" Grid.Column="1"/>
+            <syncfusion:DoubleTextBox Height="28" Width="100" Value="{Binding CT, Mode=TwoWay}" MaxValue="999" MinValue="0" MinValueOnExceedMinDigit="True" MaxValueOnExceedMaxDigit="True" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" x:Name="ctValue" Text="0" Grid.Row="0" Grid.Column="3"/>
+            <syncfusion:DoubleTextBox Height="28" Width="100" Value="{Binding HT, Mode=TwoWay}" MaxValue="99999" NumberDecimalDigits="0" MinValue="0" MinValueOnExceedMinDigit="True" MaxValueOnExceedMaxDigit="True" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" x:Name="htValue" Text="0" Grid.Row="1" Grid.Column="1"/>
+            <syncfusion:DoubleTextBox Height="28" Width="100" Value="{Binding HP, Mode=TwoWay}" MaxValue="99999" NumberDecimalDigits="0" MinValue="0" MinValueOnExceedMinDigit="True" MaxValueOnExceedMaxDigit="True" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" x:Name="hpValue" Text="0" Grid.Row="1" Grid.Column="3"/>
+            <syncfusion:DoubleTextBox Height="28" Width="100" Value="{Binding DS, Mode=TwoWay}" MaxValue="99999" NumberDecimalDigits="0" MinValue="0" MinValueOnExceedMinDigit="True" MaxValueOnExceedMaxDigit="True" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" x:Name="dsValue" Text="0" Grid.Row="2" Grid.Column="1"/>
+            <syncfusion:DoubleTextBox Height="28" Width="100" Value="{Binding DE, Mode=TwoWay}" MaxValue="99999" NumberDecimalDigits="0" MinValue="0" MinValueOnExceedMinDigit="True" MaxValueOnExceedMaxDigit="True" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" x:Name="deValue" Text="0" Grid.Row="2" Grid.Column="3"/>
+            <syncfusion:DoubleTextBox Height="28" Width="100" Value="{Binding EV, Mode=TwoWay}" MaxValue="999" MinValue="0" MinValueOnExceedMinDigit="True" MaxValueOnExceedMaxDigit="True" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" x:Name="evValue" Text="0" Grid.Row="3" Grid.Column="1"/>
+        </Grid>
+        <WrapPanel Grid.Row="2" Grid.ColumnSpan="2" Grid.Column="1" HorizontalAlignment="Right" Margin="0,15,0,0">
+            <Button IsDefault="True" Name="btnDialogOk" Click="btnDialogOk_Click" MinWidth="60" Margin="0,0,10,0">Save</Button>
+            <Button IsCancel="True" MinWidth="60">Cancel</Button>
+        </WrapPanel>
+    </Grid>
+</syncfusion:ChromelessWindow>

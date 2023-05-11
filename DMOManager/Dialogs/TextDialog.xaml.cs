@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Syncfusion.Windows.Shared;
+using System;
 using System.Windows;
 
 namespace DMOManager.Dialogs
@@ -6,7 +7,7 @@ namespace DMOManager.Dialogs
     /// <summary>
     /// Interaktionslogik für TextDialog.xaml
     /// </summary>
-    public partial class TextDialog : Window
+    public partial class TextDialog : ChromelessWindow
     {
 		public TextDialog(string question, string defaultAnswer = "")
 		{

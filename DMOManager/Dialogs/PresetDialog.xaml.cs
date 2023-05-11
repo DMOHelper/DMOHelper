@@ -1,4 +1,5 @@
-﻿using DMOManager.Models;
+﻿using DMOManager.Helper;
+using Syncfusion.Windows.Shared;
 using System.Windows;
 using System.Windows.Data;
 
@@ -7,27 +8,30 @@ namespace DMOManager.Dialogs
     /// <summary>
     /// Interaktionslogik für PresetDialog.xaml
     /// </summary>
-    public partial class PresetDialog : Window
+    public partial class PresetDialog : ChromelessWindow
     {
-        public PresetDialog()
+        public PresetDialog(AbstractPropertyChanged viewModel, string groupDescription = "")
         {
+            this.DataContext = viewModel;
             InitializeComponent();
-            presetsBox.ItemsSource = Accessory.Presets;
-            PropertyGroupDescription group = new PropertyGroupDescription("AccessoryType");
             CollectionView view = (CollectionView)CollectionViewSource.GetDefaultView(presetsBox.ItemsSource);
             view.GroupDescriptions.Clear();
-            view.GroupDescriptions.Add(group);
+            if (!string.IsNullOrWhiteSpace(groupDescription))
+            {
+                PropertyGroupDescription group = new PropertyGroupDescription(groupDescription);
+                view.GroupDescriptions.Add(group);
+            }
         }
         private void btnDialogOk_Click(object sender, RoutedEventArgs e)
         {
             this.DialogResult = true;
         }
 
-        public Accessory? GetSelected
+        public object GetSelected
         {
             get
             {
-                return presetsBox.SelectedItem as Accessory;
+                return presetsBox.SelectedItem;
             }
         }
     }

@@ -1,4 +1,5 @@
 ﻿using DMOManager.Models;
+using Syncfusion.Windows.Shared;
 using System;
 using System.Linq;
 using System.Windows;
@@ -8,7 +9,7 @@ namespace DMOManager.Dialogs
     /// <summary>
     /// Interaktionslogik für ChooseAccountDialog.xaml
     /// </summary>
-    public partial class ChooseAccountDialog : Window
+    public partial class ChooseAccountDialog : ChromelessWindow
     {
         private VMMain viewModel;
         public ChooseAccountDialog()

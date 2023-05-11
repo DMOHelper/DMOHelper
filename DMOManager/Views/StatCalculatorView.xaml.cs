@@ -29,5 +29,15 @@ namespace DMOManager.Views
                 viewModel.StatInformation.SaveToDatabase();
             }
         }
+
+        private void Seals_Click(object sender, RoutedEventArgs eventArgs)
+        {
+            SealsDialog sealDialog = new SealsDialog(viewModel.StatInformation.Seals);
+            if(sealDialog.ShowDialog() == true)
+            {
+                viewModel.StatInformation.Seals = sealDialog.Seals;
+                viewModel.StatInformation.SaveToDatabase();
+            }
+        }
     }
 }

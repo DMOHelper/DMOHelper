@@ -1,19 +1,19 @@
 type,name,option1,option2,option3,option4,option5,value1,value2,value3,value4,value5
-ring,"Radiant Holy Beast Ring / AT AT Att Att",Attack,Attack,Attribute,Attribute,None,78000,78000,1400,1400,0
-ring,"Zero Unit Ring / AT AT Att Att CT",Attack,Attack,Attribute,Attribute,Critical,72000,72000,1200,1200,1200
-ring,"Zero Unit Ring / AT AT Att Att HP",Attack,Attack,Attribute,Attribute,HP,72000,72000,1200,1200,192000
-necklace,"Radiant Holy Beast Necklace / AS CD Att Att",AttackSpeed,CriticalDamage,Attribute,Attribute,None,3000,5200,1400,1400,0
-necklace,"Radiant Holy Beast Necklace / AS CD AT Att",AttackSpeed,CriticalDamage,Attack,Attribute,None,3000,5200,52000,1400,0
-necklace,"Zero Unit Necklace / AS CD Att Att CT",AttackSpeed,CriticalDamage,Attribute,Attribute,Critical,3000,4800,1200,1200,1200
-necklace,"Zero Unit Necklace / AS CD AT Att CT",AttackSpeed,CriticalDamage,Attack,Attribute,Critical,3000,4800,48000,1200,1200
-necklace,"Zero Unit Necklace / AS CD AT Att HP",AttackSpeed,CriticalDamage,Attack,Attribute,HP,3000,4800,48000,1200,192000
-necklace,"Zero Unit Necklace / AS CD Att Att HP",AttackSpeed,CriticalDamage,Attribute,Attribute,HP,3000,4800,1200,1200,192000
-earrings,"Radiant Holy Beast Earrings / CD CD Att Att",CriticalDamage,CriticalDamage,Attribute,Attribute,None,5200,5200,2000,2000,0
-earrings,"Radiant Holy Beast Earrings / CD CD Att HT",CriticalDamage,CriticalDamage,Attribute,HitRate,None,5200,5200,2000,130000,0
-earrings,"Zero Unit Earrings / CD CD Att Att CT",CriticalDamage,CriticalDamage,Attribute,Attribute,Critical,4800,4800,1800,1800,1800
-earrings,"Zero Unit Earrings / CD CD Att Att HT",CriticalDamage,CriticalDamage,Attribute,Attribute,HitRate,4800,4800,1800,1800,120000
-earrings,"Zero Unit Earrings / CD CD Att CT HT",CriticalDamage,CriticalDamage,Attribute,Critical,HitRate,4800,4800,1800,1800,120000
-earrings,"Boundless Advanced Earrings / CD CD HT HT",CriticalDamage,CriticalDamage,HitRate,HitRate,None,4000,4000,100000,100000,0
-bracelet,"Royal: X-Knight's Bracelet / AT HT HT CD CD",Attack,HitRate,HitRate,CriticalDamage,CriticalDamage,96000,120000,120000,4800,4800
-bracelet,"Zero Unit Bracelet / AT HT HT CD CD",Attack,HitRate,HitRate,CriticalDamage,CriticalDamage,144000,180000,180000,7200,7200
-bracelet,"Miracle Bracelet Special / AT HT HT CD CD",Attack,HitRate,HitRate,CriticalDamage,CriticalDamage,120000,150000,150000,6000,6000
+Ring,"Radiant Holy Beast Ring / AT AT Att Att",Attack,Attack,Attribute,Attribute,None,78000,78000,1400,1400,0
+Ring,"Zero Unit Ring / AT AT Att Att CT",Attack,Attack,Attribute,Attribute,Critical,72000,72000,1200,1200,1200
+Ring,"Zero Unit Ring / AT AT Att Att HP",Attack,Attack,Attribute,Attribute,HP,72000,72000,1200,1200,192000
+Necklace,"Radiant Holy Beast Necklace / AS CD Att Att",AttackSpeed,CriticalDamage,Attribute,Attribute,None,3000,5200,1400,1400,0
+Necklace,"Radiant Holy Beast Necklace / AS CD AT Att",AttackSpeed,CriticalDamage,Attack,Attribute,None,3000,5200,52000,1400,0
+Necklace,"Zero Unit Necklace / AS CD Att Att CT",AttackSpeed,CriticalDamage,Attribute,Attribute,Critical,3000,4800,1200,1200,1200
+Necklace,"Zero Unit Necklace / AS CD AT Att CT",AttackSpeed,CriticalDamage,Attack,Attribute,Critical,3000,4800,48000,1200,1200
+Necklace,"Zero Unit Necklace / AS CD AT Att HP",AttackSpeed,CriticalDamage,Attack,Attribute,HP,3000,4800,48000,1200,192000
+Necklace,"Zero Unit Necklace / AS CD Att Att HP",AttackSpeed,CriticalDamage,Attribute,Attribute,HP,3000,4800,1200,1200,192000
+Earrings,"Radiant Holy Beast Earrings / CD CD Att Att",CriticalDamage,CriticalDamage,Attribute,Attribute,None,5200,5200,2000,2000,0
+Earrings,"Radiant Holy Beast Earrings / CD CD Att HT",CriticalDamage,CriticalDamage,Attribute,HitRate,None,5200,5200,2000,130000,0
+Earrings,"Zero Unit Earrings / CD CD Att Att CT",CriticalDamage,CriticalDamage,Attribute,Attribute,Critical,4800,4800,1800,1800,1800
+Earrings,"Zero Unit Earrings / CD CD Att Att HT",CriticalDamage,CriticalDamage,Attribute,Attribute,HitRate,4800,4800,1800,1800,120000
+Earrings,"Zero Unit Earrings / CD CD Att CT HT",CriticalDamage,CriticalDamage,Attribute,Critical,HitRate,4800,4800,1800,1800,120000
+Earrings,"Boundless Advanced Earrings / CD CD HT HT",CriticalDamage,CriticalDamage,HitRate,HitRate,None,4000,4000,100000,100000,0
+Bracelet,"Royal: X-Knight's Bracelet / AT HT HT CD CD",Attack,HitRate,HitRate,CriticalDamage,CriticalDamage,96000,120000,120000,4800,4800
+Bracelet,"Zero Unit Bracelet / AT HT HT CD CD",Attack,HitRate,HitRate,CriticalDamage,CriticalDamage,144000,180000,180000,7200,7200
+Bracelet,"Miracle Bracelet Special / AT HT HT CD CD",Attack,HitRate,HitRate,CriticalDamage,CriticalDamage,120000,150000,150000,6000,6000

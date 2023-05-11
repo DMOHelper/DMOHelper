@@ -5,9 +5,11 @@ using System.Collections.Generic;
 
 namespace DMOManager.Models
 {
-    public abstract class Accessory : AbstractPropertyChanged
+    [Table("Accessory")]
+    public class Accessory : AbstractPropertyChanged
     {
-        public AccessoryType AccessoryType { get; internal set; }
+        [PrimaryKey]
+        public AccessoryType AccessoryType { get; set; }
         private AccessoryOptions option1;
         private AccessoryOptions option2;
         private AccessoryOptions option3;
@@ -113,92 +115,8 @@ namespace DMOManager.Models
         }
 
         public Accessory() { }
-
-        public static List<Accessory> Presets
-        {
-            get
-            {
-                List<Accessory> output = new List<Accessory>();
-                var presets = SQLiteDatabaseManager.Database.Table<AccessoryPresetsDatabase>().ToListAsync().Result;
-                foreach(AccessoryPresetsDatabase preset in presets)
-                {
-                    switch(preset.Type)
-                    {
-                        case "Ring":
-                            output.Add(new Ring()
-                            {
-                                AccessoryType = AccessoryType.Ring,
-                                Name = preset.Name,
-                                Option1 = preset.Option1,
-                                Option2 = preset.Option2,
-                                Option3 = preset.Option3,
-                                Option4 = preset.Option4,
-                                Option5 = preset.Option5,
-                                Value1 = preset.Value1,
-                                Value2 = preset.Value2,
-                                Value3 = preset.Value3,
-                                Value4 = preset.Value4,
-                                Value5 = preset.Value5
-                            });
-                            break;
-                        case "Necklace":
-                            output.Add(new Necklace()
-                            {
-                                AccessoryType = AccessoryType.Necklace,
-                                Name = preset.Name,
-                                Option1 = preset.Option1,
-                                Option2 = preset.Option2,
-                                Option3 = preset.Option3,
-                                Option4 = preset.Option4,
-                                Option5 = preset.Option5,
-                                Value1 = preset.Value1,
-                                Value2 = preset.Value2,
-                                Value3 = preset.Value3,
-                                Value4 = preset.Value4,
-                                Value5 = preset.Value5
-                            });
-                            break;
-                        case "Earrings":
-                            output.Add(new Earrings()
-                            {
-                                AccessoryType = AccessoryType.Earrings,
-                                Name = preset.Name,
-                                Option1 = preset.Option1,
-                                Option2 = preset.Option2,
-                                Option3 = preset.Option3,
-                                Option4 = preset.Option4,
-                                Option5 = preset.Option5,
-                                Value1 = preset.Value1,
-                                Value2 = preset.Value2,
-                                Value3 = preset.Value3,
-                                Value4 = preset.Value4,
-                                Value5 = preset.Value5
-                            });
-                            break;
-                        case "Bracelet":
-                            output.Add(new Bracelet()
-                            {
-                                AccessoryType = AccessoryType.Bracelet,
-                                Name = preset.Name,
-                                Option1 = preset.Option1,
-                                Option2 = preset.Option2,
-                                Option3 = preset.Option3,
-                                Option4 = preset.Option4,
-                                Option5 = preset.Option5,
-                                Value1 = preset.Value1,
-                                Value2 = preset.Value2,
-                                Value3 = preset.Value3,
-                                Value4 = preset.Value4,
-                                Value5 = preset.Value5
-                            });
-                            break;
-                    }
-                }
-                return output;
-            }
-        }
     }
-
+    [Table("Accessory")]
     public class Ring : Accessory
     {
         public Ring()
@@ -207,6 +125,7 @@ namespace DMOManager.Models
         }
         public static new List<AccessoryOptions> AllowedOptions { get; } = new List<AccessoryOptions>()
         {
+            { AccessoryOptions.None},
             { AccessoryOptions.HP},
             { AccessoryOptions.DS},
             { AccessoryOptions.Attack },
@@ -216,7 +135,7 @@ namespace DMOManager.Models
             { AccessoryOptions.Attribute }
         };
     }
-
+    [Table("Accessory")]
     public class Necklace : Accessory
     {
         public Necklace()
@@ -225,6 +144,7 @@ namespace DMOManager.Models
         }
         public static new List<AccessoryOptions> AllowedOptions { get; } = new List<AccessoryOptions>()
         {
+            { AccessoryOptions.None},
             { AccessoryOptions.HP },
             { AccessoryOptions.DS },
             { AccessoryOptions.Attack },
@@ -236,7 +156,7 @@ namespace DMOManager.Models
             { AccessoryOptions.AttackSpeed }
         };
     }
-
+    [Table("Accessory")]
     public class Earrings : Accessory
     {
         public Earrings()
@@ -245,6 +165,7 @@ namespace DMOManager.Models
         }
         public static new List<AccessoryOptions> AllowedOptions { get; } = new List<AccessoryOptions>()
         {
+            { AccessoryOptions.None },
             { AccessoryOptions.HP },
             { AccessoryOptions.DS },
             { AccessoryOptions.Defense },
@@ -257,7 +178,7 @@ namespace DMOManager.Models
             { AccessoryOptions.Block }
         };
     }
-
+    [Table("Accessory")]
     public class Bracelet : Accessory
     {
         public Bracelet()
@@ -266,6 +187,7 @@ namespace DMOManager.Models
         }
         public static new List<AccessoryOptions> AllowedOptions { get; } = new List<AccessoryOptions>()
         {
+            { AccessoryOptions.None },
             { AccessoryOptions.HP },
             { AccessoryOptions.DS },
             { AccessoryOptions.Attack },
@@ -280,20 +202,15 @@ namespace DMOManager.Models
 
 
     [Table("AccessoryPresets")]
-    public class AccessoryPresetsDatabase
+    public class AccessoryPresetsDatabase : Accessory
     {
-        public string Type { get; set; }
         [PrimaryKey]
-        public string Name { get; set; }
-        public AccessoryOptions Option1 { get; set; }
-        public AccessoryOptions Option2 { get; set; }
-        public AccessoryOptions Option3 { get; set; }
-        public AccessoryOptions Option4 { get; set; }
-        public AccessoryOptions Option5 { get; set; }
-        public int Value1 { get; set; }
-        public int Value2 { get; set; }
-        public int Value3 { get; set; }
-        public int Value4 { get; set; }
-        public int Value5 { get; set; }
+        public new string Name { get; set; }
+        public new AccessoryType AccessoryType { get; set; }
+
+        public AccessoryPresetsDatabase()
+        {
+            
+        }
     }
 }

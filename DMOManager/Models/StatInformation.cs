@@ -1,54 +1,176 @@
-﻿using DMOManager.Helper;
-using Newtonsoft.Json;
+﻿using DMOManager.Enums;
+using DMOManager.Helper;
 using SQLite;
 
 namespace DMOManager.Models
 {
     public class StatInformation : AbstractPropertyChanged
     {
-        public Ring Ring { get; set; }
-        public Necklace Necklace { get; set; }
-        public Earrings Earrings { get; set; }
-        public Bracelet Bracelet { get; set; }
-        public StatInformation() { }
+        private Ring ring;
+        private Necklace necklace;
+        private Earrings earrings;
+        private Bracelet bracelet;
+        private Seals seals;
+        public Ring Ring
+        {
+            get
+            {
+                return ring ?? new Ring();
+            }
+            set
+            {
+                ring = value;
+                OnPropertyChanged();
+            }
+        }
+        public Necklace Necklace
+        {
+            get
+            {
+                return necklace ?? new Necklace();
+            }
+            set
+            {
+                necklace = value;
+                OnPropertyChanged();
+            }
+        }
+        public Earrings Earrings
+        {
+            get
+            {
+                return earrings ?? new Earrings();
+            }
+            set
+            {
+                earrings = value;
+                OnPropertyChanged();
+            }
+        }
+        public Bracelet Bracelet
+        {
+            get
+            {
+                return bracelet ?? new Bracelet();
+            }
+            set
+            {
+                bracelet = value;
+                OnPropertyChanged();
+            }
+        }
+        public Seals Seals
+        {
+            get
+            {
+                return seals ?? new Seals();
+            }
+            set
+            {
+                seals = value;
+                OnPropertyChanged();
+            }
+        }
+        public StatInformation()
+        {
+            ring = new Ring();
+            necklace = new Necklace();
+            earrings = new Earrings();
+            bracelet = new Bracelet();
+            seals = new Seals();
+        }
 
         internal void SaveToDatabase()
         {
-            string serialized = JsonConvert.SerializeObject(this);
-            var statInfo = new StatInfoDatabase()
-            {
-                Serialized = serialized
-            };
-            SQLiteDatabaseManager.Database.InsertOrReplaceAsync(statInfo).Wait();
+            SQLiteDatabaseManager.Database.DeleteAllAsync<Accessory>().Wait();
+            SQLiteDatabaseManager.Database.InsertOrReplaceAsync(Ring).Wait();
+            SQLiteDatabaseManager.Database.InsertOrReplaceAsync(Necklace).Wait();
+            SQLiteDatabaseManager.Database.InsertOrReplaceAsync(Earrings).Wait();
+            SQLiteDatabaseManager.Database.InsertOrReplaceAsync(Bracelet).Wait();
+            SQLiteDatabaseManager.Database.InsertOrReplaceAsync(Seals).Wait();
+            SQLiteDatabaseManager.Database.InsertOrReplaceAsync(new StatInfoDatabase(this)).Wait();
         }
 
         internal static StatInformation LoadFromDatabase()
         {
+            var output = new StatInformation();
             var statInfo = SQLiteDatabaseManager.Database.Table<StatInfoDatabase>().FirstOrDefaultAsync().Result;
             if (statInfo != null)
             {
-                try
+            }
+            var accessories = SQLiteDatabaseManager.Database.Table<Accessory>().ToListAsync().Result;
+            foreach (var accessory in accessories)
+            {
+                switch (accessory.AccessoryType)
                 {
-                    return JsonConvert.DeserializeObject<StatInformation>(statInfo.Serialized);
-                }
-                catch
-                {
-                    return new StatInformation()
-                    {
-                        Ring = new Ring(),
-                        Necklace = new Necklace(),
-                        Earrings = new Earrings(),
-                        Bracelet = new Bracelet()
-                    };
+                    case AccessoryType.Ring:
+                        output.ring = new Ring()
+                        {
+                            Option1 = accessory.Option1,
+                            Option2 = accessory.Option2,
+                            Option3 = accessory.Option3,
+                            Option4 = accessory.Option4,
+                            Option5 = accessory.Option5,
+                            Value1 = accessory.Value1,
+                            Value2 = accessory.Value2,
+                            Value3 = accessory.Value3,
+                            Value4 = accessory.Value4,
+                            Value5 = accessory.Value5
+                        };
+                        break;
+                    case AccessoryType.Necklace:
+                        output.necklace = new Necklace()
+                        {
+                            Option1 = accessory.Option1,
+                            Option2 = accessory.Option2,
+                            Option3 = accessory.Option3,
+                            Option4 = accessory.Option4,
+                            Option5 = accessory.Option5,
+                            Value1 = accessory.Value1,
+                            Value2 = accessory.Value2,
+                            Value3 = accessory.Value3,
+                            Value4 = accessory.Value4,
+                            Value5 = accessory.Value5
+                        };
+                        break;
+                    case AccessoryType.Earrings:
+                        output.earrings = new Earrings()
+                        {
+                            Option1 = accessory.Option1,
+                            Option2 = accessory.Option2,
+                            Option3 = accessory.Option3,
+                            Option4 = accessory.Option4,
+                            Option5 = accessory.Option5,
+                            Value1 = accessory.Value1,
+                            Value2 = accessory.Value2,
+                            Value3 = accessory.Value3,
+                            Value4 = accessory.Value4,
+                            Value5 = accessory.Value5
+                        };
+                        break;
+                    case AccessoryType.Bracelet:
+                        output.bracelet = new Bracelet()
+                        {
+                            Option1 = accessory.Option1,
+                            Option2 = accessory.Option2,
+                            Option3 = accessory.Option3,
+                            Option4 = accessory.Option4,
+                            Option5 = accessory.Option5,
+                            Value1 = accessory.Value1,
+                            Value2 = accessory.Value2,
+                            Value3 = accessory.Value3,
+                            Value4 = accessory.Value4,
+                            Value5 = accessory.Value5
+                        };
+                        break;
                 }
             }
-            else return new StatInformation()
+            var seals = SQLiteDatabaseManager.Database.Table<Seals>().FirstOrDefaultAsync().Result;
+            if (seals != null)
             {
-                Ring = new Ring(),
-                Necklace = new Necklace(),
-                Earrings = new Earrings(),
-                Bracelet = new Bracelet()
-            };
+                output.Seals = seals;
+            }
+            return output;
         }
     }
 
@@ -57,8 +179,11 @@ namespace DMOManager.Models
     {
         [PrimaryKey]
         public int Id { get; set; }
-        public string Serialized { get; set; }
         public StatInfoDatabase()
+        {
+            Id = 0;
+        }
+        public StatInfoDatabase(StatInformation statInfo)
         {
             Id = 0;
         }

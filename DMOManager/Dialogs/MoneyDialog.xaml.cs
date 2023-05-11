@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Syncfusion.Windows.Shared;
+using System;
 using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Controls;
@@ -8,7 +9,7 @@ namespace DMOManager.Dialogs
     /// <summary>
     /// Interaktionslogik für MoneyDialog.xaml
     /// </summary>
-    public partial class MoneyDialog : Window
+    public partial class MoneyDialog : ChromelessWindow
     {
         private bool wasFarmed = false;
         private static readonly Regex _teraRegex = new Regex("^[1-9][0-9]{0,4}$"); //regex that matches 0-99999 for tera

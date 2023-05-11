@@ -174,7 +174,7 @@ namespace DMOManager
             {
                 StreamReader reader;
                 List<StatFormula> formulas = new List<StatFormula>();
-                List<DigimonPresets> digiPresets = new List<DigimonPresets>();
+                List<DigimonPresetsDatabase> digiPresets = new List<DigimonPresetsDatabase>();
                 List<AccessoryPresetsDatabase> accPresets = new List<AccessoryPresetsDatabase>();
                 //Stat Formula
                 try
@@ -221,7 +221,7 @@ namespace DMOManager
                             csv.ReadHeader();
                             while (csv.Read())
                             {
-                                var record = new DigimonPresets();
+                                var record = new DigimonPresetsDatabase();
                                 record.Name = csv.GetField("name");
                                 record.Rank = csv.GetField("rank");
                                 bool result = Enum.TryParse(csv.GetField("evolution"), out Evolution evo);
@@ -240,7 +240,7 @@ namespace DMOManager
                                 record.EV = int.Parse(csv.GetField("EV"));
                                 digiPresets.Add(record);
                             }
-                            await SQLiteDatabaseManager.Database.DeleteAllAsync<DigimonPresets>();
+                            await SQLiteDatabaseManager.Database.DeleteAllAsync<DigimonPresetsDatabase>();
                             await SQLiteDatabaseManager.Database.InsertAllAsync(digiPresets);
                         }
                     }
@@ -260,7 +260,11 @@ namespace DMOManager
                             while (csv.Read())
                             {
                                 var record = new AccessoryPresetsDatabase();
-                                record.Type = csv.GetField("type");
+                                bool result = Enum.TryParse(csv.GetField("type"), out AccessoryType type);
+                                if(result)
+                                {
+                                    record.AccessoryType = type;
+                                }
                                 record.Name = csv.GetField("name");
                                 bool result1 = Enum.TryParse(csv.GetField("option1"), out AccessoryOptions option1);
                                 bool result2 = Enum.TryParse(csv.GetField("option2"), out AccessoryOptions option2);

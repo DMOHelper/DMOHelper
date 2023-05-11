@@ -1,13 +1,14 @@
-﻿<Window x:Class="DMOManager.Dialogs.ChooseAccountDialog"
+﻿<syncfusion:ChromelessWindow x:Class="DMOManager.Dialogs.ChooseAccountDialog"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:syncfusion="http://schemas.syncfusion.com/wpf"
         xmlns:local="clr-namespace:DMOManager.Dialogs"
         mc:Ignorable="d"
         xmlns:skin="clr-namespace:Syncfusion.SfSkinManager;assembly=Syncfusion.SfSkinManager.WPF"
         skin:SfSkinManager.Theme="{skin:SkinManagerExtension ThemeName=MaterialDark}" Background="{StaticResource Background}"
-        Title="Account Chooser" SizeToContent="WidthAndHeight" WindowStartupLocation="CenterOwner" Width="280"
+        Title="Account Chooser" SizeToContent="WidthAndHeight" WindowStartupLocation="CenterOwner" Width="280"  ResizeBorderThickness="5" ResizeBorderBrush="{StaticResource Background}" Icon="/Images/Icon48.png" ShowIcon="True" AllowsTransparency="True" CornerRadius="10" TitleFontSize="15" TitleTextAlignment="Center" TitleBarForeground="{StaticResource Foreground}" TitleBarBackground="{StaticResource Background}"
         ContentRendered="Window_ContentRendered">
     <Grid Margin="15">
         <Grid.ColumnDefinitions>
@@ -39,4 +40,4 @@
             <Button IsCancel="True" MinWidth="60">Cancel</Button>
         </WrapPanel>
     </Grid>
-</Window>
+</syncfusion:ChromelessWindow>

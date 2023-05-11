@@ -25,8 +25,10 @@ namespace DMOManager
                     database.CreateTableAsync<ViceResources>().Wait();
                     database.CreateTableAsync<StatInfoDatabase>().Wait();
                     database.CreateTableAsync<StatFormula>().Wait();
-                    database.CreateTableAsync<DigimonPresets>().Wait();
+                    database.CreateTableAsync<DigimonPresetsDatabase>().Wait();
                     database.CreateTableAsync<AccessoryPresetsDatabase>().Wait();
+                    database.CreateTableAsync<Accessory>().Wait();
+                    database.CreateTableAsync<Seals>().Wait();
                 }
                 return database;
             }

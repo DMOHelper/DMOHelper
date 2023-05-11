@@ -1,4 +1,5 @@
 ﻿using DMOManager.Helper;
+using Syncfusion.Windows.Shared;
 using System;
 using System.Windows;
 
@@ -7,7 +8,7 @@ namespace DMOManager.Dialogs
     /// <summary>
     /// Interaktionslogik für ChooseViceDialog.xaml
     /// </summary>
-    public partial class ChooseViceDialog : Window
+    public partial class ChooseViceDialog : ChromelessWindow
     {
         private VMMain viewModel;
         public ChooseViceDialog()

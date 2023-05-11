@@ -1,4 +1,4 @@
-﻿<Window x:Class="DMOManager.Dialogs.AccessoryDialog"
+﻿<syncfusion:ChromelessWindow x:Class="DMOManager.Dialogs.AccessoryDialog"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -9,7 +9,7 @@
         mc:Ignorable="d"
         xmlns:skin="clr-namespace:Syncfusion.SfSkinManager;assembly=Syncfusion.SfSkinManager.WPF"
         skin:SfSkinManager.Theme="{skin:SkinManagerExtension ThemeName=MaterialDark}" Background="{StaticResource Background}"
-        Title="Accessory Input" SizeToContent="WidthAndHeight" WindowStartupLocation="CenterOwner"  Width="450"
+        Title="Accessory Input" SizeToContent="WidthAndHeight" WindowStartupLocation="CenterOwner"  Width="450"  ResizeBorderThickness="5" ResizeBorderBrush="{StaticResource Background}" Icon="/Images/Icon48.png" ShowIcon="True" AllowsTransparency="True" CornerRadius="10" TitleFontSize="15" TitleTextAlignment="Center" TitleBarForeground="{StaticResource Foreground}" TitleBarBackground="{StaticResource Background}"
         ContentRendered="Window_ContentRendered">
     <Grid Margin="15">
         <Grid.ColumnDefinitions>
@@ -23,7 +23,7 @@
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
-        <Label Name="lblQuestion" Grid.Column="0" Grid.ColumnSpan="3">Please enter your Accessory Informations:</Label>
+        <Label Name="lblQuestion" Grid.Column="0" Grid.ColumnSpan="3">Please specify your Accessory Informations:</Label>
 
         <Grid Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3">
             <Grid.ColumnDefinitions>
@@ -98,11 +98,11 @@
             <ComboBox x:Name="braceOption5" SelectedItem="{Binding CurrentBracelet.Option5, Mode=TwoWay}" Grid.Row="7" Grid.Column="5" ItemsSource="{Binding Bracelet}"/>
         </Grid>
         <WrapPanel Grid.Row="2" Grid.ColumnSpan="2" Grid.Column="1" HorizontalAlignment="Right" Margin="0,15,0,0">
-            <Button IsDefault="True" Name="btnDialogOk" Click="btnDialogOk_Click" MinWidth="60" Margin="0,0,10,0">Ok</Button>
+            <Button IsDefault="True" Name="btnDialogOk" Click="btnDialogOk_Click" MinWidth="60" Margin="0,0,10,0">Save</Button>
             <Button IsCancel="True" MinWidth="60">Cancel</Button>
         </WrapPanel>
         <WrapPanel Grid.Column="0" Grid.Row="2" HorizontalAlignment="Left" Margin="0,15,0,0">
             <Button Content="Presets" x:Name="PresetsButton" Click="PresetsButton_Click"  MinWidth="60"/>
         </WrapPanel>
     </Grid>
-</Window>
+</syncfusion:ChromelessWindow>

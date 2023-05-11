@@ -1,10 +1,17 @@
 ﻿using DMOManager.Enums;
+using DMOManager.Helper;
 using SQLite;
 
 namespace DMOManager.Models
 {
+    public class Digimon : AbstractPropertyChanged
+    {
+
+    }
+
+
     [Table("DigimonPresets")]
-    public class DigimonPresets
+    public class DigimonPresetsDatabase
     {
         [PrimaryKey]
         public string Name { get; set; }

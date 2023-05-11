@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Syncfusion.Windows.Shared;
+using System;
 using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Controls;
@@ -8,7 +9,7 @@ namespace DMOManager.Dialogs
     /// <summary>
     /// Interaktionslogik für IntegerDialog.xaml
     /// </summary>
-    public partial class IntegerDialog : Window
+    public partial class IntegerDialog : ChromelessWindow
     {
         private static Regex _intRegex = new Regex("^\\d+$"); //regex that matches integers
         private static bool IsTextAllowed(string text)

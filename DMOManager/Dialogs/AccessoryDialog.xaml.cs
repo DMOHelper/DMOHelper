@@ -1,4 +1,6 @@
-﻿using DMOManager.Models;
+﻿using DMOManager.Dialogs.DialogViewModels;
+using DMOManager.Models;
+using Syncfusion.Windows.Shared;
 using System;
 using System.Windows;
 
@@ -7,7 +9,7 @@ namespace DMOManager.Dialogs
     /// <summary>
     /// Interaktionslogik für AccessoryDialog.xaml
     /// </summary>
-    public partial class AccessoryDialog : Window
+    public partial class AccessoryDialog : ChromelessWindow
     {
         private AccessoryVM viewModel;
 
@@ -29,7 +31,7 @@ namespace DMOManager.Dialogs
 
         private void PresetsButton_Click(object sender, RoutedEventArgs e)
         {
-            PresetDialog presetDialog = new PresetDialog();
+            PresetDialog presetDialog = new PresetDialog(viewModel, "AccessoryType");
             if (presetDialog.ShowDialog() == true)
             {
                 var accessory = presetDialog.GetSelected;
