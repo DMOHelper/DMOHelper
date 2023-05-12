@@ -1,30 +1,150 @@
 ﻿using DMOManager.Enums;
 using DMOManager.Helper;
 using SQLite;
+using System;
 
 namespace DMOManager.Models
 {
-    public class Digimon : AbstractPropertyChanged
+    [Table("Digimon")]
+    public class Digimon : AbstractPropertyChanged, IComparable<Digimon>
     {
+        private string name;
+        private string rank;
+        private Evolution evolution;
+        private string type;
+        private int baseHP;
+        private int baseDS;
+        private int baseAT;
+        private double _as;
+        private double baseCT;
+        private int ht;
+        private int baseDE;
+        private double ev;
 
+        [PrimaryKey]
+        public string Name
+        {
+            get { return name; }
+            set
+            {
+                name = value;
+                OnPropertyChanged();
+            }
+        }
+        public string Rank
+        {
+            get { return rank; }
+            set
+            {
+                rank = value;
+                OnPropertyChanged();
+            }
+        }
+        public Evolution Evolution
+        {
+            get { return evolution; }
+            set
+            {
+                evolution = value;
+                OnPropertyChanged();
+            }
+        }
+        public string Type
+        {
+            get { return type; }
+            set
+            {
+                type = value;
+                OnPropertyChanged();
+            }
+        }
+        public int BaseHP
+        {
+            get { return baseHP; }
+            set
+            {
+                baseHP = value;
+                OnPropertyChanged();
+            }
+        }
+        public int BaseDS
+        {
+            get { return baseDS; }
+            set
+            {
+                baseDS = value;
+                OnPropertyChanged();
+            }
+        }
+        public int BaseAT
+        {
+            get { return baseAT; }
+            set
+            {
+                baseAT = value;
+                OnPropertyChanged();
+            }
+        }
+        public double AS
+        {
+            get { return _as; }
+            set
+            {
+                _as = value;
+                OnPropertyChanged();
+            }
+        }
+        public double BaseCT
+        {
+            get { return baseCT; }
+            set
+            {
+                baseCT = value;
+                OnPropertyChanged();
+            }
+        }
+        public int HT
+        {
+            get { return ht; }
+            set
+            {
+                ht = value;
+                OnPropertyChanged();
+            }
+        }
+        public int BaseDE
+        {
+            get { return baseDE; }
+            set
+            {
+                baseDE = value;
+                OnPropertyChanged();
+            }
+        }
+        public double EV
+        {
+            get { return ev; }
+            set
+            {
+                ev = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public int CompareTo(Digimon? other)
+        {
+            if (other != null)
+            {
+                return this.Name.CompareTo(other.Name);
+            }
+            else return 1;
+        }
     }
 
 
     [Table("DigimonPresets")]
-    public class DigimonPresetsDatabase
+    public class DigimonPresetsDatabase : Digimon
     {
-        [PrimaryKey]
-        public string Name { get; set; }
-        public string Rank { get; set; }
-        public Evolution Evolution { get; set; }
-        public string Type { get; set; }
-        public int BaseHP { get; set; }
-        public int BaseDS { get; set; }
-        public int BaseAT { get; set; }
-        public int AS { get; set; }
-        public int BaseCT { get; set; }
-        public int HT { get; set; }
-        public int BaseDE { get; set; }
-        public int EV { get; set; }
+        public DigimonPresetsDatabase() { }
     }
 }

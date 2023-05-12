@@ -17,6 +17,7 @@ namespace DMOManager
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
+            viewModel.StatInformation.SaveToDatabase();
             SQLiteDatabaseManager.AppClosureHandling();
         }
     }

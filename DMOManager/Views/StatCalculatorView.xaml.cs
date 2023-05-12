@@ -1,4 +1,5 @@
 ﻿using DMOManager.Dialogs;
+using DMOManager.Dialogs.DialogViewModels;
 using DMOManager.Models;
 using System.Windows;
 using System.Windows.Controls;
@@ -26,17 +27,46 @@ namespace DMOManager.Views
                 viewModel.StatInformation.Necklace = accDialog.Necklace;
                 viewModel.StatInformation.Earrings = accDialog.Earrings;
                 viewModel.StatInformation.Bracelet = accDialog.Bracelet;
-                viewModel.StatInformation.SaveToDatabase();
             }
         }
 
         private void Seals_Click(object sender, RoutedEventArgs eventArgs)
         {
             SealsDialog sealDialog = new SealsDialog(viewModel.StatInformation.Seals);
-            if(sealDialog.ShowDialog() == true)
+            if (sealDialog.ShowDialog() == true)
             {
                 viewModel.StatInformation.Seals = sealDialog.Seals;
-                viewModel.StatInformation.SaveToDatabase();
+            }
+        }
+
+        private void PresetsButton_Click(object sender, RoutedEventArgs e)
+        {
+            PresetDialog presetDialog = new PresetDialog(new DigimonVM(viewModel.StatInformation.Digimon), "Rank");
+            if (presetDialog.ShowDialog() == true)
+            {
+                var digimon = presetDialog.GetSelected;
+                switch (digimon)
+                {
+                    case Digimon _digimon:
+                        viewModel.StatInformation.Digimon = new Digimon()
+                        {
+                            Name = _digimon.Name,
+                            Rank = _digimon.Rank,
+                            Evolution = _digimon.Evolution,
+                            Type = _digimon.Type,
+                            BaseHP = _digimon.BaseHP,
+                            BaseDS = _digimon.BaseDS,
+                            BaseAT = _digimon.BaseAT,
+                            AS = _digimon.AS,
+                            BaseCT = _digimon.BaseCT,
+                            HT = _digimon.HT,
+                            BaseDE = _digimon.BaseDE,
+                            EV = _digimon.EV
+                        };
+                        break;
+                    default:
+                        break;
+                }
             }
         }
     }

@@ -7,6 +7,8 @@ namespace DMOManager.Dialogs.DialogViewModels
 {
     public class AccessoryVM : AbstractPropertyChanged
     {
+        public const string Title = "Accessory Presets";
+
         public static List<Accessory> Presets
         {
             get

@@ -10,12 +10,7 @@ using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Net.Http;
-using System.Reflection.PortableExecutable;
-using System.Security.Policy;
-using System.Text.RegularExpressions;
 using System.Threading.Tasks;
-using System.Transactions;
-using System.Windows.Input;
 
 namespace DMOManager
 {
@@ -233,11 +228,11 @@ namespace DMOManager
                                 record.BaseHP = int.Parse(csv.GetField("baseHP"));
                                 record.BaseDS = int.Parse(csv.GetField("baseDS"));
                                 record.BaseAT = int.Parse(csv.GetField("baseAT"));
-                                record.AS = int.Parse(csv.GetField("AS"));
-                                record.BaseCT = int.Parse(csv.GetField("baseCT"));
+                                record.AS = int.Parse(csv.GetField("AS")) / 100.0;
+                                record.BaseCT = int.Parse(csv.GetField("baseCT")) / 100.0;
                                 record.HT = int.Parse(csv.GetField("HT"));
                                 record.BaseDE = int.Parse(csv.GetField("baseDE"));
-                                record.EV = int.Parse(csv.GetField("EV"));
+                                record.EV = int.Parse(csv.GetField("EV")) / 100.0;
                                 digiPresets.Add(record);
                             }
                             await SQLiteDatabaseManager.Database.DeleteAllAsync<DigimonPresetsDatabase>();

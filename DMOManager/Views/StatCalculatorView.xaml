@@ -14,13 +14,73 @@
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <TextBlock Text="Stats"/>
+        <StackPanel Orientation="Horizontal" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Left" VerticalAlignment="Center">
+            <Label Content="Digimon Base Information" FontWeight="Bold"/>
+            <Button Content="Presets" x:Name="PresetsButton" Click="PresetsButton_Click"  MinWidth="60"/>
+        </StackPanel>
+        <!--Size-->
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Row="1" Grid.Column="0">
+            <syncfusion:DoubleTextBox NumberDecimalDigits="2" Value="{Binding StatInformation.Size, Mode=TwoWay}" MaxValue="140" MinValue="70" MinValueOnExceedMinDigit="True" MaxValueOnExceedMaxDigit="True" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Text="140" Height="28" Width="60"/>
+            <Label Content="Digimon Size"/>
+        </StackPanel>
+        <!--HP-->
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Row="2" Grid.Column="0">
+            <syncfusion:DoubleTextBox NumberDecimalDigits="0" Value="{Binding StatInformation.Digimon.BaseHP, Mode=TwoWay}" MaxValue="30000" MinValue="0" MinValueOnExceedMinDigit="True" MaxValueOnExceedMaxDigit="True" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Text="0" Height="28" Width="60"/>
+            <Label Content="Base HP"/>
+        </StackPanel>
+        <!--DS-->
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Row="3" Grid.Column="0">
+            <syncfusion:DoubleTextBox NumberDecimalDigits="0" Value="{Binding StatInformation.Digimon.BaseDS, Mode=TwoWay}" MaxValue="30000" MinValue="0" MinValueOnExceedMinDigit="True" MaxValueOnExceedMaxDigit="True" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Text="0" Height="28" Width="60"/>
+            <Label Content="Base DS"/>
+        </StackPanel>
+        <!--AT-->
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Row="4" Grid.Column="0">
+            <syncfusion:DoubleTextBox NumberDecimalDigits="0" Value="{Binding StatInformation.Digimon.BaseAT, Mode=TwoWay}" MaxValue="15000" MinValue="0" MinValueOnExceedMinDigit="True" MaxValueOnExceedMaxDigit="True" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Text="0" Height="28" Width="60"/>
+            <Label Content="Base AT"/>
+        </StackPanel>
+        <!--AS-->
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Row="5" Grid.Column="0">
+            <syncfusion:DoubleTextBox NumberDecimalDigits="2" Value="{Binding StatInformation.Digimon.AS, Mode=TwoWay}" MaxValue="3" MinValue="1" MinValueOnExceedMinDigit="True" MaxValueOnExceedMaxDigit="True" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Text="1" Height="28" Width="60"/>
+            <Label Content="Attack Speed"/>
+        </StackPanel>
+        <!--CT-->
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Row="6" Grid.Column="0">
+            <syncfusion:DoubleTextBox NumberDecimalDigits="2" Value="{Binding StatInformation.Digimon.BaseCT, Mode=TwoWay}" MaxValue="30" MinValue="0" MinValueOnExceedMinDigit="True" MaxValueOnExceedMaxDigit="True" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Text="0" Height="28" Width="60"/>
+            <Label Content="Base CT"/>
+        </StackPanel>
+        <!--HT-->
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Row="7" Grid.Column="0">
+            <syncfusion:DoubleTextBox NumberDecimalDigits="0" Value="{Binding StatInformation.Digimon.HT, Mode=TwoWay}" MaxValue="3000" MinValue="0" MinValueOnExceedMinDigit="True" MaxValueOnExceedMaxDigit="True" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Text="0" Height="28" Width="60"/>
+            <Label Content="Hit Rate"/>
+        </StackPanel>
+        <!--DE-->
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Row="8" Grid.Column="0">
+            <syncfusion:DoubleTextBox NumberDecimalDigits="0" Value="{Binding StatInformation.Digimon.BaseDE, Mode=TwoWay}" MaxValue="5000" MinValue="0" MinValueOnExceedMinDigit="True" MaxValueOnExceedMaxDigit="True" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Text="0" Height="28" Width="60"/>
+            <Label Content="Base DE"/>
+        </StackPanel>
+        <!--EV-->
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Row="9" Grid.Column="0">
+            <syncfusion:DoubleTextBox NumberDecimalDigits="2" Value="{Binding StatInformation.Digimon.EV, Mode=TwoWay}" MaxValue="100" MinValue="0" MinValueOnExceedMinDigit="True" MaxValueOnExceedMaxDigit="True" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Text="0" Height="28" Width="60"/>
+            <Label Content="Evasion"/>
+        </StackPanel>
+
         <Button Content="Accessories" Click="Accessories_Click" Grid.Column="1" Grid.Row="1"/>
         <Button Content="Seals" Click="Seals_Click" Grid.Column="2" Grid.Row="1"/>
     </Grid>

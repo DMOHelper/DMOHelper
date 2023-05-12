@@ -11,6 +11,8 @@ namespace DMOManager.Models
         private Earrings earrings;
         private Bracelet bracelet;
         private Seals seals;
+        private Digimon digimon;
+        private double size;
         public Ring Ring
         {
             get
@@ -71,6 +73,24 @@ namespace DMOManager.Models
                 OnPropertyChanged();
             }
         }
+        public Digimon Digimon
+        {
+            get { return digimon; }
+            set
+            {
+                digimon = value;
+                OnPropertyChanged();
+            }
+        }
+        public double Size
+        {
+            get { return size; }
+            set
+            {
+                size = value;
+                OnPropertyChanged();
+            }
+        }
         public StatInformation()
         {
             ring = new Ring();
@@ -78,16 +98,23 @@ namespace DMOManager.Models
             earrings = new Earrings();
             bracelet = new Bracelet();
             seals = new Seals();
+            digimon = new Digimon()
+            {
+                Name = "Custom"
+            };
+            Size = 140.0;
         }
 
         internal void SaveToDatabase()
         {
             SQLiteDatabaseManager.Database.DeleteAllAsync<Accessory>().Wait();
+            SQLiteDatabaseManager.Database.DeleteAllAsync<Digimon>().Wait();
             SQLiteDatabaseManager.Database.InsertOrReplaceAsync(Ring).Wait();
             SQLiteDatabaseManager.Database.InsertOrReplaceAsync(Necklace).Wait();
             SQLiteDatabaseManager.Database.InsertOrReplaceAsync(Earrings).Wait();
             SQLiteDatabaseManager.Database.InsertOrReplaceAsync(Bracelet).Wait();
             SQLiteDatabaseManager.Database.InsertOrReplaceAsync(Seals).Wait();
+            SQLiteDatabaseManager.Database.InsertOrReplaceAsync(Digimon).Wait();
             SQLiteDatabaseManager.Database.InsertOrReplaceAsync(new StatInfoDatabase(this)).Wait();
         }
 
@@ -97,7 +124,9 @@ namespace DMOManager.Models
             var statInfo = SQLiteDatabaseManager.Database.Table<StatInfoDatabase>().FirstOrDefaultAsync().Result;
             if (statInfo != null)
             {
+                output.Size = statInfo.Size;
             }
+            #region Accessories
             var accessories = SQLiteDatabaseManager.Database.Table<Accessory>().ToListAsync().Result;
             foreach (var accessory in accessories)
             {
@@ -165,10 +194,16 @@ namespace DMOManager.Models
                         break;
                 }
             }
+            #endregion
             var seals = SQLiteDatabaseManager.Database.Table<Seals>().FirstOrDefaultAsync().Result;
             if (seals != null)
             {
                 output.Seals = seals;
+            }
+            var digimon = SQLiteDatabaseManager.Database.Table<Digimon>().FirstOrDefaultAsync().Result;
+            if (digimon != null)
+            {
+                output.Digimon = digimon;
             }
             return output;
         }
@@ -179,6 +214,7 @@ namespace DMOManager.Models
     {
         [PrimaryKey]
         public int Id { get; set; }
+        public double Size { get; set; }
         public StatInfoDatabase()
         {
             Id = 0;
@@ -186,6 +222,7 @@ namespace DMOManager.Models
         public StatInfoDatabase(StatInformation statInfo)
         {
             Id = 0;
+            Size = statInfo.Size;
         }
     }
 }
