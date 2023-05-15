@@ -12,6 +12,7 @@ namespace DMOManager.Models
         private Bracelet bracelet;
         private Seals seals;
         private Digimon digimon;
+        private Tamer tamer;
         private double size;
         public Ring Ring
         {
@@ -82,6 +83,15 @@ namespace DMOManager.Models
                 OnPropertyChanged();
             }
         }
+        public Tamer Tamer
+        {
+            get { return tamer; }
+            set
+            {
+                tamer = value;
+                OnPropertyChanged();
+            }
+        }
         public double Size
         {
             get { return size; }
@@ -125,6 +135,12 @@ namespace DMOManager.Models
             if (statInfo != null)
             {
                 output.Size = statInfo.Size;
+                var tamer = SQLiteDatabaseManager.Database.Table<Tamer>().Where(x => x.Name == statInfo.Tamer).FirstOrDefaultAsync().Result;
+                if (tamer != null)
+                {
+                    output.Tamer = tamer;
+                }
+                else output.Tamer = new Tamer();
             }
             #region Accessories
             var accessories = SQLiteDatabaseManager.Database.Table<Accessory>().ToListAsync().Result;
@@ -215,6 +231,7 @@ namespace DMOManager.Models
         [PrimaryKey]
         public int Id { get; set; }
         public double Size { get; set; }
+        public string Tamer { get; set; }
         public StatInfoDatabase()
         {
             Id = 0;
@@ -223,6 +240,11 @@ namespace DMOManager.Models
         {
             Id = 0;
             Size = statInfo.Size;
+            if (statInfo.Tamer != null)
+            {
+                Tamer = statInfo.Tamer.Name;
+            }
+            else Tamer = string.Empty;
         }
     }
 }

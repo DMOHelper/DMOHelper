@@ -61,7 +61,9 @@ namespace DMOManager.Views
                             BaseCT = _digimon.BaseCT,
                             HT = _digimon.HT,
                             BaseDE = _digimon.BaseDE,
-                            EV = _digimon.EV
+                            EV = _digimon.EV,
+                            Attribute = _digimon.Attribute,
+                            Elemental = _digimon.Elemental
                         };
                         break;
                     default:

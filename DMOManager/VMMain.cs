@@ -66,6 +66,13 @@ namespace DMOManager
                 };
             }
         }
+        public static List<Tamer> Tamers
+        {
+            get
+            {
+                return SQLiteDatabaseManager.Database.Table<Tamer>().ToListAsync().Result;
+            }
+        }
         public ObservableCollection<ItemStack> SelectedAccountStacks { get; set; }
         public ObservableCollection<Digivice> SelectedAccountVices { get; set; }
         public StatInformation StatInformation { get; set; }

@@ -3,7 +3,7 @@ using SQLite;
 
 namespace DMOManager.Models
 {
-    [Table("TamerPresets")]
+    [Table("Tamer")]
     public class Tamer
     {
         [PrimaryKey]

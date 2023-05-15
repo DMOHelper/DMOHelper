@@ -2,7 +2,7 @@
 
 namespace DMOManager.Models
 {
-    [Table("TamerSkillsPreset")]
+    [Table("TamerSkills")]
     public class TamerSkill
     {
         [PrimaryKey]

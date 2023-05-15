@@ -35,7 +35,7 @@
         </Grid.RowDefinitions>
         <StackPanel Orientation="Horizontal" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Left" VerticalAlignment="Center">
             <Label Content="Digimon Base Information" FontWeight="Bold"/>
-            <Button Content="Presets" x:Name="PresetsButton" Click="PresetsButton_Click"  MinWidth="80"/>
+            <Button Content="Presets" x:Name="PresetsButton" Click="PresetsButton_Click"  MinWidth="80" MinHeight="30"/>
         </StackPanel>
         <!--Size-->
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Row="1" Grid.Column="0">
@@ -84,16 +84,34 @@
         </StackPanel>
         <!--Attribute-->
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Row="10" Grid.Column="0">
-            <ComboBox SelectedItem="{Binding StatInformation.Digimon.Attribute, Mode=TwoWay}" Grid.Row="1" Grid.Column="1" ItemsSource="{Binding DigimonAttributes}" Height="28" Width="80"/>
+            <ComboBox FontWeight="SemiBold" SelectedItem="{Binding StatInformation.Digimon.Attribute, Mode=TwoWay}" ItemsSource="{Binding DigimonAttributes}" Height="28" Width="80"/>
             <Label Content="Attribute"/>
         </StackPanel>
         <!--Element-->
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Row="11" Grid.Column="0">
-            <ComboBox SelectedItem="{Binding StatInformation.Digimon.Elemental, Mode=TwoWay}" Grid.Row="1" Grid.Column="1" ItemsSource="{Binding ElementalAttributes}" Height="28" Width="80"/>
+            <ComboBox FontWeight="SemiBold" SelectedItem="{Binding StatInformation.Digimon.Elemental, Mode=TwoWay}" ItemsSource="{Binding ElementalAttributes}" Height="28" Width="80"/>
             <Label Content="Element"/>
         </StackPanel>
 
-        <Button Content="Accessories" Click="Accessories_Click" Grid.Column="1" Grid.Row="1"/>
-        <Button Content="Seals" Click="Seals_Click" Grid.Column="2" Grid.Row="1"/>
+        <!--Tamer Informations-->
+        <StackPanel Orientation="Horizontal" Grid.Row="0" Grid.Column="2" Grid.ColumnSpan="2" HorizontalAlignment="Left" VerticalAlignment="Center">
+            <Label Content="Tamer Informations and Skills" FontWeight="Bold"/>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" Grid.Column="2" Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Center">
+            <ComboBox FontWeight="SemiBold" SelectedItem="{Binding StatInformation.Tamer, Mode=TwoWay}" ItemsSource="{Binding Tamers}" Height="28" Width="80">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding Name}" Foreground="Black"/>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
+            <Label Content="Tamer"/>
+        </StackPanel>
+        <StackPanel Grid.Column="3" Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Center">
+            <Button Content="Accessories" Click="Accessories_Click" MinWidth="90" MinHeight="30"/>
+        </StackPanel>
+        <StackPanel  Grid.Column="3" Grid.Row="2" HorizontalAlignment="Left" VerticalAlignment="Center">
+            <Button Content="Seals" Click="Seals_Click" MinWidth="90" MinHeight="30"/>
+        </StackPanel>
     </Grid>
 </UserControl>

@@ -16,7 +16,7 @@ namespace DMOManager
             {
                 if (database == null)
                 {
-                    database = new SQLiteAsyncConnection(Path.Combine("./DMOManager_Database.db3"), SQLiteOpenFlags.ReadWrite | SQLiteOpenFlags.Create);
+                    database = new SQLiteAsyncConnection(Path.Combine("./DMOHelper_Database.db3"), SQLiteOpenFlags.ReadWrite | SQLiteOpenFlags.Create);
 
                     database.CreateTableAsync<Account>().Wait();
                     database.CreateTableAsync<Item>().Wait();
@@ -30,6 +30,8 @@ namespace DMOManager
                     database.CreateTableAsync<Accessory>().Wait();
                     database.CreateTableAsync<Digimon>().Wait();
                     database.CreateTableAsync<Seals>().Wait();
+                    database.CreateTableAsync<Tamer>().Wait();
+                    database.CreateTableAsync<TamerSkill>().Wait();
                 }
                 return database;
             }
