@@ -6,7 +6,7 @@ namespace DMOManager.Dialogs.DialogViewModels
 {
     public class DigimonVM : AbstractPropertyChanged
     {
-        public const string Title = "Digimon Presets";
+        public static string Title { get; } = "Digimon Presets";
 
         public static List<Digimon> Presets
         {

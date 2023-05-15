@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         xmlns:skin="clr-namespace:Syncfusion.SfSkinManager;assembly=Syncfusion.SfSkinManager.WPF"
         skin:SfSkinManager.Theme="{skin:SkinManagerExtension ThemeName=MaterialDark}" Background="{StaticResource Background}"
-        Title="{Binding Title}"  SizeToContent="WidthAndHeight" WindowStartupLocation="CenterOwner" ResizeBorderThickness="5" ResizeBorderBrush="{StaticResource Background}" Icon="/Images/Icon48.png" ShowIcon="True" AllowsTransparency="True" CornerRadius="10" TitleFontSize="15" TitleTextAlignment="Center" TitleBarForeground="{StaticResource Foreground}" TitleBarBackground="{StaticResource Background}">
+        Title="{Binding Title, FallbackValue=Presets}"  SizeToContent="WidthAndHeight" WindowStartupLocation="CenterOwner" ResizeBorderThickness="5" ResizeBorderBrush="{StaticResource Background}" Icon="/Images/Icon48.png" ShowIcon="True" AllowsTransparency="True" CornerRadius="10" TitleFontSize="15" TitleTextAlignment="Center" TitleBarForeground="{StaticResource Foreground}" TitleBarBackground="{StaticResource Background}">
     <Grid Margin="15">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>

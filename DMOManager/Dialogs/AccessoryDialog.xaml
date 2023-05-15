@@ -102,7 +102,7 @@
             <Button IsCancel="True" MinWidth="60">Cancel</Button>
         </WrapPanel>
         <WrapPanel Grid.Column="0" Grid.Row="2" HorizontalAlignment="Left" Margin="0,15,0,0">
-            <Button Content="Presets" x:Name="PresetsButton" Click="PresetsButton_Click"  MinWidth="60"/>
+            <Button Content="Presets" x:Name="PresetsButton" IsEnabled="{Binding StatEnabled}" Click="PresetsButton_Click"  MinWidth="60"/>
         </WrapPanel>
     </Grid>
 </syncfusion:ChromelessWindow>

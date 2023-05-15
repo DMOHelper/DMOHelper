@@ -14,6 +14,9 @@ namespace DMOManager.Models
         private Seals seals;
         private Digimon digimon;
         private string tamer;
+        private string party1Tamer;
+        private string party2Tamer;
+        private string party3Tamer;
         private double size;
         public DateTime LastPresetUpdate { get; set; }
         public Ring Ring
@@ -91,6 +94,33 @@ namespace DMOManager.Models
             set
             {
                 tamer = value;
+                OnPropertyChanged();
+            }
+        }
+        public string Party1Tamer
+        {
+            get { return party1Tamer; }
+            set
+            {
+                party1Tamer = value;
+                OnPropertyChanged();
+            }
+        }
+        public string Party2Tamer
+        {
+            get { return party2Tamer; }
+            set
+            {
+                party2Tamer = value;
+                OnPropertyChanged();
+            }
+        }
+        public string Party3Tamer
+        {
+            get { return party3Tamer; }
+            set
+            {
+                party3Tamer = value;
                 OnPropertyChanged();
             }
         }

@@ -20,7 +20,7 @@ namespace DMOManager.Views
 
         private void Accessories_Click(object sender, RoutedEventArgs e)
         {
-            AccessoryDialog accDialog = new AccessoryDialog(viewModel.StatInformation.Ring, viewModel.StatInformation.Necklace, viewModel.StatInformation.Earrings, viewModel.StatInformation.Bracelet);
+            AccessoryDialog accDialog = new AccessoryDialog(viewModel.StatInformation.Ring, viewModel.StatInformation.Necklace, viewModel.StatInformation.Earrings, viewModel.StatInformation.Bracelet, viewModel.StatEnabled);
             if (accDialog.ShowDialog() == true)
             {
                 viewModel.StatInformation.Ring = accDialog.Ring;

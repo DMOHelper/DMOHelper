@@ -11,6 +11,7 @@ using System.IO;
 using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace DMOManager
 {
@@ -173,14 +174,31 @@ namespace DMOManager
                 OnPropertyChanged();
             }
         }
+        public bool StatEnabled { get; set; }
 
 
         public VMMain()
         {
+            StatEnabled = true;
             StatInformation = StatInformation.LoadFromDatabase();
             if (DateTime.UtcNow - StatInformation.LastPresetUpdate > new TimeSpan(7, 0, 0, 0))
             {
-                Task.Run(UpdatePresets);
+                bool failed = Task.Run(UpdatePresets).Result;
+                if (failed)
+                {
+                    MessageBoxResult result = MessageBox.Show("Unable to load presets from web resource. Without presets, StatCalculator is limited in function. For full feature set, please connect to internet and restart app." + Environment.NewLine + Environment.NewLine + "Do you want to continue without full feature set?",
+                                          "Error",
+                                          MessageBoxButton.YesNo,
+                                          MessageBoxImage.Error);
+                    if (result == MessageBoxResult.No)
+                    {
+                        Application.Current.Shutdown();
+                    }
+                    if(result == MessageBoxResult.Yes)
+                    {
+                        StatEnabled = false;
+                    }
+                }
             }
             Source = "/Images/Beer.png";
             Accounts = SQLiteDatabaseManager.Database.Table<Account>().ToListAsync().Result.ToCollection();
@@ -220,7 +238,7 @@ namespace DMOManager
             OnPropertyChanged(nameof(TotalAll));
         }
 
-        public async void UpdatePresets()
+        public async Task<bool> UpdatePresets()
         {
             bool failed = false;
             using (HttpClient client = new HttpClient())
@@ -442,6 +460,7 @@ namespace DMOManager
                 {
                     StatInformation.LastPresetUpdate = DateTime.UtcNow;
                 }
+                return failed;
             }
         }
     }

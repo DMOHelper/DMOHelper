@@ -13,9 +13,9 @@ namespace DMOManager.Dialogs
     {
         private AccessoryVM viewModel;
 
-        public AccessoryDialog(Ring cRing, Necklace cNeck, Earrings cEars, Bracelet cBrace)
+        public AccessoryDialog(Ring cRing, Necklace cNeck, Earrings cEars, Bracelet cBrace, bool presetsEnabled)
         {
-            this.DataContext = viewModel = new AccessoryVM(cRing, cNeck, cEars, cBrace);
+            this.DataContext = viewModel = new AccessoryVM(cRing, cNeck, cEars, cBrace, presetsEnabled);
             InitializeComponent();
         }
 

@@ -7,7 +7,8 @@ namespace DMOManager.Dialogs.DialogViewModels
 {
     public class AccessoryVM : AbstractPropertyChanged
     {
-        public const string Title = "Accessory Presets";
+        public static string Title { get; } = "Accessory Presets";
+        public bool StatEnabled { get; set; }
 
         public static List<Accessory> Presets
         {
@@ -169,14 +170,16 @@ namespace DMOManager.Dialogs.DialogViewModels
             currentNecklace = new Necklace();
             currentBracelet = new Bracelet();
             currentEarrings = new Earrings();
+            StatEnabled = true;
         }
 
-        public AccessoryVM(Ring cRing, Necklace cNeck, Earrings cEars, Bracelet cBrace)
+        public AccessoryVM(Ring cRing, Necklace cNeck, Earrings cEars, Bracelet cBrace, bool presetsEnabled)
         {
             currentRing = cRing;
             currentNecklace = cNeck;
             currentEarrings = cEars;
             currentBracelet = cBrace;
+            StatEnabled = presetsEnabled;
         }
     }
 }
