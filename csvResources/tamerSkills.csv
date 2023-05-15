@@ -1,4 +1,4 @@
-name,changesStats,partyEffect,effect1,effect2,value1,Value2,cooldown,enhancedValue1,enhancedValue2,enhancedCooldown,ultimateValue1,ultimateValue2,ultimateCooldown,canStack
+name,changesStats,partyEffect,effect1,effect2,value1,value2,cooldown,enhancedValue1,enhancedValue2,enhancedCooldown,ultimateValue1,ultimateValue2,ultimateCooldown,canStack
 Bash,false,false,Damage,None,0,0,30,0,0,0,0,0,0,false
 Insight,true,false,CT,None,100,0,180,0,0,0,0,0,0,false
 Protection,false,false,DamageResist,None,100,0,180,100,0,180,100,0,120,false

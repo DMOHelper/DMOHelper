@@ -66,11 +66,27 @@ namespace DMOManager
                 };
             }
         }
-        public static List<Tamer> Tamers
+        public static List<string> Tamers
         {
             get
             {
-                return SQLiteDatabaseManager.Database.Table<Tamer>().ToListAsync().Result;
+                List<string> output = new List<string>();
+                var tamers = SQLiteDatabaseManager.Database.Table<Tamer>().ToListAsync().Result;
+                foreach (Tamer tamer in tamers)
+                {
+                    output.Add(tamer.Name);
+                }
+                return output;
+            }
+        }
+        public static List<string> TamerSkills
+        {
+            get
+            {
+                List<string> output = new List<string>();
+                var skills = SQLiteDatabaseManager.Database.Table<TamerSkill>().ToListAsync().Result;
+
+                return output;
             }
         }
         public ObservableCollection<ItemStack> SelectedAccountStacks { get; set; }
@@ -161,14 +177,17 @@ namespace DMOManager
 
         public VMMain()
         {
-            Task.Run(UpdatePresets);
+            StatInformation = StatInformation.LoadFromDatabase();
+            if (DateTime.UtcNow - StatInformation.LastPresetUpdate > new TimeSpan(7, 0, 0, 0))
+            {
+                Task.Run(UpdatePresets);
+            }
             Source = "/Images/Beer.png";
             Accounts = SQLiteDatabaseManager.Database.Table<Account>().ToListAsync().Result.ToCollection();
             Items = SQLiteDatabaseManager.Database.Table<Item>().ToListAsync().Result.ToCollection();
             ItemStacks = SQLiteDatabaseManager.Database.Table<ItemStack>().ToListAsync().Result;
             Digivices = SQLiteDatabaseManager.Database.Table<Digivice>().ToListAsync().Result;
             Resources = SQLiteDatabaseManager.Database.Table<ViceResources>().ToListAsync().Result;
-            StatInformation = StatInformation.LoadFromDatabase();
             SelectedAccountStacks = new ObservableCollection<ItemStack>();
             SelectedAccountVices = new ObservableCollection<Digivice>();
             ViceTypes = new List<EnumDropdownHelper>();
@@ -203,7 +222,7 @@ namespace DMOManager
 
         public async void UpdatePresets()
         {
-
+            bool failed = false;
             using (HttpClient client = new HttpClient())
             {
                 StreamReader reader;
@@ -245,7 +264,10 @@ namespace DMOManager
                         }
                     }
                 }
-                catch { return; }
+                catch
+                {
+                    failed = true;
+                }
                 //Digimon Presets
                 try
                 {
@@ -285,7 +307,10 @@ namespace DMOManager
                         }
                     }
                 }
-                catch { return; }
+                catch
+                {
+                    failed = true;
+                }
                 //Accessory Presets
                 try
                 {
@@ -328,7 +353,10 @@ namespace DMOManager
                         }
                     }
                 }
-                catch { return; }
+                catch
+                {
+                    failed = true;
+                }
                 //Tamers
                 try
                 {
@@ -364,7 +392,10 @@ namespace DMOManager
                         await SQLiteDatabaseManager.Database.InsertAllAsync(tamers);
                     }
                 }
-                catch { return; }
+                catch
+                {
+                    failed = true;
+                }
                 //Tamer Skills
                 try
                 {
@@ -403,7 +434,14 @@ namespace DMOManager
                         await SQLiteDatabaseManager.Database.InsertAllAsync(skills);
                     }
                 }
-                catch { return; }
+                catch
+                {
+                    failed = true;
+                }
+                if (!failed)
+                {
+                    StatInformation.LastPresetUpdate = DateTime.UtcNow;
+                }
             }
         }
     }

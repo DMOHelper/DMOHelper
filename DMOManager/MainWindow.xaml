@@ -12,7 +12,7 @@
         xmlns:helper="clr-namespace:DMOManager.Helper"
         mc:Ignorable="d"
         skin:SfSkinManager.Theme="{skin:SkinManagerExtension ThemeName=MaterialDark}" Background="{StaticResource Background}"
-        Closing="Window_Closing" Title="DMO Helper Tool" Height="500" Width="900" FontWeight="Bold" SizeToContent="Width" ResizeBorderThickness="5" ResizeBorderBrush="{StaticResource Background}" Icon="/Images/Icon48.png" ShowIcon="True" AllowsTransparency="True" CornerRadius="10" TitleFontSize="15" TitleTextAlignment="Center" TitleBarForeground="{StaticResource Foreground}" TitleBarBackground="{StaticResource Background}">
+        Closing="Window_Closing" Title="DMO Helper Tool" MinHeight="500" MinWidth="900" FontWeight="Bold" SizeToContent="WidthAndHeight" ResizeBorderThickness="5" ResizeBorderBrush="{StaticResource Background}" Icon="/Images/Icon48.png" ShowIcon="True" AllowsTransparency="True" CornerRadius="10" TitleFontSize="15" TitleTextAlignment="Center" TitleBarForeground="{StaticResource Foreground}" TitleBarBackground="{StaticResource Background}">
     <Window.Resources>
         <x:Array x:Key="NavigationMenuItems" Type="system:String">
             <system:String>Account</system:String>

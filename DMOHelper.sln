@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.1.32421.90
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DMOManager", "DMOManager\DMOManager.csproj", "{DD8F7FE7-5DE6-40CF-9F6D-36AF577D1367}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DMOHelper", "DMOManager\DMOHelper.csproj", "{DD8F7FE7-5DE6-40CF-9F6D-36AF577D1367}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "csvResources", "csvResources", "{10A69D72-8697-4A1E-B41D-78B3DB61F40A}"
 	ProjectSection(SolutionItems) = preProject

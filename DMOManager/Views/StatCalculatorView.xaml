@@ -11,9 +11,9 @@
     <!--Stat Calculator-->
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*" MinWidth="180"/>
+            <ColumnDefinition Width="Auto" MinWidth="180"/>
             <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="Auto"/>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
@@ -98,19 +98,21 @@
             <Label Content="Tamer Informations and Skills" FontWeight="Bold"/>
         </StackPanel>
         <StackPanel Orientation="Horizontal" Grid.Column="2" Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Center">
-            <ComboBox FontWeight="SemiBold" SelectedItem="{Binding StatInformation.Tamer, Mode=TwoWay}" ItemsSource="{Binding Tamers}" Height="28" Width="80">
-                <ComboBox.ItemTemplate>
-                    <DataTemplate>
-                        <TextBlock Text="{Binding Name}" Foreground="Black"/>
-                    </DataTemplate>
-                </ComboBox.ItemTemplate>
-            </ComboBox>
+            <ComboBox FontWeight="SemiBold" SelectedItem="{Binding StatInformation.Tamer, Mode=TwoWay}" ItemsSource="{Binding Tamers}" Height="28" Width="80"/>
             <Label Content="Tamer"/>
         </StackPanel>
-        <StackPanel Grid.Column="3" Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Center">
+        <StackPanel Orientation="Horizontal" Grid.Column="2" Grid.Row="2" HorizontalAlignment="Left" VerticalAlignment="Center">
+            <ComboBox FontWeight="SemiBold" SelectedItem="{Binding StatInformation.Tamer, Mode=TwoWay}" ItemsSource="{Binding Tamers}" Height="28" Width="80"/>
+            <Label Content="Enh./Ult. Skill"/>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" Grid.Column="2" Grid.Row="3" HorizontalAlignment="Left" VerticalAlignment="Center">
+            <ComboBox FontWeight="SemiBold" SelectedItem="{Binding StatInformation.Tamer, Mode=TwoWay}" ItemsSource="{Binding Tamers}" Height="28" Width="80"/>
+            <Label Content="Enh./Ult. Skill"/>
+        </StackPanel>
+        <StackPanel Grid.Column="3" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center">
             <Button Content="Accessories" Click="Accessories_Click" MinWidth="90" MinHeight="30"/>
         </StackPanel>
-        <StackPanel  Grid.Column="3" Grid.Row="2" HorizontalAlignment="Left" VerticalAlignment="Center">
+        <StackPanel  Grid.Column="3" Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center">
             <Button Content="Seals" Click="Seals_Click" MinWidth="90" MinHeight="30"/>
         </StackPanel>
     </Grid>

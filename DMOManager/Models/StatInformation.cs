@@ -1,6 +1,7 @@
 ﻿using DMOManager.Enums;
 using DMOManager.Helper;
 using SQLite;
+using System;
 
 namespace DMOManager.Models
 {
@@ -12,8 +13,9 @@ namespace DMOManager.Models
         private Bracelet bracelet;
         private Seals seals;
         private Digimon digimon;
-        private Tamer tamer;
+        private string tamer;
         private double size;
+        public DateTime LastPresetUpdate { get; set; }
         public Ring Ring
         {
             get
@@ -83,7 +85,7 @@ namespace DMOManager.Models
                 OnPropertyChanged();
             }
         }
-        public Tamer Tamer
+        public string Tamer
         {
             get { return tamer; }
             set
@@ -113,6 +115,7 @@ namespace DMOManager.Models
                 Name = "Custom"
             };
             Size = 140.0;
+            LastPresetUpdate = new DateTime(2000,1,1);
         }
 
         internal void SaveToDatabase()
@@ -138,9 +141,10 @@ namespace DMOManager.Models
                 var tamer = SQLiteDatabaseManager.Database.Table<Tamer>().Where(x => x.Name == statInfo.Tamer).FirstOrDefaultAsync().Result;
                 if (tamer != null)
                 {
-                    output.Tamer = tamer;
+                    output.Tamer = tamer.Name;
                 }
-                else output.Tamer = new Tamer();
+                else output.Tamer = "Tai";
+                output.LastPresetUpdate = statInfo.LastPresetUpdate;
             }
             #region Accessories
             var accessories = SQLiteDatabaseManager.Database.Table<Accessory>().ToListAsync().Result;
@@ -232,6 +236,7 @@ namespace DMOManager.Models
         public int Id { get; set; }
         public double Size { get; set; }
         public string Tamer { get; set; }
+        public DateTime LastPresetUpdate { get; set; }
         public StatInfoDatabase()
         {
             Id = 0;
@@ -240,11 +245,8 @@ namespace DMOManager.Models
         {
             Id = 0;
             Size = statInfo.Size;
-            if (statInfo.Tamer != null)
-            {
-                Tamer = statInfo.Tamer.Name;
-            }
-            else Tamer = string.Empty;
+            Tamer = statInfo.Tamer;
+            LastPresetUpdate = statInfo.LastPresetUpdate;
         }
     }
 }
