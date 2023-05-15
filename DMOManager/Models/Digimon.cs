@@ -20,6 +20,8 @@ namespace DMOManager.Models
         private int ht;
         private int baseDE;
         private double ev;
+        private DigimonAttribute attribute;
+        private ElementalAttribute elemental;
 
         [PrimaryKey]
         public string Name
@@ -127,6 +129,24 @@ namespace DMOManager.Models
             set
             {
                 ev = value;
+                OnPropertyChanged();
+            }
+        }
+        public DigimonAttribute Attribute
+        {
+            get { return attribute; }
+            set
+            {
+                attribute = value;
+                OnPropertyChanged();
+            }
+        }
+        public ElementalAttribute Elemental
+        {
+            get { return elemental;}
+            set
+            {
+                elemental = value;
                 OnPropertyChanged();
             }
         }

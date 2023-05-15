@@ -171,6 +171,8 @@ namespace DMOManager
                 List<StatFormula> formulas = new List<StatFormula>();
                 List<DigimonPresetsDatabase> digiPresets = new List<DigimonPresetsDatabase>();
                 List<AccessoryPresetsDatabase> accPresets = new List<AccessoryPresetsDatabase>();
+                List<Tamer> tamers = new List<Tamer>();
+                List<TamerSkill> skills = new List<TamerSkill>();
                 //Stat Formula
                 try
                 {
@@ -184,14 +186,16 @@ namespace DMOManager
                             csv.ReadHeader();
                             while (csv.Read())
                             {
-                                var record = new StatFormula();
-                                record.Stat = csv.GetField("stat");
-                                record.Stage = csv.GetField("stage");
-                                record.QA = int.Parse(csv.GetField("qa"));
-                                record.SA = int.Parse(csv.GetField("sa"));
-                                record.NA = int.Parse(csv.GetField("na"));
-                                record.DE = int.Parse(csv.GetField("de"));
-                                record.MaxLevel = int.Parse(csv.GetField("maxLevel"));
+                                var record = new StatFormula
+                                {
+                                    Stat = csv.GetField("stat"),
+                                    Stage = csv.GetField("stage"),
+                                    QA = int.Parse(csv.GetField("qa")),
+                                    SA = int.Parse(csv.GetField("sa")),
+                                    NA = int.Parse(csv.GetField("na")),
+                                    DE = int.Parse(csv.GetField("de")),
+                                    MaxLevel = int.Parse(csv.GetField("maxLevel"))
+                                };
                                 formulas.Add(record);
                             }
                         }
@@ -233,6 +237,8 @@ namespace DMOManager
                                 record.HT = int.Parse(csv.GetField("HT"));
                                 record.BaseDE = int.Parse(csv.GetField("baseDE"));
                                 record.EV = int.Parse(csv.GetField("EV")) / 100.0;
+                                record.Attribute = Enum.Parse<DigimonAttribute>(csv.GetField("attribute"));
+                                record.Elemental = Enum.Parse<ElementalAttribute>(csv.GetField("element"));
                                 digiPresets.Add(record);
                             }
                             await SQLiteDatabaseManager.Database.DeleteAllAsync<DigimonPresetsDatabase>();
@@ -256,7 +262,7 @@ namespace DMOManager
                             {
                                 var record = new AccessoryPresetsDatabase();
                                 bool result = Enum.TryParse(csv.GetField("type"), out AccessoryType type);
-                                if(result)
+                                if (result)
                                 {
                                     record.AccessoryType = type;
                                 }
@@ -281,6 +287,81 @@ namespace DMOManager
                             await SQLiteDatabaseManager.Database.DeleteAllAsync<AccessoryPresetsDatabase>();
                             await SQLiteDatabaseManager.Database.InsertAllAsync(accPresets);
                         }
+                    }
+                }
+                catch { return; }
+                //Tamers
+                try
+                {
+                    using (HttpResponseMessage response = await client.GetAsync("https://raw.githubusercontent.com/DMOHelper/DMOHelper/master/csvResources/tamers.csv"))
+                    using (Stream streamToReadFrom = await response.Content.ReadAsStreamAsync())
+                    {
+                        reader = new StreamReader(streamToReadFrom);
+                        using (var csv = new CsvReader(reader, CultureInfo.InvariantCulture))
+                        {
+                            csv.Read();
+                            csv.ReadHeader();
+                            while (csv.Read())
+                            {
+                                var record = new Tamer
+                                {
+                                    Name = csv.GetField("name"),
+                                    HP = int.Parse(csv.GetField("hp")),
+                                    DS = int.Parse(csv.GetField("ds")),
+                                    DE = int.Parse(csv.GetField("de")),
+                                    AT = int.Parse(csv.GetField("at")),
+                                    PassiveStat1 = csv.GetField("passive1Stat"),
+                                    PassiveStat2 = csv.GetField("passive2Stat"),
+                                    PassiveAttribute1 = Enum.Parse<DigimonAttribute>(csv.GetField("passive1Attribute")),
+                                    PassiveAttribute2 = Enum.Parse<DigimonAttribute>(csv.GetField("passive2Attribute")),
+                                    PassiveValue1 = int.Parse(csv.GetField("passive1Value")),
+                                    PassiveValue2 = int.Parse(csv.GetField("passive2Value")),
+                                    Skill = csv.GetField("skill")
+                                };
+                                tamers.Add(record);
+                            }
+                        }
+                        await SQLiteDatabaseManager.Database.DeleteAllAsync<Tamer>();
+                        await SQLiteDatabaseManager.Database.InsertAllAsync(tamers);
+                    }
+                }
+                catch { return; }
+                //Tamer Skills
+                try
+                {
+                    using (HttpResponseMessage response = await client.GetAsync("https://raw.githubusercontent.com/DMOHelper/DMOHelper/master/csvResources/tamerSkills.csv"))
+                    using (Stream streamToReadFrom = await response.Content.ReadAsStreamAsync())
+                    {
+                        reader = new StreamReader(streamToReadFrom);
+                        using (var csv = new CsvReader(reader, CultureInfo.InvariantCulture))
+                        {
+                            csv.Read();
+                            csv.ReadHeader();
+                            while (csv.Read())
+                            {
+                                var record = new TamerSkill
+                                {
+                                    Name = csv.GetField("name"),
+                                    ChangesStat = bool.Parse(csv.GetField("changesStats")),
+                                    HasPartyEffect = bool.Parse(csv.GetField("partyEffect")),
+                                    CanStack = bool.Parse(csv.GetField("canStack")),
+                                    Effect1 = csv.GetField("effect1"),
+                                    Effect2 = csv.GetField("effect2"),
+                                    Value1 = int.Parse(csv.GetField("value1")),
+                                    Value2 = int.Parse(csv.GetField("value2")),
+                                    Cooldown = int.Parse(csv.GetField("cooldown")),
+                                    EnhancedValue1 = int.Parse(csv.GetField("enhancedValue1")),
+                                    EnhancedValue2 = int.Parse(csv.GetField("enhancedValue2")),
+                                    EnhancedCooldown = int.Parse(csv.GetField("enhancedCooldown")),
+                                    UltimateValue1 = int.Parse(csv.GetField("ultimateValue1")),
+                                    UltimateValue2 = int.Parse(csv.GetField("ultimateValue2")),
+                                    UltimateCooldown = int.Parse(csv.GetField("ultimateCooldown"))
+                                };
+                                skills.Add(record);
+                            }
+                        }
+                        await SQLiteDatabaseManager.Database.DeleteAllAsync<TamerSkill>();
+                        await SQLiteDatabaseManager.Database.InsertAllAsync(skills);
                     }
                 }
                 catch { return; }

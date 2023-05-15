@@ -1,5 +1,4 @@
 ﻿using DMOManager.Helper;
-using DMOManager.Models;
 using Syncfusion.Windows.Shared;
 using System.Windows;
 using System.Windows.Data;
