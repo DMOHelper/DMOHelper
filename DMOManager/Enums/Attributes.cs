@@ -1,4 +1,6 @@
-﻿namespace DMOManager.Enums
+﻿using System.Windows.Documents;
+
+namespace DMOManager.Enums
 {
     public enum DigimonAttribute
     {
@@ -6,7 +8,7 @@
         Vaccine,
         Data,
         Virus,
-        Unkown
+        Unknown
     }
 
     public enum ElementalAttribute

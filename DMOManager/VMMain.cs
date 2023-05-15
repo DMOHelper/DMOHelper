@@ -34,6 +34,38 @@ namespace DMOManager
         public List<Digivice> Digivices { get; set; }
         public List<EnumDropdownHelper> ViceTypes { get; set; }
         public List<ViceResources> Resources { get; set; }
+        public static List<DigimonAttribute> DigimonAttributes
+        {
+            get
+            {
+                return new List<DigimonAttribute>() {
+                    DigimonAttribute.None,
+                    DigimonAttribute.Vaccine,
+                    DigimonAttribute.Data,
+                    DigimonAttribute.Virus,
+                    DigimonAttribute.Unknown
+                };
+            }
+        }
+        public static List<ElementalAttribute> ElementalAttributes
+        {
+            get
+            {
+                return new List<ElementalAttribute> {
+                    ElementalAttribute.Neutral,
+                    ElementalAttribute.Fire,
+                    ElementalAttribute.Ice,
+                    ElementalAttribute.Land,
+                    ElementalAttribute.Light,
+                    ElementalAttribute.PitchBlack,
+                    ElementalAttribute.Steel,
+                    ElementalAttribute.Thunder,
+                    ElementalAttribute.Water,
+                    ElementalAttribute.Wind,
+                    ElementalAttribute.Wood
+                };
+            }
+        }
         public ObservableCollection<ItemStack> SelectedAccountStacks { get; set; }
         public ObservableCollection<Digivice> SelectedAccountVices { get; set; }
         public StatInformation StatInformation { get; set; }
