@@ -67,6 +67,30 @@ namespace DMOManager
                 };
             }
         }
+        public static List<Evolution> EvolutionStages
+        {
+            get
+            {
+                return new List<Evolution> {
+                    Evolution.InTraining,
+                    Evolution.Rookie,
+                    Evolution.RookieX,
+                    Evolution.Champion,
+                    Evolution.ChampionX,
+                    Evolution.Ultimate,
+                    Evolution.UltimateX,
+                    Evolution.Mega,
+                    Evolution.MegaX,
+                    Evolution.BurstMode,
+                    Evolution.BurstModeX,
+                    Evolution.Jogress,
+                    Evolution.JogressX,
+                    Evolution.Armor,
+                    Evolution.Variant,
+                    Evolution.Spirit
+                };
+            }
+        }
         public static List<string> Tamers
         {
             get
@@ -86,7 +110,29 @@ namespace DMOManager
             {
                 List<string> output = new List<string>();
                 var skills = SQLiteDatabaseManager.Database.Table<TamerSkill>().ToListAsync().Result;
-
+                foreach (TamerSkill skill in skills)
+                {
+                    if (skill.EnhancedCooldown > 0 || skill.UltimateCooldown > 0) //Filters Tamer Skills that are not available as Enhanced/Ultimate
+                    {
+                        output.Add(skill.Name);
+                    }
+                }
+                return output;
+            }
+        }
+        public static List<string> PartyTamerSkills
+        {
+            get
+            {
+                List<string> output = new List<string>();
+                var skills = SQLiteDatabaseManager.Database.Table<TamerSkill>().ToListAsync().Result;
+                foreach (TamerSkill skill in skills)
+                {
+                    if (skill.HasPartyEffect)
+                    {
+                        output.Add(skill.Name);
+                    }
+                }
                 return output;
             }
         }
@@ -194,7 +240,7 @@ namespace DMOManager
                     {
                         Application.Current.Shutdown();
                     }
-                    if(result == MessageBoxResult.Yes)
+                    if (result == MessageBoxResult.Yes)
                     {
                         StatEnabled = false;
                     }

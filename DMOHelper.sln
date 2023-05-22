@@ -12,6 +12,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "csvResources", "csvResource
 		csvResources\statformula.csv = csvResources\statformula.csv
 		csvResources\tamers.csv = csvResources\tamers.csv
 		csvResources\tamerSkills.csv = csvResources\tamerSkills.csv
+		csvResources\titles.csv = csvResources\titles.csv
 	EndProjectSection
 EndProject
 Global

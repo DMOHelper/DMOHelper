@@ -1,6 +1,7 @@
 ﻿using DMOManager.Dialogs;
 using DMOManager.Dialogs.DialogViewModels;
 using DMOManager.Models;
+using System;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -16,6 +17,8 @@ namespace DMOManager.Views
         {
             this.DataContext = viewModel = VMMain.GetInstance();
             InitializeComponent();
+            viewModel.StatInformation.isInitiated = true;
+            viewModel.StatInformation.Calculate();
         }
 
         private void Accessories_Click(object sender, RoutedEventArgs e)
@@ -38,8 +41,28 @@ namespace DMOManager.Views
                 viewModel.StatInformation.Seals = sealDialog.Seals;
             }
         }
+        private void Clone_Click(object sender, RoutedEventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+        private void Digivice_Click(object sender, RoutedEventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+        private void Title_Click(object sender, RoutedEventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+        private void Deck_Click(object sender, RoutedEventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+        private void TStats_Click(object sender, RoutedEventArgs e)
+        {
+            throw new NotImplementedException();
+        }
 
-        private void PresetsButton_Click(object sender, RoutedEventArgs e)
+        private void Presets_Click(object sender, RoutedEventArgs e)
         {
             PresetDialog presetDialog = new PresetDialog(new DigimonVM(viewModel.StatInformation.Digimon), "Rank");
             if (presetDialog.ShowDialog() == true)

@@ -1,0 +1,13 @@
+name,effect1,value1,effect2,value2,effect3,value3
+"Royal Knights X",HP,20,AS,17,CD,100
+"MEGA-OMEGA",SkillDamage,15,AS,15,CD,100
+"OMEGA",SkillDamage,12,None,0,None,0
+"Legendary Knights of Vaccine",AS,15,HP,15,Damage,20
+"Ancient Spirit Evolution",Damage,25,HP,15,CD,5
+"Hyper Spirit Evolution",Damage,15,HP,10,CD,2
+"Ego of Darkness",Damage,12,HP,15,None,0
+"Four Dark Masters",SkillDamage,12,None,0,None,0
+"Burst Ultimate Wings",AS,15,None,0,None,0
+"Burst Ultimate Wings II",AS,15,Damage,15,None,0
+"Main Adventure Characters",AS,8,None,0,None,0
+"Four Holy Beasts",CD,30,None,0,None,0

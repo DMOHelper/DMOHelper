@@ -12,7 +12,7 @@
         <system:Double x:Key="AppFontSizeHeaders">18</system:Double>
         <system:Double x:Key="ButtonSize">18</system:Double>
 
-        <SolidColorBrush x:Key="Background" Color="#FF1F1F1F"/>
+        <SolidColorBrush x:Key="Background" Color="#FF252525"/>
         <SolidColorBrush x:Key="ListBackground" Color="#FF0e3954"/>
         <SolidColorBrush x:Key="Foreground" Color="#FFddb45d"/>
         <SolidColorBrush x:Key="PrimaryDarkBrush" Color="#FF0e3954"/>

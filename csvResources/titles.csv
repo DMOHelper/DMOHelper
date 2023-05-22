@@ -1,0 +1,4 @@
+name,effect1,value1,effect2,value2,effect3,value3
+"Fall of the Royal Family",AT,500,HT,500,HP,1500
+"A new World",SkillDamage,15,HP,1000,HT,500
+"Royal",SkillDamage,12,HP,1500,DE,200

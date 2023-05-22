@@ -7,6 +7,7 @@ namespace DMOManager.Models
 {
     public class StatInformation : AbstractPropertyChanged
     {
+        internal bool isInitiated = false;
         private Ring ring;
         private Necklace necklace;
         private Earrings earrings;
@@ -14,9 +15,8 @@ namespace DMOManager.Models
         private Seals seals;
         private Digimon digimon;
         private string tamer;
-        private string party1Tamer;
-        private string party2Tamer;
-        private string party3Tamer;
+        private string skill1;
+        private string skill2;
         private double size;
         public DateTime LastPresetUpdate { get; set; }
         public Ring Ring
@@ -97,30 +97,21 @@ namespace DMOManager.Models
                 OnPropertyChanged();
             }
         }
-        public string Party1Tamer
+        public string Skill1
         {
-            get { return party1Tamer; }
+            get { return skill1; }
             set
             {
-                party1Tamer = value;
+                skill1 = value;
                 OnPropertyChanged();
             }
         }
-        public string Party2Tamer
+        public string Skill2
         {
-            get { return party2Tamer; }
+            get { return skill2; }
             set
             {
-                party2Tamer = value;
-                OnPropertyChanged();
-            }
-        }
-        public string Party3Tamer
-        {
-            get { return party3Tamer; }
-            set
-            {
-                party3Tamer = value;
+                skill2 = value;
                 OnPropertyChanged();
             }
         }
@@ -145,7 +136,7 @@ namespace DMOManager.Models
                 Name = "Custom"
             };
             Size = 140.0;
-            LastPresetUpdate = new DateTime(2000,1,1);
+            LastPresetUpdate = new DateTime(2000, 1, 1);
         }
 
         internal void SaveToDatabase()
@@ -168,12 +159,9 @@ namespace DMOManager.Models
             if (statInfo != null)
             {
                 output.Size = statInfo.Size;
-                var tamer = SQLiteDatabaseManager.Database.Table<Tamer>().Where(x => x.Name == statInfo.Tamer).FirstOrDefaultAsync().Result;
-                if (tamer != null)
-                {
-                    output.Tamer = tamer.Name;
-                }
-                else output.Tamer = "Tai";
+                output.Tamer = statInfo.Tamer;
+                output.Skill1 = statInfo.Skill1;
+                output.Skill2 = statInfo.Skill2;
                 output.LastPresetUpdate = statInfo.LastPresetUpdate;
             }
             #region Accessories
@@ -266,6 +254,9 @@ namespace DMOManager.Models
         public int Id { get; set; }
         public double Size { get; set; }
         public string Tamer { get; set; }
+        public string Skill1 { get; set; }
+        public string Skill2 { get; set; }
+
         public DateTime LastPresetUpdate { get; set; }
         public StatInfoDatabase()
         {
@@ -276,6 +267,8 @@ namespace DMOManager.Models
             Id = 0;
             Size = statInfo.Size;
             Tamer = statInfo.Tamer;
+            Skill1 = statInfo.Skill1;
+            Skill2 = statInfo.Skill2;
             LastPresetUpdate = statInfo.LastPresetUpdate;
         }
     }

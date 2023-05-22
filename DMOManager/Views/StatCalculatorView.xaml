@@ -13,10 +13,10 @@
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto" MinWidth="180"/>
             <ColumnDefinition Width="20"/>
-            <ColumnDefinition Width="Auto" MinWidth="100"/>
-            <ColumnDefinition Width="Auto" MinWidth="100"/>
-            <ColumnDefinition Width="Auto" MinWidth="100"/>
-            <ColumnDefinition Width="Auto" MinWidth="100"/>
+            <ColumnDefinition Width="Auto" MinWidth="110"/>
+            <ColumnDefinition Width="Auto" MinWidth="110"/>
+            <ColumnDefinition Width="Auto" MinWidth="110"/>
+            <ColumnDefinition Width="Auto" MinWidth="110"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
@@ -36,7 +36,6 @@
         </Grid.RowDefinitions>
         <StackPanel Orientation="Horizontal" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center">
             <Label Content="Digimon Base Information" FontWeight="Bold"/>
-            <Button Content="Presets" x:Name="PresetsButton" IsEnabled="{Binding StatEnabled}" Click="PresetsButton_Click"  MinWidth="80" MinHeight="30"/>
         </StackPanel>
         <!--Size-->
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Row="1" Grid.Column="0">
@@ -93,13 +92,23 @@
             <ComboBox FontWeight="SemiBold" SelectedItem="{Binding StatInformation.Digimon.Elemental, Mode=TwoWay}" ItemsSource="{Binding ElementalAttributes}" Height="28" Width="80"/>
             <Label Content="Element"/>
         </StackPanel>
+        <!--Evo Stage-->
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Row="12" Grid.Column="0">
+            <ComboBox FontWeight="SemiBold" SelectedItem="{Binding StatInformation.Digimon.Evolution, Mode=TwoWay}" ItemsSource="{Binding EvolutionStages}" Height="28" Width="80"/>
+            <Label Content="Evo Stage"/>
+        </StackPanel>
+        <!--Clone & Presets-->
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Row="13" Grid.Column="0">
+            <Button Content="Presets" x:Name="PresetsButton" IsEnabled="{Binding StatEnabled}" Click="Presets_Click"  MinWidth="80" MinHeight="30"/>
+            <Button  Margin="10,0,0,0"  Content="Clone" x:Name="CloneButton" Click="Clone_Click"  MinWidth="80" MinHeight="30"/>
+        </StackPanel>
 
         <!--Tamer Informations-->
         <StackPanel Orientation="Horizontal" Grid.Row="0" Grid.Column="2" Grid.ColumnSpan="3" HorizontalAlignment="Center" VerticalAlignment="Center">
             <Label Content="Tamer Informations" FontWeight="Bold"/>
         </StackPanel>
         <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.Column="2" HorizontalAlignment="Left" VerticalAlignment="Center">
-            <Label Content="Tamers"/>
+            <Label Content="Tamer"/>
         </StackPanel>
         <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.Column="3" Grid.ColumnSpan="2" HorizontalAlignment="Left" VerticalAlignment="Center">
             <Label Content="Additional Skills (Enh./Ult.)"/>
@@ -109,60 +118,42 @@
             <ComboBox IsEnabled="{Binding StatEnabled}"  FontWeight="SemiBold" SelectedItem="{Binding StatInformation.Tamer, Mode=TwoWay}" ItemsSource="{Binding Tamers}" Height="28" Width="80"/>
         </StackPanel>
         <StackPanel Orientation="Horizontal" Grid.Column="3" Grid.Row="2" HorizontalAlignment="Left" VerticalAlignment="Center">
-            <ComboBox IsEnabled="{Binding StatEnabled}"  FontWeight="SemiBold" SelectedItem="{Binding StatInformation.Skill1, Mode=TwoWay}" ItemsSource="{Binding Tamers}" Height="28" Width="80"/>
+            <ComboBox IsEnabled="{Binding StatEnabled}"  FontWeight="SemiBold" SelectedItem="{Binding StatInformation.Skill1, Mode=TwoWay}" ItemsSource="{Binding TamerSkills}" Height="28" Width="80"/>
         </StackPanel>
         <StackPanel Orientation="Horizontal" Grid.Column="4" Grid.Row="2" HorizontalAlignment="Left" VerticalAlignment="Center">
-            <ComboBox IsEnabled="{Binding StatEnabled}"  FontWeight="SemiBold" SelectedItem="{Binding StatInformation.Skill2, Mode=TwoWay}" ItemsSource="{Binding Tamers}" Height="28" Width="80"/>
+            <ComboBox IsEnabled="{Binding StatEnabled}"  FontWeight="SemiBold" SelectedItem="{Binding StatInformation.Skill2, Mode=TwoWay}" ItemsSource="{Binding TamerSkills}" Height="28" Width="80"/>
         </StackPanel>
-        <StackPanel Grid.Column="5" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center">
-            <Button Content="Accessories" Click="Accessories_Click" MinWidth="90" MinHeight="30"/>
+        <!--Tamer Buttons-->
+        <StackPanel Orientation="Horizontal" Grid.Column="5" Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Center">
+            <Button Content="Tamer Stats" Click="TStats_Click" MinWidth="90" MinHeight="30"/>
+            <Button Margin="10,0,0,0" Content="Accessories" Click="Accessories_Click" MinWidth="90" MinHeight="30"/>
         </StackPanel>
-        <StackPanel  Grid.Column="5" Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center">
+        <StackPanel Orientation="Horizontal" Grid.Column="5" Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Center">
+            <Button Content="Title" Click="Title_Click" MinWidth="90" MinHeight="30"/>
+            <Button Margin="10,0,0,0" Content="Deck" Click="Deck_Click" MinWidth="90" MinHeight="30"/>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" Grid.Column="5" Grid.Row="2" HorizontalAlignment="Left" VerticalAlignment="Center">
             <Button Content="Seals" Click="Seals_Click" MinWidth="90" MinHeight="30"/>
+            <Button Margin="10,0,0,0" Content="Digivice" Click="Digivice_Click" MinWidth="90" MinHeight="30"/>
         </StackPanel>
 
-        <!--Party Informations-->
-        <StackPanel Orientation="Horizontal" Grid.Row="3" Grid.Column="2" Grid.ColumnSpan="3" HorizontalAlignment="Center" VerticalAlignment="Center">
-            <Label Content="Party Informations" FontWeight="Bold"/>
+        <!--Buffs-->
+        <StackPanel Orientation="Horizontal" Grid.Row="3" Grid.Column="2" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Label Content="Applied Buffs" FontWeight="Bold"/>
         </StackPanel>
-        <!--1-->
-        <StackPanel Orientation="Horizontal" Grid.Column="2" Grid.Row="4" HorizontalAlignment="Left" VerticalAlignment="Center">
-            <ComboBox IsEnabled="{Binding StatEnabled}"  FontWeight="SemiBold" SelectedItem="{Binding StatInformation.Party1Tamer, Mode=TwoWay}" ItemsSource="{Binding Tamers}" Height="28" Width="80"/>
+        <StackPanel Orientation="Horizontal" Grid.Row="3" Grid.Column="4" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Label Content="Party Tamer Skills" FontWeight="Bold" Margin="0,0,50,0"/>
         </StackPanel>
-        <StackPanel Orientation="Horizontal" Grid.Column="3" Grid.Row="4" HorizontalAlignment="Left" VerticalAlignment="Center">
-            <ComboBox IsEnabled="{Binding StatEnabled}"  FontWeight="SemiBold" SelectedItem="{Binding StatInformation.Party1Skill1, Mode=TwoWay}" ItemsSource="{Binding Tamers}" Height="28" Width="80"/>
-        </StackPanel>
-        <StackPanel Orientation="Horizontal" Grid.Column="4" Grid.Row="4" HorizontalAlignment="Left" VerticalAlignment="Center">
-            <ComboBox IsEnabled="{Binding StatEnabled}"  FontWeight="SemiBold" SelectedItem="{Binding StatInformation.Party1Skill2, Mode=TwoWay}" ItemsSource="{Binding Tamers}" Height="28" Width="80"/>
-        </StackPanel>
-        <StackPanel Orientation="Horizontal" Grid.Row="4" Grid.Column="5" HorizontalAlignment="Left" VerticalAlignment="Center">
-            <Label Content="Party Member 1"/>
-        </StackPanel>
-        <!--2-->
-        <StackPanel Orientation="Horizontal" Grid.Column="2" Grid.Row="5" HorizontalAlignment="Left" VerticalAlignment="Center">
-            <ComboBox IsEnabled="{Binding StatEnabled}"  FontWeight="SemiBold" SelectedItem="{Binding StatInformation.Party2Tamer, Mode=TwoWay}" ItemsSource="{Binding Tamers}" Height="28" Width="80"/>
-        </StackPanel>
-        <StackPanel Orientation="Horizontal" Grid.Column="3" Grid.Row="5" HorizontalAlignment="Left" VerticalAlignment="Center">
-            <ComboBox IsEnabled="{Binding StatEnabled}"  FontWeight="SemiBold" SelectedItem="{Binding StatInformation.Party2Skill1, Mode=TwoWay}" ItemsSource="{Binding Tamers}" Height="28" Width="80"/>
-        </StackPanel>
-        <StackPanel Orientation="Horizontal" Grid.Column="4" Grid.Row="5" HorizontalAlignment="Left" VerticalAlignment="Center">
-            <ComboBox IsEnabled="{Binding StatEnabled}"  FontWeight="SemiBold" SelectedItem="{Binding StatInformation.Party2Skill2, Mode=TwoWay}" ItemsSource="{Binding Tamers}" Height="28" Width="80"/>
-        </StackPanel>
-        <StackPanel Orientation="Horizontal" Grid.Row="5" Grid.Column="5" HorizontalAlignment="Left" VerticalAlignment="Center">
-            <Label Content="Party Member 2"/>
-        </StackPanel>
-        <!--3-->
-        <StackPanel Orientation="Horizontal" Grid.Column="2" Grid.Row="6" HorizontalAlignment="Left" VerticalAlignment="Center">
-            <ComboBox IsEnabled="{Binding StatEnabled}"  FontWeight="SemiBold" SelectedItem="{Binding StatInformation.Party3Tamer, Mode=TwoWay}" ItemsSource="{Binding Tamers}" Height="28" Width="80"/>
-        </StackPanel>
-        <StackPanel Orientation="Horizontal" Grid.Column="3" Grid.Row="6" HorizontalAlignment="Left" VerticalAlignment="Center">
-            <ComboBox IsEnabled="{Binding StatEnabled}"  FontWeight="SemiBold" SelectedItem="{Binding StatInformation.Party3Skill1, Mode=TwoWay}" ItemsSource="{Binding Tamers}" Height="28" Width="80"/>
-        </StackPanel>
-        <StackPanel Orientation="Horizontal" Grid.Column="4" Grid.Row="6" HorizontalAlignment="Left" VerticalAlignment="Center">
-            <ComboBox IsEnabled="{Binding StatEnabled}"  FontWeight="SemiBold" SelectedItem="{Binding StatInformation.Party3Skill2, Mode=TwoWay}" ItemsSource="{Binding Tamers}" Height="28" Width="80"/>
-        </StackPanel>
-        <StackPanel Orientation="Horizontal" Grid.Row="6" Grid.Column="5" HorizontalAlignment="Left" VerticalAlignment="Center">
-            <Label Content="Party Member 3"/>
-        </StackPanel>
+        <CheckBox Content="1h Buffs" Grid.Row="4" Grid.Column="2" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+        <CheckBox Content="2h Buffs" Grid.Row="5" Grid.Column="2" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+        <CheckBox Content="File Isl. Buffs" Grid.Row="6" Grid.Column="2" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+        <CheckBox Content="Extreme Evo" Grid.Row="4" Grid.Column="3" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+
+
+        <CheckBox Content="Hikari's" Grid.Row="4" Grid.Column="4" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+        <CheckBox Content="Henry's / Enh./Ult. Guard" Grid.Row="5" Grid.Column="4" Grid.ColumnSpan="2" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+        <RadioButton GroupName="Takato" Content="Takato's" Grid.Row="6" Grid.Column="4" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+        <CheckBox Content="Enh./Ult. Encouragement" Grid.Row="4" Grid.Column="5" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+        <RadioButton GroupName="Takato" Content="Enh./Ult. Focus" Grid.Row="6" Grid.Column="5" HorizontalAlignment="Left" VerticalAlignment="Center"/>
     </Grid>
 </UserControl>
