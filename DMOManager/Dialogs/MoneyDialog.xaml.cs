@@ -6,9 +6,6 @@ using System.Windows.Controls;
 
 namespace DMOHelper.Dialogs
 {
-    /// <summary>
-    /// Interaktionslogik für MoneyDialog.xaml
-    /// </summary>
     public partial class MoneyDialog : ChromelessWindow
     {
         private bool wasFarmed = false;

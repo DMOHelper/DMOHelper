@@ -7,9 +7,6 @@ using System.Windows.Controls;
 
 namespace DMOHelper.Views
 {
-    /// <summary>
-    /// Interaktionslogik für TrueViceView.xaml
-    /// </summary>
     public partial class TrueViceView : UserControl
     {
         public TrueViceView()

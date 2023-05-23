@@ -5,9 +5,6 @@ using System.Windows;
 
 namespace DMOHelper.Dialogs
 {
-    /// <summary>
-    /// Interaktionslogik für SealsDialog.xaml
-    /// </summary>
     public partial class SealsDialog : ChromelessWindow
     {
         public SealsDialog(Seals seals)

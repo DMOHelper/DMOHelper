@@ -4,9 +4,6 @@ using System.Windows;
 
 namespace DMOHelper.Dialogs
 {
-    /// <summary>
-    /// Interaktionslogik für TextDialog.xaml
-    /// </summary>
     public partial class TextDialog : ChromelessWindow
     {
 		public TextDialog(string question, string defaultAnswer = "")

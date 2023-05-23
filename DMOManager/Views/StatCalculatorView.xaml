@@ -124,13 +124,9 @@
             <ComboBox IsEnabled="{Binding StatEnabled}"  FontWeight="SemiBold" SelectedItem="{Binding StatInformation.Skill2, Mode=TwoWay}" ItemsSource="{Binding TamerSkills}" Height="28" Width="100"/>
         </StackPanel>
         <!--Tamer Buttons-->
-        <StackPanel Orientation="Horizontal" Grid.Column="5" Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Center">
+        <StackPanel Orientation="Horizontal" Grid.Column="5" Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Center">
             <Button Content="Tamer Stats" Click="TStats_Click" MinWidth="90" MinHeight="30"/>
             <Button Margin="3,0,0,0" Content="Accessories" Click="Accessories_Click" MinWidth="90" MinHeight="30"/>
-        </StackPanel>
-        <StackPanel Orientation="Horizontal" Grid.Column="5" Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Center">
-            <Button Content="Title" Click="Title_Click" MinWidth="90" MinHeight="30"/>
-            <Button Margin="3,0,0,0" Content="Deck" Click="Deck_Click" MinWidth="90" MinHeight="30"/>
         </StackPanel>
         <StackPanel Orientation="Horizontal" Grid.Column="5" Grid.Row="2" HorizontalAlignment="Left" VerticalAlignment="Center">
             <Button Content="Seals" Click="Seals_Click" MinWidth="90" MinHeight="30"/>
@@ -147,7 +143,16 @@
         <CheckBox Content="1h Buffs" IsChecked="{Binding StatInformation.Buff1h, Mode=TwoWay}" Grid.Row="4" Grid.Column="2" HorizontalAlignment="Left" VerticalAlignment="Center"/>
         <CheckBox Content="2h Buffs" IsChecked="{Binding StatInformation.Buff2h, Mode=TwoWay}" Grid.Row="5" Grid.Column="2" HorizontalAlignment="Left" VerticalAlignment="Center"/>
         <CheckBox Content="File Isl. Buffs" IsChecked="{Binding StatInformation.IslandBuffs, Mode=TwoWay}" Grid.Row="4" Grid.Column="3" HorizontalAlignment="Left" VerticalAlignment="Center"/>
-        <CheckBox Content="Extreme Evo / Peak of X Evo" IsChecked="{Binding StatInformation.EvoBuff, Mode=TwoWay}" IsEnabled="{Binding ElementName=EvoBox, Path=SelectedItem, Converter={StaticResource ExtremePeakEvoConverter}}" Grid.Row="6" Grid.Column="2" Grid.ColumnSpan="2" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+        <CheckBox Content="Extreme Evo / Peak of X Evo" IsChecked="{Binding StatInformation.EvoBuff, Mode=TwoWay}" IsEnabled="{Binding ElementName=EvoBox, Path=SelectedItem, Converter={StaticResource ExtremePeakEvoConverter}}" Grid.Row="5" Grid.Column="3" Grid.ColumnSpan="2" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+        <CheckBox Content="Hikari's" IsChecked="{Binding StatInformation.Hikari, Mode=TwoWay}" Grid.Row="4" Grid.Column="4" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,10,0"/>
+        <CheckBox Content="Henry's / Enh./Ult. Guard" IsChecked="{Binding StatInformation.Henry, Mode=TwoWay}" Grid.Row="5" Grid.Column="5" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+        <helper:OptionalRadioButton IsOptional="True" GroupName="Takato" Content="Takato's" IsChecked="{Binding StatInformation.Takato, Mode=TwoWay}" Grid.Row="6" Grid.Column="4" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,10,0"/>
+        <CheckBox Content="Enh./Ult. Encouragement" IsChecked="{Binding StatInformation.Encouragement, Mode=TwoWay}" Grid.Row="4" Grid.Column="5" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+        <helper:OptionalRadioButton IsOptional="True" GroupName="Takato" Content="Enh./Ult. Focus" IsChecked="{Binding StatInformation.Focus, Mode=TwoWay}" Grid.Row="6" Grid.Column="5" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+        <StackPanel Orientation="Horizontal" Grid.Row="6" Grid.Column="2" Grid.ColumnSpan="2">
+            <syncfusion:UpDown AllowEdit="False" ApplyZeroColor="False" Step="1" MinValue="0" MaxValue="3" NumberDecimalDigits="0" Value="{Binding StatInformation.FamilyBuffs, Mode=TwoWay}" Height="28" Width="40"/>
+            <Label Content="Family Buffs" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+        </StackPanel>
         <StackPanel Orientation="Horizontal" Grid.Row="7" Grid.Column="2" Grid.ColumnSpan="2" HorizontalAlignment="Left" VerticalAlignment="Center">
             <ComboBox FontWeight="SemiBold" SelectedItem="{Binding StatInformation.Ruler, Mode=TwoWay}" ItemsSource="{Binding ElementName=EvoBox,Path=SelectedItem,Converter={StaticResource EvoMemorySkillConverter}}" Height="28" Width="80"/>
             <Label Content="Ruler Skill" FontWeight="Bold"/>
@@ -156,15 +161,13 @@
             <ComboBox FontWeight="SemiBold" SelectedItem="{Binding StatInformation.Guardian, Mode=TwoWay}" ItemsSource="{Binding ElementName=EvoBox,Path=SelectedItem,Converter={StaticResource EvoMemorySkillConverter}}" Height="28" Width="80"/>
             <Label Content="Guardian Skill" FontWeight="Bold"/>
         </StackPanel>
-        <StackPanel Orientation="Horizontal" Grid.Row="7" Grid.Column="4" Grid.ColumnSpan="2">
-            <syncfusion:UpDown AllowEdit="False" ApplyZeroColor="False" Step="1" MinValue="0" MaxValue="3" NumberDecimalDigits="0" Value="{Binding StatInformation.FamilyBuffs, Mode=TwoWay}" Height="28" Width="40"/>
-            <Label Content="Family Buffs" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+        <StackPanel Orientation="Horizontal" Grid.Row="7" Grid.Column="4" Grid.ColumnSpan="2" HorizontalAlignment="Left" VerticalAlignment="Center">
+            <ComboBox FontWeight="SemiBold" SelectedItem="{Binding StatInformation.Title, Mode=TwoWay}" ItemsSource="{Binding Decks}" Height="28" Width="120"/>
+            <Label Content="Title" FontWeight="Bold"/>
         </StackPanel>
-
-        <CheckBox Content="Hikari's" IsChecked="{Binding StatInformation.Hikari, Mode=TwoWay}" Grid.Row="4" Grid.Column="4" HorizontalAlignment="Left" VerticalAlignment="Center"/>
-        <CheckBox Content="Henry's / Enh./Ult. Guard" IsChecked="{Binding StatInformation.Henry, Mode=TwoWay}" Grid.Row="5" Grid.Column="4" Grid.ColumnSpan="2" HorizontalAlignment="Left" VerticalAlignment="Center"/>
-        <helper:OptionalRadioButton IsOptional="True" GroupName="Takato" Content="Takato's" IsChecked="{Binding StatInformation.Takato, Mode=TwoWay}" Grid.Row="6" Grid.Column="4" HorizontalAlignment="Left" VerticalAlignment="Center"/>
-        <CheckBox Content="Enh./Ult. Encouragement" IsChecked="{Binding StatInformation.Encouragement, Mode=TwoWay}" Grid.Row="4" Grid.Column="5" HorizontalAlignment="Left" VerticalAlignment="Center"/>
-        <helper:OptionalRadioButton IsOptional="True" GroupName="Takato" Content="Enh./Ult. Focus" IsChecked="{Binding StatInformation.Focus, Mode=TwoWay}" Grid.Row="6" Grid.Column="5" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+        <StackPanel Orientation="Horizontal" Grid.Row="8" Grid.Column="4" Grid.ColumnSpan="2" HorizontalAlignment="Left" VerticalAlignment="Center">
+            <ComboBox FontWeight="SemiBold" SelectedItem="{Binding StatInformation.Deck, Mode=TwoWay}" ItemsSource="{Binding Titles}" Height="28" Width="120"/>
+            <Label Content="Deck" FontWeight="Bold"/>
+        </StackPanel>
     </Grid>
 </UserControl>

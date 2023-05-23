@@ -5,9 +5,6 @@ using System.Windows;
 
 namespace DMOHelper.Dialogs
 {
-    /// <summary>
-    /// Interaktionslogik für ChooseViceDialog.xaml
-    /// </summary>
     public partial class ChooseViceDialog : ChromelessWindow
     {
         private VMMain viewModel;

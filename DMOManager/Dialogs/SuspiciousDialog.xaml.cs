@@ -4,9 +4,6 @@ using System.Windows;
 
 namespace DMOHelper.Dialogs
 {
-    /// <summary>
-    /// Interaktionslogik für SuspiciousDialog.xaml
-    /// </summary>
     public partial class SuspiciousDialog : ChromelessWindow
     {
         public SuspiciousDialog()

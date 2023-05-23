@@ -7,9 +7,6 @@ using System.Windows.Controls;
 
 namespace DMOHelper.Views
 {
-    /// <summary>
-    /// Interaktionslogik für StatCalculatorView.xaml
-    /// </summary>
     public partial class StatCalculatorView : UserControl
     {
         VMMain viewModel;

@@ -16,6 +16,8 @@ namespace DMOHelper.Models
         private string tamer;
         private string skill1;
         private string skill2;
+        private string deck;
+        private string title;
         private double size;
         private int familyBuffs;
         private bool buff1h;
@@ -124,6 +126,24 @@ namespace DMOHelper.Models
             set
             {
                 skill2 = value;
+                OnPropertyChanged();
+            }
+        }
+        public string Deck
+        {
+            get { return deck; }
+            set
+            {
+                deck = value;
+                OnPropertyChanged();
+            }
+        }
+        public string Title
+        {
+            get { return title; }
+            set
+            {
+                title = value;
                 OnPropertyChanged();
             }
         }
@@ -295,6 +315,8 @@ namespace DMOHelper.Models
                 output.Henry = statInfo.Henry;
                 output.Takato = statInfo.Takato;
                 output.Focus = statInfo.Focus;
+                output.Deck = statInfo.Deck;
+                output.Title = statInfo.Title;
                 output.LastPresetUpdate = statInfo.LastPresetUpdate;
             }
             #region Accessories
@@ -389,6 +411,8 @@ namespace DMOHelper.Models
         public string Tamer { get; set; }
         public string Skill1 { get; set; }
         public string Skill2 { get; set; }
+        public string Deck { get; set; }
+        public string Title { get; set; }
         public int FamilyBuffs { get; set; }
         public bool Buff1h { get; set; }
         public bool Buff2h { get; set; }
@@ -426,6 +450,8 @@ namespace DMOHelper.Models
             Henry = statInfo.Henry;
             Takato = statInfo.Takato;
             Focus = statInfo.Focus;
+            Deck = statInfo.Deck;
+            Title = statInfo.Title;
             LastPresetUpdate = statInfo.LastPresetUpdate;
         }
     }

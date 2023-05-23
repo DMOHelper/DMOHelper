@@ -6,9 +6,6 @@ using System.Windows;
 
 namespace DMOHelper.Dialogs
 {
-    /// <summary>
-    /// Interaktionslogik für AccessoryDialog.xaml
-    /// </summary>
     public partial class AccessoryDialog : ChromelessWindow
     {
         private AccessoryVM viewModel;

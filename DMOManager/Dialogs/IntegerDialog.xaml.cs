@@ -6,9 +6,6 @@ using System.Windows.Controls;
 
 namespace DMOHelper.Dialogs
 {
-    /// <summary>
-    /// Interaktionslogik für IntegerDialog.xaml
-    /// </summary>
     public partial class IntegerDialog : ChromelessWindow
     {
         private static Regex _intRegex = new Regex("^\\d+$"); //regex that matches integers

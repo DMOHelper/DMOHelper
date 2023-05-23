@@ -5,9 +5,6 @@ using System.Windows.Data;
 
 namespace DMOHelper.Dialogs
 {
-    /// <summary>
-    /// Interaktionslogik für PresetDialog.xaml
-    /// </summary>
     public partial class PresetDialog : ChromelessWindow
     {
         public PresetDialog(AbstractPropertyChanged viewModel, string groupDescription = "")

@@ -10,9 +10,6 @@ using DMOHelper.Enums;
 
 namespace DMOHelper.Views
 {
-    /// <summary>
-    /// Interaktionslogik für AccountView.xaml
-    /// </summary>
     public partial class AccountView : UserControl
     {
         public AccountView()

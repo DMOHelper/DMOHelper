@@ -1,13 +1,11 @@
 ﻿using CsvHelper;
 using DMOHelper.Enums;
-using DMOHelper.Enums;
 using DMOHelper.Helper;
 using DMOHelper.Models;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Diagnostics.Tracing;
 using System.Globalization;
 using System.IO;
 using System.Linq;
@@ -119,7 +117,32 @@ namespace DMOHelper
                 };
             }
         }
-
+        public static List<string> Decks
+        {
+            get
+            {
+                List<string> output = new List<string>();
+                var decks = SQLiteDatabaseManager.Database.Table<Deck>().ToListAsync().Result;
+                foreach (Deck deck in decks)
+                {
+                    output.Add(deck.Name);
+                }
+                return output;
+            }
+        }
+        public static List<string> Titles
+        {
+            get
+            {
+                List<string> output = new List<string>();
+                var titles = SQLiteDatabaseManager.Database.Table<Title>().ToListAsync().Result;
+                foreach (Title title in titles)
+                {
+                    output.Add(title.Name);
+                }
+                return output;
+            }
+        }
         public static List<string> Tamers
         {
             get
@@ -241,7 +264,7 @@ namespace DMOHelper
         {
             StatEnabled = true;
             StatInformation = StatInformation.LoadFromDatabase();
-            if (DateTime.UtcNow - StatInformation.LastPresetUpdate > new TimeSpan(7, 0, 0, 0))
+            if (DateTime.UtcNow - StatInformation.LastPresetUpdate > new TimeSpan(1, 0, 0, 0))
             {
                 bool failed = Task.Run(UpdatePresets).Result;
                 if (failed)
@@ -309,6 +332,8 @@ namespace DMOHelper
                 List<AccessoryPresetsDatabase> accPresets = new List<AccessoryPresetsDatabase>();
                 List<Tamer> tamers = new List<Tamer>();
                 List<TamerSkill> skills = new List<TamerSkill>();
+                List<Title> titles = new List<Title>();
+                List<Deck> decks = new List<Deck>();
                 //Stat Formula
                 try
                 {
@@ -510,6 +535,74 @@ namespace DMOHelper
                         }
                         await SQLiteDatabaseManager.Database.DeleteAllAsync<TamerSkill>();
                         await SQLiteDatabaseManager.Database.InsertAllAsync(skills);
+                    }
+                }
+                catch
+                {
+                    failed = true;
+                }
+                //Titles
+                try
+                {
+                    using (HttpResponseMessage response = await client.GetAsync("https://raw.githubusercontent.com/DMOHelper/DMOHelper/master/csvResources/titles.csv"))
+                    using (Stream streamToReadFrom = await response.Content.ReadAsStreamAsync())
+                    {
+                        reader = new StreamReader(streamToReadFrom);
+                        using (var csv = new CsvReader(reader, CultureInfo.InvariantCulture))
+                        {
+                            csv.Read();
+                            csv.ReadHeader();
+                            while (csv.Read())
+                            {
+                                var record = new Title
+                                {
+                                    Name = csv.GetField("name"),
+                                    Effect1 = Enum.Parse<BuffType>(csv.GetField("effect1")),
+                                    Effect2 = Enum.Parse<BuffType>(csv.GetField("effect2")),
+                                    Effect3 = Enum.Parse<BuffType>(csv.GetField("effect3")),
+                                    Value1 = int.Parse(csv.GetField("value1")),
+                                    Value2 = int.Parse(csv.GetField("value2")),
+                                    Value3 = int.Parse(csv.GetField("value3")),
+                                };
+                                titles.Add(record);
+                            }
+                        }
+                        await SQLiteDatabaseManager.Database.DeleteAllAsync<Title>();
+                        await SQLiteDatabaseManager.Database.InsertAllAsync(titles);
+                    }
+                }
+                catch
+                {
+                    failed = true;
+                }
+                //Decks
+                try
+                {
+                    using (HttpResponseMessage response = await client.GetAsync("https://raw.githubusercontent.com/DMOHelper/DMOHelper/master/csvResources/decks.csv"))
+                    using (Stream streamToReadFrom = await response.Content.ReadAsStreamAsync())
+                    {
+                        reader = new StreamReader(streamToReadFrom);
+                        using (var csv = new CsvReader(reader, CultureInfo.InvariantCulture))
+                        {
+                            csv.Read();
+                            csv.ReadHeader();
+                            while (csv.Read())
+                            {
+                                var record = new Deck
+                                {
+                                    Name = csv.GetField("name"),
+                                    Effect1 = Enum.Parse<BuffType>(csv.GetField("effect1")),
+                                    Effect2 = Enum.Parse<BuffType>(csv.GetField("effect2")),
+                                    Effect3 = Enum.Parse<BuffType>(csv.GetField("effect3")),
+                                    Value1 = int.Parse(csv.GetField("value1")),
+                                    Value2 = int.Parse(csv.GetField("value2")),
+                                    Value3 = int.Parse(csv.GetField("value3")),
+                                };
+                                decks.Add(record);
+                            }
+                        }
+                        await SQLiteDatabaseManager.Database.DeleteAllAsync<Deck>();
+                        await SQLiteDatabaseManager.Database.InsertAllAsync(decks);
                     }
                 }
                 catch

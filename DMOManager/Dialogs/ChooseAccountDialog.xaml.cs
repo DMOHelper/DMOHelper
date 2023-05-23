@@ -6,9 +6,7 @@ using System.Windows;
 
 namespace DMOHelper.Dialogs
 {
-    /// <summary>
-    /// Interaktionslogik für ChooseAccountDialog.xaml
-    /// </summary>
+
     public partial class ChooseAccountDialog : ChromelessWindow
     {
         private VMMain viewModel;
