@@ -1,7 +1,7 @@
-﻿using DMOManager.Enums;
+﻿using DMOHelper.Enums;
 using SQLite;
 
-namespace DMOManager.Models
+namespace DMOHelper.Models
 {
     [Table("Digivice")]
     public class Digivice

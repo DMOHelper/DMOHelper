@@ -1,6 +1,6 @@
 ﻿using SQLite;
 
-namespace DMOManager.Models
+namespace DMOHelper.Models
 {
     [Table("TamerSkills")]
     public class TamerSkill

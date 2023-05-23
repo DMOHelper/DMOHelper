@@ -1,13 +1,12 @@
-﻿using DMOManager.Enums;
-using DMOManager.Helper;
+﻿using DMOHelper.Enums;
+using DMOHelper.Helper;
 using SQLite;
 using System;
 
-namespace DMOManager.Models
+namespace DMOHelper.Models
 {
     public class StatInformation : AbstractPropertyChanged
     {
-        internal bool isInitiated = false;
         private Ring ring;
         private Necklace necklace;
         private Earrings earrings;
@@ -18,6 +17,19 @@ namespace DMOManager.Models
         private string skill1;
         private string skill2;
         private double size;
+        private int familyBuffs;
+        private bool buff1h;
+        private bool buff2h;
+        private bool islandBuffs;
+        private bool evoBuff;
+        private bool hikari;
+        private bool encouragement;
+        private bool henry;
+        private bool takato;
+        private bool focus;
+        private MemorySkillLevel ruler;
+        private MemorySkillLevel guardian;
+
         public DateTime LastPresetUpdate { get; set; }
         public Ring Ring
         {
@@ -124,6 +136,115 @@ namespace DMOManager.Models
                 OnPropertyChanged();
             }
         }
+        public int FamilyBuffs
+        {
+            get { return familyBuffs; }
+            set
+            {
+                familyBuffs = value;
+                OnPropertyChanged();
+            }
+        }
+        public bool Buff1h
+        {
+            get { return buff1h; }
+            set
+            {
+                buff1h = value;
+                OnPropertyChanged();
+            }
+        }
+        public bool Buff2h
+        {
+            get { return buff2h; }
+            set
+            {
+                buff2h = value;
+                OnPropertyChanged();
+            }
+        }
+        public bool IslandBuffs
+        {
+            get { return islandBuffs; }
+            set
+            {
+                islandBuffs = value;
+                OnPropertyChanged();
+            }
+        }
+        public bool EvoBuff
+        {
+            get { return evoBuff; }
+            set
+            {
+                evoBuff = value;
+                OnPropertyChanged();
+            }
+        }
+        public bool Hikari
+        {
+            get { return hikari; }
+            set
+            {
+                hikari = value;
+                OnPropertyChanged();
+            }
+        }
+        public bool Encouragement
+        {
+            get { return encouragement; }
+            set
+            {
+                encouragement = value;
+                OnPropertyChanged();
+            }
+        }
+        public bool Henry
+        {
+            get { return henry; }
+            set
+            {
+                henry = value;
+                OnPropertyChanged();
+            }
+        }
+        public bool Takato
+        {
+            get { return takato; }
+            set
+            {
+                takato = value;
+                OnPropertyChanged();
+            }
+        }
+        public bool Focus
+        {
+            get { return focus; }
+            set
+            {
+                focus = value;
+                OnPropertyChanged();
+            }
+        }
+        public MemorySkillLevel Ruler
+        {
+            get { return ruler; }
+            set
+            {
+                ruler = value;
+                OnPropertyChanged();
+            }
+        }
+        public MemorySkillLevel Guardian
+        {
+            get { return guardian; }
+            set
+            {
+                guardian = value;
+                OnPropertyChanged();
+            }
+        }
+
         public StatInformation()
         {
             ring = new Ring();
@@ -162,6 +283,18 @@ namespace DMOManager.Models
                 output.Tamer = statInfo.Tamer;
                 output.Skill1 = statInfo.Skill1;
                 output.Skill2 = statInfo.Skill2;
+                output.FamilyBuffs = statInfo.FamilyBuffs;
+                output.Ruler = statInfo.Ruler;
+                output.Guardian = statInfo.Guardian;
+                output.Buff1h = statInfo.Buff1h;
+                output.Buff2h = statInfo.Buff2h;
+                output.IslandBuffs = statInfo.IslandBuffs;
+                output.EvoBuff = statInfo.EvoBuff;
+                output.Hikari = statInfo.Hikari;
+                output.Encouragement = statInfo.Encouragement;
+                output.Henry = statInfo.Henry;
+                output.Takato = statInfo.Takato;
+                output.Focus = statInfo.Focus;
                 output.LastPresetUpdate = statInfo.LastPresetUpdate;
             }
             #region Accessories
@@ -256,6 +389,18 @@ namespace DMOManager.Models
         public string Tamer { get; set; }
         public string Skill1 { get; set; }
         public string Skill2 { get; set; }
+        public int FamilyBuffs { get; set; }
+        public bool Buff1h { get; set; }
+        public bool Buff2h { get; set; }
+        public bool IslandBuffs { get; set; }
+        public bool EvoBuff { get; set; }
+        public bool Hikari { get; set; }
+        public bool Encouragement { get; set; }
+        public bool Henry { get; set; }
+        public bool Takato { get; set; }
+        public bool Focus { get; set; }
+        public MemorySkillLevel Ruler { get; set; }
+        public MemorySkillLevel Guardian { get; set; }
 
         public DateTime LastPresetUpdate { get; set; }
         public StatInfoDatabase()
@@ -269,6 +414,18 @@ namespace DMOManager.Models
             Tamer = statInfo.Tamer;
             Skill1 = statInfo.Skill1;
             Skill2 = statInfo.Skill2;
+            FamilyBuffs = statInfo.FamilyBuffs;
+            Ruler = statInfo.Ruler;
+            Guardian = statInfo.Guardian;
+            Buff1h = statInfo.Buff1h;
+            Buff2h = statInfo.Buff2h;
+            IslandBuffs = statInfo.IslandBuffs;
+            EvoBuff = statInfo.EvoBuff;
+            Hikari = statInfo.Hikari;
+            Encouragement = statInfo.Encouragement;
+            Henry = statInfo.Henry;
+            Takato = statInfo.Takato;
+            Focus = statInfo.Focus;
             LastPresetUpdate = statInfo.LastPresetUpdate;
         }
     }

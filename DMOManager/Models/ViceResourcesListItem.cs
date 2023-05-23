@@ -1,6 +1,6 @@
-﻿using DMOManager.Enums;
+﻿using DMOHelper.Enums;
 
-namespace DMOManager.Models
+namespace DMOHelper.Models
 {
     public class ViceResourcesListItem
     {

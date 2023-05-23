@@ -1,11 +1,13 @@
 ﻿using CsvHelper;
-using DMOManager.Enums;
-using DMOManager.Helper;
-using DMOManager.Models;
+using DMOHelper.Enums;
+using DMOHelper.Enums;
+using DMOHelper.Helper;
+using DMOHelper.Models;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Diagnostics.Tracing;
 using System.Globalization;
 using System.IO;
 using System.Linq;
@@ -13,7 +15,7 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using System.Windows;
 
-namespace DMOManager
+namespace DMOHelper
 {
     public sealed class VMMain : AbstractPropertyChanged
     {
@@ -91,6 +93,33 @@ namespace DMOManager
                 };
             }
         }
+        public static List<MemorySkillLevel> MemoryRatesJog
+        {
+            get
+            {
+                return new List<MemorySkillLevel>
+                {
+                    MemorySkillLevel.None,
+                    MemorySkillLevel.Lv1,
+                    MemorySkillLevel.Lv2,
+                    MemorySkillLevel.Lv3
+                };
+            }
+        }
+        public static List<MemorySkillLevel> MemoryRatesBM
+        {
+            get
+            {
+                return new List<MemorySkillLevel> {
+                    MemorySkillLevel.None,
+                    MemorySkillLevel.Low,
+                    MemorySkillLevel.Mid,
+                    MemorySkillLevel.High,
+                    MemorySkillLevel.Highest
+                };
+            }
+        }
+
         public static List<string> Tamers
         {
             get
@@ -108,7 +137,7 @@ namespace DMOManager
         {
             get
             {
-                List<string> output = new List<string>();
+                List<string> output = new List<string>() { "None" };
                 var skills = SQLiteDatabaseManager.Database.Table<TamerSkill>().ToListAsync().Result;
                 foreach (TamerSkill skill in skills)
                 {
@@ -120,22 +149,7 @@ namespace DMOManager
                 return output;
             }
         }
-        public static List<string> PartyTamerSkills
-        {
-            get
-            {
-                List<string> output = new List<string>();
-                var skills = SQLiteDatabaseManager.Database.Table<TamerSkill>().ToListAsync().Result;
-                foreach (TamerSkill skill in skills)
-                {
-                    if (skill.HasPartyEffect)
-                    {
-                        output.Add(skill.Name);
-                    }
-                }
-                return output;
-            }
-        }
+
         public ObservableCollection<ItemStack> SelectedAccountStacks { get; set; }
         public ObservableCollection<Digivice> SelectedAccountVices { get; set; }
         public StatInformation StatInformation { get; set; }

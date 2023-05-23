@@ -1,8 +1,8 @@
-﻿using DMOManager.Helper;
+﻿using DMOHelper.Helper;
 using SQLite;
 using System.Linq;
 
-namespace DMOManager.Models
+namespace DMOHelper.Models
 {
     [Table("ItemStack")]
     public class ItemStack : AbstractPropertyChanged

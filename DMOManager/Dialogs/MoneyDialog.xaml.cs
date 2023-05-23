@@ -4,7 +4,7 @@ using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Controls;
 
-namespace DMOManager.Dialogs
+namespace DMOHelper.Dialogs
 {
     /// <summary>
     /// Interaktionslogik für MoneyDialog.xaml

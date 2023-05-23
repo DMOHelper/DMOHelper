@@ -1,14 +1,14 @@
-﻿using DMOManager.Dialogs;
-using DMOManager.Helper;
-using DMOManager.Models;
+﻿using DMOHelper.Dialogs;
+using DMOHelper.Helper;
+using DMOHelper.Models;
 using System.Collections.Generic;
 using System;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
-using DMOManager.Enums;
+using DMOHelper.Enums;
 
-namespace DMOManager.Views
+namespace DMOHelper.Views
 {
     /// <summary>
     /// Interaktionslogik für AccountView.xaml

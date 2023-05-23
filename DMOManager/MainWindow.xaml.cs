@@ -1,6 +1,6 @@
 ﻿using Syncfusion.Windows.Shared;
 
-namespace DMOManager
+namespace DMOHelper
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml

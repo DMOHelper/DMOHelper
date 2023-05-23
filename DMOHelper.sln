@@ -8,6 +8,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "csvResources", "csvResources", "{10A69D72-8697-4A1E-B41D-78B3DB61F40A}"
 	ProjectSection(SolutionItems) = preProject
 		csvResources\accessoryPresets.csv = csvResources\accessoryPresets.csv
+		csvResources\decks.csv = csvResources\decks.csv
 		csvResources\digimonPresets.csv = csvResources\digimonPresets.csv
 		csvResources\statformula.csv = csvResources\statformula.csv
 		csvResources\tamers.csv = csvResources\tamers.csv

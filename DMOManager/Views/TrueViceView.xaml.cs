@@ -1,11 +1,11 @@
-﻿using DMOManager.Dialogs;
-using DMOManager.Enums;
-using DMOManager.Models;
+﻿using DMOHelper.Dialogs;
+using DMOHelper.Enums;
+using DMOHelper.Models;
 using System;
 using System.Windows;
 using System.Windows.Controls;
 
-namespace DMOManager.Views
+namespace DMOHelper.Views
 {
     /// <summary>
     /// Interaktionslogik für TrueViceView.xaml

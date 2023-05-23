@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
-namespace DMOManager.Helper
+namespace DMOHelper.Helper
 {
     /// <summary>
     /// This class contains an implementation of INotifyPropertyChanged and can be derived by other classes.

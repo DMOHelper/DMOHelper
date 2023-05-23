@@ -1,11 +1,11 @@
-﻿using DMOManager.Dialogs;
-using DMOManager.Dialogs.DialogViewModels;
-using DMOManager.Models;
+﻿using DMOHelper.Dialogs;
+using DMOHelper.Dialogs.DialogViewModels;
+using DMOHelper.Models;
 using System;
 using System.Windows;
 using System.Windows.Controls;
 
-namespace DMOManager.Views
+namespace DMOHelper.Views
 {
     /// <summary>
     /// Interaktionslogik für StatCalculatorView.xaml
@@ -17,8 +17,6 @@ namespace DMOManager.Views
         {
             this.DataContext = viewModel = VMMain.GetInstance();
             InitializeComponent();
-            viewModel.StatInformation.isInitiated = true;
-            viewModel.StatInformation.Calculate();
         }
 
         private void Accessories_Click(object sender, RoutedEventArgs e)

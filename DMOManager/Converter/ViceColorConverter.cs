@@ -1,10 +1,10 @@
-﻿using DMOManager.Enums;
+﻿using DMOHelper.Enums;
 using System;
 using System.Globalization;
 using System.Windows.Data;
 using System.Windows.Media;
 
-namespace DMOManager.Converter
+namespace DMOHelper.Converter
 {
     public class ViceColorConverter : IValueConverter
     {

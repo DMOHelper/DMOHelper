@@ -1,4 +1,4 @@
-﻿namespace DMOManager.Helper
+﻿namespace DMOHelper.Helper
 {
     public class EnumDropdownHelper
     {

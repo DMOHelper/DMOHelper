@@ -1,7 +1,7 @@
-﻿using DMOManager.Helper;
+﻿using DMOHelper.Helper;
 using SQLite;
 
-namespace DMOManager.Models
+namespace DMOHelper.Models
 {
     [Table("Seals")]
     public class Seals : AbstractPropertyChanged

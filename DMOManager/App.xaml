@@ -1,8 +1,8 @@
-﻿<Application x:Class="DMOManager.App"
+﻿<Application x:Class="DMOHelper.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:local="clr-namespace:DMOManager"
-             xmlns:converter="clr-namespace:DMOManager.Converter"
+             xmlns:local="clr-namespace:DMOHelper"
+             xmlns:converter="clr-namespace:DMOHelper.Converter"
              xmlns:system="clr-namespace:System;assembly=System.Runtime"
              xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
              xmlns:syncfusion="http://schemas.syncfusion.com/wpf"
@@ -29,6 +29,8 @@
         <converter:InvertedVisibilityConverter x:Key="InvertedVisibilityConverter"/>
         <converter:CurrencyConverter x:Key="CurrencyConverter"/>
         <converter:NullBoolConverter x:Key="NullBoolConverter"/>
+        <converter:ExtremePeakEvoConverter x:Key="ExtremePeakEvoConverter"/>
+        <converter:EvoMemorySkillConverter x:Key="EvoMemorySkillConverter"/>
 
         <Style TargetType="iconPacks:PackIconMaterial">
             <Setter Property="Width" Value="{DynamicResource ButtonSize}"/>
@@ -125,8 +127,9 @@
             <Setter Property="Foreground" Value="{StaticResource PrimaryLightBrush}"/>
             <Setter Property="FontSize" Value="{DynamicResource AppFontSize}"/>
             <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
         </Style>
-
+        
         <Style TargetType="syncfusion:GridHeaderCellControl" x:Key="SfHeaderStyle">
             <Setter Property="FontWeight" Value="Bold"/>
             <Setter Property="BorderThickness" Value="0" />
@@ -137,7 +140,7 @@
             <Setter Property="BorderThickness" Value="1"/>
             <Setter Property="BorderBrush" Value="{StaticResource ListBackground}"/>
         </Style>
-        
+
         <Style TargetType="syncfusion:GridCell">
             <Setter Property="BorderBrush" Value="Transparent" />
         </Style>
@@ -166,6 +169,45 @@
                     <DataTemplate>
                         <TextBlock Text="{Binding}" Foreground="Black" Background="Transparent"/>
                     </DataTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style TargetType="CheckBox">
+            <Setter Property="OverridesDefaultStyle" Value="true" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="CheckBox">
+                        <BulletDecorator Background="Transparent">
+                            <BulletDecorator.Bullet>
+                                <Border x:Name="Border" Width="13" Height="13" CornerRadius="0" Background="#EEEEEE" BorderThickness="1" BorderBrush="#404040">
+                                    <Path Width="7" Height="7" x:Name="CheckMark" SnapsToDevicePixels="False" Stroke="#404040" StrokeThickness="2" Data="M 0 0 L 7 7 M 0 7 L 7 0" />
+                                </Border>
+                            </BulletDecorator.Bullet>
+                            <ContentPresenter Margin="4,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Left" RecognizesAccessKey="True"/>
+                        </BulletDecorator>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsChecked" Value="false">
+                                <Setter TargetName="CheckMark" Property="Visibility" Value="Collapsed"/>
+                            </Trigger>
+                            <Trigger Property="IsChecked" Value="{x:Null}">
+                                <Setter TargetName="CheckMark" Property="Data" Value="M 0 7 L 7 0" />
+                            </Trigger>
+                            <Trigger Property="IsMouseOver" Value="true">
+                                <Setter TargetName="Border" Property="BorderBrush" Value="{StaticResource Foreground}" />
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="true">
+                                <Setter TargetName="Border" Property="Background" Value="#EEEEEE" />
+                                <Setter TargetName="Border" Property="BorderBrush" Value="#404040" />
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="false">
+                                <Setter TargetName="Border" Property="Background" Value="#C0C0C0" />
+                                <Setter TargetName="Border" Property="BorderBrush" Value="#404040" />
+                                <Setter Property="Foreground" Value="#888888"/>
+                                <Setter Property="IsChecked" Value="false"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
                 </Setter.Value>
             </Setter>
         </Style>

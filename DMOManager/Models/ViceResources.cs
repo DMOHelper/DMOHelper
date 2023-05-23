@@ -1,10 +1,10 @@
-﻿using DMOManager.Enums;
-using DMOManager.Helper;
+﻿using DMOHelper.Enums;
+using DMOHelper.Helper;
 using SQLite;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace DMOManager.Models
+namespace DMOHelper.Models
 {
     [Table("ViceResources")]
     public class ViceResources : AbstractPropertyChanged

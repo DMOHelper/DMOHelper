@@ -1,10 +1,10 @@
-﻿using DMOManager.Dialogs.DialogViewModels;
-using DMOManager.Models;
+﻿using DMOHelper.Dialogs.DialogViewModels;
+using DMOHelper.Models;
 using Syncfusion.Windows.Shared;
 using System;
 using System.Windows;
 
-namespace DMOManager.Dialogs
+namespace DMOHelper.Dialogs
 {
     /// <summary>
     /// Interaktionslogik für AccessoryDialog.xaml

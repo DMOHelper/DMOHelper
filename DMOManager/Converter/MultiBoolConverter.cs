@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Windows.Data;
 
-namespace DMOManager.Converter
+namespace DMOHelper.Converter
 {
     public class MultiBoolConverter : IMultiValueConverter
     {

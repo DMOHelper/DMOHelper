@@ -1,24 +1,23 @@
-﻿using System;
+﻿using DMOHelper.Enums;
+using System;
 using System.Globalization;
-using System.Windows;
 using System.Windows.Data;
 
 namespace DMOHelper.Converter
 {
-    public class VisibilityConverter : IValueConverter
+    public class ExtremePeakEvoConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            if (value is bool)
+            switch (value)
             {
-                bool vis = (bool)value;
-                if (vis)
-                {
-                    return Visibility.Visible;
-                }
-                else return Visibility.Collapsed;
+                case Evolution.BurstMode:
+                case Evolution.BurstModeX:
+                case Evolution.Mega:
+                case Evolution.MegaX:
+                    return true;
+                default: return false;
             }
-            else return Visibility.Visible;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

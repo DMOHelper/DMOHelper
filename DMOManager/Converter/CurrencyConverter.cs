@@ -1,9 +1,9 @@
-﻿using DMOManager.Helper;
+﻿using DMOHelper.Helper;
 using System;
 using System.Globalization;
 using System.Windows.Data;
 
-namespace DMOManager.Converter
+namespace DMOHelper.Converter
 {
     public class CurrencyConverter : IValueConverter
     {

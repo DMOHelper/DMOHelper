@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace DMOManager.Views
+namespace DMOHelper.Views
 {
     /// <summary>
     /// Interaktionslogik für InfoView.xaml

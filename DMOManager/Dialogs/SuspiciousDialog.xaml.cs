@@ -2,7 +2,7 @@
 using System;
 using System.Windows;
 
-namespace DMOManager.Dialogs
+namespace DMOHelper.Dialogs
 {
     /// <summary>
     /// Interaktionslogik für SuspiciousDialog.xaml

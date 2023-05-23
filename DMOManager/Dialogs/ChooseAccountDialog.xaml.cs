@@ -1,10 +1,10 @@
-﻿using DMOManager.Models;
+﻿using DMOHelper.Models;
 using Syncfusion.Windows.Shared;
 using System;
 using System.Linq;
 using System.Windows;
 
-namespace DMOManager.Dialogs
+namespace DMOHelper.Dialogs
 {
     /// <summary>
     /// Interaktionslogik für ChooseAccountDialog.xaml

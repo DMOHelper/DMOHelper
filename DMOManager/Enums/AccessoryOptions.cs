@@ -1,4 +1,4 @@
-﻿namespace DMOManager.Enums
+﻿namespace DMOHelper.Enums
 {
     public enum AccessoryOptions
     {

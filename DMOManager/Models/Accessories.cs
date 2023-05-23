@@ -1,10 +1,10 @@
-﻿using DMOManager.Enums;
-using DMOManager.Helper;
+﻿using DMOHelper.Enums;
+using DMOHelper.Helper;
 using SQLite;
 using System;
 using System.Collections.Generic;
 
-namespace DMOManager.Models
+namespace DMOHelper.Models
 {
     [Table("Accessory")]
     public class Accessory : AbstractPropertyChanged

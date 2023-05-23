@@ -1,8 +1,8 @@
-﻿using DMOManager.Helper;
-using DMOManager.Models;
+﻿using DMOHelper.Helper;
+using DMOHelper.Models;
 using System.Collections.Generic;
 
-namespace DMOManager.Dialogs.DialogViewModels
+namespace DMOHelper.Dialogs.DialogViewModels
 {
     public class DigimonVM : AbstractPropertyChanged
     {

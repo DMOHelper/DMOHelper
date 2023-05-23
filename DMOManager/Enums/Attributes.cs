@@ -1,6 +1,6 @@
 ﻿using System.Windows.Documents;
 
-namespace DMOManager.Enums
+namespace DMOHelper.Enums
 {
     public enum DigimonAttribute
     {

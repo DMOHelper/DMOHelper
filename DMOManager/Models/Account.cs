@@ -1,10 +1,10 @@
-﻿using DMOManager.Helper;
+﻿using DMOHelper.Helper;
 using SQLite;
 using System;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 
-namespace DMOManager.Models
+namespace DMOHelper.Models
 {
     [Table("Account")]
     public class Account : AbstractPropertyChanged

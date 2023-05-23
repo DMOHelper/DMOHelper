@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel;
 
-namespace DMOManager.Enums
+namespace DMOHelper.Enums
 {
     public enum ViceType
     {

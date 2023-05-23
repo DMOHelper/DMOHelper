@@ -1,9 +1,9 @@
-﻿using DMOManager.Helper;
+﻿using DMOHelper.Helper;
 using Syncfusion.Windows.Shared;
 using System.Windows;
 using System.Windows.Data;
 
-namespace DMOManager.Dialogs
+namespace DMOHelper.Dialogs
 {
     /// <summary>
     /// Interaktionslogik für PresetDialog.xaml

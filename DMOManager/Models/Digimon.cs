@@ -1,9 +1,9 @@
-﻿using DMOManager.Enums;
-using DMOManager.Helper;
+﻿using DMOHelper.Enums;
+using DMOHelper.Helper;
 using SQLite;
 using System;
 
-namespace DMOManager.Models
+namespace DMOHelper.Models
 {
     [Table("Digimon")]
     public class Digimon : AbstractPropertyChanged, IComparable<Digimon>

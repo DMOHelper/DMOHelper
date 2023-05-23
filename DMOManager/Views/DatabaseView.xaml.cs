@@ -1,6 +1,6 @@
-﻿using DMOManager.Dialogs;
-using DMOManager.Helper;
-using DMOManager.Models;
+﻿using DMOHelper.Dialogs;
+using DMOHelper.Helper;
+using DMOHelper.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,7 +16,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace DMOManager.Views
+namespace DMOHelper.Views
 {
     /// <summary>
     /// Interaktionslogik für DatabaseView.xaml

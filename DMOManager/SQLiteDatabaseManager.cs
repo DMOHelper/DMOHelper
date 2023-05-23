@@ -1,9 +1,9 @@
 ﻿using SQLite;
 using System.IO;
 using System.Globalization;
-using DMOManager.Models;
+using DMOHelper.Models;
 
-namespace DMOManager
+namespace DMOHelper
 {
     internal static class SQLiteDatabaseManager
     {
