@@ -2,6 +2,10 @@
 using DMOHelper.Helper;
 using SQLite;
 using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Net;
+using System.Text.RegularExpressions;
 
 namespace DMOHelper.Models
 {
@@ -14,6 +18,7 @@ namespace DMOHelper.Models
         private Seals seals;
         private Digimon digimon;
         private DigiviceSC digivice;
+        private TamerStats tamerStats;
         private string tamer;
         private string skill1;
         private string skill2;
@@ -112,6 +117,15 @@ namespace DMOHelper.Models
                 OnPropertyChanged();
             }
         }
+        public TamerStats TamerStats
+        {
+            get { return tamerStats; }
+            set
+            {
+                tamerStats = value;
+                OnPropertyChanged();
+            }
+        }
         public string Tamer
         {
             get { return tamer; }
@@ -166,6 +180,10 @@ namespace DMOHelper.Models
                 OnPropertyChanged();
             }
         }
+        public double AttackClone { get; set; }
+        public double CriticalClone { get; set; }
+        public double HPClone { get; set; }
+        public double EvadeClone { get; set; }
         public int FamilyBuffs
         {
             get { return familyBuffs; }
@@ -274,6 +292,14 @@ namespace DMOHelper.Models
                 OnPropertyChanged();
             }
         }
+        public int Level { get; set; }
+        public static List<StatFormula> StatFormulas
+        {
+            get
+            {
+                return SQLiteDatabaseManager.Database.Table<StatFormula>().ToListAsync().Result;
+            }
+        }
 
         public StatInformation()
         {
@@ -283,6 +309,7 @@ namespace DMOHelper.Models
             bracelet = new Bracelet();
             seals = new Seals();
             digivice = new DigiviceSC();
+            tamerStats = new TamerStats();
             digimon = new Digimon()
             {
                 Name = "Custom"
@@ -290,12 +317,41 @@ namespace DMOHelper.Models
             Size = 140.0;
             LastPresetUpdate = new DateTime(2000, 1, 1);
         }
+        internal void Calculate()
+        {
+            if (StatFormulas.Count > 0) {
+                StatFormula formula;
+                switch (Digimon.Evolution)
+                {
+                    case Evolution.InTraining:
+                        formula = StatFormulas.First(x => x.Stage == "In-Training");
+                    case Evolution.Rookie:
+                    case Evolution.RookieX:
+                    case Evolution.Champion:
+                    case Evolution.ChampionX:
+                    case Evolution.Ultimate:
+                    case Evolution.UltimateX:
+                    case Evolution.Mega:
+                    case Evolution.MegaX:
+                    case Evolution.BurstMode:
+                    case Evolution.BurstModeX:
+                    case Evolution.Jogress:
+                    case Evolution.JogressX:
+                    case Evolution.Variant:
+                    case Evolution.Armor:
+                    case Evolution.Spirit:
+
+                        break;
+                }
+            }
+        }
 
         internal void SaveToDatabase()
         {
             SQLiteDatabaseManager.Database.DeleteAllAsync<Accessory>().Wait();
             SQLiteDatabaseManager.Database.DeleteAllAsync<Digimon>().Wait();
             SQLiteDatabaseManager.Database.DeleteAllAsync<DigiviceSC>().Wait();
+            SQLiteDatabaseManager.Database.DeleteAllAsync<TamerStats>().Wait();
             SQLiteDatabaseManager.Database.InsertOrReplaceAsync(Ring).Wait();
             SQLiteDatabaseManager.Database.InsertOrReplaceAsync(Necklace).Wait();
             SQLiteDatabaseManager.Database.InsertOrReplaceAsync(Earrings).Wait();
@@ -303,6 +359,7 @@ namespace DMOHelper.Models
             SQLiteDatabaseManager.Database.InsertOrReplaceAsync(Seals).Wait();
             SQLiteDatabaseManager.Database.InsertOrReplaceAsync(Digimon).Wait();
             SQLiteDatabaseManager.Database.InsertOrReplaceAsync(Digivice).Wait();
+            SQLiteDatabaseManager.Database.InsertOrReplaceAsync(TamerStats).Wait();
             SQLiteDatabaseManager.Database.InsertOrReplaceAsync(new StatInfoDatabase(this)).Wait();
         }
 
@@ -330,6 +387,10 @@ namespace DMOHelper.Models
                 output.Focus = statInfo.Focus;
                 output.Deck = statInfo.Deck;
                 output.Title = statInfo.Title;
+                output.AttackClone = statInfo.AttackClone;
+                output.CriticalClone = statInfo.CriticalClone;
+                output.HPClone = statInfo.HPClone;
+                output.EvadeClone = statInfo.EvadeClone;
                 output.LastPresetUpdate = statInfo.LastPresetUpdate;
             }
             #region Accessories
@@ -411,6 +472,11 @@ namespace DMOHelper.Models
             {
                 output.Digivice = digivice;
             }
+            var tamerStats = SQLiteDatabaseManager.Database.Table<TamerStats>().FirstOrDefaultAsync().Result;
+            if (tamerStats != null)
+            {
+                output.TamerStats = tamerStats;
+            }
             var digimon = SQLiteDatabaseManager.Database.Table<Digimon>().FirstOrDefaultAsync().Result;
             if (digimon != null)
             {
@@ -426,6 +492,10 @@ namespace DMOHelper.Models
         [PrimaryKey]
         public int Id { get; set; }
         public double Size { get; set; }
+        public double AttackClone { get; set; }
+        public double CriticalClone { get; set; }
+        public double HPClone { get; set; }
+        public double EvadeClone { get; set; }
         public string Tamer { get; set; }
         public string Skill1 { get; set; }
         public string Skill2 { get; set; }
@@ -470,6 +540,10 @@ namespace DMOHelper.Models
             Focus = statInfo.Focus;
             Deck = statInfo.Deck;
             Title = statInfo.Title;
+            AttackClone = statInfo.AttackClone;
+            CriticalClone = statInfo.CriticalClone;
+            HPClone = statInfo.HPClone;
+            EvadeClone = statInfo.EvadeClone;
             LastPresetUpdate = statInfo.LastPresetUpdate;
         }
     }

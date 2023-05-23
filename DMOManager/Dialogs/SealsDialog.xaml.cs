@@ -1,4 +1,5 @@
-﻿using DMOHelper.Models;
+﻿using DMOHelper.Dialogs.DialogViewModels;
+using DMOHelper.Models;
 using Syncfusion.Windows.Shared;
 using System;
 using System.Windows;
@@ -7,9 +8,10 @@ namespace DMOHelper.Dialogs
 {
     public partial class SealsDialog : ChromelessWindow
     {
-        public SealsDialog(Seals seals)
+
+        public SealsDialog(SealsVM _viewModel)
         {
-            this.DataContext = seals;
+            this.DataContext = _viewModel;
             InitializeComponent();
         }
         private void btnDialogOk_Click(object sender, RoutedEventArgs e)

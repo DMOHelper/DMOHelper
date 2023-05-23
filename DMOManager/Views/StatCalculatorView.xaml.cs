@@ -30,7 +30,7 @@ namespace DMOHelper.Views
 
         private void Seals_Click(object sender, RoutedEventArgs eventArgs)
         {
-            SealsDialog sealDialog = new SealsDialog(viewModel.StatInformation.Seals);
+            SealsDialog sealDialog = new SealsDialog(new SealsVM(viewModel.StatInformation.Seals));
             if (sealDialog.ShowDialog() == true)
             {
                 viewModel.StatInformation.Seals = sealDialog.Seals;
@@ -38,7 +38,8 @@ namespace DMOHelper.Views
         }
         private void Clone_Click(object sender, RoutedEventArgs e)
         {
-            throw new NotImplementedException();
+            CloneDialog cloneDialog = new CloneDialog(new CloneVM(viewModel.StatInformation.AttackClone, viewModel.StatInformation.CriticalClone, viewModel.StatInformation.HPClone, viewModel.StatInformation.EvadeClone));
+            cloneDialog.ShowDialog();
         }
         private void Digivice_Click(object sender, RoutedEventArgs e)
         {
@@ -48,17 +49,14 @@ namespace DMOHelper.Views
                 viewModel.StatInformation.Digivice = digiviceDialog.Digivice;
             }
         }
-        private void Title_Click(object sender, RoutedEventArgs e)
-        {
-            throw new NotImplementedException();
-        }
-        private void Deck_Click(object sender, RoutedEventArgs e)
-        {
-            throw new NotImplementedException();
-        }
+
         private void TStats_Click(object sender, RoutedEventArgs e)
         {
-            throw new NotImplementedException();
+            TamerStatsDialog tamerDialog = new TamerStatsDialog(new TamerStatsVM(viewModel.StatInformation.TamerStats));
+            if (tamerDialog.ShowDialog() == true)
+            {
+                viewModel.StatInformation.TamerStats = tamerDialog.TamerStats;
+            }
         }
 
         private void Presets_Click(object sender, RoutedEventArgs e)

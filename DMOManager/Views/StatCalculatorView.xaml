@@ -7,7 +7,7 @@
              xmlns:local="clr-namespace:DMOHelper.Views"
              xmlns:syncfusion="http://schemas.syncfusion.com/wpf"
              mc:Ignorable="d" 
-             d:DesignHeight="550" d:DesignWidth="800">
+             d:DesignHeight="550" d:DesignWidth="700">
     <!--Stat Calculator-->
     <Grid>
         <Grid.ColumnDefinitions>
@@ -16,7 +16,7 @@
             <ColumnDefinition Width="Auto" MinWidth="110"/>
             <ColumnDefinition Width="Auto" MinWidth="110"/>
             <ColumnDefinition Width="Auto" MinWidth="110"/>
-            <ColumnDefinition Width="Auto" MinWidth="110"/>
+            <ColumnDefinition Width="Auto"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
@@ -169,5 +169,13 @@
             <ComboBox FontWeight="SemiBold" SelectedItem="{Binding StatInformation.Deck, Mode=TwoWay}" ItemsSource="{Binding Titles}" Height="28" Width="240"/>
             <Label Content="Deck" FontWeight="Bold"/>
         </StackPanel>
+        
+        <!--Results-->
+        <Border Grid.Column="2" Grid.ColumnSpan="4" Grid.Row="9" Grid.RowSpan="5" BorderThickness="1" BorderBrush="{StaticResource Foreground}">
+            <TextBlock HorizontalAlignment="Center" VerticalAlignment="Top">
+                <Run Text="Your Digimon's Stats on Level "/>
+                <Run Text="{Binding Level}"/>
+            </TextBlock>
+        </Border>
     </Grid>
 </UserControl>

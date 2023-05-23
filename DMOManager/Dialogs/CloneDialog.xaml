@@ -1,0 +1,58 @@
+﻿<syncfusion:ChromelessWindow x:Class="DMOHelper.Dialogs.CloneDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:DMOHelper.Dialogs"
+        xmlns:models="clr-namespace:DMOHelper.Models"
+        xmlns:syncfusion="http://schemas.syncfusion.com/wpf" 
+        mc:Ignorable="d"
+        xmlns:skin="clr-namespace:Syncfusion.SfSkinManager;assembly=Syncfusion.SfSkinManager.WPF"
+        skin:SfSkinManager.Theme="{skin:SkinManagerExtension ThemeName=MaterialDark}" Background="{StaticResource Background}"
+        Title="Clone Input" SizeToContent="WidthAndHeight" WindowStartupLocation="CenterOwner"  Width="450"  ResizeBorderThickness="5" ResizeBorderBrush="{StaticResource Background}" Icon="/Images/Icon48.png" ShowIcon="True" AllowsTransparency="True" CornerRadius="10" TitleFontSize="15" TitleTextAlignment="Center" TitleBarForeground="{StaticResource Foreground}" TitleBarBackground="{StaticResource Background}"
+        ContentRendered="Window_ContentRendered">
+    <Grid Margin="15">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <Label Name="lblQuestion" Grid.Column="0" Grid.ColumnSpan="3">Please specify your Clone Informations in %:</Label>
+        <Label Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3">(Formula: your clone value / your base value on current level)</Label>
+
+        <Grid Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="30" />
+                <RowDefinition Height="30" />
+            </Grid.RowDefinitions>
+
+            <Label HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Content="Attack" Grid.Row="0" Grid.Column="0" />
+            <Label HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Content="Critical" Grid.Row="0" Grid.Column="2" />
+            <Label HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Content="Evade" Grid.Row="1" Grid.Column="0" />
+            <Label HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Content="Health" Grid.Row="1" Grid.Column="2" />
+            <syncfusion:DoubleTextBox x:Name="at" Height="28" Width="100" Value="{Binding AttackClone, Mode=TwoWay}" MaxValue="144" NumberDecimalDigits="3" MinValue="0" MinValueOnExceedMinDigit="True" MaxValueOnExceedMaxDigit="True" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Text="0" Grid.Row="0" Grid.Column="1"/>
+            <syncfusion:DoubleTextBox x:Name="ct" Height="28" Width="100" Value="{Binding CriticalClone, Mode=TwoWay}" MaxValue="720" NumberDecimalDigits="3" MinValue="0" MinValueOnExceedMinDigit="True" MaxValueOnExceedMaxDigit="True" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Text="0" Grid.Row="0" Grid.Column="3"/>
+            <syncfusion:DoubleTextBox x:Name="ev" Height="28" Width="100" Value="{Binding EvadeClone, Mode=TwoWay}" MaxValue="576" NumberDecimalDigits="3" MinValue="0" MinValueOnExceedMinDigit="True" MaxValueOnExceedMaxDigit="True" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Text="0" Grid.Row="1" Grid.Column="1"/>
+            <syncfusion:DoubleTextBox x:Name="hp" Height="28" Width="100" Value="{Binding HPClone, Mode=TwoWay}" MaxValue="54" NumberDecimalDigits="3" MinValue="0" MinValueOnExceedMinDigit="True" MaxValueOnExceedMaxDigit="True" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Text="0" Grid.Row="1" Grid.Column="3"/>
+        </Grid>
+        <WrapPanel Grid.Row="3" Grid.Column="0" HorizontalAlignment="Left" Margin="0,15,0,0">
+            <Button Content="Perfect Clone" Click="PerfectClone_Click" Width="100"/>
+        </WrapPanel>
+        <WrapPanel Grid.Row="3" Grid.ColumnSpan="2" Grid.Column="1" HorizontalAlignment="Right" Margin="0,15,0,0">
+            <Button IsDefault="True" Name="btnDialogOk" Click="btnDialogOk_Click" MinWidth="60" Margin="0,0,10,0">Save</Button>
+            <Button IsCancel="True" MinWidth="60">Cancel</Button>
+        </WrapPanel>
+    </Grid>
+</syncfusion:ChromelessWindow>

@@ -33,6 +33,7 @@ namespace DMOHelper
                     database.CreateTableAsync<Seals>().Wait();
                     database.CreateTableAsync<Tamer>().Wait();
                     database.CreateTableAsync<TamerSkill>().Wait();
+                    database.CreateTableAsync<TamerStats>().Wait();
                     database.CreateTableAsync<Deck>().Wait();
                     database.CreateTableAsync<Title>().Wait();
                 }
