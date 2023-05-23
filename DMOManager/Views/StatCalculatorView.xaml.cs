@@ -42,7 +42,11 @@ namespace DMOHelper.Views
         }
         private void Digivice_Click(object sender, RoutedEventArgs e)
         {
-            throw new NotImplementedException();
+            DigiviceSCDialog digiviceDialog = new DigiviceSCDialog(new DigiviceSCVM(viewModel.StatInformation.Digivice));
+            if (digiviceDialog.ShowDialog() == true)
+            {
+                viewModel.StatInformation.Digivice = digiviceDialog.Digivice;
+            }
         }
         private void Title_Click(object sender, RoutedEventArgs e)
         {

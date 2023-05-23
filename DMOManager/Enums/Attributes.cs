@@ -1,6 +1,4 @@
-﻿using System.Windows.Documents;
-
-namespace DMOHelper.Enums
+﻿namespace DMOHelper.Enums
 {
     public enum DigimonAttribute
     {
@@ -8,7 +6,8 @@ namespace DMOHelper.Enums
         Vaccine,
         Data,
         Virus,
-        Unknown
+        Unknown,
+        EqualDigimon
     }
 
     public enum ElementalAttribute
@@ -23,6 +22,7 @@ namespace DMOHelper.Enums
         Thunder,
         Water,
         Wind,
-        Wood
+        Wood,
+        EqualDigimon
     }
 }

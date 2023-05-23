@@ -22,6 +22,7 @@ namespace DMOHelper
                     database.CreateTableAsync<Item>().Wait();
                     database.CreateTableAsync<ItemStack>().Wait();
                     database.CreateTableAsync<Digivice>().Wait();
+                    database.CreateTableAsync<DigiviceSC>().Wait();
                     database.CreateTableAsync<ViceResources>().Wait();
                     database.CreateTableAsync<StatInfoDatabase>().Wait();
                     database.CreateTableAsync<StatFormula>().Wait();

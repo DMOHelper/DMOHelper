@@ -13,6 +13,7 @@ namespace DMOHelper.Models
         private Bracelet bracelet;
         private Seals seals;
         private Digimon digimon;
+        private DigiviceSC digivice;
         private string tamer;
         private string skill1;
         private string skill2;
@@ -99,6 +100,15 @@ namespace DMOHelper.Models
             set
             {
                 digimon = value;
+                OnPropertyChanged();
+            }
+        }
+        public DigiviceSC Digivice
+        {
+            get { return digivice; }
+            set
+            {
+                digivice = value;
                 OnPropertyChanged();
             }
         }
@@ -272,6 +282,7 @@ namespace DMOHelper.Models
             earrings = new Earrings();
             bracelet = new Bracelet();
             seals = new Seals();
+            digivice = new DigiviceSC();
             digimon = new Digimon()
             {
                 Name = "Custom"
@@ -284,12 +295,14 @@ namespace DMOHelper.Models
         {
             SQLiteDatabaseManager.Database.DeleteAllAsync<Accessory>().Wait();
             SQLiteDatabaseManager.Database.DeleteAllAsync<Digimon>().Wait();
+            SQLiteDatabaseManager.Database.DeleteAllAsync<DigiviceSC>().Wait();
             SQLiteDatabaseManager.Database.InsertOrReplaceAsync(Ring).Wait();
             SQLiteDatabaseManager.Database.InsertOrReplaceAsync(Necklace).Wait();
             SQLiteDatabaseManager.Database.InsertOrReplaceAsync(Earrings).Wait();
             SQLiteDatabaseManager.Database.InsertOrReplaceAsync(Bracelet).Wait();
             SQLiteDatabaseManager.Database.InsertOrReplaceAsync(Seals).Wait();
             SQLiteDatabaseManager.Database.InsertOrReplaceAsync(Digimon).Wait();
+            SQLiteDatabaseManager.Database.InsertOrReplaceAsync(Digivice).Wait();
             SQLiteDatabaseManager.Database.InsertOrReplaceAsync(new StatInfoDatabase(this)).Wait();
         }
 
@@ -392,6 +405,11 @@ namespace DMOHelper.Models
             if (seals != null)
             {
                 output.Seals = seals;
+            }
+            var digivice = SQLiteDatabaseManager.Database.Table<DigiviceSC>().FirstOrDefaultAsync().Result;
+            if (digivice != null)
+            {
+                output.Digivice = digivice;
             }
             var digimon = SQLiteDatabaseManager.Database.Table<Digimon>().FirstOrDefaultAsync().Result;
             if (digimon != null)
