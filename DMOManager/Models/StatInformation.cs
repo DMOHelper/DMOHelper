@@ -4,8 +4,6 @@ using SQLite;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net;
-using System.Text.RegularExpressions;
 
 namespace DMOHelper.Models
 {
@@ -363,13 +361,34 @@ namespace DMOHelper.Models
                 #endregion
                 Level = formulas.First().MaxLevel;
                 OnPropertyChanged("Level");
+                Title title = SQLiteDatabaseManager.Database.Table<Title>().FirstAsync(x => x.Name == Title).Result;
                 #region HP
                 if(Digimon.BaseHP > 0)
                 {
-                    double baseHPMaxLevel = (Digimon.BaseHP * Size / 100) + formulas.First(x => x.Type == Digimon.Type).HP;
+                    double baseHPMaxLevel = Math.Floor((Digimon.BaseHP * Size / 100) + formulas.First(x => x.Type == Digimon.Type).HP);
+                    double baseHPwithDeck = Math.Floor(baseHPMaxLevel * (1 + (title.HP / 100)));
+                    double addedHP = 0;
+                    addedHP += baseHPwithDeck * (HPClone / 100);
+                    if (Buff1h)
+                    {
+                        addedHP += baseHPwithDeck * 0.5;
+                    }
+                    if (Buff2h)
+                    {
+                        addedHP += baseHPwithDeck * 0.5;
+                    }
+                    if (Tamer == "Hikari" || Hikari)
+                    {
+                        addedHP += baseHPwithDeck * 0.3;
+                    }
+                    if (Encouragement)
+                    {
+                        addedHP += baseHPwithDeck * 0.3;
+                    }
 
                 }
                 #endregion
+
             }
         }
 
