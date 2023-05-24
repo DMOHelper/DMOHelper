@@ -10,6 +10,7 @@ using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Net.Http;
+using System.Reflection;
 using System.Threading.Tasks;
 using System.Windows;
 
@@ -125,6 +126,22 @@ namespace DMOHelper
                     MemorySkillLevel.Mid,
                     MemorySkillLevel.High,
                     MemorySkillLevel.Highest
+                };
+            }
+        }
+        public static List<MemorySkillLevel> MemoryRates
+        {
+            get
+            {
+                return new List<MemorySkillLevel> {
+                    MemorySkillLevel.None,
+                    MemorySkillLevel.Low,
+                    MemorySkillLevel.Mid,
+                    MemorySkillLevel.High,
+                    MemorySkillLevel.Highest,
+                    MemorySkillLevel.Lv1,
+                    MemorySkillLevel.Lv2,
+                    MemorySkillLevel.Lv3
                 };
             }
         }
@@ -269,6 +286,20 @@ namespace DMOHelper
             }
         }
         public bool StatEnabled { get; set; }
+        private static Version appVersion
+        {
+            get
+            {
+                return Assembly.GetEntryAssembly().GetName().Version;
+            }
+        }
+        public static string AppVersion
+        {
+            get
+            {
+                return appVersion.ToString(4);
+            }
+        }
 
 
         public VMMain()

@@ -37,7 +37,7 @@ namespace DMOHelper.Dialogs
                     DS = viewModel.DS,
                     AT = viewModel.AT,
                     DE = viewModel.DE,
-                    Friendliness = viewModel.Friendliness,
+                    Intimacy = viewModel.Intimacy,
                 };
                 if (viewModel.MatureBlue)
                 {

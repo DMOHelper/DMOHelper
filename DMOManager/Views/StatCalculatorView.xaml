@@ -13,9 +13,9 @@
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto" MinWidth="200"/>
             <ColumnDefinition Width="25"/>
-            <ColumnDefinition Width="Auto" MinWidth="110"/>
-            <ColumnDefinition Width="Auto" MinWidth="110"/>
-            <ColumnDefinition Width="Auto" MinWidth="110"/>
+            <ColumnDefinition Width="Auto" MinWidth="120"/>
+            <ColumnDefinition Width="Auto" MinWidth="120"/>
+            <ColumnDefinition Width="Auto" MinWidth="120"/>
             <ColumnDefinition Width="Auto"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
@@ -155,9 +155,13 @@
         <helper:OptionalRadioButton IsOptional="True" GroupName="Takato" Content="Takato's" IsChecked="{Binding StatInformation.Takato, Mode=TwoWay}" Grid.Row="6" Grid.Column="4" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,10,0"/>
         <CheckBox Content="Enh./Ult. Encouragement" IsChecked="{Binding StatInformation.Encouragement, Mode=TwoWay}" Grid.Row="4" Grid.Column="5" HorizontalAlignment="Left" VerticalAlignment="Center"/>
         <helper:OptionalRadioButton IsOptional="True" GroupName="Takato" Content="Enh./Ult. Focus" IsChecked="{Binding StatInformation.Focus, Mode=TwoWay}" Grid.Row="6" Grid.Column="5" HorizontalAlignment="Left" VerticalAlignment="Center"/>
-        <StackPanel Orientation="Horizontal" Grid.Row="6" Grid.Column="2" Grid.ColumnSpan="2">
+        <StackPanel Orientation="Horizontal" Grid.Row="6" Grid.Column="3" Grid.ColumnSpan="2">
             <syncfusion:UpDown AllowEdit="False" ApplyZeroColor="False" Step="1" MinValue="0" MaxValue="3" NumberDecimalDigits="0" Value="{Binding StatInformation.FamilyBuffs, Mode=TwoWay}" Height="28" Width="40"/>
             <Label Content="Family Buffs" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" Grid.Row="6" Grid.Column="2" Grid.ColumnSpan="2" HorizontalAlignment="Left" VerticalAlignment="Center">
+            <ComboBox FontWeight="SemiBold" SelectedItem="{Binding StatInformation.TOL, Mode=TwoWay}" ItemsSource="{Binding MemoryRates}" Height="28" Width="80"/>
+            <Label Content="ToL" FontWeight="Bold"/>
         </StackPanel>
         <StackPanel Orientation="Horizontal" Grid.Row="7" Grid.Column="2" Grid.ColumnSpan="2" HorizontalAlignment="Left" VerticalAlignment="Center">
             <ComboBox FontWeight="SemiBold" SelectedItem="{Binding StatInformation.Ruler, Mode=TwoWay}" ItemsSource="{Binding ElementName=EvoBox,Path=SelectedItem,Converter={StaticResource EvoMemorySkillConverter}}" Height="28" Width="80"/>
@@ -177,7 +181,7 @@
         </StackPanel>
         
         <!--Results-->
-        <Border Grid.Column="2" Grid.ColumnSpan="4" Grid.Row="9" Grid.RowSpan="5" BorderThickness="1" BorderBrush="{StaticResource Foreground}">
+        <Border Grid.Column="2" Grid.ColumnSpan="4" Grid.Row="9" Grid.RowSpan="6" BorderThickness="1" BorderBrush="{StaticResource Foreground}">
             <TextBlock HorizontalAlignment="Center" VerticalAlignment="Top">
                 <Run Text="Your Digimon's Stats on Level "/>
                 <Run Text="{Binding Level}"/>

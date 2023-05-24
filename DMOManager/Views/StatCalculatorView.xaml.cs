@@ -1,7 +1,6 @@
 ﻿using DMOHelper.Dialogs;
 using DMOHelper.Dialogs.DialogViewModels;
 using DMOHelper.Models;
-using System;
 using System.Windows;
 using System.Windows.Controls;
 

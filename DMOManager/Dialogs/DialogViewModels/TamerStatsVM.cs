@@ -9,7 +9,7 @@ namespace DMOHelper.Dialogs.DialogViewModels
         private int ds;
         private int at;
         private int de;
-        private int friendliness;
+        private int intimacy;
         private bool matureBlue;
         private bool professionalBlack;
 
@@ -49,12 +49,12 @@ namespace DMOHelper.Dialogs.DialogViewModels
                 OnPropertyChanged();
             }
         }
-        public int Friendliness
+        public int Intimacy
         {
-            get { return friendliness; }
+            get { return intimacy; }
             set
             {
-                friendliness = value;
+                intimacy = value;
                 OnPropertyChanged();
             }
         }
@@ -83,7 +83,7 @@ namespace DMOHelper.Dialogs.DialogViewModels
             DS = stats.DS;
             AT = stats.AT;
             DE = stats.DE;
-            Friendliness = stats.Friendliness;
+            Intimacy = stats.Intimacy;
             if(stats.ASReduction > 0)
             {
                 MatureBlue = true;

@@ -11,7 +11,7 @@ namespace DMOHelper.Models
         public int DS { get; set; }
         public int AT { get; set; }
         public int DE { get; set; }
-        public int Friendliness { get; set; }
+        public int Intimacy { get; set; }
         public int ASReduction { get; set; }
         public int HT { get; set; }
         public int CT { get; set; }

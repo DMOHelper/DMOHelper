@@ -135,5 +135,174 @@ namespace DMOHelper.Models
         {
             ID = 0;
         }
+
+        internal double HP
+        {
+            get
+            {
+                double output = 0.0;
+                if(ChipsetOption1 == ChipsetOption.HP)
+                {
+                    output += ChipsetOptionValue1;
+                }
+                if(ChipsetOption2 == ChipsetOption.HP)
+                {
+                    output += ChipsetOptionValue2;
+                }
+                if(ChipsetOption3 == ChipsetOption.HP)
+                {
+                    output += ChipsetOptionValue3;
+                }
+                if(ChipsetOption4 == ChipsetOption.HP)
+                {
+                    output += ChipsetOptionValue4;
+                }
+                return output;
+            }
+        }
+        internal double DS
+        {
+            get
+            {
+                double output = 0.0;
+                if(ChipsetOption1 == ChipsetOption.DS)
+                {
+                    output += ChipsetOptionValue1;
+                }
+                if(ChipsetOption2 == ChipsetOption.DS)
+                {
+                    output += ChipsetOptionValue2;
+                }
+                if(ChipsetOption3 == ChipsetOption.DS)
+                {
+                    output += ChipsetOptionValue3;
+                }
+                if(ChipsetOption4 == ChipsetOption.DS)
+                {
+                    output += ChipsetOptionValue4;
+                }
+                return output;
+            }
+        }
+        internal double Attack
+        {
+            get
+            {
+                double output = 0.0;
+                if(ChipsetOption1 == ChipsetOption.Attack)
+                {
+                    output += ChipsetOptionValue1;
+                }
+                if(ChipsetOption2 == ChipsetOption.Attack)
+                {
+                    output += ChipsetOptionValue2;
+                }
+                if(ChipsetOption3 == ChipsetOption.Attack)
+                {
+                    output += ChipsetOptionValue3;
+                }
+                if(ChipsetOption4 == ChipsetOption.Attack)
+                {
+                    output += ChipsetOptionValue4;
+                }
+                return output;
+            }
+        }
+        internal double Defense
+        {
+            get
+            {
+                double output = 0.0;
+                if(ChipsetOption1 == ChipsetOption.Defense)
+                {
+                    output += ChipsetOptionValue1;
+                }
+                if(ChipsetOption2 == ChipsetOption.Defense)
+                {
+                    output += ChipsetOptionValue2;
+                }
+                if(ChipsetOption3 == ChipsetOption.Defense)
+                {
+                    output += ChipsetOptionValue3;
+                }
+                if(ChipsetOption4 == ChipsetOption.Defense)
+                {
+                    output += ChipsetOptionValue4;
+                }
+                return output;
+            }
+        }
+        internal double Critical
+        {
+            get
+            {
+                double output = 0.0;
+                if(ChipsetOption1 == ChipsetOption.Critical)
+                {
+                    output += ChipsetOptionValue1;
+                }
+                if(ChipsetOption2 == ChipsetOption.Critical)
+                {
+                    output += ChipsetOptionValue2;
+                }
+                if(ChipsetOption3 == ChipsetOption.Critical)
+                {
+                    output += ChipsetOptionValue3;
+                }
+                if(ChipsetOption4 == ChipsetOption.Critical)
+                {
+                    output += ChipsetOptionValue4;
+                }
+                return output;
+            }
+        }
+        internal double HitRate
+        {
+            get
+            {
+                double output = 0.0;
+                if(ChipsetOption1 == ChipsetOption.HitRate)
+                {
+                    output += ChipsetOptionValue1;
+                }
+                if(ChipsetOption2 == ChipsetOption.HitRate)
+                {
+                    output += ChipsetOptionValue2;
+                }
+                if(ChipsetOption3 == ChipsetOption.HitRate)
+                {
+                    output += ChipsetOptionValue3;
+                }
+                if(ChipsetOption4 == ChipsetOption.HitRate)
+                {
+                    output += ChipsetOptionValue4;
+                }
+                return output;
+            }
+        }
+        internal double Evade
+        {
+            get
+            {
+                double output = 0.0;
+                if(ChipsetOption1 == ChipsetOption.Evade)
+                {
+                    output += ChipsetOptionValue1;
+                }
+                if(ChipsetOption2 == ChipsetOption.Evade)
+                {
+                    output += ChipsetOptionValue2;
+                }
+                if(ChipsetOption3 == ChipsetOption.Evade)
+                {
+                    output += ChipsetOptionValue3;
+                }
+                if(ChipsetOption4 == ChipsetOption.Evade)
+                {
+                    output += ChipsetOptionValue4;
+                }
+                return output;
+            }
+        }
     }
 }
