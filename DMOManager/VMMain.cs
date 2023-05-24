@@ -72,7 +72,6 @@ namespace DMOHelper
             get
             {
                 return new List<Evolution> {
-                    Evolution.InTraining,
                     Evolution.Rookie,
                     Evolution.RookieX,
                     Evolution.Champion,
@@ -88,6 +87,18 @@ namespace DMOHelper
                     Evolution.Armor,
                     Evolution.Variant,
                     Evolution.Spirit
+                };
+            }
+        }
+        public static List<AttackerType> AttackerTypes
+        {
+            get
+            {
+                return new List<AttackerType> {
+                    AttackerType.ShortAttacker,
+                    AttackerType.QuickAttacker,
+                    AttackerType.NearAttacker,
+                    AttackerType.Defender
                 };
             }
         }
@@ -349,12 +360,13 @@ namespace DMOHelper
                             {
                                 var record = new StatFormula
                                 {
-                                    Stat = csv.GetField("stat"),
-                                    Stage = csv.GetField("stage"),
-                                    QA = int.Parse(csv.GetField("qa")),
-                                    SA = int.Parse(csv.GetField("sa")),
-                                    NA = int.Parse(csv.GetField("na")),
+                                    Type = Enum.Parse<AttackerType>(csv.GetField("type")),
+                                    Stage = Enum.Parse<Evolution>(csv.GetField("stage")),
+                                    HP = int.Parse(csv.GetField("hp")),
+                                    DS = int.Parse(csv.GetField("ds")),
+                                    AT = int.Parse(csv.GetField("at")),
                                     DE = int.Parse(csv.GetField("de")),
+                                    CT = int.Parse(csv.GetField("ct")),
                                     MaxLevel = int.Parse(csv.GetField("maxLevel"))
                                 };
                                 formulas.Add(record);
@@ -392,7 +404,7 @@ namespace DMOHelper
                                 {
                                     record.Evolution = evo;
                                 }
-                                record.Type = csv.GetField("type");
+                                record.Type = Enum.Parse<AttackerType>(csv.GetField("type"));
                                 record.BaseHP = int.Parse(csv.GetField("baseHP"));
                                 record.BaseDS = int.Parse(csv.GetField("baseDS"));
                                 record.BaseAT = int.Parse(csv.GetField("baseAT"));
@@ -557,12 +569,12 @@ namespace DMOHelper
                                 var record = new Title
                                 {
                                     Name = csv.GetField("name"),
-                                    Effect1 = Enum.Parse<BuffType>(csv.GetField("effect1")),
-                                    Effect2 = Enum.Parse<BuffType>(csv.GetField("effect2")),
-                                    Effect3 = Enum.Parse<BuffType>(csv.GetField("effect3")),
-                                    Value1 = int.Parse(csv.GetField("value1")),
-                                    Value2 = int.Parse(csv.GetField("value2")),
-                                    Value3 = int.Parse(csv.GetField("value3")),
+                                    AT = int.Parse(csv.GetField("at")),
+                                    DE = int.Parse(csv.GetField("de")),
+                                    HT = int.Parse(csv.GetField("ht")),
+                                    HP = int.Parse(csv.GetField("hp")),
+                                    DS = int.Parse(csv.GetField("ds")),
+                                    SkillDamage = int.Parse(csv.GetField("skilldamage")),
                                 };
                                 titles.Add(record);
                             }
@@ -591,12 +603,11 @@ namespace DMOHelper
                                 var record = new Deck
                                 {
                                     Name = csv.GetField("name"),
-                                    Effect1 = Enum.Parse<BuffType>(csv.GetField("effect1")),
-                                    Effect2 = Enum.Parse<BuffType>(csv.GetField("effect2")),
-                                    Effect3 = Enum.Parse<BuffType>(csv.GetField("effect3")),
-                                    Value1 = int.Parse(csv.GetField("value1")),
-                                    Value2 = int.Parse(csv.GetField("value2")),
-                                    Value3 = int.Parse(csv.GetField("value3")),
+                                    HP = int.Parse(csv.GetField("hp")),
+                                    AS = int.Parse(csv.GetField("as")),
+                                    CriticalDamage = int.Parse(csv.GetField("criticaldamage")),
+                                    Damage = int.Parse(csv.GetField("damage")),
+                                    SkillDamage = int.Parse(csv.GetField("skilldamage")),
                                 };
                                 decks.Add(record);
                             }

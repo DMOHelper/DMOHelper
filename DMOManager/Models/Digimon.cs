@@ -11,7 +11,7 @@ namespace DMOHelper.Models
         private string name;
         private string rank;
         private Evolution evolution;
-        private string type;
+        private AttackerType type;
         private int baseHP;
         private int baseDS;
         private int baseAT;
@@ -51,7 +51,7 @@ namespace DMOHelper.Models
                 OnPropertyChanged();
             }
         }
-        public string Type
+        public AttackerType Type
         {
             get { return type; }
             set

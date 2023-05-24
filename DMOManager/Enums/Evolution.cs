@@ -2,7 +2,6 @@
 {
     public enum Evolution
     {
-        InTraining,
         Rookie,
         RookieX,
         Champion,

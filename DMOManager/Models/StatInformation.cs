@@ -315,34 +315,61 @@ namespace DMOHelper.Models
                 Name = "Custom"
             };
             Size = 140.0;
+            Level = 0;
             LastPresetUpdate = new DateTime(2000, 1, 1);
         }
         internal void Calculate()
         {
             if (StatFormulas.Count > 0) {
-                StatFormula formula;
+                #region GetFormulas
+                List<StatFormula> formulas;
                 switch (Digimon.Evolution)
                 {
-                    case Evolution.InTraining:
-                        formula = StatFormulas.First(x => x.Stage == "In-Training");
-                    case Evolution.Rookie:
-                    case Evolution.RookieX:
                     case Evolution.Champion:
                     case Evolution.ChampionX:
+                        formulas = StatFormulas.Where(x => x.Stage == Evolution.Champion).ToList();
+                        break;
                     case Evolution.Ultimate:
                     case Evolution.UltimateX:
+                        formulas = StatFormulas.Where(x => x.Stage == Evolution.Ultimate).ToList();
+                        break;
                     case Evolution.Mega:
                     case Evolution.MegaX:
+                        formulas = StatFormulas.Where(x => x.Stage == Evolution.Mega).ToList();
+                        break;
                     case Evolution.BurstMode:
                     case Evolution.BurstModeX:
+                        formulas = StatFormulas.Where(x => x.Stage == Evolution.BurstMode).ToList();
+                        break;
                     case Evolution.Jogress:
                     case Evolution.JogressX:
+                        formulas = StatFormulas.Where(x => x.Stage == Evolution.Jogress).ToList();
+                        break;
                     case Evolution.Variant:
+                        formulas = StatFormulas.Where(x => x.Stage == Evolution.Variant).ToList();
+                        break;
                     case Evolution.Armor:
+                        formulas = StatFormulas.Where(x => x.Stage == Evolution.Armor).ToList();
+                        break;
                     case Evolution.Spirit:
-
+                        formulas = StatFormulas.Where(x => x.Stage == Evolution.Spirit).ToList();
+                        break;
+                    case Evolution.Rookie:
+                    case Evolution.RookieX:
+                    default:
+                        formulas = StatFormulas.Where(x => x.Stage == Evolution.Rookie).ToList();
                         break;
                 }
+                #endregion
+                Level = formulas.First().MaxLevel;
+                OnPropertyChanged("Level");
+                #region HP
+                if(Digimon.BaseHP > 0)
+                {
+                    double baseHPMaxLevel = (Digimon.BaseHP * Size / 100) + formulas.First(x => x.Type == Digimon.Type).HP;
+
+                }
+                #endregion
             }
         }
 

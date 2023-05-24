@@ -33,6 +33,7 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <StackPanel Orientation="Horizontal" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Left" VerticalAlignment="Center">
             <Label Content="Digimon Base Information" FontWeight="Bold"/>
@@ -97,8 +98,13 @@
             <ComboBox FontWeight="SemiBold" x:Name="EvoBox" SelectedItem="{Binding StatInformation.Digimon.Evolution, Mode=TwoWay}" ItemsSource="{Binding EvolutionStages}" Height="28" Width="100"/>
             <Label Content="Evo Stage"/>
         </StackPanel>
-        <!--Clone & Presets-->
+        <!--Type-->
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Row="13" Grid.Column="0">
+            <ComboBox FontWeight="SemiBold" SelectedItem="{Binding StatInformation.Digimon.Type, Mode=TwoWay}" ItemsSource="{Binding AttackerTypes}" Height="28" Width="100"/>
+            <Label Content="Attacker Type"/>
+        </StackPanel>
+        <!--Clone & Presets-->
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Row="14" Grid.Column="0">
             <Button Content="Presets" x:Name="PresetsButton" IsEnabled="{Binding StatEnabled}" Click="Presets_Click"  MinWidth="80" MinHeight="30"/>
             <Button  Margin="3,0,0,0"  Content="Clone" x:Name="CloneButton" Click="Clone_Click"  MinWidth="80" MinHeight="30"/>
         </StackPanel>
