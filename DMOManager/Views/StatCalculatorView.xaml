@@ -7,7 +7,7 @@
              xmlns:local="clr-namespace:DMOHelper.Views"
              xmlns:syncfusion="http://schemas.syncfusion.com/wpf"
              mc:Ignorable="d" 
-             d:DesignHeight="550" d:DesignWidth="750">
+             d:DesignHeight="550" d:DesignWidth="780">
     <!--Stat Calculator-->
     <Grid>
         <Grid.ColumnDefinitions>
@@ -144,7 +144,7 @@
             <Label Content="Applied Buffs" FontWeight="Bold"/>
         </StackPanel>
         <StackPanel Orientation="Horizontal" Grid.Row="3" Grid.Column="4" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center">
-            <Label Content="Party Tamer Skills" FontWeight="Bold" Margin="0,0,50,0"/>
+            <Label Content="Party Tamer Skills" FontWeight="Bold"/>
         </StackPanel>
         <CheckBox Content="1h Buffs" IsChecked="{Binding StatInformation.Buff1h, Mode=TwoWay}" Grid.Row="4" Grid.Column="2" HorizontalAlignment="Left" VerticalAlignment="Center"/>
         <CheckBox Content="2h Buffs" IsChecked="{Binding StatInformation.Buff2h, Mode=TwoWay}" Grid.Row="5" Grid.Column="2" HorizontalAlignment="Left" VerticalAlignment="Center"/>
@@ -152,16 +152,14 @@
         <CheckBox Content="Extreme Evo / Peak of X Evo" IsChecked="{Binding StatInformation.EvoBuff, Mode=TwoWay}" IsEnabled="{Binding ElementName=EvoBox, Path=SelectedItem, Converter={StaticResource ExtremePeakEvoConverter}}" Grid.Row="5" Grid.Column="3" Grid.ColumnSpan="2" HorizontalAlignment="Left" VerticalAlignment="Center"/>
         <CheckBox Content="Hikari's" IsChecked="{Binding StatInformation.Hikari, Mode=TwoWay}" Grid.Row="4" Grid.Column="4" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,10,0"/>
         <CheckBox Content="Henry's / Enh./Ult. Guard" IsChecked="{Binding StatInformation.Henry, Mode=TwoWay}" Grid.Row="5" Grid.Column="5" HorizontalAlignment="Left" VerticalAlignment="Center"/>
-        <helper:OptionalRadioButton IsOptional="True" GroupName="Takato" Content="Takato's" IsChecked="{Binding StatInformation.Takato, Mode=TwoWay}" Grid.Row="6" Grid.Column="4" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,10,0"/>
         <CheckBox Content="Enh./Ult. Encouragement" IsChecked="{Binding StatInformation.Encouragement, Mode=TwoWay}" Grid.Row="4" Grid.Column="5" HorizontalAlignment="Left" VerticalAlignment="Center"/>
-        <helper:OptionalRadioButton IsOptional="True" GroupName="Takato" Content="Enh./Ult. Focus" IsChecked="{Binding StatInformation.Focus, Mode=TwoWay}" Grid.Row="6" Grid.Column="5" HorizontalAlignment="Left" VerticalAlignment="Center"/>
-        <StackPanel Orientation="Horizontal" Grid.Row="6" Grid.Column="3" Grid.ColumnSpan="2">
+        <StackPanel Orientation="Horizontal" Grid.Row="6" Grid.Column="4" Grid.ColumnSpan="2">
             <syncfusion:UpDown AllowEdit="False" ApplyZeroColor="False" Step="1" MinValue="0" MaxValue="3" NumberDecimalDigits="0" Value="{Binding StatInformation.FamilyBuffs, Mode=TwoWay}" Height="28" Width="40"/>
-            <Label Content="Family Buffs" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+            <Label Content="Simultaneous Family Buffs" HorizontalAlignment="Left" VerticalAlignment="Center"/>
         </StackPanel>
         <StackPanel Orientation="Horizontal" Grid.Row="6" Grid.Column="2" Grid.ColumnSpan="2" HorizontalAlignment="Left" VerticalAlignment="Center">
             <ComboBox FontWeight="SemiBold" SelectedItem="{Binding StatInformation.TOL, Mode=TwoWay}" ItemsSource="{Binding MemoryRates}" Height="28" Width="80"/>
-            <Label Content="ToL" FontWeight="Bold"/>
+            <Label Content="Tree of Life Skill" FontWeight="Bold"/>
         </StackPanel>
         <StackPanel Orientation="Horizontal" Grid.Row="7" Grid.Column="2" Grid.ColumnSpan="2" HorizontalAlignment="Left" VerticalAlignment="Center">
             <ComboBox FontWeight="SemiBold" SelectedItem="{Binding StatInformation.Ruler, Mode=TwoWay}" ItemsSource="{Binding ElementName=EvoBox,Path=SelectedItem,Converter={StaticResource EvoMemorySkillConverter}}" Height="28" Width="80"/>
@@ -172,11 +170,11 @@
             <Label Content="Guardian Skill" FontWeight="Bold"/>
         </StackPanel>
         <StackPanel Orientation="Horizontal" Grid.Row="7" Grid.Column="4" Grid.ColumnSpan="2" HorizontalAlignment="Left" VerticalAlignment="Center">
-            <ComboBox FontWeight="SemiBold" SelectedItem="{Binding StatInformation.Title, Mode=TwoWay}" ItemsSource="{Binding Decks}" Height="28" Width="240"/>
+            <ComboBox FontWeight="SemiBold" SelectedItem="{Binding StatInformation.Title, Mode=TwoWay}" ItemsSource="{Binding Titles}" Height="28" Width="240"/>
             <Label Content="Title" FontWeight="Bold"/>
         </StackPanel>
         <StackPanel Orientation="Horizontal" Grid.Row="8" Grid.Column="4" Grid.ColumnSpan="2" HorizontalAlignment="Left" VerticalAlignment="Center">
-            <ComboBox FontWeight="SemiBold" SelectedItem="{Binding StatInformation.Deck, Mode=TwoWay}" ItemsSource="{Binding Titles}" Height="28" Width="240"/>
+            <ComboBox FontWeight="SemiBold" SelectedItem="{Binding StatInformation.Deck, Mode=TwoWay}" ItemsSource="{Binding Decks}" Height="28" Width="240"/>
             <Label Content="Deck" FontWeight="Bold"/>
         </StackPanel>
         

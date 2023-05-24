@@ -311,7 +311,7 @@ namespace DMOHelper
                 bool failed = Task.Run(UpdatePresets).Result;
                 if (failed)
                 {
-                    MessageBoxResult result = MessageBox.Show("Unable to load presets from web resource. Without presets, StatCalculator is limited in function. For full feature set, please connect to internet and restart app." + Environment.NewLine + Environment.NewLine + "Do you want to continue without full feature set?",
+                    MessageBoxResult result = MessageBox.Show("Unable to load presets from web resource. Without presets, StatCalculator isn't working. For full feature set, please connect to internet and restart app." + Environment.NewLine + Environment.NewLine + "Do you want to continue without StatCalculator?",
                                           "Error",
                                           MessageBoxButton.YesNo,
                                           MessageBoxImage.Error);
@@ -403,7 +403,7 @@ namespace DMOHelper
                                 formulas.Add(record);
                             }
                         }
-                        if (formulas.Count == 30)
+                        if (formulas.Count == 36)
                         {
                             await SQLiteDatabaseManager.Database.DeleteAllAsync<StatFormula>();
                             await SQLiteDatabaseManager.Database.InsertAllAsync(formulas);

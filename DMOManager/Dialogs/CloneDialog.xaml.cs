@@ -29,6 +29,7 @@ namespace DMOHelper.Dialogs
             VMMain.GetInstance().StatInformation.EvadeClone = vm.EvadeClone;
             VMMain.GetInstance().StatInformation.HPClone = vm.HPClone;
             this.DialogResult = true;
+            VMMain.GetInstance().StatInformation.Calculate();
         }
 
         private void Window_ContentRendered(object sender, EventArgs e)

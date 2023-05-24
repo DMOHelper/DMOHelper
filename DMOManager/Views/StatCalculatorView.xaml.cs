@@ -24,6 +24,7 @@ namespace DMOHelper.Views
                 viewModel.StatInformation.Necklace = accDialog.Necklace;
                 viewModel.StatInformation.Earrings = accDialog.Earrings;
                 viewModel.StatInformation.Bracelet = accDialog.Bracelet;
+                viewModel.StatInformation.Calculate();
             }
         }
 
@@ -33,6 +34,7 @@ namespace DMOHelper.Views
             if (sealDialog.ShowDialog() == true)
             {
                 viewModel.StatInformation.Seals = sealDialog.Seals;
+                viewModel.StatInformation.Calculate();
             }
         }
         private void Clone_Click(object sender, RoutedEventArgs e)
@@ -46,6 +48,7 @@ namespace DMOHelper.Views
             if (digiviceDialog.ShowDialog() == true)
             {
                 viewModel.StatInformation.Digivice = digiviceDialog.Digivice;
+                viewModel.StatInformation.Calculate();
             }
         }
 
@@ -55,6 +58,7 @@ namespace DMOHelper.Views
             if (tamerDialog.ShowDialog() == true)
             {
                 viewModel.StatInformation.TamerStats = tamerDialog.TamerStats;
+                viewModel.StatInformation.Calculate();
             }
         }
 
@@ -84,6 +88,7 @@ namespace DMOHelper.Views
                             Attribute = _digimon.Attribute,
                             Elemental = _digimon.Elemental
                         };
+                        viewModel.StatInformation.Calculate();
                         break;
                     default:
                         break;

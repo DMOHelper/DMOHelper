@@ -31,8 +31,6 @@ namespace DMOHelper.Models
         private bool hikari;
         private bool encouragement;
         private bool henry;
-        private bool takato;
-        private bool focus;
         private MemorySkillLevel tol;
         private MemorySkillLevel ruler;
         private MemorySkillLevel guardian;
@@ -255,24 +253,6 @@ namespace DMOHelper.Models
                 OnPropertyChanged();
             }
         }
-        public bool Takato
-        {
-            get { return takato; }
-            set
-            {
-                takato = value;
-                OnPropertyChanged();
-            }
-        }
-        public bool Focus
-        {
-            get { return focus; }
-            set
-            {
-                focus = value;
-                OnPropertyChanged();
-            }
-        }
         public MemorySkillLevel TOL
         {
             get { return tol; }
@@ -316,16 +296,11 @@ namespace DMOHelper.Models
         public int ResultDS { get; set; }
         public double ResultEV { get; set; }
         public double ResultCT { get; set; }
-        public static List<StatFormula> StatFormulas
-        {
-            get
-            {
-                return SQLiteDatabaseManager.Database.Table<StatFormula>().ToListAsync().Result;
-            }
-        }
+        public static List<StatFormula> StatFormulas { get; set; }
 
         public StatInformation()
         {
+            tamer = "Tai";
             ring = new Ring();
             necklace = new Necklace();
             earrings = new Earrings();
@@ -340,9 +315,14 @@ namespace DMOHelper.Models
             Size = 140.0;
             ResultLevel = 0;
             LastPresetUpdate = new DateTime(2000, 1, 1);
+            StatFormulas = SQLiteDatabaseManager.Database.Table<StatFormula>().ToListAsync().Result;
         }
         internal void Calculate()
         {
+            if (StatFormulas.Count == 0) //try reloading
+            {
+                StatFormulas = SQLiteDatabaseManager.Database.Table<StatFormula>().ToListAsync().Result;
+            }
             if (StatFormulas.Count > 0)
             {
                 #region GetFormulas
@@ -387,9 +367,42 @@ namespace DMOHelper.Models
                 #endregion
                 ResultLevel = formulas.First().MaxLevel;
                 OnPropertyChanged("Level");
-                Title title = SQLiteDatabaseManager.Database.Table<Title>().FirstAsync(x => x.Name == Title).Result;
-                Deck deck = SQLiteDatabaseManager.Database.Table<Deck>().FirstAsync(x => x.Name == Deck).Result;
+                #region Load Title, Deck and Tamer Informations
+                Title title;
+                Deck deck;
+                try
+                {
+                    title = SQLiteDatabaseManager.Database.Table<Title>().FirstAsync(x => x.Name == Title).Result;
+                }
+                catch
+                {
+                    title = new Title()
+                    {
+                        AT = 0,
+                        DE = 0,
+                        HP = 0,
+                        DS = 0,
+                        HT = 0,
+                        SkillDamage = 0
+                    };
+                }
+                try
+                {
+                    deck = SQLiteDatabaseManager.Database.Table<Deck>().FirstAsync(x => x.Name == Deck).Result;
+                }
+                catch
+                {
+                    deck = new Deck()
+                    {
+                        HP = 0,
+                        AS = 0,
+                        Damage = 0,
+                        SkillDamage = 0,
+                        CriticalDamage = 0
+                    };
+                }
                 Tamer tamer = SQLiteDatabaseManager.Database.Table<Tamer>().FirstAsync(x => x.Name == Tamer).Result;
+                #endregion
                 #region HP, DamageReduction and PseudoHP
                 if (Digimon.BaseHP > 0)
                 {
@@ -549,6 +562,10 @@ namespace DMOHelper.Models
                     //Results
                     ResultAT = (int)Math.Floor(baseATMaxLevel + addedAT);
                     double addedDamage = Math.Floor(ResultAT * (deck.Damage / 100.0));
+
+
+                    /*
+                     * Digivice applies only Skill Damage??? Gonna test that
                     if (Digivice.Attribute == Digimon.Attribute || Digivice.Attribute == DigimonAttribute.EqualDigimon)
                     {
                         addedDamage = Math.Floor(ResultAT * Digivice.AttributeValue / 100.0);
@@ -557,32 +574,48 @@ namespace DMOHelper.Models
                     {
                         addedDamage = Math.Floor(ResultAT * Digivice.ElementalValue / 100.0);
                     }
-                    switch (Ruler)
+                    */
+
+                    if (EvoBuff)
                     {
-                        case MemorySkillLevel.Low:
-                        case MemorySkillLevel.Lv2:
-                            addedDamage += Math.Floor(ResultAT * 0.05);
-                            break;
-                        case MemorySkillLevel.Mid:
-                            addedDamage += Math.Floor(ResultAT * 0.1);
-                            break;
-                        case MemorySkillLevel.High:
-                            addedDamage += Math.Floor(ResultAT * 0.15);
-                            break;
-                        case MemorySkillLevel.Highest:
-                            addedDamage += Math.Floor(ResultAT * 0.2);
-                            break;
-                        case MemorySkillLevel.Lv1:
-                            addedDamage += Math.Floor(ResultAT * 0.02);
-                            break;
-                        case MemorySkillLevel.Lv3:
-                            addedDamage += Math.Floor(ResultAT * 0.08);
-                            break;
-                        case MemorySkillLevel.None:
-                        default:
-                            break;
+                        if (Digimon.Evolution == Evolution.Mega || Digimon.Evolution == Evolution.MegaX)
+                        {
+                            addedDamage += Math.Floor(ResultAT * 0.5);
+                        }
+                        else if (Digimon.Evolution == Evolution.BurstMode || Digimon.Evolution == Evolution.BurstModeX)
+                        {
+                            addedDamage += Math.Floor(ResultAT * 0.25);
+                        }
                     }
-                    double addedAdvantage = ResultAT * (1 + ((Ring.Attribute + Necklace.Attribute + Earrings.Attribute + Bracelet.Attribute) / 2));
+                    addedDamage += Math.Floor(ResultAT * (FamilyBuffs * 0.2));
+
+                    //TODO
+                    //switch (Ruler)
+                    //{
+                    //    case MemorySkillLevel.Low:
+                    //    case MemorySkillLevel.Lv2:
+                    //        addedDamage += Math.Floor(ResultAT * 0.05);
+                    //        break;
+                    //    case MemorySkillLevel.Mid:
+                    //        addedDamage += Math.Floor(ResultAT * 0.1);
+                    //        break;
+                    //    case MemorySkillLevel.High:
+                    //        addedDamage += Math.Floor(ResultAT * 0.15);
+                    //        break;
+                    //    case MemorySkillLevel.Highest:
+                    //        addedDamage += Math.Floor(ResultAT * 0.2);
+                    //        break;
+                    //    case MemorySkillLevel.Lv1:
+                    //        addedDamage += Math.Floor(ResultAT * 0.02);
+                    //        break;
+                    //    case MemorySkillLevel.Lv3:
+                    //        addedDamage += Math.Floor(ResultAT * 0.08);
+                    //        break;
+                    //    case MemorySkillLevel.None:
+                    //    default:
+                    //        break;
+                    //}
+                    double addedAdvantage = ResultAT * (1 + ((Ring.Attribute + Necklace.Attribute + Earrings.Attribute + Bracelet.Attribute) / 200.0));
                     ResultDamage = ResultAT + (int)Math.Floor(addedDamage);
                     ResultDamageDoubleAdvantage = ResultAT + (int)Math.Floor(addedDamage + addedAdvantage);
                     ResultCriticalDamage = (int)Math.Floor(ResultDamage * ((criticalDamageValue + deck.CriticalDamage) / 100.0));
@@ -595,7 +628,7 @@ namespace DMOHelper.Models
                 }
                 #endregion
                 #region AttackSpeed
-                ResultAttackSpeed = Digimon.AS * ((Ring.AttackSpeed + Necklace.AttackSpeed + Earrings.AttackSpeed + Bracelet.AttackSpeed + deck.AS + TamerStats.ASReduction) / 100.0);
+                ResultAttackSpeed = Digimon.AS * (1 - ((Ring.AttackSpeed + Necklace.AttackSpeed + Earrings.AttackSpeed + Bracelet.AttackSpeed + deck.AS + TamerStats.ASReduction) / 100.0));
                 OnPropertyChanged("ResultAttackSpeed");
                 #endregion
                 #region DS
@@ -645,8 +678,8 @@ namespace DMOHelper.Models
                     addedDS += Math.Floor(TamerStats.DS * (TamerStats.Intimacy / 100.0));
                     addedDS += Math.Floor(Ring.DS + Necklace.DS + Earrings.DS + Bracelet.DS + Digivice.DS + Seals.DS + title.DS);
                     //Results
-                    ResultHP = (int)(baseDSMaxLevel + addedDS);
-                    OnPropertyChanged("ResultHP");
+                    ResultDS = (int)(baseDSMaxLevel + addedDS);
+                    OnPropertyChanged("ResultDS");
                 }
                 #endregion
                 #region DE
@@ -675,8 +708,8 @@ namespace DMOHelper.Models
                 #region Critical Chance
                 if (Digimon.BaseCT > 0)
                 {
-                    double baseCTMaxLevel = (Digimon.BaseCT * (Size / 100.0)) + formulas.First(x => x.Type == Digimon.Type).CT;
-                    double clone = baseCTMaxLevel * (CriticalClone / 100.0);
+                    double baseCTMaxLevel = (Digimon.BaseCT * (Size / 100.0)) + (formulas.First(x => x.Type == Digimon.Type).CT / 100.0);
+                    double clone = Math.Floor(baseCTMaxLevel * (CriticalClone / 100.0));
                     ResultCT = Math.Round((baseCTMaxLevel + clone + Seals.CT + Ring.Critical + Necklace.Critical + Earrings.Critical + Bracelet.Critical + Digivice.Critical + TamerStats.CT), 2);
                 }
                 #endregion
@@ -736,8 +769,6 @@ namespace DMOHelper.Models
                 output.Hikari = statInfo.Hikari;
                 output.Encouragement = statInfo.Encouragement;
                 output.Henry = statInfo.Henry;
-                output.Takato = statInfo.Takato;
-                output.Focus = statInfo.Focus;
                 output.Deck = statInfo.Deck;
                 output.Title = statInfo.Title;
                 output.AttackClone = statInfo.AttackClone;
@@ -891,8 +922,6 @@ namespace DMOHelper.Models
             Hikari = statInfo.Hikari;
             Encouragement = statInfo.Encouragement;
             Henry = statInfo.Henry;
-            Takato = statInfo.Takato;
-            Focus = statInfo.Focus;
             Deck = statInfo.Deck;
             Title = statInfo.Title;
             AttackClone = statInfo.AttackClone;
