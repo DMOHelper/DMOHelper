@@ -1,15 +1,15 @@
 name,rank,evolution,attribute,element,type,baseHP,baseDS,baseAT,AS,baseCT,HT,baseDE,EV,skill1Base,skill1Increase,skill1Points,skill2Base,skill2Increase,skill2Points,skill3Base,skill3Increase,skill3Points,skill4Base,skill4Increase,skill4Points,skillIncreaseBuff
-"Lucemon Satan Mode (Shin)",SSS+,BurstMode,Virus,PitchBlack,ShortAttacker,16120,5170,5727,230,1110,548,313,3210,23246,1003,2,48097,1543,3,141207,4260,4,0,0,0,0
-"Omegamon X",SSS+,JogressX,Vaccine,Light,ShortAttacker,13610,5110,5777,240,1030,419,414,4510,24298,533,2,36447,799,3,138297,1771,3,0,0,0,0
-"Alphamon Ouryuken (Awaken)",SSS+,JogressX,Vaccine,Light,ShortAttacker,14480,5110,5608,240,920,450,414,4270,18189,399,2,40017,878,3,158357,5753,4,0,0,0,0
-"Examon X",SSS+,JogressX,Data,Light,ShortAttacker,15770,5280,6405,250,960,482,426,4110,22481,493,2,41217,904,3,147436,5356,4,69110,2510,3,20
-"Omegamon Alter-B",SSS+,Jogress,Virus,PitchBlack,ShortAttacker,14650,5170,5403,230,1120,500,418,4010,20246,444,2,36075,791,3,159968,5811,4,0,0,0,20
-"Omegamon Zwart D",SSS+,Jogress,Virus,PitchBlack,QuickAttacker,14990,4980,5526,230,1040,430,377,3530,17740,389,2,29805,654,3,165792,6023,4,0,0,0,0
-"Shoutmon X7",SSS+,Jogress,Data,Fire,Defender,14130,4820,4654,220,1120,392,510,3530,15483,467,2,45110,1012,3,156966,5917,3,0,0,0,0
-"Susanoomon (Shin)",SSS+,Jogress,Vaccine,Light,ShortAttacker,13770,5170,4359,220,970,510,354,4120,11817,294,2,27792,609,3,126572,4598,3,27122,987,3,0
-"ZeedMilleniummon",SSS+,Jogress,Virus,PitchBlack,Defender,17260,5790,6251,250,870,560,1344,4220,17253,429,2,41327,906,3,138596,5035,4,6299,228,2,0
-"Agumon Kizuna",SSS+,BurstMode,Vaccine,Fire,ShortAttacker,13710,5230,4285,200,1000,490,455,3860,16684,185,2,33325,325,3,132768,2456,4,0,0,0,10
-"DarknessBagramon",SSS+,Jogress,Virus,PitchBlack,ShortAttacker,17900,5170,4579,200,930,510,472,1950,16063,0,2,35644,0,3,177586,0,4,0,0,0,0
-"Alphamon Ouryuken X",SSS,JogressX,Vaccine,Light,ShortAttacker,10230,3570,3965,240,770,450,291,3580,7067,244,2,20593,442,3,46101,1674,3,0,0,0,0
-"Fanglongmon (Shin)",SSS,Jogress,Data,Land,Defender,13240,4180,4927,240,1080,420,354,3060,9919,247,2,24191,530,3,111059,4034,3,7082,257,3,0
-"Omegamon Alter-S",SS+,Jogress,Virus,Light,ShortAttacker,7310,2550,2969,250,840,500,208,3360,6625,255,2,13957,408,3,0,0,0,0,0,0,0
+"Lucemon Satan Mode (Shin)",SSS+,BurstMode,Virus,PitchBlack,ShortAttacker,16120,5170,5727,230,1110,548,313,3210,23246,1003,2,48097,1543,3,141207,4260,4,0,0,0,false
+"Omegamon X",SSS+,JogressX,Vaccine,Light,ShortAttacker,13610,5110,5777,240,1030,419,414,4510,24298,533,2,36447,799,3,138297,1771,3,0,0,0,false
+"Alphamon Ouryuken (Awaken)",SSS+,JogressX,Vaccine,Light,ShortAttacker,14480,5110,5608,240,920,450,414,4270,18189,399,2,40017,878,3,158357,5753,4,0,0,0,false
+"Examon X",SSS+,JogressX,Data,Light,ShortAttacker,15770,5280,6405,250,960,482,426,4110,22481,493,2,41217,904,3,147436,5356,4,69110,2510,3,true
+"Omegamon Alter-B",SSS+,Jogress,Virus,PitchBlack,ShortAttacker,14650,5170,5403,230,1120,500,418,4010,20246,444,2,36075,791,3,159968,5811,4,0,0,0,true
+"Omegamon Zwart D",SSS+,Jogress,Virus,PitchBlack,QuickAttacker,14990,4980,5526,230,1040,430,377,3530,17740,389,2,29805,654,3,165792,6023,4,0,0,0,false
+"Shoutmon X7",SSS+,Jogress,Data,Fire,Defender,14130,4820,4654,220,1120,392,510,3530,15483,467,2,45110,1012,3,156966,5917,3,0,0,0,false
+"Susanoomon (Shin)",SSS+,Jogress,Vaccine,Light,ShortAttacker,13770,5170,4359,220,970,510,354,4120,11817,294,2,27792,609,3,126572,4598,3,27122,987,3,false
+"ZeedMilleniummon",SSS+,Jogress,Virus,PitchBlack,Defender,17260,5790,6251,250,870,560,1344,4220,17253,429,2,41327,906,3,138596,5035,4,6299,228,2,false
+"Agumon Kizuna",SSS+,BurstMode,Vaccine,Fire,ShortAttacker,13710,5230,4285,200,1000,490,455,3860,16684,185,2,33325,325,3,132768,2456,4,0,0,0,false
+"DarknessBagramon",SSS+,Jogress,Virus,PitchBlack,ShortAttacker,17900,5170,4579,200,930,510,472,1950,16063,0,2,35644,0,3,177586,0,4,0,0,0,false
+"Alphamon Ouryuken X",SSS,JogressX,Vaccine,Light,ShortAttacker,10230,3570,3965,240,770,450,291,3580,7067,244,2,20593,442,3,46101,1674,3,0,0,0,false
+"Fanglongmon (Shin)",SSS,Jogress,Data,Land,Defender,13240,4180,4927,240,1080,420,354,3060,9919,247,2,24191,530,3,111059,4034,3,7082,257,3,false
+"Omegamon Alter-S",SS+,Jogress,Virus,Light,ShortAttacker,7310,2550,2969,250,840,500,208,3360,6625,255,2,13957,408,3,0,0,0,0,0,0,false

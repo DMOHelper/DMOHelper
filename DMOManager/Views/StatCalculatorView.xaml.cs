@@ -86,7 +86,24 @@ namespace DMOHelper.Views
                             BaseDE = _digimon.BaseDE,
                             EV = _digimon.EV,
                             Attribute = _digimon.Attribute,
-                            Elemental = _digimon.Elemental
+                            Elemental = _digimon.Elemental,
+                            Skill1Base = _digimon.Skill1Base,
+                            Skill1Increase = _digimon.Skill1Increase,
+                            Skill1Points = _digimon.Skill1Points,
+                            Skill2Base = _digimon.Skill2Base,
+                            Skill2Increase = _digimon.Skill2Increase,
+                            Skill2Points = _digimon.Skill2Points,
+                            Skill3Base = _digimon.Skill3Base,
+                            Skill3Increase = _digimon.Skill3Increase,
+                            Skill3Points = _digimon.Skill3Points,
+                            Skill4Base = _digimon.Skill4Base,
+                            Skill4Increase = _digimon.Skill4Increase,
+                            Skill4Points = _digimon.Skill4Points,
+                            SkillIncreaseBuff = _digimon.SkillIncreaseBuff,
+                            Skill1Level = 1,
+                            Skill2Level = 1,
+                            Skill3Level = 1,
+                            Skill4Level = 1
                         };
                         viewModel.StatInformation.Calculate();
                         break;

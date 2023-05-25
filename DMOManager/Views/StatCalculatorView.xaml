@@ -224,7 +224,11 @@
         <StackPanel Orientation="Horizontal" Grid.Row="14" Grid.Column="4" HorizontalAlignment="Center" VerticalAlignment="Center">
             <syncfusion:UpDown AllowEdit="False" TextAlignment="Center" ApplyZeroColor="False" Step="1" MinValue="0" MaxValue="4" NumberDecimalDigits="0" Value="{Binding StatInformation.Digimon.Skill4Points, Mode=TwoWay}" Height="28" Width="100"/>
         </StackPanel>
-
+        <!--Skill Buff Effect-->
+        <StackPanel Orientation="Horizontal" Grid.Row="9" Grid.Column="4" Grid.ColumnSpan="2" HorizontalAlignment="Right" Margin="0,0,20,0" VerticalAlignment="Center">
+            <CheckBox FontWeight="SemiBold" SelectedItem="{Binding StatInformation.Digimon.Elemental, Mode=TwoWay}" ItemsSource="{Binding ElementalAttributes}" Height="28" Width="100"/>
+            <Label Content="20% Skill Damage Buff"/>
+        </StackPanel>
 
 
         <!--Results-->
