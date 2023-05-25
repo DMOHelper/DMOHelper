@@ -31,6 +31,7 @@
         <converter:NullBoolConverter x:Key="NullBoolConverter"/>
         <converter:ExtremePeakEvoConverter x:Key="ExtremePeakEvoConverter"/>
         <converter:EvoMemorySkillConverter x:Key="EvoMemorySkillConverter"/>
+        <converter:SkillPointsMaxLevelConverter x:Key="SkillPointsMaxLevelConverter"/>
 
         <Style TargetType="iconPacks:PackIconMaterial">
             <Setter Property="Width" Value="{DynamicResource ButtonSize}"/>

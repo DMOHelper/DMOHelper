@@ -12,7 +12,7 @@ namespace DMOHelper.Models
         public int DS { get; set; }
         public int AT { get; set; }
         public int DE { get; set; }
-        public int CT { get; set; }
+        public double CT { get; set; }
         public int MaxLevel { get; set; }
         public StatFormula()
         {

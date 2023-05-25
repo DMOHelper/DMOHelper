@@ -397,7 +397,7 @@ namespace DMOHelper
                                     DS = int.Parse(csv.GetField("ds")),
                                     AT = int.Parse(csv.GetField("at")),
                                     DE = int.Parse(csv.GetField("de")),
-                                    CT = int.Parse(csv.GetField("ct")),
+                                    CT = int.Parse(csv.GetField("ct")) / 100.0,
                                     MaxLevel = int.Parse(csv.GetField("maxLevel"))
                                 };
                                 formulas.Add(record);
@@ -444,6 +444,19 @@ namespace DMOHelper
                                 record.HT = int.Parse(csv.GetField("HT"));
                                 record.BaseDE = int.Parse(csv.GetField("baseDE"));
                                 record.EV = int.Parse(csv.GetField("EV")) / 100.0;
+                                record.Skill1Base = int.Parse(csv.GetField("skill1Base"));
+                                record.Skill1Increase = int.Parse(csv.GetField("skill1Increase"));
+                                record.Skill1Points = int.Parse(csv.GetField("skill1Points"));
+                                record.Skill2Base = int.Parse(csv.GetField("skill2Base"));
+                                record.Skill2Increase = int.Parse(csv.GetField("skill2Increase"));
+                                record.Skill2Points = int.Parse(csv.GetField("skill2Points"));
+                                record.Skill3Base = int.Parse(csv.GetField("skill3Base"));
+                                record.Skill3Increase = int.Parse(csv.GetField("skill3Increase"));
+                                record.Skill3Points = int.Parse(csv.GetField("skill3Points"));
+                                record.Skill4Base = int.Parse(csv.GetField("skill4Base"));
+                                record.Skill4Increase = int.Parse(csv.GetField("skill4Increase"));
+                                record.Skill4Points = int.Parse(csv.GetField("skill4Points"));
+                                record.SkillIncreaseBuff = int.Parse(csv.GetField("skillIncreaseBuff"));
                                 record.Attribute = Enum.Parse<DigimonAttribute>(csv.GetField("attribute"));
                                 record.Elemental = Enum.Parse<ElementalAttribute>(csv.GetField("element"));
                                 digiPresets.Add(record);

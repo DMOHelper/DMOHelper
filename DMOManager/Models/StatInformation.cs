@@ -31,6 +31,8 @@ namespace DMOHelper.Models
         private bool hikari;
         private bool encouragement;
         private bool henry;
+        private bool takato;
+        private bool focus;
         private MemorySkillLevel tol;
         private MemorySkillLevel ruler;
         private MemorySkillLevel guardian;
@@ -250,6 +252,24 @@ namespace DMOHelper.Models
             set
             {
                 henry = value;
+                OnPropertyChanged();
+            }
+        }
+        public bool Takato
+        {
+            get { return takato; }
+            set
+            {
+                takato = value;
+                OnPropertyChanged();
+            }
+        }
+        public bool Focus
+        {
+            get { return focus; }
+            set
+            {
+                focus = value;
                 OnPropertyChanged();
             }
         }
@@ -708,7 +728,7 @@ namespace DMOHelper.Models
                 #region Critical Chance
                 if (Digimon.BaseCT > 0)
                 {
-                    double baseCTMaxLevel = (Digimon.BaseCT * (Size / 100.0)) + (formulas.First(x => x.Type == Digimon.Type).CT / 100.0);
+                    double baseCTMaxLevel = (Digimon.BaseCT * (Size / 100.0)) + (formulas.First(x => x.Type == Digimon.Type).CT);
                     double clone = Math.Floor(baseCTMaxLevel * (CriticalClone / 100.0));
                     ResultCT = Math.Round((baseCTMaxLevel + clone + Seals.CT + Ring.Critical + Necklace.Critical + Earrings.Critical + Bracelet.Critical + Digivice.Critical + TamerStats.CT), 2);
                 }
@@ -769,6 +789,8 @@ namespace DMOHelper.Models
                 output.Hikari = statInfo.Hikari;
                 output.Encouragement = statInfo.Encouragement;
                 output.Henry = statInfo.Henry;
+                output.Takato = statInfo.Takato;
+                output.Focus = statInfo.Focus;
                 output.Deck = statInfo.Deck;
                 output.Title = statInfo.Title;
                 output.AttackClone = statInfo.AttackClone;
@@ -922,6 +944,8 @@ namespace DMOHelper.Models
             Hikari = statInfo.Hikari;
             Encouragement = statInfo.Encouragement;
             Henry = statInfo.Henry;
+            Takato = statInfo.Takato;
+            Focus = statInfo.Focus;
             Deck = statInfo.Deck;
             Title = statInfo.Title;
             AttackClone = statInfo.AttackClone;

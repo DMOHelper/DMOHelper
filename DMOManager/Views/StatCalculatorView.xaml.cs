@@ -95,5 +95,15 @@ namespace DMOHelper.Views
                 }
             }
         }
+
+        private void SkillLevel_ValueChanging(object sender, Syncfusion.Windows.Shared.ValueChangingEventArgs e)
+        {
+            int availablePoints = 76;
+            availablePoints -= viewModel.StatInformation.Digimon.Skill1Points * (viewModel.StatInformation.Digimon.Skill1Level - 1);
+            availablePoints -= viewModel.StatInformation.Digimon.Skill2Points * (viewModel.StatInformation.Digimon.Skill2Level - 1);
+            availablePoints -= viewModel.StatInformation.Digimon.Skill3Points * (viewModel.StatInformation.Digimon.Skill3Level - 1);
+            availablePoints -= viewModel.StatInformation.Digimon.Skill4Points * (viewModel.StatInformation.Digimon.Skill4Level - 1);
+            
+        }
     }
 }
