@@ -298,41 +298,41 @@
 
                 <!--Values Stats-->
                 <Label Content="{Binding StatInformation.ResultHP, Mode=OneWay}" ContentStringFormat="{}{0:N0}" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" />
-                <Label Content="{Binding StatInformation.ResultPseudoHP, Mode=OneWay}" Grid.Row="2" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                <Label Content="{Binding StatInformation.ResultPseudoHP, Mode=OneWay}" ContentStringFormat="{}{0:N0}" Grid.Row="2" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" />
                 <StackPanel Orientation="Horizontal" Grid.Column="2" Grid.ColumnSpan="2" Grid.Row="2" HorizontalAlignment="Left" VerticalAlignment="Center">
                     <Label Content="{Binding StatInformation.ResultDamageReduction}"/>
                     <Label Content="% Damage Reduction" Margin="-5,0,0,0" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                 </StackPanel>
-                <Label Content="{Binding StatInformation.ResultDS, Mode=OneWay}" Grid.Row="3" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" />
-                <Label Content="{Binding StatInformation.ResultAT, Mode=OneWay}" Grid.Row="3" Grid.Column="3" HorizontalAlignment="Center" VerticalAlignment="Center" />
-                <Label Content="{Binding StatInformation.ResultDE, Mode=OneWay}" Grid.Row="4" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                <Label Content="{Binding StatInformation.ResultDS, Mode=OneWay}" ContentStringFormat="{}{0:N0}" Grid.Row="3" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                <Label Content="{Binding StatInformation.ResultAT, Mode=OneWay}" ContentStringFormat="{}{0:N0}" Grid.Row="3" Grid.Column="3" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                <Label Content="{Binding StatInformation.ResultDE, Mode=OneWay}" ContentStringFormat="{}{0:N0}" Grid.Row="4" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" />
                 <StackPanel Orientation="Horizontal" Grid.Row="4" Grid.Column="3" HorizontalAlignment="Center" VerticalAlignment="Center">
-                    <Label Content="{Binding StatInformation.ResultCT, Mode=OneWay}"  />
+                    <Label Content="{Binding StatInformation.ResultCT, Mode=OneWay}" ContentStringFormat="{}{0:D0}" />
                     <Label Margin="-6,0,0,0" Content="%"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" Grid.Row="5" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center">
                     <Label Content="{Binding StatInformation.ResultEV, Mode=OneWay}" ContentStringFormat="{}{0:D0}"/>
                     <Label Margin="-6,0,0,0" Content="%"/>
                 </StackPanel>
-                <Label Content="{Binding StatInformation.ResultHT, Mode=OneWay}" Grid.Row="5" Grid.Column="3" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                <Label Content="{Binding StatInformation.ResultHT, Mode=OneWay}" ContentStringFormat="{}{0:N0}" Grid.Row="5" Grid.Column="3" HorizontalAlignment="Center" VerticalAlignment="Center" />
 
                 <!--Values Damages-->
                 <StackPanel Orientation="Horizontal" Grid.Row="6" Grid.Column="1" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center">
-                    <Label Content="{Binding StatInformation.ResultAttackSpeed,Mode=OneWay}"/>
+                    <Label Content="{Binding StatInformation.ResultAttackSpeed,Mode=OneWay}" ContentStringFormat="{}{0:D0}"/>
                     <Label Content="seconds (AS)"/>
                 </StackPanel>
-                <Label Content="{Binding StatInformation.ResultDamage, Mode=OneWay}" Grid.Row="8" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" />
-                <Label Content="{Binding StatInformation.ResultDamageDoubleAdvantage, Mode=OneWay}" Grid.Row="8" Grid.Column="3" HorizontalAlignment="Center" VerticalAlignment="Center" />
-                <Label Content="{Binding StatInformation.ResultCriticalDamage, Mode=OneWay}" Grid.Row="9" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" />
-                <Label Content="{Binding StatInformation.ResultCriticalDamageDoubleAdvantage, Mode=OneWay}" Grid.Row="9" Grid.Column="3" HorizontalAlignment="Center" VerticalAlignment="Center" />
-                <Label Content="{Binding StatInformation.ResultSkill1Damage, Mode=OneWay}" Grid.Row="10" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" />
-                <Label Content="{Binding StatInformation.ResultSkill1DamageDoubleAdvantage, Mode=OneWay}" Grid.Row="10" Grid.Column="3" HorizontalAlignment="Center" VerticalAlignment="Center" />
-                <Label Content="{Binding StatInformation.ResultSkill2Damage, Mode=OneWay}" Grid.Row="11" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" />
-                <Label Content="{Binding StatInformation.ResultSkill2DamageDoubleAdvantage, Mode=OneWay}" Grid.Row="11" Grid.Column="3" HorizontalAlignment="Center" VerticalAlignment="Center" />
-                <Label Content="{Binding StatInformation.ResultSkill3Damage, Mode=OneWay}" Grid.Row="12" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" />
-                <Label Content="{Binding StatInformation.ResultSkill3DamageDoubleAdvantage, Mode=OneWay}" Grid.Row="12" Grid.Column="3" HorizontalAlignment="Center" VerticalAlignment="Center" />
-                <Label Content="{Binding StatInformation.ResultSkill4Damage, Mode=OneWay}" Grid.Row="13" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" />
-                <Label Content="{Binding StatInformation.ResultSkill4DamageDoubleAdvantage, Mode=OneWay}" Grid.Row="13" Grid.Column="3" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                <Label Content="{Binding StatInformation.ResultDamage, Mode=OneWay}" ContentStringFormat="{}{0:N0}" Grid.Row="8" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                <Label Content="{Binding StatInformation.ResultDamageDoubleAdvantage, Mode=OneWay}" ContentStringFormat="{}{0:N0}" Grid.Row="8" Grid.Column="3" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                <Label Content="{Binding StatInformation.ResultCriticalDamage, Mode=OneWay}" ContentStringFormat="{}{0:N0}" Grid.Row="9" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                <Label Content="{Binding StatInformation.ResultCriticalDamageDoubleAdvantage, Mode=OneWay}" ContentStringFormat="{}{0:N0}" Grid.Row="9" Grid.Column="3" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                <Label Content="{Binding StatInformation.ResultSkill1Damage, Mode=OneWay}" ContentStringFormat="{}{0:N0}" Grid.Row="10" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                <Label Content="{Binding StatInformation.ResultSkill1DamageDoubleAdvantage, Mode=OneWay}" ContentStringFormat="{}{0:N0}" Grid.Row="10" Grid.Column="3" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                <Label Content="{Binding StatInformation.ResultSkill2Damage, Mode=OneWay}" ContentStringFormat="{}{0:N0}" Grid.Row="11" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                <Label Content="{Binding StatInformation.ResultSkill2DamageDoubleAdvantage, Mode=OneWay}" ContentStringFormat="{}{0:N0}" Grid.Row="11" Grid.Column="3" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                <Label Content="{Binding StatInformation.ResultSkill3Damage, Mode=OneWay}" ContentStringFormat="{}{0:N0}" Grid.Row="12" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                <Label Content="{Binding StatInformation.ResultSkill3DamageDoubleAdvantage, Mode=OneWay}" ContentStringFormat="{}{0:N0}" Grid.Row="12" Grid.Column="3" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                <Label Content="{Binding StatInformation.ResultSkill4Damage, Mode=OneWay}" ContentStringFormat="{}{0:N0}" Grid.Row="13" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                <Label Content="{Binding StatInformation.ResultSkill4DamageDoubleAdvantage, Mode=OneWay}" ContentStringFormat="{}{0:N0}" Grid.Row="13" Grid.Column="3" HorizontalAlignment="Center" VerticalAlignment="Center" />
             </Grid>
         </Border>
     </Grid>
