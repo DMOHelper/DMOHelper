@@ -37,7 +37,7 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Left" VerticalAlignment="Center" Content="Digimon Base Information" FontWeight="Bold"/>
+        <Label ToolTip="BaseStats on Level 1 and 100% Size; visit dmowiki.com to get them" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Left" VerticalAlignment="Center" Content="Digimon Base Information" FontWeight="Bold"/>
         <!--Size-->
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Row="1" Grid.Column="0">
             <syncfusion:DoubleTextBox NumberDecimalDigits="2" Value="{Binding StatInformation.Size, Mode=TwoWay}" MaxValue="140" MinValue="70" MinValueOnExceedMinDigit="True" MaxValueOnExceedMaxDigit="True" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Text="140" Height="28" Width="100"/>
@@ -318,7 +318,7 @@
 
                 <!--Values Damages-->
                 <StackPanel Orientation="Horizontal" Grid.Row="6" Grid.Column="1" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center">
-                    <Label Content="{Binding StatInformation.ResultAttackSpeed,Mode=OneWay}" ContentStringFormat="{}{0:D0}"/>
+                    <Label Content="{Binding StatInformation.ResultAttackSpeed,Mode=OneWay}" ContentStringFormat="{}{0:N3}"/>
                     <Label Content="seconds (AS)"/>
                 </StackPanel>
                 <Label Content="{Binding StatInformation.ResultDamage, Mode=OneWay}" ContentStringFormat="{}{0:N0}" Grid.Row="8" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" />
