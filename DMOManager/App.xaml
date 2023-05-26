@@ -174,6 +174,10 @@
             </Setter>
         </Style>
 
+        <Style TargetType="ToolTip" BasedOn="{StaticResource {x:Type ToolTip}}">
+            <Setter Property="Background" Value="{StaticResource Background}" />
+        </Style>
+
         <Style TargetType="CheckBox">
             <Setter Property="OverridesDefaultStyle" Value="true" />
             <Setter Property="Template">

@@ -35,6 +35,7 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Left" VerticalAlignment="Center" Content="Digimon Base Information" FontWeight="Bold"/>
         <!--Size-->
@@ -109,7 +110,7 @@
         </StackPanel>
 
         <!--Tamer Informations-->
-        <Label Content="Tamer Informations" Grid.Row="0" Grid.Column="2" Grid.ColumnSpan="3" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold" Foreground="{StaticResource Foreground}"/>
+        <Label Content="Tamer Informations" Grid.Row="0" Grid.Column="2" Grid.ColumnSpan="3" HorizontalAlignment="Center" VerticalAlignment="Center" />
         <Label Content="Tamer" Grid.Row="1" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center"/>
         <Label Content="Additional Skills (Enh./Ult.)" Grid.Row="1" Grid.Column="3" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center"/>
 
@@ -161,80 +162,94 @@
             <ComboBox FontWeight="SemiBold" SelectedItem="{Binding StatInformation.Guardian, Mode=TwoWay}" ItemsSource="{Binding ElementName=EvoBox,Path=SelectedItem,Converter={StaticResource EvoMemorySkillConverter}}" Height="28" Width="75"/>
             <Label Content="Guardian Skill" FontWeight="Bold"/>
         </StackPanel>
-        <StackPanel Orientation="Horizontal" Grid.Row="7" Grid.Column="4" Grid.ColumnSpan="2" HorizontalAlignment="Left" VerticalAlignment="Center">
+        <StackPanel Orientation="Horizontal" Grid.Row="7" Grid.Column="5" HorizontalAlignment="Left" VerticalAlignment="Center">
+            <CheckBox Content="Agumon Kizuna Buff" HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="SemiBold" IsChecked="{Binding StatInformation.AguKizunaBuff, Mode=TwoWay}" />
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" Grid.Row="8" Grid.Column="4" Grid.ColumnSpan="2" HorizontalAlignment="Left" VerticalAlignment="Center">
             <ComboBox FontWeight="SemiBold" SelectedItem="{Binding StatInformation.Title, Mode=TwoWay}" ItemsSource="{Binding Titles}" Height="28" Width="240"/>
             <Label Content="Title" FontWeight="Bold"/>
         </StackPanel>
-        <StackPanel Orientation="Horizontal" Grid.Row="8" Grid.Column="4" Grid.ColumnSpan="2" HorizontalAlignment="Left" VerticalAlignment="Center">
+        <StackPanel Orientation="Horizontal" Grid.Row="9" Grid.Column="4" Grid.ColumnSpan="2" HorizontalAlignment="Left" VerticalAlignment="Center">
             <ComboBox FontWeight="SemiBold" SelectedItem="{Binding StatInformation.Deck, Mode=TwoWay}" ItemsSource="{Binding Decks}" Height="28" Width="240"/>
             <Label Content="Deck" FontWeight="Bold"/>
         </StackPanel>
+        <!--Skill Buff Effect-->
+        <StackPanel Orientation="Horizontal" Grid.Row="9" Grid.Column="2" Grid.ColumnSpan="2" HorizontalAlignment="Left" VerticalAlignment="Center">
+            <CheckBox Content="20% Skill Damage Buff by Skill" HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="SemiBold" IsChecked="{Binding StatInformation.Digimon.SkillIncreaseBuff, Mode=TwoWay}" />
+        </StackPanel>
 
         <!--Skills-->
-        <Label Content="Digimon Skill Information" Grid.Row="9" Grid.Column="2" Grid.ColumnSpan="3" HorizontalAlignment="Center" VerticalAlignment="Bottom" FontWeight="Bold" Foreground="{StaticResource Foreground}"/>
-        <Label Content="Base Damage" Grid.Row="10" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold" Foreground="{StaticResource Foreground}"/>
-        <Label Content="Increase per Level" Grid.Row="10" Grid.Column="2" Grid.ColumnSpan="3" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold" Foreground="{StaticResource Foreground}"/>
-        <Label Content="Skill Points req." Grid.Row="10" Grid.Column="4" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold" Foreground="{StaticResource Foreground}"/>
-        <Label Content="Skill Level" Grid.Row="10" Grid.Column="5" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold" Foreground="{StaticResource Foreground}"/>
+        <Label Content="Digimon Skill Information" Grid.Row="10" Grid.Column="2" Grid.ColumnSpan="3" HorizontalAlignment="Center" VerticalAlignment="Bottom" />
+        <Label Content="Base Damage" Grid.Row="11" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center" />
+        <Label Content="Increase per Level" Grid.Row="11" Grid.Column="2" Grid.ColumnSpan="3" HorizontalAlignment="Center" VerticalAlignment="Center" />
+        <Label Content="Skill Points req." Grid.Row="11" Grid.Column="4" HorizontalAlignment="Center" VerticalAlignment="Center" />
+        <Label Content="Skill Level" Grid.Row="11" Margin="10,0,0,0" Grid.Column="5" HorizontalAlignment="Left" VerticalAlignment="Center" />
 
         <!--F1-->
-        <Label Grid.Row="11" Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Center" Content="F1" FontWeight="Bold" Foreground="{StaticResource Foreground}"/>
-        <StackPanel Orientation="Horizontal" Grid.Row="11" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center">
+        <Label Grid.Row="12" Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Center" Content="F1" />
+        <StackPanel Orientation="Horizontal" Grid.Row="12" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center">
             <syncfusion:IntegerTextBox Value="{Binding StatInformation.Digimon.Skill1Base, Mode=TwoWay}" MaxValue="999999" MinValue="0" MinValueOnExceedMinDigit="True" MaxValueOnExceedMaxDigit="True" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Text="0" Height="28" Width="100"/>
         </StackPanel>
-        <StackPanel Orientation="Horizontal" Grid.Row="11" Grid.Column="3" HorizontalAlignment="Center" VerticalAlignment="Center">
+        <StackPanel Orientation="Horizontal" Grid.Row="12" Grid.Column="3" HorizontalAlignment="Center" VerticalAlignment="Center">
             <syncfusion:IntegerTextBox Value="{Binding StatInformation.Digimon.Skill1Increase, Mode=TwoWay}" MaxValue="9999" MinValue="0" MinValueOnExceedMinDigit="True" MaxValueOnExceedMaxDigit="True" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Text="0" Height="28" Width="100"/>
         </StackPanel>
-        <StackPanel Orientation="Horizontal" Grid.Row="11" Grid.Column="4" HorizontalAlignment="Center" VerticalAlignment="Center">
+        <StackPanel Orientation="Horizontal" Grid.Row="12" Grid.Column="4" HorizontalAlignment="Center" VerticalAlignment="Center">
             <syncfusion:UpDown x:Name="skill1PointsBox" AllowEdit="False" TextAlignment="Center" ApplyZeroColor="False" Step="1" MinValue="0" MaxValue="4" NumberDecimalDigits="0" Value="{Binding StatInformation.Digimon.Skill1Points, Mode=TwoWay}" Height="28" Width="100"/>
         </StackPanel>
-        <StackPanel Orientation="Horizontal" Grid.Row="11" Grid.Column="5" HorizontalAlignment="Center" VerticalAlignment="Center">
-            <syncfusion:UpDown AllowEdit="False" TextAlignment="Center" ApplyZeroColor="False" Step="1" MinValue="1" ValueChanging="SkillLevel_ValueChanging" MaxValue="{Binding ElementName=skill1PointsBox, Path=Value, Converter={StaticResource SkillPointsMaxLevelConverter}}" NumberDecimalDigits="0" Value="{Binding StatInformation.Digimon.Skill1Level, Mode=TwoWay}" Height="28" Width="100"/>
+        <StackPanel Orientation="Horizontal" Grid.Row="12" Grid.Column="5" HorizontalAlignment="Left" VerticalAlignment="Center">
+            <syncfusion:UpDown x:Name="skillLevel1" AllowEdit="False" TextAlignment="Center" ApplyZeroColor="False" Step="1" MinValue="1" ValueChanging="SkillLevel_ValueChanging" MaxValue="{Binding ElementName=skill1PointsBox, Path=Value, Converter={StaticResource SkillPointsMaxLevelConverter}}" NumberDecimalDigits="0" Value="{Binding StatInformation.Digimon.Skill1Level, Mode=TwoWay}" Height="28" Width="100"/>
         </StackPanel>
         <!--F2-->
-        <Label Grid.Row="12" Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Center" Content="F2" FontWeight="Bold" Foreground="{StaticResource Foreground}"/>
-        <StackPanel Orientation="Horizontal" Grid.Row="12" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center">
+        <Label Grid.Row="13" Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Center" Content="F2" />
+        <StackPanel Orientation="Horizontal" Grid.Row="13" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center">
             <syncfusion:IntegerTextBox Value="{Binding StatInformation.Digimon.Skill2Base, Mode=TwoWay}" MaxValue="999999" MinValue="0" MinValueOnExceedMinDigit="True" MaxValueOnExceedMaxDigit="True" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Text="0" Height="28" Width="100"/>
         </StackPanel>
-        <StackPanel Orientation="Horizontal" Grid.Row="12" Grid.Column="3" HorizontalAlignment="Center" VerticalAlignment="Center">
+        <StackPanel Orientation="Horizontal" Grid.Row="13" Grid.Column="3" HorizontalAlignment="Center" VerticalAlignment="Center">
             <syncfusion:IntegerTextBox Value="{Binding StatInformation.Digimon.Skill2Increase, Mode=TwoWay}" MaxValue="9999" MinValue="0" MinValueOnExceedMinDigit="True" MaxValueOnExceedMaxDigit="True" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Text="0" Height="28" Width="100"/>
         </StackPanel>
-        <StackPanel Orientation="Horizontal" Grid.Row="12" Grid.Column="4" HorizontalAlignment="Center" VerticalAlignment="Center">
-            <syncfusion:UpDown AllowEdit="False" TextAlignment="Center" ApplyZeroColor="False" Step="1" MinValue="0" MaxValue="4" NumberDecimalDigits="0" Value="{Binding StatInformation.Digimon.Skill2Points, Mode=TwoWay}" Height="28" Width="100"/>
+        <StackPanel Orientation="Horizontal" Grid.Row="13" Grid.Column="4" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <syncfusion:UpDown x:Name="skill2PointsBox" AllowEdit="False" TextAlignment="Center" ApplyZeroColor="False" Step="1" MinValue="0" MaxValue="4" NumberDecimalDigits="0" Value="{Binding StatInformation.Digimon.Skill2Points, Mode=TwoWay}" Height="28" Width="100"/>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" Grid.Row="13" Grid.Column="5" HorizontalAlignment="Left" VerticalAlignment="Center">
+            <syncfusion:UpDown x:Name="skillLevel2" AllowEdit="False" TextAlignment="Center" ApplyZeroColor="False" Step="1" MinValue="1" ValueChanging="SkillLevel_ValueChanging" MaxValue="{Binding ElementName=skill2PointsBox, Path=Value, Converter={StaticResource SkillPointsMaxLevelConverter}}" NumberDecimalDigits="0" Value="{Binding StatInformation.Digimon.Skill2Level, Mode=TwoWay}" Height="28" Width="100"/>
         </StackPanel>
         <!--F3-->
-        <Label Grid.Row="13" Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Center" Content="F3" FontWeight="Bold" Foreground="{StaticResource Foreground}"/>
-        <StackPanel Orientation="Horizontal" Grid.Row="13" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center">
+        <Label Grid.Row="14" Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Center" Content="F3" />
+        <StackPanel Orientation="Horizontal" Grid.Row="14" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center">
             <syncfusion:IntegerTextBox Value="{Binding StatInformation.Digimon.Skill3Base, Mode=TwoWay}" MaxValue="999999" MinValue="0" MinValueOnExceedMinDigit="True" MaxValueOnExceedMaxDigit="True" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Text="0" Height="28" Width="100"/>
         </StackPanel>
-        <StackPanel Orientation="Horizontal" Grid.Row="13" Grid.Column="3" HorizontalAlignment="Center" VerticalAlignment="Center">
+        <StackPanel Orientation="Horizontal" Grid.Row="14" Grid.Column="3" HorizontalAlignment="Center" VerticalAlignment="Center">
             <syncfusion:IntegerTextBox Value="{Binding StatInformation.Digimon.Skill3Increase, Mode=TwoWay}" MaxValue="9999" MinValue="0" MinValueOnExceedMinDigit="True" MaxValueOnExceedMaxDigit="True" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Text="0" Height="28" Width="100"/>
         </StackPanel>
-        <StackPanel Orientation="Horizontal" Grid.Row="13" Grid.Column="4" HorizontalAlignment="Center" VerticalAlignment="Center">
-            <syncfusion:UpDown AllowEdit="False" TextAlignment="Center" ApplyZeroColor="False" Step="1" MinValue="0" MaxValue="4" NumberDecimalDigits="0" Value="{Binding StatInformation.Digimon.Skill3Points, Mode=TwoWay}" Height="28" Width="100"/>
+        <StackPanel Orientation="Horizontal" Grid.Row="14" Grid.Column="4" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <syncfusion:UpDown x:Name="skill3PointsBox" AllowEdit="False" TextAlignment="Center" ApplyZeroColor="False" Step="1" MinValue="0" MaxValue="4" NumberDecimalDigits="0" Value="{Binding StatInformation.Digimon.Skill3Points, Mode=TwoWay}" Height="28" Width="100"/>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" Grid.Row="14" Grid.Column="5" HorizontalAlignment="Left" VerticalAlignment="Center">
+            <syncfusion:UpDown x:Name="skillLevel3" AllowEdit="False" TextAlignment="Center" ApplyZeroColor="False" Step="1" MinValue="1" ValueChanging="SkillLevel_ValueChanging" MaxValue="{Binding ElementName=skill3PointsBox, Path=Value, Converter={StaticResource SkillPointsMaxLevelConverter}}" NumberDecimalDigits="0" Value="{Binding StatInformation.Digimon.Skill3Level, Mode=TwoWay}" Height="28" Width="100"/>
         </StackPanel>
         <!--F4-->
-        <Label Grid.Row="14" Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Center" Content="F4" FontWeight="Bold" Foreground="{StaticResource Foreground}"/>
-        <StackPanel Orientation="Horizontal" Grid.Row="14" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center">
+        <Label Grid.Row="15" Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Center" Content="F4" />
+        <StackPanel Orientation="Horizontal" Grid.Row="15" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center">
             <syncfusion:IntegerTextBox Value="{Binding StatInformation.Digimon.Skill4Base, Mode=TwoWay}" MaxValue="999999" MinValue="0" MinValueOnExceedMinDigit="True" MaxValueOnExceedMaxDigit="True" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Text="0" Height="28" Width="100"/>
         </StackPanel>
-        <StackPanel Orientation="Horizontal" Grid.Row="14" Grid.Column="3" HorizontalAlignment="Center" VerticalAlignment="Center">
+        <StackPanel Orientation="Horizontal" Grid.Row="15" Grid.Column="3" HorizontalAlignment="Center" VerticalAlignment="Center">
             <syncfusion:IntegerTextBox Value="{Binding StatInformation.Digimon.Skill4Increase, Mode=TwoWay}" MaxValue="9999" MinValue="0" MinValueOnExceedMinDigit="True" MaxValueOnExceedMaxDigit="True" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Text="0" Height="28" Width="100"/>
         </StackPanel>
-        <StackPanel Orientation="Horizontal" Grid.Row="14" Grid.Column="4" HorizontalAlignment="Center" VerticalAlignment="Center">
-            <syncfusion:UpDown AllowEdit="False" TextAlignment="Center" ApplyZeroColor="False" Step="1" MinValue="0" MaxValue="4" NumberDecimalDigits="0" Value="{Binding StatInformation.Digimon.Skill4Points, Mode=TwoWay}" Height="28" Width="100"/>
+        <StackPanel Orientation="Horizontal" Grid.Row="15" Grid.Column="4" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <syncfusion:UpDown x:Name="skill4PointsBox" AllowEdit="False" TextAlignment="Center" ApplyZeroColor="False" Step="1" MinValue="0" MaxValue="4" NumberDecimalDigits="0" Value="{Binding StatInformation.Digimon.Skill4Points, Mode=TwoWay}" Height="28" Width="100"/>
         </StackPanel>
-        <!--Skill Buff Effect-->
-        <StackPanel Orientation="Horizontal" Grid.Row="9" Grid.Column="4" Grid.ColumnSpan="2" HorizontalAlignment="Right" Margin="0,0,20,0" VerticalAlignment="Center">
-            <CheckBox FontWeight="SemiBold" SelectedItem="{Binding StatInformation.Digimon.Elemental, Mode=TwoWay}" ItemsSource="{Binding ElementalAttributes}" Height="28" Width="100"/>
-            <Label Content="20% Skill Damage Buff"/>
+        <StackPanel Orientation="Horizontal" Grid.Row="15" Grid.Column="5" HorizontalAlignment="Left" VerticalAlignment="Center">
+            <syncfusion:UpDown x:Name="skillLevel4" AllowEdit="False" TextAlignment="Center" ApplyZeroColor="False" Step="1" MinValue="1" ValueChanging="SkillLevel_ValueChanging" MaxValue="{Binding ElementName=skill4PointsBox, Path=Value, Converter={StaticResource SkillPointsMaxLevelConverter}}" NumberDecimalDigits="0" Value="{Binding StatInformation.Digimon.Skill4Level, Mode=TwoWay}" Height="28" Width="100"/>
         </StackPanel>
 
 
         <!--Results-->
-        <Border Grid.Column="6" Grid.Row="0" Grid.RowSpan="15" Margin="5,0,0,0" BorderThickness="1,0,0,0" BorderBrush="{StaticResource Foreground}">
+        <Border Grid.Column="6" Grid.Row="0" Grid.RowSpan="16" Margin="5,0,0,0" BorderThickness="1,0,0,0" BorderBrush="{StaticResource Foreground}">
             <Grid>
                 <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto" MaxWidth="30"/>
                     <ColumnDefinition Width="Auto"/>
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
@@ -251,11 +266,73 @@
                     <RowDefinition Height="*"/>
                     <RowDefinition Height="*"/>
                     <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
-                <TextBlock Margin="3,0,0,0" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center">
-                <Run Text="Your Digimon's Stats on Level "/>
-                <Run Text="{Binding Level}"/>
-                </TextBlock>
+                <StackPanel Orientation="Horizontal" Grid.Column="0" ToolTip="Stats are rounded and can deviate minimally from the Stat Window in-game." Grid.ColumnSpan="4" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <Label Content="Your Digimon's Stats on Level"/>
+                    <Label Margin="-5,0,-5,0" Content="{Binding StatInformation.ResultLevel, Mode=OneWay}"/>
+                    <Label Content="&#x24D8;"/>
+                </StackPanel>
+
+                <!--Labels Stats-->
+                <Label Content="Digimon HP" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center" />
+                <Label Content="Pseudo HP &#x24D8;" ToolTip="Your Digimon's HP with applied Damage Reduction (Guardian, Sora and Henry).&#x0a;Please note, that Pseudo HP is only valid for the duration of all Damage Reduction."  Grid.Row="2" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+                <Label Content="Digimon DS" Grid.Row="3" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center" />
+                <Label Content="AT" Grid.Row="3" Grid.Column="2" HorizontalAlignment="Right" VerticalAlignment="Center" />
+                <Label Content="Digimon DE" Grid.Row="4" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center" />
+                <Label Content="CT" Grid.Row="4" Grid.Column="2" HorizontalAlignment="Right" VerticalAlignment="Center" />
+                <Label Content="Digimon EV" Grid.Row="5" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center" />
+                <Label Content="HT" Grid.Row="5" Grid.Column="2" HorizontalAlignment="Right" VerticalAlignment="Center" />
+                <!--Labels Damages-->
+                <Label Content="Attack every" Grid.Row="6" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+
+                <Label Content="&#x24D8;" Grid.Row="7" ToolTip="Damage Values have a random deviation of &#x00B1; a few percent around shown value.&#x0a;Please note, that Skill Damages are only valid for the duration of all Skill Buffs (Digimon and Tamer Skill Effects)" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+                <Label Content="No Advantage" Grid.Row="7" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <Label Content="Double Advantage" Grid.Row="7" Grid.Column="3" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <Label Content="Normal Attack" Grid.Row="8" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center" />
+                <Label Content="Critical Attack" Grid.Row="9" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center" />
+                <Label Content="F1" Grid.Row="10" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center" />
+                <Label Content="F2" Grid.Row="11" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center" />
+                <Label Content="F3" Grid.Row="12" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center" />
+                <Label Content="F4" Grid.Row="13" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center" />
+
+                <!--Values Stats-->
+                <Label Content="{Binding StatInformation.ResultHP, Mode=OneWay}" ContentStringFormat="{}{0:N0}" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                <Label Content="{Binding StatInformation.ResultPseudoHP, Mode=OneWay}" Grid.Row="2" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                <StackPanel Orientation="Horizontal" Grid.Column="2" Grid.ColumnSpan="2" Grid.Row="2" HorizontalAlignment="Left" VerticalAlignment="Center">
+                    <Label Content="{Binding StatInformation.ResultDamageReduction}"/>
+                    <Label Content="% Damage Reduction" Margin="-5,0,0,0" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                </StackPanel>
+                <Label Content="{Binding StatInformation.ResultDS, Mode=OneWay}" Grid.Row="3" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                <Label Content="{Binding StatInformation.ResultAT, Mode=OneWay}" Grid.Row="3" Grid.Column="3" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                <Label Content="{Binding StatInformation.ResultDE, Mode=OneWay}" Grid.Row="4" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                <StackPanel Orientation="Horizontal" Grid.Row="4" Grid.Column="3" HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <Label Content="{Binding StatInformation.ResultCT, Mode=OneWay}"  />
+                    <Label Margin="-6,0,0,0" Content="%"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Grid.Row="5" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <Label Content="{Binding StatInformation.ResultEV, Mode=OneWay}" ContentStringFormat="{}{0:D0}"/>
+                    <Label Margin="-6,0,0,0" Content="%"/>
+                </StackPanel>
+                <Label Content="{Binding StatInformation.ResultHT, Mode=OneWay}" Grid.Row="5" Grid.Column="3" HorizontalAlignment="Center" VerticalAlignment="Center" />
+
+                <!--Values Damages-->
+                <StackPanel Orientation="Horizontal" Grid.Row="6" Grid.Column="1" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <Label Content="{Binding StatInformation.ResultAttackSpeed,Mode=OneWay}"/>
+                    <Label Content="seconds (AS)"/>
+                </StackPanel>
+                <Label Content="{Binding StatInformation.ResultDamage, Mode=OneWay}" Grid.Row="8" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                <Label Content="{Binding StatInformation.ResultDamageDoubleAdvantage, Mode=OneWay}" Grid.Row="8" Grid.Column="3" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                <Label Content="{Binding StatInformation.ResultCriticalDamage, Mode=OneWay}" Grid.Row="9" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                <Label Content="{Binding StatInformation.ResultCriticalDamageDoubleAdvantage, Mode=OneWay}" Grid.Row="9" Grid.Column="3" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                <Label Content="{Binding StatInformation.ResultSkill1Damage, Mode=OneWay}" Grid.Row="10" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                <Label Content="{Binding StatInformation.ResultSkill1DamageDoubleAdvantage, Mode=OneWay}" Grid.Row="10" Grid.Column="3" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                <Label Content="{Binding StatInformation.ResultSkill2Damage, Mode=OneWay}" Grid.Row="11" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                <Label Content="{Binding StatInformation.ResultSkill2DamageDoubleAdvantage, Mode=OneWay}" Grid.Row="11" Grid.Column="3" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                <Label Content="{Binding StatInformation.ResultSkill3Damage, Mode=OneWay}" Grid.Row="12" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                <Label Content="{Binding StatInformation.ResultSkill3DamageDoubleAdvantage, Mode=OneWay}" Grid.Row="12" Grid.Column="3" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                <Label Content="{Binding StatInformation.ResultSkill4Damage, Mode=OneWay}" Grid.Row="13" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                <Label Content="{Binding StatInformation.ResultSkill4DamageDoubleAdvantage, Mode=OneWay}" Grid.Row="13" Grid.Column="3" HorizontalAlignment="Center" VerticalAlignment="Center" />
             </Grid>
         </Border>
     </Grid>

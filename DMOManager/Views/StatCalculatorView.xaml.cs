@@ -1,6 +1,7 @@
 ﻿using DMOHelper.Dialogs;
 using DMOHelper.Dialogs.DialogViewModels;
 using DMOHelper.Models;
+using Syncfusion.Windows.Shared;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -113,14 +114,44 @@ namespace DMOHelper.Views
             }
         }
 
-        private void SkillLevel_ValueChanging(object sender, Syncfusion.Windows.Shared.ValueChangingEventArgs e)
+        private void SkillLevel_ValueChanging(object sender, ValueChangingEventArgs e)
         {
-            int availablePoints = 76;
-            availablePoints -= viewModel.StatInformation.Digimon.Skill1Points * (viewModel.StatInformation.Digimon.Skill1Level - 1);
-            availablePoints -= viewModel.StatInformation.Digimon.Skill2Points * (viewModel.StatInformation.Digimon.Skill2Level - 1);
-            availablePoints -= viewModel.StatInformation.Digimon.Skill3Points * (viewModel.StatInformation.Digimon.Skill3Level - 1);
-            availablePoints -= viewModel.StatInformation.Digimon.Skill4Points * (viewModel.StatInformation.Digimon.Skill4Level - 1);
-            
+            if (sender != null && (double)e.OldValue < (double)e.NewValue)
+            {
+                int availablePoints = 76;
+                availablePoints -= viewModel.StatInformation.Digimon.Skill1Points * (viewModel.StatInformation.Digimon.Skill1Level - 1);
+                availablePoints -= viewModel.StatInformation.Digimon.Skill2Points * (viewModel.StatInformation.Digimon.Skill2Level - 1);
+                availablePoints -= viewModel.StatInformation.Digimon.Skill3Points * (viewModel.StatInformation.Digimon.Skill3Level - 1);
+                availablePoints -= viewModel.StatInformation.Digimon.Skill4Points * (viewModel.StatInformation.Digimon.Skill4Level - 1);
+                if (((UpDown)sender).Name == "skillLevel1")
+                {
+                    if(availablePoints < viewModel.StatInformation.Digimon.Skill1Points)
+                    {
+                        e.Cancel = true;
+                    }
+                }
+                if (((UpDown)sender).Name == "skillLevel2")
+                {
+                    if (availablePoints < viewModel.StatInformation.Digimon.Skill2Points)
+                    {
+                        e.Cancel = true;
+                    }
+                }
+                if (((UpDown)sender).Name == "skillLevel3")
+                {
+                    if (availablePoints < viewModel.StatInformation.Digimon.Skill3Points)
+                    {
+                        e.Cancel = true;
+                    }
+                }
+                if (((UpDown)sender).Name == "skillLevel4")
+                {
+                    if (availablePoints < viewModel.StatInformation.Digimon.Skill4Points)
+                    {
+                        e.Cancel = true;
+                    }
+                }
+            }
         }
     }
 }

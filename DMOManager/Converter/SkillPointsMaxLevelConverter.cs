@@ -8,18 +8,21 @@ namespace DMOHelper.Converter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            switch (value)
+            if(value == null)
             {
-                case 1:
+                return 1;
+            }
+            switch ((double)value)
+            {
+                case 1.0:
                     return 25;
-                case 2:
+                case 2.0:
                     return 25;
-                case 3:
+                case 3.0:
                     return 25;
-                case 4:
+                case 4.0:
                     return 20;
-                case 0:
-                case null:
+                case 0.0:
                 default:
                     return 1;
             }

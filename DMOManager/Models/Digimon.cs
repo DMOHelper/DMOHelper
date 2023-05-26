@@ -32,7 +32,7 @@ namespace DMOHelper.Models
         private int skill4Base;
         private int skill4Increase;
         private int skill4Points;
-        private int skillIncreaseBuff;
+        private bool skillIncreaseBuff;
         private int skill1Level;
         private int skill2Level;
         private int skill3Level;
@@ -257,7 +257,7 @@ namespace DMOHelper.Models
                 OnPropertyChanged();
             }
         }
-        public int SkillIncreaseBuff
+        public bool SkillIncreaseBuff
         {
             get { return skillIncreaseBuff; }
             set

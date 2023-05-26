@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Globalization;
 using System.IO;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Markup;
 
 namespace DMOHelper
 {
@@ -14,6 +16,10 @@ namespace DMOHelper
         {
             Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense(""); //enter your Syncfusion License here
             Syncfusion.SfSkinManager.SfSkinManager.ApplyStylesOnApplication = true;
+            FrameworkElement.LanguageProperty.OverrideMetadata(
+              typeof(FrameworkElement),
+              new FrameworkPropertyMetadata(XmlLanguage.GetLanguage(CultureInfo.InstalledUICulture.IetfLanguageTag)
+            ));
             base.OnStartup(e);
 
             SetupExceptionHandling();
@@ -45,10 +51,7 @@ namespace DMOHelper
                 System.Reflection.AssemblyName assemblyName = System.Reflection.Assembly.GetExecutingAssembly().GetName();
                 message = string.Format("Unhandled exception in {0} v{1}", assemblyName.Name, assemblyName.Version);
             }
-            catch (Exception ex)
-            {
-                
-            }
+            catch { }
             finally
             {
                 await File.WriteAllTextAsync("./ErrorLog.txt", message);

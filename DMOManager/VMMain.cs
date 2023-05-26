@@ -456,7 +456,7 @@ namespace DMOHelper
                                 record.Skill4Base = int.Parse(csv.GetField("skill4Base"));
                                 record.Skill4Increase = int.Parse(csv.GetField("skill4Increase"));
                                 record.Skill4Points = int.Parse(csv.GetField("skill4Points"));
-                                record.SkillIncreaseBuff = int.Parse(csv.GetField("skillIncreaseBuff"));
+                                record.SkillIncreaseBuff = bool.Parse(csv.GetField("skillIncreaseBuff"));
                                 record.Attribute = Enum.Parse<DigimonAttribute>(csv.GetField("attribute"));
                                 record.Elemental = Enum.Parse<ElementalAttribute>(csv.GetField("element"));
                                 digiPresets.Add(record);

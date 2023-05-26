@@ -33,6 +33,30 @@ namespace DMOHelper.Models
         private bool henry;
         private bool takato;
         private bool focus;
+        private bool aguKizunaBuff;
+        private int resultLevel;
+        private int resultHP;
+        private int resultDamageReduction;
+        private int resultPseudoHP;
+        private int resultAT;
+        private int resultDamage;
+        private int resultDamageDoubleAdvantage;
+        private int resultCriticalDamage;
+        private int resultCriticalDamageDoubleAdvantage;
+        private int resultSkill1Damage;
+        private int resultSkill1DamageDoubleAdvantage;
+        private int resultSkill2Damage;
+        private int resultSkill2DamageDoubleAdvantage;
+        private int resultSkill3Damage;
+        private int resultSkill3DamageDoubleAdvantage;
+        private int resultSkill4Damage;
+        private int resultSkill4DamageDoubleAdvantage;
+        private double resultAttackSpeed;
+        private int resultHT;
+        private int resultDE;
+        private int resultDS;
+        private double resultEV;
+        private double resultCT;
         private MemorySkillLevel tol;
         private MemorySkillLevel ruler;
         private MemorySkillLevel guardian;
@@ -273,6 +297,15 @@ namespace DMOHelper.Models
                 OnPropertyChanged();
             }
         }
+        public bool AguKizunaBuff
+        {
+            get { return aguKizunaBuff; }
+            set
+            {
+                aguKizunaBuff = value;
+                OnPropertyChanged();
+            }
+        }
         public MemorySkillLevel TOL
         {
             get { return tol; }
@@ -300,22 +333,213 @@ namespace DMOHelper.Models
                 OnPropertyChanged();
             }
         }
-        public int ResultLevel { get; set; }
-        public int ResultHP { get; set; }
-        public int ResultDamageReduction { get; set; }
-        public int ResultPseudoHP { get; set; }
-        public int ResultAT { get; set; }
-        public int ResultDamage { get; set; }
-        public int ResultDamageDoubleAdvantage { get; set; }
-        public int ResultCriticalDamage { get; set; }
-        public int ResultCriticalDamageDoubleAdvantage { get; set; }
-        public string ResultPseudoHPDuration { get; set; }
-        public double ResultAttackSpeed { get; set; }
-        public int ResultHT { get; set; }
-        public int ResultDE { get; set; }
-        public int ResultDS { get; set; }
-        public double ResultEV { get; set; }
-        public double ResultCT { get; set; }
+        public int ResultLevel
+        {
+            get { return resultLevel; }
+            set
+            {
+                resultLevel = value;
+                OnPropertyChanged();
+            }
+        }
+        public int ResultHP
+        {
+            get { return resultHP; }
+            set
+            {
+                resultHP = value;
+                OnPropertyChanged();
+            }
+        }
+        public int ResultDamageReduction
+        {
+            get { return resultDamageReduction; }
+            set
+            {
+                resultDamageReduction = value;
+                OnPropertyChanged();
+            }
+        }
+        public int ResultPseudoHP
+        {
+            get { return resultPseudoHP; }
+            set
+            {
+                resultPseudoHP = value;
+                OnPropertyChanged();
+            }
+        }
+        public int ResultAT
+        {
+            get { return resultAT; }
+            set
+            {
+                resultAT = value;
+                OnPropertyChanged();
+            }
+        }
+        public int ResultDamage
+        {
+            get { return resultDamage; }
+            set
+            {
+                resultDamage = value;
+                OnPropertyChanged();
+            }
+        }
+        public int ResultDamageDoubleAdvantage
+        {
+            get { return resultDamageDoubleAdvantage; }
+            set
+            {
+                resultDamageDoubleAdvantage = value;
+                OnPropertyChanged();
+            }
+        }
+        public int ResultCriticalDamage
+        {
+            get { return resultCriticalDamage; }
+            set
+            {
+                resultCriticalDamage = value;
+                OnPropertyChanged();
+            }
+        }
+        public int ResultCriticalDamageDoubleAdvantage
+        {
+            get { return resultCriticalDamageDoubleAdvantage; }
+            set
+            {
+                resultCriticalDamageDoubleAdvantage = value;
+                OnPropertyChanged();
+            }
+        }
+        public double ResultAttackSpeed
+        {
+            get { return resultAttackSpeed; }
+            set
+            {
+                resultAttackSpeed = value;
+                OnPropertyChanged();
+            }
+        }
+        public int ResultHT
+        {
+            get { return resultHT; }
+            set
+            {
+                resultHT = value;
+                OnPropertyChanged();
+            }
+        }
+        public int ResultDE
+        {
+            get { return resultDE; }
+            set
+            {
+                resultDE = value;
+                OnPropertyChanged();
+            }
+        }
+        public int ResultDS
+        {
+            get { return resultDS; }
+            set
+            {
+                resultDS = value;
+                OnPropertyChanged();
+            }
+        }
+        public double ResultEV
+        {
+            get { return resultEV; }
+            set
+            {
+                resultEV = value;
+                OnPropertyChanged();
+            }
+        }
+        public double ResultCT
+        {
+            get { return resultCT; }
+            set
+            {
+                resultCT = value;
+                OnPropertyChanged();
+            }
+        }
+        public int ResultSkill1Damage
+        {
+            get { return resultSkill1Damage; }
+            set
+            {
+                resultSkill1Damage = value;
+                OnPropertyChanged();
+            }
+        }
+        public int ResultSkill1DamageDoubleAdvantage
+        {
+            get { return resultSkill1DamageDoubleAdvantage; }
+            set
+            {
+                resultSkill1DamageDoubleAdvantage = value;
+                OnPropertyChanged();
+            }
+        }
+        public int ResultSkill2Damage
+        {
+            get { return resultSkill2Damage; }
+            set
+            {
+                resultSkill2Damage = value;
+                OnPropertyChanged();
+            }
+        }
+        public int ResultSkill2DamageDoubleAdvantage
+        {
+            get { return resultSkill2DamageDoubleAdvantage; }
+            set
+            {
+                resultSkill2DamageDoubleAdvantage = value;
+                OnPropertyChanged();
+            }
+        }
+        public int ResultSkill3Damage
+        {
+            get { return resultSkill3Damage; }
+            set
+            {
+                resultSkill3Damage = value;
+                OnPropertyChanged();
+            }
+        }
+        public int ResultSkill3DamageDoubleAdvantage
+        {
+            get { return resultSkill3DamageDoubleAdvantage; }
+            set
+            {
+                resultSkill3DamageDoubleAdvantage = value;
+                OnPropertyChanged();
+            }
+        }
+        public int ResultSkill4Damage
+        {
+            get { return resultSkill4Damage; }
+            set
+            {
+                resultSkill4Damage = value;
+                OnPropertyChanged();
+            }
+        }
+        public int ResultSkill4DamageDoubleAdvantage
+        {
+            get { return resultSkill4DamageDoubleAdvantage; }
+            set
+            {
+                resultSkill4DamageDoubleAdvantage = value;
+                OnPropertyChanged();
+            }
+        }
         public static List<StatFormula> StatFormulas { get; set; }
 
         public StatInformation()
@@ -386,7 +610,6 @@ namespace DMOHelper.Models
                 }
                 #endregion
                 ResultLevel = formulas.First().MaxLevel;
-                OnPropertyChanged("Level");
                 #region Load Title, Deck and Tamer Informations
                 Title title;
                 Deck deck;
@@ -490,7 +713,6 @@ namespace DMOHelper.Models
                     addedHP += Math.Floor(Ring.HP + Necklace.HP + Earrings.HP + Bracelet.HP + Digivice.HP + Seals.HP + title.HP);
                     //Results
                     ResultHP = (int)(baseHPwithDeck + Math.Floor(addedHP));
-                    OnPropertyChanged("ResultHP");
                     ResultDamageReduction = 0;
                     switch (Guardian)
                     {
@@ -517,21 +739,7 @@ namespace DMOHelper.Models
                         default:
                             break;
                     }
-                    ResultPseudoHPDuration = "permanently";
-                    if (Tamer == "Sora")
-                    {
-                        ResultDamageReduction += 30;
-                        ResultPseudoHPDuration = "13 seconds";
-                    }
-                    if (Tamer == "Henry" || Henry)
-                    {
-                        ResultDamageReduction += 30;
-                        ResultPseudoHPDuration = "8 seconds";
-                    }
-                    OnPropertyChanged("ResultDamageReduction");
                     ResultPseudoHP = (int)Math.Floor(ResultHP * (1 / (1 - (ResultDamageReduction / 100.0))));
-                    OnPropertyChanged("ResultPseudoHP");
-                    OnPropertyChanged("ResultPseudoHPDuration");
                 }
                 #endregion
                 #region Attack, Damage, CriticalDamage
@@ -640,16 +848,10 @@ namespace DMOHelper.Models
                     ResultDamageDoubleAdvantage = ResultAT + (int)Math.Floor(addedDamage + addedAdvantage);
                     ResultCriticalDamage = (int)Math.Floor(ResultDamage * ((criticalDamageValue + deck.CriticalDamage) / 100.0));
                     ResultCriticalDamageDoubleAdvantage = (int)Math.Floor(ResultDamageDoubleAdvantage * ((criticalDamageValue + deck.CriticalDamage) / 100.0));
-                    OnPropertyChanged("ResultAT");
-                    OnPropertyChanged("ResultDamage");
-                    OnPropertyChanged("ResultDamageDoubleAdvantage");
-                    OnPropertyChanged("ResultCriticalDamage");
-                    OnPropertyChanged("ResultCriticalDamageDoubleAdvantage");
                 }
                 #endregion
                 #region AttackSpeed
                 ResultAttackSpeed = Digimon.AS * (1 - ((Ring.AttackSpeed + Necklace.AttackSpeed + Earrings.AttackSpeed + Bracelet.AttackSpeed + deck.AS + TamerStats.ASReduction) / 100.0));
-                OnPropertyChanged("ResultAttackSpeed");
                 #endregion
                 #region DS
                 if (Digimon.BaseDS > 0)
@@ -699,7 +901,6 @@ namespace DMOHelper.Models
                     addedDS += Math.Floor(Ring.DS + Necklace.DS + Earrings.DS + Bracelet.DS + Digivice.DS + Seals.DS + title.DS);
                     //Results
                     ResultDS = (int)(baseDSMaxLevel + addedDS);
-                    OnPropertyChanged("ResultDS");
                 }
                 #endregion
                 #region DE
@@ -722,7 +923,6 @@ namespace DMOHelper.Models
                     addedDE += Math.Floor(TamerStats.DE * (TamerStats.Intimacy / 100.0));
                     addedDE += Math.Floor(Ring.Defense + Necklace.Defense + Earrings.Defense + Bracelet.Defense + Digivice.Defense + Seals.DE + title.DE);
                     ResultDE = (int)(baseDEMaxLevel + addedDE);
-                    OnPropertyChanged("ResultDE");
                 }
                 #endregion
                 #region Critical Chance
@@ -737,7 +937,6 @@ namespace DMOHelper.Models
                 if (Digimon.HT > 0)
                 {
                     ResultHT = (int)Math.Floor(Digimon.HT + Seals.HT + TamerStats.HT + Ring.HitRate + Necklace.HitRate + Earrings.HitRate + Bracelet.HitRate + Digivice.HitRate);
-                    OnPropertyChanged("ResultHT");
                 }
                 #endregion
                 #region Evasion
@@ -745,7 +944,6 @@ namespace DMOHelper.Models
                 {
                     double baseEV = Digimon.EV * (1 + (EvadeClone / 100.0));
                     ResultEV = Math.Round((baseEV + Ring.Evade + Necklace.Evade + Earrings.Evade + Bracelet.Evade + Seals.EV + Digivice.Evade), 2);
-                    OnPropertyChanged("ResultEV");
                 }
                 #endregion
             }
@@ -791,6 +989,7 @@ namespace DMOHelper.Models
                 output.Henry = statInfo.Henry;
                 output.Takato = statInfo.Takato;
                 output.Focus = statInfo.Focus;
+                output.AguKizunaBuff = statInfo.AguKizunaBuff;
                 output.Deck = statInfo.Deck;
                 output.Title = statInfo.Title;
                 output.AttackClone = statInfo.AttackClone;
@@ -917,6 +1116,7 @@ namespace DMOHelper.Models
         public bool Henry { get; set; }
         public bool Takato { get; set; }
         public bool Focus { get; set; }
+        public bool AguKizunaBuff { get; set; }
         public MemorySkillLevel TOL { get; set; }
         public MemorySkillLevel Ruler { get; set; }
         public MemorySkillLevel Guardian { get; set; }
@@ -946,6 +1146,7 @@ namespace DMOHelper.Models
             Henry = statInfo.Henry;
             Takato = statInfo.Takato;
             Focus = statInfo.Focus;
+            AguKizunaBuff = statInfo.AguKizunaBuff;
             Deck = statInfo.Deck;
             Title = statInfo.Title;
             AttackClone = statInfo.AttackClone;
