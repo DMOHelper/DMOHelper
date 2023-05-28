@@ -1,4 +1,5 @@
-﻿using SQLite;
+﻿using DMOHelper.Enums;
+using SQLite;
 
 namespace DMOHelper.Models
 {
@@ -12,6 +13,9 @@ namespace DMOHelper.Models
         public int HT { get; set; }
         public int HP { get; set; }
         public int DS { get; set; }
+        public int CT { get; set; }
+        public int EV { get; set; }
         public int SkillDamage { get; set; }
+        public ElementalAttribute SkillAttribute { get; set; }
     }
 }

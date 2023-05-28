@@ -115,13 +115,37 @@
         <Label Content="Additional Skills (Enh./Ult.)" Grid.Row="1" Grid.Column="3" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center"/>
 
         <StackPanel Orientation="Horizontal" Grid.Column="2" Grid.Row="2" HorizontalAlignment="Left" VerticalAlignment="Center">
-            <ComboBox IsEnabled="{Binding StatEnabled}"  FontWeight="SemiBold" SelectedItem="{Binding StatInformation.Tamer, Mode=TwoWay}" ItemsSource="{Binding Tamers}" Height="28" Width="100"/>
+            <ComboBox IsEnabled="{Binding StatEnabled}" FontWeight="SemiBold" SelectedItem="{Binding StatInformation.Tamer, Mode=TwoWay}" ItemsSource="{Binding Tamers}" Height="28" Width="100">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="{Binding Name}"/>
+                        </StackPanel>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
         </StackPanel>
         <StackPanel Orientation="Horizontal" Grid.Column="3" Grid.Row="2" HorizontalAlignment="Left" VerticalAlignment="Center">
-            <ComboBox IsEnabled="{Binding StatEnabled}"  FontWeight="SemiBold" SelectedItem="{Binding StatInformation.Skill1, Mode=TwoWay}" ItemsSource="{Binding TamerSkills}" Height="28" Width="100"/>
+            <ComboBox IsEnabled="{Binding StatEnabled}" FontWeight="SemiBold" SelectedItem="{Binding StatInformation.Skill1, Mode=TwoWay}" ItemsSource="{Binding TamerSkills}" Height="28" Width="100">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="{Binding Name}"/>
+                        </StackPanel>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
         </StackPanel>
         <StackPanel Orientation="Horizontal" Grid.Column="4" Grid.Row="2" HorizontalAlignment="Left" VerticalAlignment="Center">
-            <ComboBox IsEnabled="{Binding StatEnabled}"  FontWeight="SemiBold" SelectedItem="{Binding StatInformation.Skill2, Mode=TwoWay}" ItemsSource="{Binding TamerSkills}" Height="28" Width="100"/>
+            <ComboBox IsEnabled="{Binding StatEnabled}" FontWeight="SemiBold" SelectedItem="{Binding StatInformation.Skill2, Mode=TwoWay}" ItemsSource="{Binding TamerSkills}" Height="28" Width="100">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="{Binding Name}"/>
+                        </StackPanel>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
         </StackPanel>
         <!--Tamer Buttons-->
         <StackPanel Orientation="Horizontal" Grid.Column="5" Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Center">
@@ -165,12 +189,29 @@
         <StackPanel Orientation="Horizontal" Grid.Row="7" Grid.Column="5" HorizontalAlignment="Left" VerticalAlignment="Center">
             <CheckBox Content="Agumon Kizuna Buff" HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="SemiBold" IsChecked="{Binding StatInformation.AguKizunaBuff, Mode=TwoWay}" />
         </StackPanel>
+        <!--Deck and Title-->
         <StackPanel Orientation="Horizontal" Grid.Row="8" Grid.Column="4" Grid.ColumnSpan="2" HorizontalAlignment="Left" VerticalAlignment="Center">
-            <ComboBox FontWeight="SemiBold" SelectedItem="{Binding StatInformation.Title, Mode=TwoWay}" ItemsSource="{Binding Titles}" Height="28" Width="240"/>
+            <ComboBox FontWeight="SemiBold" SelectedItem="{Binding StatInformation.Title, Mode=TwoWay}" ItemsSource="{Binding Titles}" Height="28" Width="240">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="{Binding Name}"/>
+                        </StackPanel>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
             <Label Content="Title" FontWeight="Bold"/>
         </StackPanel>
         <StackPanel Orientation="Horizontal" Grid.Row="9" Grid.Column="4" Grid.ColumnSpan="2" HorizontalAlignment="Left" VerticalAlignment="Center">
-            <ComboBox FontWeight="SemiBold" SelectedItem="{Binding StatInformation.Deck, Mode=TwoWay}" ItemsSource="{Binding Decks}" Height="28" Width="240"/>
+            <ComboBox FontWeight="SemiBold" SelectedItem="{Binding StatInformation.Deck, Mode=TwoWay}" ItemsSource="{Binding Decks}" Height="28" Width="240">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="{Binding Name}"/>
+                        </StackPanel>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
             <Label Content="Deck" FontWeight="Bold"/>
         </StackPanel>
         <!--Skill Buff Effect-->
@@ -268,7 +309,7 @@
                     <RowDefinition Height="*"/>
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
-                <StackPanel Orientation="Horizontal" Grid.Column="0" ToolTip="Stats are rounded and can deviate minimally from the Stat Window in-game." Grid.ColumnSpan="4" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <StackPanel Orientation="Horizontal" Grid.Column="0" ToolTip="Stats are rounded and can deviate minimally from the Stat Window in-game.&#x0a;Stats and Damages only valid for the duration of all activated Buffs.&#x0a;This especially counts for Tamer Skills and Deck Buffs, which applies only for short time periods." Grid.ColumnSpan="4" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center">
                     <Label Content="Your Digimon's Stats on Level"/>
                     <Label Margin="-5,0,-5,0" Content="{Binding StatInformation.ResultLevel, Mode=OneWay}"/>
                     <Label Content="&#x24D8;"/>
@@ -276,7 +317,7 @@
 
                 <!--Labels Stats-->
                 <Label Content="Digimon HP &#x24D8;" ToolTip="HP Calculation in-game seems currently bugged for some Digimon:&#x0a;- HP from Deck isn't always correct applied&#x0a;- HP from Tamer isn't always correct applied" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center" />
-                <Label Content="Pseudo HP &#x24D8;" ToolTip="Your Digimon's HP with applied Damage Reduction (Guardian, Sora and Henry).&#x0a;Please note, that Pseudo HP is only valid for the duration of all Damage Reduction."  Grid.Row="2" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+                <Label Content="Pseudo HP &#x24D8;" ToolTip="Your Digimon's HP with applied Damage Reduction (Guardian, Sora and Henry)."  Grid.Row="2" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center"/>
                 <Label Content="Digimon DS" Grid.Row="3" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center" />
                 <Label Content="AT" Grid.Row="3" Grid.Column="2" HorizontalAlignment="Right" VerticalAlignment="Center" />
                 <Label Content="Digimon DE" Grid.Row="4" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center" />
@@ -286,7 +327,7 @@
                 <!--Labels Damages-->
                 <Label Content="Attack every" Grid.Row="6" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center"/>
 
-                <Label Content="&#x24D8;" Grid.Row="7" ToolTip="Damage Values are meant to be neutral damage (so no enemy stats are considered in calculation)&#x0a;Damage Values have a random deviation of &#x00B1; a few percent around shown value.&#x0a;Please note, that Skill Damages are only valid for the duration of all Skill Buffs (Digimon and Tamer Skill Effects)" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+                <Label Content="&#x24D8;" Grid.Row="7" ToolTip="Damage Values are meant to be neutral damage (so no enemy stats are considered in calculation)&#x0a;Damage Values have a random deviation of &#x00B1; a few percent around shown value.&#x0a;" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center"/>
                 <Label Content="No Advantage" Grid.Row="7" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                 <Label Content="Double Advantage" Grid.Row="7" Grid.Column="3" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                 <Label Content="Normal Attack" Grid.Row="8" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center" />

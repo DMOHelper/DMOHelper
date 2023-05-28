@@ -37,12 +37,19 @@ namespace DMOHelper.Dialogs
                     DS = viewModel.DS,
                     AT = viewModel.AT,
                     DE = viewModel.DE,
-                    Intimacy = viewModel.Intimacy,
+                    SkillDamage = viewModel.SkillDamage,
+                    Intimacy = viewModel.Intimacy
                 };
                 if (viewModel.MatureBlue)
                 {
                     output.ASReduction = 7;
                     output.HT = 0;
+                    output.CT = 0;
+                }
+                else if (viewModel.VeteranRed)
+                {
+                    output.ASReduction = 0;
+                    output.HT = 500;
                     output.CT = 0;
                 }
                 else if (viewModel.ProfessionalBlack)

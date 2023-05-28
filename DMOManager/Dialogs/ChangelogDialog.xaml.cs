@@ -1,6 +1,8 @@
 ﻿using Syncfusion.Windows.Shared;
 using System.Windows;
 using System;
+using MdXaml;
+using System.Windows.Documents;
 
 namespace DMOHelper.Dialogs
 {
@@ -12,7 +14,8 @@ namespace DMOHelper.Dialogs
         public ChangelogDialog(string markdown)
         {
             InitializeComponent();
-            Markdownview.Markdown = markdown;
+            Markdown engine = new Markdown();
+            Markdownview.Document = engine.Transform(markdown);
         }
 
         private void btnDialogOk_Click(object sender, RoutedEventArgs e)

@@ -10,8 +10,10 @@ namespace DMOHelper.Dialogs.DialogViewModels
         private int at;
         private int de;
         private int intimacy;
+        private int skilldamage;
         private bool matureBlue;
         private bool professionalBlack;
+        private bool veteranRed;
 
         public int HP
         {
@@ -49,6 +51,15 @@ namespace DMOHelper.Dialogs.DialogViewModels
                 OnPropertyChanged();
             }
         }
+        public int SkillDamage
+        {
+            get { return skilldamage; }
+            set
+            {
+                skilldamage = value;
+                OnPropertyChanged();
+            }
+        }
         public int Intimacy
         {
             get { return intimacy; }
@@ -76,6 +87,15 @@ namespace DMOHelper.Dialogs.DialogViewModels
                 OnPropertyChanged();
             }
         }
+        public bool VeteranRed
+        {
+            get { return veteranRed; }
+            set
+            {
+                veteranRed = value;
+                OnPropertyChanged();
+            }
+        }
 
         public TamerStatsVM(TamerStats stats)
         {
@@ -83,21 +103,34 @@ namespace DMOHelper.Dialogs.DialogViewModels
             DS = stats.DS;
             AT = stats.AT;
             DE = stats.DE;
+            SkillDamage = stats.SkillDamage;
             Intimacy = stats.Intimacy;
-            if(stats.ASReduction > 0)
+            if (stats.ASReduction > 0)
             {
                 MatureBlue = true;
                 ProfessionalBlack = false;
+                VeteranRed = false;
             }
-            else if(stats.HT > 0 && stats.CT > 0)
+            else if (stats.HT > 0 && stats.CT > 0)
             {
-                MatureBlue = false;
-                ProfessionalBlack = true;
+                if (stats.CT > 0)
+                {
+                    MatureBlue = false;
+                    ProfessionalBlack = true;
+                    VeteranRed = false;
+                }
+                else if (stats.CT == 0)
+                {
+                    MatureBlue = false;
+                    ProfessionalBlack = false;
+                    VeteranRed = true;
+                }
             }
             else
             {
                 MatureBlue = false;
                 ProfessionalBlack = false;
+                VeteranRed = false;
             }
         }
     }

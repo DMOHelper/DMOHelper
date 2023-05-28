@@ -15,6 +15,7 @@ using System.Net.Http;
 using System.Reflection;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Diagnostics;
 
 namespace DMOHelper
 {
@@ -147,56 +148,53 @@ namespace DMOHelper
                 };
             }
         }
-        public static List<string> Decks
+        public static List<Deck> Decks
         {
             get
             {
-                List<string> output = new List<string>();
                 var decks = SQLiteDatabaseManager.Database.Table<Deck>().ToListAsync().Result;
-                foreach (Deck deck in decks)
+                if (decks != null)
                 {
-                    output.Add(deck.Name);
+                    return decks;
                 }
-                return output;
+                else return new List<Deck>();
             }
         }
-        public static List<string> Titles
+        public static List<Title> Titles
         {
             get
             {
-                List<string> output = new List<string>();
                 var titles = SQLiteDatabaseManager.Database.Table<Title>().ToListAsync().Result;
-                foreach (Title title in titles)
+                if (titles != null)
                 {
-                    output.Add(title.Name);
+                    return titles;
                 }
-                return output;
+                else return new List<Title>();
             }
         }
-        public static List<string> Tamers
+        public static List<Tamer> Tamers
         {
             get
             {
-                List<string> output = new List<string>();
                 var tamers = SQLiteDatabaseManager.Database.Table<Tamer>().ToListAsync().Result;
-                foreach (Tamer tamer in tamers)
+                if (tamers != null)
                 {
-                    output.Add(tamer.Name);
+                    return tamers;
                 }
-                return output;
+                else return new List<Tamer>();
             }
         }
-        public static List<string> TamerSkills
+        public static List<TamerSkill> TamerSkills
         {
             get
             {
-                List<string> output = new List<string>() { "None" };
+                List<TamerSkill> output = new List<TamerSkill>() { new TamerSkill() { Name = "None" } };
                 var skills = SQLiteDatabaseManager.Database.Table<TamerSkill>().ToListAsync().Result;
                 foreach (TamerSkill skill in skills)
                 {
                     if (skill.EnhancedCooldown > 0 || skill.UltimateCooldown > 0) //Filters Tamer Skills that are not available as Enhanced/Ultimate
                     {
-                        output.Add(skill.Name);
+                        output.Add(skill);
                     }
                 }
                 return output;
@@ -343,35 +341,32 @@ namespace DMOHelper
             }
             bool.TryParse(Environment.GetEnvironmentVariable("ClickOnce_IsNetworkDeployed"), out bool isNetworkDeployed);
             bool.TryParse(Environment.GetEnvironmentVariable("ClickOnce_IsFirstRun"), out bool isFirstRun);
-            if (!isNetworkDeployed && !isFirstRun)
+            if (isNetworkDeployed && isFirstRun)
             {
-                string markdown = GetChangelog().Result;
-                if(!string.IsNullOrWhiteSpace(markdown))
+                string markdown = string.Empty;
+                Task.Run(async () =>
+                {
+                    try
+                    {
+                        using (HttpClient client = new HttpClient())
+                        {
+
+                            using (HttpResponseMessage response = await client.GetAsync("https://raw.githubusercontent.com/DMOHelper/DMOHelper/master/Changelog.MD"))
+                            using (Stream streamToReadFrom = await response.Content.ReadAsStreamAsync())
+                            {
+                                StreamReader reader = new StreamReader(streamToReadFrom);
+                                markdown = await reader.ReadToEndAsync();
+                            }
+                        }
+                    }
+                    catch { }
+                }).Wait();
+                if (!string.IsNullOrWhiteSpace(markdown))
                 {
                     ChangelogDialog changelogDialog = new ChangelogDialog(markdown);
                     changelogDialog.ShowDialog();
                 }
             }
-        }
-
-        public async Task<string> GetChangelog()
-        {
-            try
-            {
-                string output;
-                using (HttpClient client = new HttpClient())
-                {
-
-                    using (HttpResponseMessage response = await client.GetAsync("https://raw.githubusercontent.com/DMOHelper/DMOHelper/master/Changelog.MD"))
-                    using (Stream streamToReadFrom = await response.Content.ReadAsStreamAsync())
-                    {
-                        StreamReader reader = new StreamReader(streamToReadFrom);
-                        output = await reader.ReadToEndAsync();
-                    }
-                }
-                return output;
-            }
-            catch { return string.Empty; }
         }
 
         public static VMMain GetInstance()
@@ -604,19 +599,32 @@ namespace DMOHelper
                                 var record = new TamerSkill
                                 {
                                     Name = csv.GetField("name"),
-                                    ChangesStat = bool.Parse(csv.GetField("changesStats")),
                                     HasPartyEffect = bool.Parse(csv.GetField("partyEffect")),
                                     CanStack = bool.Parse(csv.GetField("canStack")),
-                                    Effect1 = csv.GetField("effect1"),
-                                    Effect2 = csv.GetField("effect2"),
-                                    Value1 = int.Parse(csv.GetField("value1")),
-                                    Value2 = int.Parse(csv.GetField("value2")),
+                                    CT = double.Parse(csv.GetField("CT")),
+                                    EnhancedCT = double.Parse(csv.GetField("enhancedCT")),
+                                    DamageResist = double.Parse(csv.GetField("DamageResist")),
+                                    EnhancedDamageResist = double.Parse(csv.GetField("enhancedDamageResist")),
+                                    CriticalDamage = double.Parse(csv.GetField("CriticalDamage")),
+                                    EnhancedCriticalDamage = double.Parse(csv.GetField("enhancedCriticalDamage")),
+                                    AT = double.Parse(csv.GetField("AT")),
+                                    EnhancedAT = double.Parse(csv.GetField("enhancedAT")),
+                                    SkillDamage = double.Parse(csv.GetField("SkillDamage")),
+                                    EnhancedSkillDamage = double.Parse(csv.GetField("enhancedSkillDamage")),
+                                    Heal = double.Parse(csv.GetField("Heal")),
+                                    EnhancedHeal = double.Parse(csv.GetField("enhancedHeal")),
+                                    DSHeal = double.Parse(csv.GetField("DSHeal")),
+                                    EnhancedDSHeal = double.Parse(csv.GetField("enhancedDSHeal")),
+                                    HP = double.Parse(csv.GetField("HP")),
+                                    EnhancedHP = double.Parse(csv.GetField("enhancedHP")),
+                                    EV = double.Parse(csv.GetField("EV")),
+                                    EnhancedEV = double.Parse(csv.GetField("enhancedEV")),
+                                    HT = double.Parse(csv.GetField("HT")),
+                                    EnhancedHT = double.Parse(csv.GetField("enhancedHT")),
+                                    DE = double.Parse(csv.GetField("DE")),
+                                    EnhancedDE = double.Parse(csv.GetField("enhancedDE")),
                                     Cooldown = int.Parse(csv.GetField("cooldown")),
-                                    EnhancedValue1 = int.Parse(csv.GetField("enhancedValue1")),
-                                    EnhancedValue2 = int.Parse(csv.GetField("enhancedValue2")),
                                     EnhancedCooldown = int.Parse(csv.GetField("enhancedCooldown")),
-                                    UltimateValue1 = int.Parse(csv.GetField("ultimateValue1")),
-                                    UltimateValue2 = int.Parse(csv.GetField("ultimateValue2")),
                                     UltimateCooldown = int.Parse(csv.GetField("ultimateCooldown"))
                                 };
                                 skills.Add(record);
@@ -651,7 +659,10 @@ namespace DMOHelper
                                     HT = int.Parse(csv.GetField("ht")),
                                     HP = int.Parse(csv.GetField("hp")),
                                     DS = int.Parse(csv.GetField("ds")),
+                                    CT = int.Parse(csv.GetField("ct")),
+                                    EV = int.Parse(csv.GetField("ev")),
                                     SkillDamage = int.Parse(csv.GetField("skilldamage")),
+                                    SkillAttribute = Enum.Parse<ElementalAttribute>(csv.GetField("skillAttribute"))
                                 };
                                 titles.Add(record);
                             }
