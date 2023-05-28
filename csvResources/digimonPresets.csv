@@ -14,4 +14,4 @@ name,rank,evolution,attribute,element,type,baseHP,baseDS,baseAT,AS,baseCT,HT,bas
 "Fanglongmon (Shin)",SSS,Jogress,Data,Land,Defender,13240,4180,4927,240,1080,420,354,3060,9919,247,2,24191,530,3,111059,4034,3,7082,257,3,false
 "Omegamon Alter-S",SS+,Jogress,Virus,Light,ShortAttacker,7310,2550,2969,250,840,500,208,3360,6625,255,2,13957,408,3,0,0,0,0,0,0,false
 "Omegamon",SS+,Jogress,Vaccine,Light,QuickAttacker,6400,2650,2407,210,1010,488,193,3820,5483,160,2,16265,356,3,0,0,0,0,0,0,false
-"Examon",SS+,Jogress,Data,Light,ShortAttacker,7750,2550,3002,240,700,455,208,2980,6567,192,2,18081,396,3,0,0,0,0,0,0,false
+"Examon",SS+,Jogress,Data,Light,ShortAttacker,7750,2550,3002,240,920,455,208,2980,6567,192,2,18081,396,3,0,0,0,0,0,0,false
