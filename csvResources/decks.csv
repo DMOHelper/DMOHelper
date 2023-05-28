@@ -1,8 +1,9 @@
 name,hp,as,criticaldamage,damage,skilldamage
+"None",0,0,0,0,0
+"Legendary Knights of Vaccine",15,15,0,20,0
 "Royal Knights X",20,17,100,0,0
 "MEGA-OMEGA",0,15,100,0,15
 "OMEGA",0,0,0,0,12
-"Legendary Knights of Vaccine",15,15,0,20,0
 "Ancient Spirit Evolution",15,0,5,25,0
 "Hyper Spirit Evolution",10,0,2,15,0
 "Ego of Darkness",15,0,0,12,0

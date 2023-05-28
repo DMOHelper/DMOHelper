@@ -1,4 +1,5 @@
 name,at,de,ht,hp,ds,ct,ev,skilldamage,skillAttribute
+"None",0,0,0,0,0,0,0,0,Neutral
 "Fall of the Royal Family",500,0,500,1500,0,0,0,0,Neutral
 "A new World",0,0,500,1000,0,0,0,15,EqualDigimon
 "Royal",0,200,0,1500,0,0,0,12,EqualDigimon

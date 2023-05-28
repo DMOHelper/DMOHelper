@@ -148,53 +148,56 @@ namespace DMOHelper
                 };
             }
         }
-        public static List<Deck> Decks
+        public static List<string> Decks
         {
             get
             {
+                List<string> output = new List<string>();
                 var decks = SQLiteDatabaseManager.Database.Table<Deck>().ToListAsync().Result;
-                if (decks != null)
+                foreach(Deck deck in decks)
                 {
-                    return decks;
+                    output.Add(deck.Name);
                 }
-                else return new List<Deck>();
+                return output;
             }
         }
-        public static List<Title> Titles
+        public static List<string> Titles
         {
             get
             {
+                List<string> output = new List<string>();
                 var titles = SQLiteDatabaseManager.Database.Table<Title>().ToListAsync().Result;
-                if (titles != null)
+                foreach(Title title in titles)
                 {
-                    return titles;
+                    output.Add(title.Name);
                 }
-                else return new List<Title>();
+                return output;
             }
         }
-        public static List<Tamer> Tamers
+        public static List<string> Tamers
         {
             get
             {
+                List<string> output = new List<string>();
                 var tamers = SQLiteDatabaseManager.Database.Table<Tamer>().ToListAsync().Result;
-                if (tamers != null)
-                {
-                    return tamers;
+                foreach(Tamer tamer in tamers)
+                { 
+                    output.Add(tamer.Name);
                 }
-                else return new List<Tamer>();
+                return output;
             }
         }
-        public static List<TamerSkill> TamerSkills
+        public static List<string> TamerSkills
         {
             get
             {
-                List<TamerSkill> output = new List<TamerSkill>() { new TamerSkill() { Name = "None" } };
+                List<string> output = new List<string>() ;
                 var skills = SQLiteDatabaseManager.Database.Table<TamerSkill>().ToListAsync().Result;
                 foreach (TamerSkill skill in skills)
                 {
                     if (skill.EnhancedCooldown > 0 || skill.UltimateCooldown > 0) //Filters Tamer Skills that are not available as Enhanced/Ultimate
                     {
-                        output.Add(skill);
+                        output.Add(skill.Name);
                     }
                 }
                 return output;
@@ -602,27 +605,27 @@ namespace DMOHelper
                                     HasPartyEffect = bool.Parse(csv.GetField("partyEffect")),
                                     CanStack = bool.Parse(csv.GetField("canStack")),
                                     CT = double.Parse(csv.GetField("CT")),
-                                    EnhancedCT = double.Parse(csv.GetField("enhancedCT")),
+                                    EnhancedCT = double.Parse(csv.GetField("EnhancedCT")),
                                     DamageResist = double.Parse(csv.GetField("DamageResist")),
-                                    EnhancedDamageResist = double.Parse(csv.GetField("enhancedDamageResist")),
+                                    EnhancedDamageResist = double.Parse(csv.GetField("EnhancedDamageResist")),
                                     CriticalDamage = double.Parse(csv.GetField("CriticalDamage")),
-                                    EnhancedCriticalDamage = double.Parse(csv.GetField("enhancedCriticalDamage")),
+                                    EnhancedCriticalDamage = double.Parse(csv.GetField("EnhancedCriticalDamage")),
                                     AT = double.Parse(csv.GetField("AT")),
-                                    EnhancedAT = double.Parse(csv.GetField("enhancedAT")),
+                                    EnhancedAT = double.Parse(csv.GetField("EnhancedAT")),
                                     SkillDamage = double.Parse(csv.GetField("SkillDamage")),
-                                    EnhancedSkillDamage = double.Parse(csv.GetField("enhancedSkillDamage")),
+                                    EnhancedSkillDamage = double.Parse(csv.GetField("EnhancedSkillDamage")),
                                     Heal = double.Parse(csv.GetField("Heal")),
-                                    EnhancedHeal = double.Parse(csv.GetField("enhancedHeal")),
+                                    EnhancedHeal = double.Parse(csv.GetField("EnhancedHeal")),
                                     DSHeal = double.Parse(csv.GetField("DSHeal")),
-                                    EnhancedDSHeal = double.Parse(csv.GetField("enhancedDSHeal")),
+                                    EnhancedDSHeal = double.Parse(csv.GetField("EnhancedDSHeal")),
                                     HP = double.Parse(csv.GetField("HP")),
-                                    EnhancedHP = double.Parse(csv.GetField("enhancedHP")),
+                                    EnhancedHP = double.Parse(csv.GetField("EnhancedHP")),
                                     EV = double.Parse(csv.GetField("EV")),
-                                    EnhancedEV = double.Parse(csv.GetField("enhancedEV")),
+                                    EnhancedEV = double.Parse(csv.GetField("EnhancedEV")),
                                     HT = double.Parse(csv.GetField("HT")),
-                                    EnhancedHT = double.Parse(csv.GetField("enhancedHT")),
+                                    EnhancedHT = double.Parse(csv.GetField("EnhancedHT")),
                                     DE = double.Parse(csv.GetField("DE")),
-                                    EnhancedDE = double.Parse(csv.GetField("enhancedDE")),
+                                    EnhancedDE = double.Parse(csv.GetField("EnhancedDE")),
                                     Cooldown = int.Parse(csv.GetField("cooldown")),
                                     EnhancedCooldown = int.Parse(csv.GetField("enhancedCooldown")),
                                     UltimateCooldown = int.Parse(csv.GetField("ultimateCooldown"))

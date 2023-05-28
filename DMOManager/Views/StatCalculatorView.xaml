@@ -115,37 +115,14 @@
         <Label Content="Additional Skills (Enh./Ult.)" Grid.Row="1" Grid.Column="3" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center"/>
 
         <StackPanel Orientation="Horizontal" Grid.Column="2" Grid.Row="2" HorizontalAlignment="Left" VerticalAlignment="Center">
-            <ComboBox IsEnabled="{Binding StatEnabled}" FontWeight="SemiBold" SelectedItem="{Binding StatInformation.Tamer, Mode=TwoWay}" ItemsSource="{Binding Tamers}" Height="28" Width="100">
-                <ComboBox.ItemTemplate>
-                    <DataTemplate>
-                        <StackPanel Orientation="Horizontal">
-                            <TextBlock Text="{Binding Name}"/>
-                        </StackPanel>
-                    </DataTemplate>
-                </ComboBox.ItemTemplate>
-            </ComboBox>
+            <ComboBox IsEnabled="{Binding StatEnabled}" FontWeight="SemiBold" SelectedItem="{Binding StatInformation.Tamer, Mode=TwoWay}" ItemsSource="{Binding Tamers}" Height="28" Width="100"/>
+
         </StackPanel>
         <StackPanel Orientation="Horizontal" Grid.Column="3" Grid.Row="2" HorizontalAlignment="Left" VerticalAlignment="Center">
-            <ComboBox IsEnabled="{Binding StatEnabled}" FontWeight="SemiBold" SelectedItem="{Binding StatInformation.Skill1, Mode=TwoWay}" ItemsSource="{Binding TamerSkills}" Height="28" Width="100">
-                <ComboBox.ItemTemplate>
-                    <DataTemplate>
-                        <StackPanel Orientation="Horizontal">
-                            <TextBlock Text="{Binding Name}"/>
-                        </StackPanel>
-                    </DataTemplate>
-                </ComboBox.ItemTemplate>
-            </ComboBox>
+            <ComboBox IsEnabled="{Binding StatEnabled}" FontWeight="SemiBold" SelectedItem="{Binding StatInformation.Skill1, Mode=TwoWay}" ItemsSource="{Binding TamerSkills}" Height="28" Width="100"/>
         </StackPanel>
         <StackPanel Orientation="Horizontal" Grid.Column="4" Grid.Row="2" HorizontalAlignment="Left" VerticalAlignment="Center">
-            <ComboBox IsEnabled="{Binding StatEnabled}" FontWeight="SemiBold" SelectedItem="{Binding StatInformation.Skill2, Mode=TwoWay}" ItemsSource="{Binding TamerSkills}" Height="28" Width="100">
-                <ComboBox.ItemTemplate>
-                    <DataTemplate>
-                        <StackPanel Orientation="Horizontal">
-                            <TextBlock Text="{Binding Name}"/>
-                        </StackPanel>
-                    </DataTemplate>
-                </ComboBox.ItemTemplate>
-            </ComboBox>
+            <ComboBox IsEnabled="{Binding StatEnabled}" FontWeight="SemiBold" SelectedItem="{Binding StatInformation.Skill2, Mode=TwoWay}" ItemsSource="{Binding TamerSkills}" Height="28" Width="100"/>
         </StackPanel>
         <!--Tamer Buttons-->
         <StackPanel Orientation="Horizontal" Grid.Column="5" Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Center">
@@ -191,27 +168,11 @@
         </StackPanel>
         <!--Deck and Title-->
         <StackPanel Orientation="Horizontal" Grid.Row="8" Grid.Column="4" Grid.ColumnSpan="2" HorizontalAlignment="Left" VerticalAlignment="Center">
-            <ComboBox FontWeight="SemiBold" SelectedItem="{Binding StatInformation.Title, Mode=TwoWay}" ItemsSource="{Binding Titles}" Height="28" Width="240">
-                <ComboBox.ItemTemplate>
-                    <DataTemplate>
-                        <StackPanel Orientation="Horizontal">
-                            <TextBlock Text="{Binding Name}"/>
-                        </StackPanel>
-                    </DataTemplate>
-                </ComboBox.ItemTemplate>
-            </ComboBox>
+            <ComboBox FontWeight="SemiBold" SelectedItem="{Binding StatInformation.Title, Mode=TwoWay}" ItemsSource="{Binding Titles}" Height="28" Width="240"/>
             <Label Content="Title" FontWeight="Bold"/>
         </StackPanel>
         <StackPanel Orientation="Horizontal" Grid.Row="9" Grid.Column="4" Grid.ColumnSpan="2" HorizontalAlignment="Left" VerticalAlignment="Center">
-            <ComboBox FontWeight="SemiBold" SelectedItem="{Binding StatInformation.Deck, Mode=TwoWay}" ItemsSource="{Binding Decks}" Height="28" Width="240">
-                <ComboBox.ItemTemplate>
-                    <DataTemplate>
-                        <StackPanel Orientation="Horizontal">
-                            <TextBlock Text="{Binding Name}"/>
-                        </StackPanel>
-                    </DataTemplate>
-                </ComboBox.ItemTemplate>
-            </ComboBox>
+            <ComboBox FontWeight="SemiBold" SelectedItem="{Binding StatInformation.Deck, Mode=TwoWay}" ItemsSource="{Binding Decks}" Height="28" Width="240"/>
             <Label Content="Deck" FontWeight="Bold"/>
         </StackPanel>
         <!--Skill Buff Effect-->
