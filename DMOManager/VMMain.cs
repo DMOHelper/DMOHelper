@@ -1,4 +1,6 @@
 ﻿using CsvHelper;
+using DMOHelper.Dialogs.DialogViewModels;
+using DMOHelper.Dialogs;
 using DMOHelper.Enums;
 using DMOHelper.Helper;
 using DMOHelper.Models;
@@ -311,7 +313,7 @@ namespace DMOHelper
                 bool failed = Task.Run(UpdatePresets).Result;
                 if (failed)
                 {
-                    MessageBoxResult result = MessageBox.Show("Unable to load presets from web resource. Without presets, StatCalculator isn't working. For full feature set, please connect to internet and restart app." + Environment.NewLine + Environment.NewLine + "Do you want to continue without StatCalculator?",
+                    MessageBoxResult result = MessageBox.Show("Unable to load presets from web resource https://github.com/DMOHelper/DMOHelper/tree/master/csvResources" + Environment.NewLine + "Without presets, StatCalculator isn't working. For full feature set, please connect to internet and restart app." + Environment.NewLine + Environment.NewLine + "Do you want to continue without StatCalculator?",
                                           "Error",
                                           MessageBoxButton.YesNo,
                                           MessageBoxImage.Error);
@@ -339,6 +341,37 @@ namespace DMOHelper
                 if (type == ViceType.None) { }
                 else ViceTypes.Add(new EnumDropdownHelper(type.GetAttributeOfType<DescriptionAttribute>().Description, (int)type));
             }
+            bool.TryParse(Environment.GetEnvironmentVariable("ClickOnce_IsNetworkDeployed"), out bool isNetworkDeployed);
+            bool.TryParse(Environment.GetEnvironmentVariable("ClickOnce_IsFirstRun"), out bool isFirstRun);
+            if (!isNetworkDeployed && !isFirstRun)
+            {
+                string markdown = GetChangelog().Result;
+                if(!string.IsNullOrWhiteSpace(markdown))
+                {
+                    ChangelogDialog changelogDialog = new ChangelogDialog(markdown);
+                    changelogDialog.ShowDialog();
+                }
+            }
+        }
+
+        public async Task<string> GetChangelog()
+        {
+            try
+            {
+                string output;
+                using (HttpClient client = new HttpClient())
+                {
+
+                    using (HttpResponseMessage response = await client.GetAsync("https://raw.githubusercontent.com/DMOHelper/DMOHelper/master/Changelog.MD"))
+                    using (Stream streamToReadFrom = await response.Content.ReadAsStreamAsync())
+                    {
+                        StreamReader reader = new StreamReader(streamToReadFrom);
+                        output = await reader.ReadToEndAsync();
+                    }
+                }
+                return output;
+            }
+            catch { return string.Empty; }
         }
 
         public static VMMain GetInstance()

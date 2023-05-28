@@ -275,7 +275,7 @@
                 </StackPanel>
 
                 <!--Labels Stats-->
-                <Label Content="Digimon HP" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center" />
+                <Label Content="Digimon HP &#x24D8;" ToolTip="HP Calculation in-game seems currently bugged for some Digimon:&#x0a;- HP from Deck isn't always correct applied&#x0a;- HP from Tamer isn't always correct applied" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center" />
                 <Label Content="Pseudo HP &#x24D8;" ToolTip="Your Digimon's HP with applied Damage Reduction (Guardian, Sora and Henry).&#x0a;Please note, that Pseudo HP is only valid for the duration of all Damage Reduction."  Grid.Row="2" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center"/>
                 <Label Content="Digimon DS" Grid.Row="3" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center" />
                 <Label Content="AT" Grid.Row="3" Grid.Column="2" HorizontalAlignment="Right" VerticalAlignment="Center" />
@@ -286,7 +286,7 @@
                 <!--Labels Damages-->
                 <Label Content="Attack every" Grid.Row="6" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center"/>
 
-                <Label Content="&#x24D8;" Grid.Row="7" ToolTip="Damage Values have a random deviation of &#x00B1; a few percent around shown value.&#x0a;Please note, that Skill Damages are only valid for the duration of all Skill Buffs (Digimon and Tamer Skill Effects)" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+                <Label Content="&#x24D8;" Grid.Row="7" ToolTip="Damage Values are meant to be neutral damage (so no enemy stats are considered in calculation)&#x0a;Damage Values have a random deviation of &#x00B1; a few percent around shown value.&#x0a;Please note, that Skill Damages are only valid for the duration of all Skill Buffs (Digimon and Tamer Skill Effects)" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center"/>
                 <Label Content="No Advantage" Grid.Row="7" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                 <Label Content="Double Advantage" Grid.Row="7" Grid.Column="3" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                 <Label Content="Normal Attack" Grid.Row="8" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center" />

@@ -2,12 +2,12 @@
 
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
-    <TargetFramework>net6.0-windows</TargetFramework>
+    <TargetFramework>net7.0-windows</TargetFramework>
     <Nullable>enable</Nullable>
     <UseWPF>true</UseWPF>
     <ApplicationIcon>Images\Icon.ico</ApplicationIcon>
-    <AssemblyVersion>2.0.123.8546</AssemblyVersion>
-    <FileVersion>2.0.123.8546</FileVersion>
+    <AssemblyVersion>2.0.137.8548</AssemblyVersion>
+    <FileVersion>2.0.137.8548</FileVersion>
     <Title>DMOHelper</Title>
   </PropertyGroup>
 
@@ -50,6 +50,7 @@
   <ItemGroup>
     <PackageReference Include="CsvHelper" Version="30.0.1" />
     <PackageReference Include="MahApps.Metro.IconPacks.Material" Version="4.11.0" />
+    <PackageReference Include="MdXaml" Version="1.19.2" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
     <PackageReference Include="sqlite-net-pcl" Version="1.8.116" />
     <PackageReference Include="Syncfusion.SfChromelessWindow.WPF" Version="21.1.35" />

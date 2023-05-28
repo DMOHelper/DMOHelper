@@ -12,7 +12,7 @@ This application uses
 If you clone my code and change it, you have to get your own Syncfusion license and register it at [App.xaml.cs](DMOManager/App.xaml.cs). There is a free community version available, which you can use if you meet the requirements. If you use the compiled **release** versions, an own Syncfusion License is **not required**.
 
 ### Download links
-You can get your latest version from [here](https://raw.githubusercontent.com/DMOHelper/DMOHelper/master/Installer/setup.exe) via ClickOnce Distribution and Updates.
+You can get your latest version from [here](https://github.com/DMOHelper/DMOHelper/raw/master/Installer/setup.exe) via ClickOnce Distribution and Updates.
 
 ### License
 Please refer to the [License](LICENSE.txt).

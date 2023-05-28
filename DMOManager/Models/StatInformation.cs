@@ -657,7 +657,7 @@ namespace DMOHelper.Models
                     if (Digimon.BaseHP > 0)
                     {
                         double baseHPMaxLevel = Math.Floor((Digimon.BaseHP * Size / 100) + formulas.First(x => x.Type == Digimon.Type).HP);
-                        double baseHPwithDeck = Math.Floor(baseHPMaxLevel * (1 + (deck.HP / 100)));
+                        double baseHPwithDeck = Math.Floor(baseHPMaxLevel * (1 + (deck.HP / 100.0)));
                         double addedHP = 0;
                         //Clone
                         addedHP += Math.Floor(baseHPwithDeck * (HPClone / 100));
@@ -985,14 +985,14 @@ namespace DMOHelper.Models
                     if (Digimon.BaseCT > 0)
                     {
                         double baseCTMaxLevel = (Digimon.BaseCT * (Size / 100.0)) + (formulas.First(x => x.Type == Digimon.Type).CT);
-                        double clone = Math.Floor(baseCTMaxLevel * (CriticalClone / 100.0));
+                        double clone = baseCTMaxLevel * (CriticalClone / 100.0);
                         ResultCT = Math.Round((baseCTMaxLevel + clone + Seals.CT + Ring.Critical + Necklace.Critical + Earrings.Critical + Bracelet.Critical + Digivice.Critical + TamerStats.CT), 2);
                     }
                     #endregion
                     #region HitRate
                     if (Digimon.HT > 0)
                     {
-                        ResultHT = (int)Math.Floor(Digimon.HT + Seals.HT + TamerStats.HT + Ring.HitRate + Necklace.HitRate + Earrings.HitRate + Bracelet.HitRate + Digivice.HitRate);
+                        ResultHT = (int)Math.Floor(Digimon.HT + title.HT + Seals.HT + TamerStats.HT + Ring.HitRate + Necklace.HitRate + Earrings.HitRate + Bracelet.HitRate + Digivice.HitRate);
                     }
                     #endregion
                     #region Evasion
