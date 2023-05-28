@@ -14,6 +14,8 @@ namespace DMOHelper.Views
         {
             this.DataContext = viewModel = VMMain.GetInstance();
             InitializeComponent();
+            VMMain.GetInstance().StatInformation.initialized = true;
+            VMMain.GetInstance().StatInformation.Calculate();
         }
 
         private void Accessories_Click(object sender, RoutedEventArgs e)
@@ -65,6 +67,7 @@ namespace DMOHelper.Views
 
         private void Presets_Click(object sender, RoutedEventArgs e)
         {
+            VMMain.Initialized = false;
             PresetDialog presetDialog = new PresetDialog(new DigimonVM(viewModel.StatInformation.Digimon), "Rank");
             if (presetDialog.ShowDialog() == true)
             {
@@ -111,6 +114,7 @@ namespace DMOHelper.Views
                     default:
                         break;
                 }
+                VMMain.Initialized = true;
             }
         }
 

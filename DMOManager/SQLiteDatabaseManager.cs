@@ -36,6 +36,7 @@ namespace DMOHelper
                     database.CreateTableAsync<TamerStats>().Wait();
                     database.CreateTableAsync<Deck>().Wait();
                     database.CreateTableAsync<Title>().Wait();
+                    database.CreateTableAsync<PresetInformation>().Wait();
                 }
                 return database;
             }

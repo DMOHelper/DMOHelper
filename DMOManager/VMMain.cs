@@ -1,5 +1,4 @@
 ﻿using CsvHelper;
-using DMOHelper.Dialogs.DialogViewModels;
 using DMOHelper.Dialogs;
 using DMOHelper.Enums;
 using DMOHelper.Helper;
@@ -15,7 +14,6 @@ using System.Net.Http;
 using System.Reflection;
 using System.Threading.Tasks;
 using System.Windows;
-using System.Diagnostics;
 
 namespace DMOHelper
 {
@@ -23,6 +21,7 @@ namespace DMOHelper
     {
         private static readonly Lazy<VMMain> lazy = new Lazy<VMMain>(() => new VMMain());
 
+        private PresetInformation presetInformation;
         private Account selected;
         public Account SelectedAccount
         {
@@ -154,7 +153,7 @@ namespace DMOHelper
             {
                 List<string> output = new List<string>();
                 var decks = SQLiteDatabaseManager.Database.Table<Deck>().ToListAsync().Result;
-                foreach(Deck deck in decks)
+                foreach (Deck deck in decks)
                 {
                     output.Add(deck.Name);
                 }
@@ -167,7 +166,7 @@ namespace DMOHelper
             {
                 List<string> output = new List<string>();
                 var titles = SQLiteDatabaseManager.Database.Table<Title>().ToListAsync().Result;
-                foreach(Title title in titles)
+                foreach (Title title in titles)
                 {
                     output.Add(title.Name);
                 }
@@ -180,8 +179,8 @@ namespace DMOHelper
             {
                 List<string> output = new List<string>();
                 var tamers = SQLiteDatabaseManager.Database.Table<Tamer>().ToListAsync().Result;
-                foreach(Tamer tamer in tamers)
-                { 
+                foreach (Tamer tamer in tamers)
+                {
                     output.Add(tamer.Name);
                 }
                 return output;
@@ -191,7 +190,7 @@ namespace DMOHelper
         {
             get
             {
-                List<string> output = new List<string>() ;
+                List<string> output = new List<string>();
                 var skills = SQLiteDatabaseManager.Database.Table<TamerSkill>().ToListAsync().Result;
                 foreach (TamerSkill skill in skills)
                 {
@@ -289,6 +288,7 @@ namespace DMOHelper
             }
         }
         public bool StatEnabled { get; set; }
+        public static bool Initialized { get; internal set; }
         private static Version appVersion
         {
             get
@@ -307,9 +307,14 @@ namespace DMOHelper
 
         public VMMain()
         {
+            Initialized = false;
             StatEnabled = true;
-            StatInformation = StatInformation.LoadFromDatabase();
-            if (DateTime.UtcNow - StatInformation.LastPresetUpdate > new TimeSpan(1, 0, 0, 0))
+            presetInformation = SQLiteDatabaseManager.Database.Table<PresetInformation>().FirstOrDefaultAsync().Result;
+            if(presetInformation == null )
+            {
+                presetInformation = new PresetInformation();
+            }
+            if (DateTime.UtcNow - presetInformation.LastPresetUpdate > new TimeSpan(1, 0, 0, 0))
             {
                 bool failed = Task.Run(UpdatePresets).Result;
                 if (failed)
@@ -328,6 +333,7 @@ namespace DMOHelper
                     }
                 }
             }
+            StatInformation = StatInformation.LoadFromDatabase();
             Source = "/Images/Beer.png";
             Accounts = SQLiteDatabaseManager.Database.Table<Account>().ToListAsync().Result.ToCollection();
             Items = SQLiteDatabaseManager.Database.Table<Item>().ToListAsync().Result.ToCollection();
@@ -370,6 +376,7 @@ namespace DMOHelper
                     changelogDialog.ShowDialog();
                 }
             }
+            Initialized = true;
         }
 
         public static VMMain GetInstance()
@@ -407,7 +414,7 @@ namespace DMOHelper
                 List<TamerSkill> skills = new List<TamerSkill>();
                 List<Title> titles = new List<Title>();
                 List<Deck> decks = new List<Deck>();
-                //Stat Formula
+                #region Stat Formula
                 try
                 {
                     using (HttpResponseMessage response = await client.GetAsync("https://raw.githubusercontent.com/DMOHelper/DMOHelper/master/csvResources/statformula.csv"))
@@ -445,7 +452,8 @@ namespace DMOHelper
                 {
                     failed = true;
                 }
-                //Digimon Presets
+                #endregion
+                #region Digimon Presets
                 try
                 {
                     using (HttpResponseMessage response = await client.GetAsync("https://raw.githubusercontent.com/DMOHelper/DMOHelper/master/csvResources/digimonPresets.csv"))
@@ -461,11 +469,7 @@ namespace DMOHelper
                                 var record = new DigimonPresetsDatabase();
                                 record.Name = csv.GetField("name");
                                 record.Rank = csv.GetField("rank");
-                                bool result = Enum.TryParse(csv.GetField("evolution"), out Evolution evo);
-                                if (result)
-                                {
-                                    record.Evolution = evo;
-                                }
+                                record.Evolution = Enum.Parse<Evolution>(csv.GetField("evolution"));
                                 record.Type = Enum.Parse<AttackerType>(csv.GetField("type"));
                                 record.BaseHP = int.Parse(csv.GetField("baseHP"));
                                 record.BaseDS = int.Parse(csv.GetField("baseDS"));
@@ -501,7 +505,8 @@ namespace DMOHelper
                 {
                     failed = true;
                 }
-                //Accessory Presets
+                #endregion
+                #region Accessory Presets
                 try
                 {
                     using (HttpResponseMessage response = await client.GetAsync("https://raw.githubusercontent.com/DMOHelper/DMOHelper/master/csvResources/accessoryPresets.csv"))
@@ -547,7 +552,8 @@ namespace DMOHelper
                 {
                     failed = true;
                 }
-                //Tamers
+                #endregion
+                #region Tamers
                 try
                 {
                     using (HttpResponseMessage response = await client.GetAsync("https://raw.githubusercontent.com/DMOHelper/DMOHelper/master/csvResources/tamers.csv"))
@@ -586,7 +592,8 @@ namespace DMOHelper
                 {
                     failed = true;
                 }
-                //Tamer Skills
+                #endregion
+                #region Tamer Skills
                 try
                 {
                     using (HttpResponseMessage response = await client.GetAsync("https://raw.githubusercontent.com/DMOHelper/DMOHelper/master/csvResources/tamerSkills.csv"))
@@ -641,7 +648,8 @@ namespace DMOHelper
                 {
                     failed = true;
                 }
-                //Titles
+                #endregion
+                #region Titles
                 try
                 {
                     using (HttpResponseMessage response = await client.GetAsync("https://raw.githubusercontent.com/DMOHelper/DMOHelper/master/csvResources/titles.csv"))
@@ -678,7 +686,8 @@ namespace DMOHelper
                 {
                     failed = true;
                 }
-                //Decks
+                #endregion
+                #region Decks
                 try
                 {
                     using (HttpResponseMessage response = await client.GetAsync("https://raw.githubusercontent.com/DMOHelper/DMOHelper/master/csvResources/decks.csv"))
@@ -711,9 +720,10 @@ namespace DMOHelper
                 {
                     failed = true;
                 }
+                #endregion
                 if (!failed)
                 {
-                    StatInformation.LastPresetUpdate = DateTime.UtcNow;
+                    presetInformation.LastPresetUpdate = DateTime.UtcNow;
                 }
                 return failed;
             }

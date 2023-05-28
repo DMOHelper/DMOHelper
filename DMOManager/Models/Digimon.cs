@@ -66,6 +66,10 @@ namespace DMOHelper.Models
             {
                 evolution = value;
                 OnPropertyChanged();
+                if (VMMain.Initialized)
+                {
+                    VMMain.GetInstance().StatInformation.Calculate();
+                }
             }
         }
         public AttackerType Type
@@ -75,6 +79,10 @@ namespace DMOHelper.Models
             {
                 type = value;
                 OnPropertyChanged();
+                if (VMMain.Initialized)
+                {
+                    VMMain.GetInstance().StatInformation.Calculate();
+                }
             }
         }
         public int BaseHP
@@ -84,6 +92,10 @@ namespace DMOHelper.Models
             {
                 baseHP = value;
                 OnPropertyChanged();
+                if (VMMain.Initialized)
+                {
+                    VMMain.GetInstance().StatInformation.Calculate();
+                }
             }
         }
         public int BaseDS
@@ -93,6 +105,10 @@ namespace DMOHelper.Models
             {
                 baseDS = value;
                 OnPropertyChanged();
+                if (VMMain.Initialized)
+                {
+                    VMMain.GetInstance().StatInformation.Calculate();
+                }
             }
         }
         public int BaseAT
@@ -102,6 +118,10 @@ namespace DMOHelper.Models
             {
                 baseAT = value;
                 OnPropertyChanged();
+                if (VMMain.Initialized)
+                {
+                    VMMain.GetInstance().StatInformation.Calculate();
+                }
             }
         }
         public double AS
@@ -111,6 +131,10 @@ namespace DMOHelper.Models
             {
                 _as = value;
                 OnPropertyChanged();
+                if (VMMain.Initialized)
+                {
+                    VMMain.GetInstance().StatInformation.Calculate();
+                }
             }
         }
         public double BaseCT
@@ -120,6 +144,10 @@ namespace DMOHelper.Models
             {
                 baseCT = value;
                 OnPropertyChanged();
+                if (VMMain.Initialized)
+                {
+                    VMMain.GetInstance().StatInformation.Calculate();
+                }
             }
         }
         public int HT
@@ -129,6 +157,10 @@ namespace DMOHelper.Models
             {
                 ht = value;
                 OnPropertyChanged();
+                if (VMMain.Initialized)
+                {
+                    VMMain.GetInstance().StatInformation.Calculate();
+                }
             }
         }
         public int BaseDE
@@ -138,6 +170,10 @@ namespace DMOHelper.Models
             {
                 baseDE = value;
                 OnPropertyChanged();
+                if (VMMain.Initialized)
+                {
+                    VMMain.GetInstance().StatInformation.Calculate();
+                }
             }
         }
         public double EV
@@ -147,6 +183,10 @@ namespace DMOHelper.Models
             {
                 ev = value;
                 OnPropertyChanged();
+                if (VMMain.Initialized)
+                {
+                    VMMain.GetInstance().StatInformation.Calculate();
+                }
             }
         }
         public int Skill1Base
@@ -156,6 +196,10 @@ namespace DMOHelper.Models
             {
                 skill1Base = value;
                 OnPropertyChanged();
+                if (VMMain.Initialized)
+                {
+                    VMMain.GetInstance().StatInformation.Calculate();
+                }
             }
         }
         public int Skill1Increase
@@ -165,6 +209,10 @@ namespace DMOHelper.Models
             {
                 skill1Increase = value;
                 OnPropertyChanged();
+                if (VMMain.Initialized)
+                {
+                    VMMain.GetInstance().StatInformation.Calculate();
+                }
             }
         }
         public int Skill1Points
@@ -174,6 +222,10 @@ namespace DMOHelper.Models
             {
                 skill1Points = value;
                 OnPropertyChanged();
+                if (VMMain.Initialized)
+                {
+                    VMMain.GetInstance().StatInformation.Calculate();
+                }
             }
         }
         public int Skill2Base
@@ -183,6 +235,10 @@ namespace DMOHelper.Models
             {
                 skill2Base = value;
                 OnPropertyChanged();
+                if (VMMain.Initialized)
+                {
+                    VMMain.GetInstance().StatInformation.Calculate();
+                }
             }
         }
         public int Skill2Increase
@@ -192,6 +248,10 @@ namespace DMOHelper.Models
             {
                 skill2Increase = value;
                 OnPropertyChanged();
+                if (VMMain.Initialized)
+                {
+                    VMMain.GetInstance().StatInformation.Calculate();
+                }
             }
         }
         public int Skill2Points
@@ -201,6 +261,10 @@ namespace DMOHelper.Models
             {
                 skill2Points = value;
                 OnPropertyChanged();
+                if (VMMain.Initialized)
+                {
+                    VMMain.GetInstance().StatInformation.Calculate();
+                }
             }
         }
         public int Skill3Base
@@ -210,6 +274,10 @@ namespace DMOHelper.Models
             {
                 skill3Base = value;
                 OnPropertyChanged();
+                if (VMMain.Initialized)
+                {
+                    VMMain.GetInstance().StatInformation.Calculate();
+                }
             }
         }
         public int Skill3Increase
@@ -219,6 +287,10 @@ namespace DMOHelper.Models
             {
                 skill3Increase = value;
                 OnPropertyChanged();
+                if (VMMain.Initialized)
+                {
+                    VMMain.GetInstance().StatInformation.Calculate();
+                }
             }
         }
         public int Skill3Points
@@ -228,6 +300,10 @@ namespace DMOHelper.Models
             {
                 skill3Points = value;
                 OnPropertyChanged();
+                if (VMMain.Initialized)
+                {
+                    VMMain.GetInstance().StatInformation.Calculate();
+                }
             }
         }
         public int Skill4Base
@@ -237,6 +313,10 @@ namespace DMOHelper.Models
             {
                 skill4Base = value;
                 OnPropertyChanged();
+                if (VMMain.Initialized)
+                {
+                    VMMain.GetInstance().StatInformation.Calculate();
+                }
             }
         }
         public int Skill4Increase
@@ -246,6 +326,10 @@ namespace DMOHelper.Models
             {
                 skill4Increase = value;
                 OnPropertyChanged();
+                if (VMMain.Initialized)
+                {
+                    VMMain.GetInstance().StatInformation.Calculate();
+                }
             }
         }
         public int Skill4Points
@@ -255,6 +339,10 @@ namespace DMOHelper.Models
             {
                 skill4Points = value;
                 OnPropertyChanged();
+                if (VMMain.Initialized)
+                {
+                    VMMain.GetInstance().StatInformation.Calculate();
+                }
             }
         }
         public bool SkillIncreaseBuff
@@ -264,6 +352,10 @@ namespace DMOHelper.Models
             {
                 skillIncreaseBuff = value;
                 OnPropertyChanged();
+                if (VMMain.Initialized)
+                {
+                    VMMain.GetInstance().StatInformation.Calculate();
+                }
             }
         }
         public int Skill1Level
@@ -273,6 +365,10 @@ namespace DMOHelper.Models
             {
                 skill1Level = value;
                 OnPropertyChanged();
+                if (VMMain.Initialized)
+                {
+                    VMMain.GetInstance().StatInformation.Calculate();
+                }
             }
         }
         public int Skill2Level
@@ -282,6 +378,10 @@ namespace DMOHelper.Models
             {
                 skill2Level = value;
                 OnPropertyChanged();
+                if (VMMain.Initialized)
+                {
+                    VMMain.GetInstance().StatInformation.Calculate();
+                }
             }
         }
         public int Skill3Level
@@ -291,6 +391,10 @@ namespace DMOHelper.Models
             {
                 skill3Level = value;
                 OnPropertyChanged();
+                if (VMMain.Initialized)
+                {
+                    VMMain.GetInstance().StatInformation.Calculate();
+                }
             }
         }
         public int Skill4Level
@@ -300,6 +404,10 @@ namespace DMOHelper.Models
             {
                 skill4Level = value;
                 OnPropertyChanged();
+                if (VMMain.Initialized)
+                {
+                    VMMain.GetInstance().StatInformation.Calculate();
+                }
             }
         }
         public DigimonAttribute Attribute
@@ -309,6 +417,10 @@ namespace DMOHelper.Models
             {
                 attribute = value;
                 OnPropertyChanged();
+                if (VMMain.Initialized)
+                {
+                    VMMain.GetInstance().StatInformation.Calculate();
+                }
             }
         }
         public ElementalAttribute Elemental
@@ -318,6 +430,10 @@ namespace DMOHelper.Models
             {
                 elemental = value;
                 OnPropertyChanged();
+                if (VMMain.Initialized)
+                {
+                    VMMain.GetInstance().StatInformation.Calculate();
+                }
             }
         }
 

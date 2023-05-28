@@ -11,6 +11,7 @@ namespace DMOHelper.Models
     public class StatInformation : AbstractPropertyChanged
     {
         #region Properties
+        internal bool initialized;
         private Ring ring;
         private Necklace necklace;
         private Earrings earrings;
@@ -63,7 +64,6 @@ namespace DMOHelper.Models
         private MemorySkillLevel ruler;
         private MemorySkillLevel guardian;
 
-        public DateTime LastPresetUpdate { get; set; }
         public Ring Ring
         {
             get
@@ -158,6 +158,7 @@ namespace DMOHelper.Models
             {
                 tamer = value;
                 OnPropertyChanged();
+                Calculate();
             }
         }
         public string Skill1
@@ -167,6 +168,7 @@ namespace DMOHelper.Models
             {
                 skill1 = value;
                 OnPropertyChanged();
+                Calculate();
             }
         }
         public string Skill2
@@ -176,6 +178,7 @@ namespace DMOHelper.Models
             {
                 skill2 = value;
                 OnPropertyChanged();
+                Calculate();
             }
         }
         public string Deck
@@ -185,6 +188,7 @@ namespace DMOHelper.Models
             {
                 deck = value;
                 OnPropertyChanged();
+                Calculate();
             }
         }
         public string Title
@@ -194,6 +198,7 @@ namespace DMOHelper.Models
             {
                 title = value;
                 OnPropertyChanged();
+                Calculate();
             }
         }
         public double Size
@@ -203,6 +208,7 @@ namespace DMOHelper.Models
             {
                 size = value;
                 OnPropertyChanged();
+                Calculate();
             }
         }
         public double AttackClone { get; set; }
@@ -216,6 +222,7 @@ namespace DMOHelper.Models
             {
                 familyBuffs = value;
                 OnPropertyChanged();
+                Calculate();
             }
         }
         public bool Buff1h
@@ -225,6 +232,7 @@ namespace DMOHelper.Models
             {
                 buff1h = value;
                 OnPropertyChanged();
+                Calculate();
             }
         }
         public bool Buff2h
@@ -234,6 +242,7 @@ namespace DMOHelper.Models
             {
                 buff2h = value;
                 OnPropertyChanged();
+                Calculate();
             }
         }
         public bool IslandBuffs
@@ -243,6 +252,7 @@ namespace DMOHelper.Models
             {
                 islandBuffs = value;
                 OnPropertyChanged();
+                Calculate();
             }
         }
         public bool EvoBuff
@@ -252,6 +262,7 @@ namespace DMOHelper.Models
             {
                 evoBuff = value;
                 OnPropertyChanged();
+                Calculate();
             }
         }
         public bool Hikari
@@ -261,6 +272,7 @@ namespace DMOHelper.Models
             {
                 hikari = value;
                 OnPropertyChanged();
+                Calculate();
             }
         }
         public bool Encouragement
@@ -270,6 +282,7 @@ namespace DMOHelper.Models
             {
                 encouragement = value;
                 OnPropertyChanged();
+                Calculate();
             }
         }
         public bool Henry
@@ -279,6 +292,7 @@ namespace DMOHelper.Models
             {
                 henry = value;
                 OnPropertyChanged();
+                Calculate();
             }
         }
         public bool Takato
@@ -288,6 +302,7 @@ namespace DMOHelper.Models
             {
                 takato = value;
                 OnPropertyChanged();
+                Calculate();
             }
         }
         public bool Focus
@@ -297,6 +312,7 @@ namespace DMOHelper.Models
             {
                 focus = value;
                 OnPropertyChanged();
+                Calculate();
             }
         }
         public bool AguKizunaBuff
@@ -306,6 +322,7 @@ namespace DMOHelper.Models
             {
                 aguKizunaBuff = value;
                 OnPropertyChanged();
+                Calculate();
             }
         }
         public MemorySkillLevel TOL
@@ -315,6 +332,7 @@ namespace DMOHelper.Models
             {
                 tol = value;
                 OnPropertyChanged();
+                Calculate();
             }
         }
         public MemorySkillLevel Ruler
@@ -324,6 +342,7 @@ namespace DMOHelper.Models
             {
                 ruler = value;
                 OnPropertyChanged();
+                Calculate();
             }
         }
         public MemorySkillLevel Guardian
@@ -333,6 +352,7 @@ namespace DMOHelper.Models
             {
                 guardian = value;
                 OnPropertyChanged();
+                Calculate();
             }
         }
         public int ResultLevel
@@ -547,7 +567,13 @@ namespace DMOHelper.Models
 
         public StatInformation()
         {
+            initialized = false;
+            StatFormulas = SQLiteDatabaseManager.Database.Table<StatFormula>().ToListAsync().Result;
             tamer = "Tai";
+            skill1 = "None";
+            skill2 = "None";
+            deck = "None";
+            title = "None";
             ring = new Ring();
             necklace = new Necklace();
             earrings = new Earrings();
@@ -561,506 +587,540 @@ namespace DMOHelper.Models
             };
             Size = 140.0;
             ResultLevel = 0;
-            LastPresetUpdate = new DateTime(2000, 1, 1);
-            StatFormulas = SQLiteDatabaseManager.Database.Table<StatFormula>().ToListAsync().Result;
         }
         internal void Calculate()
         {
-            if (StatFormulas.Count == 0) //try reloading
+            if (initialized)
             {
-                StatFormulas = SQLiteDatabaseManager.Database.Table<StatFormula>().ToListAsync().Result;
-            }
-            if (StatFormulas.Count > 0)
-            {
-                #region GetFormulas
-                List<StatFormula> formulas;
-                switch (Digimon.Evolution)
+                if (StatFormulas.Count == 0) //try reloading
                 {
-                    case Evolution.Champion:
-                    case Evolution.ChampionX:
-                        formulas = StatFormulas.Where(x => x.Stage == Evolution.Champion).ToList();
-                        break;
-                    case Evolution.Ultimate:
-                    case Evolution.UltimateX:
-                        formulas = StatFormulas.Where(x => x.Stage == Evolution.Ultimate).ToList();
-                        break;
-                    case Evolution.Mega:
-                    case Evolution.MegaX:
-                        formulas = StatFormulas.Where(x => x.Stage == Evolution.Mega).ToList();
-                        break;
-                    case Evolution.BurstMode:
-                    case Evolution.BurstModeX:
-                        formulas = StatFormulas.Where(x => x.Stage == Evolution.BurstMode).ToList();
-                        break;
-                    case Evolution.Jogress:
-                    case Evolution.JogressX:
-                        formulas = StatFormulas.Where(x => x.Stage == Evolution.Jogress).ToList();
-                        break;
-                    case Evolution.Variant:
-                        formulas = StatFormulas.Where(x => x.Stage == Evolution.Variant).ToList();
-                        break;
-                    case Evolution.Armor:
-                        formulas = StatFormulas.Where(x => x.Stage == Evolution.Armor).ToList();
-                        break;
-                    case Evolution.Spirit:
-                        formulas = StatFormulas.Where(x => x.Stage == Evolution.Spirit).ToList();
-                        break;
-                    case Evolution.Rookie:
-                    case Evolution.RookieX:
-                    default:
-                        formulas = StatFormulas.Where(x => x.Stage == Evolution.Rookie).ToList();
-                        break;
+                    StatFormulas = SQLiteDatabaseManager.Database.Table<StatFormula>().ToListAsync().Result;
                 }
-                #endregion
-                ResultLevel = formulas.First().MaxLevel;
-                #region Load Title, Deck and Tamer Informations
-                Tamer _tamer = SQLiteDatabaseManager.Database.Table<Tamer>().FirstAsync(x => x.Name == Tamer).Result;
-                List<TamerSkill> tamerSkills = SQLiteDatabaseManager.Database.Table<TamerSkill>().ToListAsync().Result;
-                TamerSkill _tamerSkill = tamerSkills.First(x => x.Name == Tamer);
-                TamerSkill _skill1 = tamerSkills.First(x => x.Name == Skill1);
-                TamerSkill _skill2 = tamerSkills.First(x => x.Name == Skill2);
-                Title _title = SQLiteDatabaseManager.Database.Table<Title>().FirstAsync(x => x.Name == Title).Result;
-                Deck _deck = SQLiteDatabaseManager.Database.Table<Deck>().FirstAsync(x => x.Name == Deck).Result;
-                #endregion
-                List<Task> tasks = new List<Task>();
-                #region HP, DamageReduction and PseudoHP
-                tasks.Add(Task.Run(() =>
+                if (StatFormulas.Count > 0)
                 {
-                    if (Digimon.BaseHP > 0)
+                    #region GetFormulas
+                    List<StatFormula> formulas;
+                    switch (Digimon.Evolution)
                     {
-                        double baseHPMaxLevel = Math.Floor((Digimon.BaseHP * Size / 100) + formulas.First(x => x.Type == Digimon.Type).HP);
-                        double baseHPwithDeck = Math.Floor(baseHPMaxLevel * (1 + (_deck.HP / 100.0)));
-                        double addedHP = 0;
-                        //Clone
-                        addedHP += Math.Floor(baseHPwithDeck * (HPClone / 100.0));
-                        //Tamer Skill and passive Skills
-                        addedHP += Math.Floor(baseHPwithDeck * (_skill1.EnhancedHP / 100.0));
-                        if (Skill1 != Skill2)
+                        case Evolution.Champion:
+                        case Evolution.ChampionX:
+                            formulas = StatFormulas.Where(x => x.Stage == Evolution.Champion).ToList();
+                            break;
+                        case Evolution.Ultimate:
+                        case Evolution.UltimateX:
+                            formulas = StatFormulas.Where(x => x.Stage == Evolution.Ultimate).ToList();
+                            break;
+                        case Evolution.Mega:
+                        case Evolution.MegaX:
+                            formulas = StatFormulas.Where(x => x.Stage == Evolution.Mega).ToList();
+                            break;
+                        case Evolution.BurstMode:
+                        case Evolution.BurstModeX:
+                            formulas = StatFormulas.Where(x => x.Stage == Evolution.BurstMode).ToList();
+                            break;
+                        case Evolution.Jogress:
+                        case Evolution.JogressX:
+                            formulas = StatFormulas.Where(x => x.Stage == Evolution.Jogress).ToList();
+                            break;
+                        case Evolution.Variant:
+                            formulas = StatFormulas.Where(x => x.Stage == Evolution.Variant).ToList();
+                            break;
+                        case Evolution.Armor:
+                            formulas = StatFormulas.Where(x => x.Stage == Evolution.Armor).ToList();
+                            break;
+                        case Evolution.Spirit:
+                            formulas = StatFormulas.Where(x => x.Stage == Evolution.Spirit).ToList();
+                            break;
+                        case Evolution.Rookie:
+                        case Evolution.RookieX:
+                        default:
+                            formulas = StatFormulas.Where(x => x.Stage == Evolution.Rookie).ToList();
+                            break;
+                    }
+                    #endregion
+                    ResultLevel = formulas.First().MaxLevel;
+                    #region Load Title, Deck and Tamer Informations
+                    Tamer _tamer = SQLiteDatabaseManager.Database.Table<Tamer>().FirstAsync(x => x.Name == Tamer).Result;
+                    List<TamerSkill> tamerSkills = SQLiteDatabaseManager.Database.Table<TamerSkill>().ToListAsync().Result;
+                    TamerSkill _tamerSkill = tamerSkills.First(x => x.Name == _tamer.Skill);
+                    TamerSkill _skill1 = tamerSkills.First(x => x.Name == Skill1);
+                    TamerSkill _skill2 = tamerSkills.First(x => x.Name == Skill2);
+                    Title _title = SQLiteDatabaseManager.Database.Table<Title>().FirstAsync(x => x.Name == Title).Result;
+                    Deck _deck = SQLiteDatabaseManager.Database.Table<Deck>().FirstAsync(x => x.Name == Deck).Result;
+                    #endregion
+                    List<Task> tasks = new List<Task>();
+                    #region HP, DamageReduction and PseudoHP
+                    tasks.Add(Task.Run(() =>
+                    {
+                        if (Digimon.BaseHP > 0)
                         {
-                            addedHP += Math.Floor(baseHPwithDeck * (_skill2.EnhancedHP / 100.0));
-                        }
-                        if ((_tamerSkill.Name != Skill1 && _tamerSkill.Name != Skill2) || _tamerSkill.CanStack)
-                        {
-                            addedHP += Math.Floor(baseHPwithDeck * (_tamerSkill.HP / 100.0));
-                        }
-                        if (_tamer.PassiveStat1 == "HP" && _tamer.PassiveAttribute1 == Digimon.Attribute)
-                        {
-                            addedHP += Math.Floor(baseHPwithDeck * (_tamer.PassiveValue1 / 100.0));
-                        }
-                        if (_tamer.PassiveStat2 == "HP" && _tamer.PassiveAttribute2 == Digimon.Attribute)
-                        {
-                            addedHP += Math.Floor(baseHPwithDeck * (_tamer.PassiveValue2 / 100.0));
-                        }
-                        //Applies if Party has Hikari or Encouragement but hasn't already applied by Tamer
-                        if (Tamer != "Hikari" && Hikari)
-                        {
-                            addedHP += Math.Floor(baseHPwithDeck * tamerSkills.First(x => x.Name == "Encouragement").HP);
-                        }
-                        if (Encouragement && Skill1 != "Encouragement" && Skill2 != "Encouragement")
-                        {
-                            addedHP += Math.Floor(baseHPwithDeck * tamerSkills.First(x => x.Name == "Encouragement").EnhancedHP);
-                        }
-                        //Buffs
-                        if (Buff1h)
-                        {
-                            addedHP += Math.Floor(baseHPwithDeck * 0.5);
-                        }
-                        if (Buff2h)
-                        {
-                            addedHP += Math.Floor(baseHPwithDeck * 0.5);
-                        }
-                        if (IslandBuffs)
-                        {
-                            addedHP += Math.Floor(baseHPwithDeck * 0.2);
-                        }
-                        //MemorySkills
-                        switch (TOL)
-                        {
-                            case MemorySkillLevel.Low:
-                            case MemorySkillLevel.Lv2:
-                                addedHP += Math.Floor(baseHPwithDeck * 0.15);
-                                break;
-                            case MemorySkillLevel.Mid:
-                                addedHP += Math.Floor(baseHPwithDeck * 0.3);
-                                break;
-                            case MemorySkillLevel.High:
+                            double baseHPMaxLevel = Math.Floor((Digimon.BaseHP * Size / 100) + formulas.First(x => x.Type == Digimon.Type).HP);
+                            double baseHPwithDeck = Math.Floor(baseHPMaxLevel * (1 + (_deck.HP / 100.0)));
+                            double addedHP = 0;
+                            //Clone
+                            addedHP += Math.Floor(baseHPwithDeck * (HPClone / 100.0));
+                            //Tamer Skill and passive Skills
+                            addedHP += Math.Floor(baseHPwithDeck * (_skill1.EnhancedHP / 100.0));
+                            if (Skill1 != Skill2)
+                            {
+                                addedHP += Math.Floor(baseHPwithDeck * (_skill2.EnhancedHP / 100.0));
+                            }
+                            if ((_tamerSkill.Name != Skill1 && _tamerSkill.Name != Skill2) || _tamerSkill.CanStack)
+                            {
+                                addedHP += Math.Floor(baseHPwithDeck * (_tamerSkill.HP / 100.0));
+                            }
+                            if (_tamer.PassiveStat1 == "HP" && _tamer.PassiveAttribute1 == Digimon.Attribute)
+                            {
+                                addedHP += Math.Floor(baseHPwithDeck * (_tamer.PassiveValue1 / 100.0));
+                            }
+                            if (_tamer.PassiveStat2 == "HP" && _tamer.PassiveAttribute2 == Digimon.Attribute)
+                            {
+                                addedHP += Math.Floor(baseHPwithDeck * (_tamer.PassiveValue2 / 100.0));
+                            }
+                            //Applies if Party has Hikari or Encouragement but hasn't already applied by Tamer
+                            if (Tamer != "Hikari" && Hikari)
+                            {
+                                addedHP += Math.Floor(baseHPwithDeck * tamerSkills.First(x => x.Name == "Encouragement").HP);
+                            }
+                            if (Encouragement && Skill1 != "Encouragement" && Skill2 != "Encouragement")
+                            {
+                                addedHP += Math.Floor(baseHPwithDeck * tamerSkills.First(x => x.Name == "Encouragement").EnhancedHP);
+                            }
+                            //Buffs
+                            if (Buff1h)
+                            {
                                 addedHP += Math.Floor(baseHPwithDeck * 0.5);
-                                break;
-                            case MemorySkillLevel.Highest:
-                                addedHP += Math.Floor(baseHPwithDeck * 0.65);
-                                break;
-                            case MemorySkillLevel.Lv1:
-                                addedHP += Math.Floor(baseHPwithDeck * 0.1);
-                                break;
-                            case MemorySkillLevel.Lv3:
-                                addedHP += Math.Floor(baseHPwithDeck * 0.25);
-                                break;
-                            case MemorySkillLevel.None:
-                            default:
-                                break;
+                            }
+                            if (Buff2h)
+                            {
+                                addedHP += Math.Floor(baseHPwithDeck * 0.5);
+                            }
+                            if (IslandBuffs)
+                            {
+                                addedHP += Math.Floor(baseHPwithDeck * 0.2);
+                            }
+                            //MemorySkills
+                            switch (TOL)
+                            {
+                                case MemorySkillLevel.Low:
+                                case MemorySkillLevel.Lv2:
+                                    addedHP += Math.Floor(baseHPwithDeck * 0.15);
+                                    break;
+                                case MemorySkillLevel.Mid:
+                                    addedHP += Math.Floor(baseHPwithDeck * 0.3);
+                                    break;
+                                case MemorySkillLevel.High:
+                                    addedHP += Math.Floor(baseHPwithDeck * 0.5);
+                                    break;
+                                case MemorySkillLevel.Highest:
+                                    addedHP += Math.Floor(baseHPwithDeck * 0.65);
+                                    break;
+                                case MemorySkillLevel.Lv1:
+                                    addedHP += Math.Floor(baseHPwithDeck * 0.1);
+                                    break;
+                                case MemorySkillLevel.Lv3:
+                                    addedHP += Math.Floor(baseHPwithDeck * 0.25);
+                                    break;
+                                case MemorySkillLevel.None:
+                                default:
+                                    break;
+                            }
+                            //Static values
+                            addedHP += Math.Floor(TamerStats.HP * (TamerStats.Intimacy / 100.0));
+                            addedHP += Math.Floor(Ring.HP + Necklace.HP + Earrings.HP + Bracelet.HP + Digivice.HP + Seals.HP + _title.HP);
+                            //Damage Reduction
+                            ResultDamageReduction = 0;
+                            switch (Guardian)
+                            {
+                                case MemorySkillLevel.Low:
+                                case MemorySkillLevel.Lv2:
+                                    ResultDamageReduction += 5;
+                                    break;
+                                case MemorySkillLevel.Mid:
+                                    ResultDamageReduction += 10;
+                                    break;
+                                case MemorySkillLevel.High:
+                                    ResultDamageReduction += 15;
+                                    break;
+                                case MemorySkillLevel.Highest:
+                                    ResultDamageReduction += 20;
+                                    break;
+                                case MemorySkillLevel.Lv1:
+                                    ResultDamageReduction += 2;
+                                    break;
+                                case MemorySkillLevel.Lv3:
+                                    ResultDamageReduction += 8;
+                                    break;
+                                case MemorySkillLevel.None:
+                                default:
+                                    break;
+                            }
+                            ResultDamageReduction += (int)Math.Floor(_skill1.EnhancedDamageResist);
+                            if (Skill1 != Skill2)
+                            {
+                                ResultDamageReduction += (int)Math.Floor(_skill2.EnhancedDamageResist);
+                            }
+                            if ((_tamerSkill.Name != Skill1 && _tamerSkill.Name != Skill2) || _tamerSkill.CanStack)
+                            {
+                                ResultDamageReduction += (int)Math.Floor(_tamerSkill.DamageResist);
+                            }
+                            //Results
+                            ResultHP = (int)(baseHPwithDeck + Math.Floor(addedHP));
+                            ResultPseudoHP = (int)Math.Floor(ResultHP * (1 / (1 - (ResultDamageReduction / 100.0))));
                         }
-                        //Static values
-                        addedHP += Math.Floor(TamerStats.HP * (TamerStats.Intimacy / 100.0));
-                        addedHP += Math.Floor(Ring.HP + Necklace.HP + Earrings.HP + Bracelet.HP + Digivice.HP + Seals.HP + _title.HP);
-                        //Damage Reduction
-                        ResultDamageReduction = 0;
-                        switch (Guardian)
-                        {
-                            case MemorySkillLevel.Low:
-                            case MemorySkillLevel.Lv2:
-                                ResultDamageReduction += 5;
-                                break;
-                            case MemorySkillLevel.Mid:
-                                ResultDamageReduction += 10;
-                                break;
-                            case MemorySkillLevel.High:
-                                ResultDamageReduction += 15;
-                                break;
-                            case MemorySkillLevel.Highest:
-                                ResultDamageReduction += 20;
-                                break;
-                            case MemorySkillLevel.Lv1:
-                                ResultDamageReduction += 2;
-                                break;
-                            case MemorySkillLevel.Lv3:
-                                ResultDamageReduction += 8;
-                                break;
-                            case MemorySkillLevel.None:
-                            default:
-                                break;
-                        }
-                        ResultDamageReduction += (int)Math.Floor(_skill1.EnhancedDamageResist);
-                        if (Skill1 != Skill2)
-                        {
-                            ResultDamageReduction += (int)Math.Floor(_skill2.EnhancedDamageResist);
-                        }
-                        if ((_tamerSkill.Name != Skill1 && _tamerSkill.Name != Skill2) || _tamerSkill.CanStack)
-                        {
-                            ResultDamageReduction += (int)Math.Floor(_tamerSkill.DamageResist);
-                        }
-                        //Results
-                        ResultHP = (int)(baseHPwithDeck + Math.Floor(addedHP));
-                        ResultPseudoHP = (int)Math.Floor(ResultHP * (1 / (1 - (ResultDamageReduction / 100.0))));
-                    }
-                }));
-                #endregion
-                #region Attack, Damage, CriticalDamage, Skill Damage
-                tasks.Add(Task.Run(() =>
-                {
-                    if (Digimon.BaseAT > 0)
+                    }));
+                    #endregion
+                    #region Attack, Damage, CriticalDamage, Skill Damage
+                    tasks.Add(Task.Run(() =>
                     {
-                        double baseATMaxLevel = Math.Floor((Digimon.BaseAT * Size / 100) + formulas.First(x => x.Type == Digimon.Type).AT);
-                        double criticalDamageValue = Ring.CriticalDamage + Necklace.CriticalDamage + Earrings.CriticalDamage + Bracelet.CriticalDamage;
-                        double addedAT = 0.0;
-                        //Clone
-                        addedAT += Math.Floor(baseATMaxLevel * (AttackClone / 100));
-                        //Tamer Skill and passive Skills
-                        addedAT += Math.Floor(baseATMaxLevel * (_skill1.EnhancedAT / 100.0));
-                        criticalDamageValue += _skill1.EnhancedCriticalDamage;
-                        if (Skill1 != Skill2)
+                        if (Digimon.BaseAT > 0)
                         {
-                            addedAT += Math.Floor(baseATMaxLevel * (_skill2.EnhancedAT / 100.0));
-                            criticalDamageValue += _skill2.EnhancedCriticalDamage;
-                        }
-                        if ((_tamerSkill.Name != Skill1 && _tamerSkill.Name != Skill2) || _tamerSkill.CanStack)
-                        {
-                            addedAT += Math.Floor(baseATMaxLevel * (_tamerSkill.AT / 100.0));
-                            criticalDamageValue += _tamerSkill.CriticalDamage;
-                        }
-                        if (_tamer.PassiveStat1 == "AT" && _tamer.PassiveAttribute1 == Digimon.Attribute)
-                        {
-                            addedAT += Math.Floor(baseATMaxLevel * (_tamer.PassiveValue1 / 100.0));
-                        }
-                        if (_tamer.PassiveStat2 == "AT" && _tamer.PassiveAttribute2 == Digimon.Attribute)
-                        {
-                            addedAT += Math.Floor(baseATMaxLevel * (_tamer.PassiveValue2 / 100.0));
-                        }
-                        //Buffs
-                        if (Buff1h)
-                        {
-                            addedAT += Math.Floor(baseATMaxLevel * 0.5);
-                            criticalDamageValue += 100.0;
-                        }
-                        if (Buff2h)
-                        {
-                            addedAT += Math.Floor(baseATMaxLevel * 0.5);
-                        }
-                        if (IslandBuffs)
-                        {
-                            addedAT += Math.Floor(baseATMaxLevel * 0.1);
-                        }
-                        //Static Values
-                        addedAT += Math.Floor(TamerStats.AT * (TamerStats.Intimacy / 100.0));
-                        addedAT += Math.Floor(Ring.Attack + Necklace.Attack + Earrings.Attack + Bracelet.Attack + Digivice.Attack + Seals.AT + _title.AT);
-                        //Results
-                        ResultAT = (int)Math.Floor(baseATMaxLevel + addedAT);
-                        double addedDamage = Math.Floor(ResultAT * (_deck.Damage / 100.0));
-                        if (EvoBuff)
-                        {
-                            if (Digimon.Evolution == Evolution.Mega || Digimon.Evolution == Evolution.MegaX)
+                            double baseATMaxLevel = Math.Floor((Digimon.BaseAT * Size / 100) + formulas.First(x => x.Type == Digimon.Type).AT);
+                            double criticalDamageValue = 50.0; //Base Damage Up for Critical Hits
+                            criticalDamageValue += Ring.CriticalDamage + Necklace.CriticalDamage + Earrings.CriticalDamage + Bracelet.CriticalDamage;
+                            double addedAT = 0.0;
+                            //Clone
+                            addedAT += Math.Floor(baseATMaxLevel * (AttackClone / 100));
+                            //Tamer Skill and passive Skills
+                            addedAT += Math.Floor(baseATMaxLevel * (_skill1.EnhancedAT / 100.0));
+                            criticalDamageValue += _skill1.EnhancedCriticalDamage;
+                            if (Skill1 != Skill2)
                             {
-                                addedDamage += Math.Floor(ResultAT * 0.5);
+                                addedAT += Math.Floor(baseATMaxLevel * (_skill2.EnhancedAT / 100.0));
+                                criticalDamageValue += _skill2.EnhancedCriticalDamage;
                             }
-                            else if (Digimon.Evolution == Evolution.BurstMode || Digimon.Evolution == Evolution.BurstModeX)
+                            if ((_tamerSkill.Name != Skill1 && _tamerSkill.Name != Skill2) || _tamerSkill.CanStack)
                             {
-                                addedDamage += Math.Floor(ResultAT * 0.25);
+                                addedAT += Math.Floor(baseATMaxLevel * (_tamerSkill.AT / 100.0));
+                                criticalDamageValue += _tamerSkill.CriticalDamage;
                             }
-                        }
-                        addedDamage += Math.Floor(ResultAT * (FamilyBuffs * 0.2));
-                        double advantageFactor = (1 + ((Ring.Attribute + Necklace.Attribute + Earrings.Attribute + Bracelet.Attribute) / 200.0));
-                        ResultDamage = ResultAT + (int)Math.Floor(addedDamage);
-                        ResultDamageDoubleAdvantage = ResultAT + (int)Math.Floor(addedDamage + (advantageFactor * ResultAT));
-                        ResultCriticalDamage = (int)Math.Floor(ResultDamage * ((criticalDamageValue + _deck.CriticalDamage) / 100.0));
-                        ResultCriticalDamageDoubleAdvantage = (int)Math.Floor(ResultDamageDoubleAdvantage * ((criticalDamageValue + _deck.CriticalDamage) / 100.0));
+                            if (_tamer.PassiveStat1 == "AT" && _tamer.PassiveAttribute1 == Digimon.Attribute)
+                            {
+                                addedAT += Math.Floor(baseATMaxLevel * (_tamer.PassiveValue1 / 100.0));
+                            }
+                            if (_tamer.PassiveStat2 == "AT" && _tamer.PassiveAttribute2 == Digimon.Attribute)
+                            {
+                                addedAT += Math.Floor(baseATMaxLevel * (_tamer.PassiveValue2 / 100.0));
+                            }
+                            //Buffs
+                            if (Buff1h)
+                            {
+                                addedAT += Math.Floor(baseATMaxLevel * 0.5);
+                                criticalDamageValue += 100.0;
+                            }
+                            if (Buff2h)
+                            {
+                                addedAT += Math.Floor(baseATMaxLevel * 0.5);
+                            }
+                            if (IslandBuffs)
+                            {
+                                addedAT += Math.Floor(baseATMaxLevel * 0.1);
+                            }
+                            //Static Values
+                            addedAT += Math.Floor(TamerStats.AT * (TamerStats.Intimacy / 100.0));
+                            addedAT += Math.Floor(Ring.Attack + Necklace.Attack + Earrings.Attack + Bracelet.Attack + Digivice.Attack + Seals.AT + _title.AT);
+                            //Results
+                            ResultAT = (int)Math.Floor(baseATMaxLevel + addedAT);
+                            double addedDamage = Math.Floor(ResultAT * (_deck.Damage / 100.0));
+                            if (EvoBuff)
+                            {
+                                if (Digimon.Evolution == Evolution.Mega || Digimon.Evolution == Evolution.MegaX)
+                                {
+                                    addedDamage += Math.Floor(ResultAT * 0.5);
+                                }
+                                else if (Digimon.Evolution == Evolution.BurstMode || Digimon.Evolution == Evolution.BurstModeX)
+                                {
+                                    addedDamage += Math.Floor(ResultAT * 0.25);
+                                }
+                            }
+                            addedDamage += Math.Floor(ResultAT * (FamilyBuffs * 0.2));
+                            double advantageFactor = (2 + ((Ring.Attribute + Necklace.Attribute + Earrings.Attribute + Bracelet.Attribute) / 200.0));
+                            ResultDamage = ResultAT + (int)Math.Floor(addedDamage);
+                            ResultDamageDoubleAdvantage = (int)Math.Floor(addedDamage + (advantageFactor * ResultAT));
+                            ResultCriticalDamage = (int)Math.Floor(ResultDamage * ((criticalDamageValue + _deck.CriticalDamage) / 100.0));
+                            ResultCriticalDamageDoubleAdvantage = (int)Math.Floor(ResultDamageDoubleAdvantage * ((criticalDamageValue + _deck.CriticalDamage) / 100.0));
 
-                        //Skill Damage
-                        double f1BaseDamage = Digimon.Skill1Base + ((Digimon.Skill1Level - 1) * Digimon.Skill1Increase);
-                        double f2BaseDamage = Digimon.Skill2Base + ((Digimon.Skill2Level - 1) * Digimon.Skill2Increase);
-                        double f3BaseDamage = Digimon.Skill3Base + ((Digimon.Skill3Level - 1) * Digimon.Skill3Increase);
-                        double f4BaseDamage = Digimon.Skill4Base + ((Digimon.Skill4Level - 1) * Digimon.Skill4Increase);
-                        //I don't really know why, but on clones, the apply rate seems to be 1% lower, so PF is not 144% but 143%
-                        //I also don't know, if it's always 1% or if it is more/less, if not PF-cloned. However as Skill Damage has deviation anyways, the potential difference should not be noticeable
-                        double cloneFactor = (AttackClone - 1) / 100.0;
-                        f1BaseDamage *= cloneFactor;
-                        f2BaseDamage *= cloneFactor;
-                        f3BaseDamage *= cloneFactor;
-                        f4BaseDamage *= cloneFactor;
-                        //Tamer Skills
-                        double skillFactor = _skill1.EnhancedSkillDamage;
-                        if (Skill1 != Skill2)
-                        {
-                            skillFactor += _skill2.EnhancedSkillDamage;
-                        }
-                        if ((Skill1 != _tamerSkill.Name && Skill2 != _tamerSkill.Name) || _tamerSkill.CanStack)
-                        {
-                            skillFactor += _tamerSkill.SkillDamage;
-                        }
-                        //Check if Party has Takato or Focus but hasn't already applied by Tamer
-                        if (Skill1 != "Focus" && Skill2 != "Focus")
-                        {
-                            if (Focus)
+                            //Skill Damage
+                            double f1BaseDamage = Digimon.Skill1Base + ((Digimon.Skill1Level - 1) * Digimon.Skill1Increase);
+                            double f2BaseDamage = Digimon.Skill2Base + ((Digimon.Skill2Level - 1) * Digimon.Skill2Increase);
+                            double f3BaseDamage = Digimon.Skill3Base + ((Digimon.Skill3Level - 1) * Digimon.Skill3Increase);
+                            double f4BaseDamage = Digimon.Skill4Base + ((Digimon.Skill4Level - 1) * Digimon.Skill4Increase);
+                            //TODO: Figured out through trying, might be wrong
+                            double factorFromPF = 144.0 / AttackClone;
+                            double cloneFactor = Math.Round((1.0 + (0.43 / factorFromPF)), 2);
+                            f1BaseDamage = Math.Floor(f1BaseDamage * cloneFactor);
+                            f2BaseDamage = Math.Floor(f2BaseDamage * cloneFactor);
+                            f3BaseDamage = Math.Floor(f3BaseDamage * cloneFactor);
+                            f4BaseDamage = Math.Floor(f4BaseDamage * cloneFactor);
+                            //Tamer Skills
+                            double skillFactor = _skill1.EnhancedSkillDamage;
+                            if (Skill1 != Skill2)
                             {
-                                skillFactor += tamerSkills.First(x => x.Name == "Focus").EnhancedSkillDamage;
+                                skillFactor += _skill2.EnhancedSkillDamage;
                             }
-                            else if (Tamer != "Takato" && Takato)
+                            if ((Skill1 != _tamerSkill.Name && Skill2 != _tamerSkill.Name) || _tamerSkill.CanStack)
                             {
-                                skillFactor += tamerSkills.First(x => x.Name == "Focus").SkillDamage;
+                                skillFactor += _tamerSkill.SkillDamage;
                             }
-                        }
-                        //Digivice
-                        if (Digivice.Attribute == Digimon.Attribute || Digivice.Attribute == DigimonAttribute.EqualDigimon)
-                        {
-                            skillFactor += Digivice.AttributeValue;
-                        }
-                        if (Digivice.Elemental == Digimon.Elemental || Digivice.Elemental == ElementalAttribute.EqualDigimon)
-                        {
-                            skillFactor += Digivice.ElementalValue;
-                        }
-                        //Memory Skills
-                        switch (Ruler)
-                        {
-                            case MemorySkillLevel.Lv1:
-                                skillFactor += 2;
-                                break;
-                            case MemorySkillLevel.Low:
-                            case MemorySkillLevel.Lv2:
-                                skillFactor += 5;
-                                break;
-                            case MemorySkillLevel.Lv3:
-                                skillFactor += 8;
-                                break;
-                            case MemorySkillLevel.Mid:
+                            //Check if Party has Takato or Focus but hasn't already applied by Tamer
+                            if (Skill1 != "Focus" && Skill2 != "Focus")
+                            {
+                                if (Focus)
+                                {
+                                    skillFactor += tamerSkills.First(x => x.Name == "Focus").EnhancedSkillDamage;
+                                }
+                                else if (Tamer != "Takato" && Takato)
+                                {
+                                    skillFactor += tamerSkills.First(x => x.Name == "Focus").SkillDamage;
+                                }
+                            }
+                            //Digivice
+                            if (Digivice.Attribute == Digimon.Attribute || Digivice.Attribute == DigimonAttribute.EqualDigimon)
+                            {
+                                skillFactor += Digivice.AttributeValue;
+                            }
+                            if (Digivice.Elemental == Digimon.Elemental || Digivice.Elemental == ElementalAttribute.EqualDigimon)
+                            {
+                                skillFactor += Digivice.ElementalValue;
+                            }
+                            //Memory Skills
+                            switch (Ruler)
+                            {
+                                case MemorySkillLevel.Lv1:
+                                    skillFactor += 2;
+                                    break;
+                                case MemorySkillLevel.Low:
+                                case MemorySkillLevel.Lv2:
+                                    skillFactor += 5;
+                                    break;
+                                case MemorySkillLevel.Lv3:
+                                    skillFactor += 8;
+                                    break;
+                                case MemorySkillLevel.Mid:
+                                    skillFactor += 10;
+                                    break;
+                                case MemorySkillLevel.High:
+                                    skillFactor += 15;
+                                    break;
+                                case MemorySkillLevel.Highest:
+                                    skillFactor += 20;
+                                    break;
+                                case MemorySkillLevel.None:
+                                default:
+                                    break;
+                            }
+                            //Buffs
+                            if (Buff1h)
+                            {
+                                skillFactor += 100;
+                            }
+                            if (EvoBuff)
+                            {
+                                if (Digimon.Evolution == Evolution.Mega || Digimon.Evolution == Evolution.MegaX)
+                                {
+                                    skillFactor += 50;
+                                }
+                                else if (Digimon.Evolution == Evolution.BurstMode || Digimon.Evolution == Evolution.BurstModeX)
+                                {
+                                    skillFactor += 25;
+                                }
+                            }
+                            skillFactor += (FamilyBuffs * 20);
+                            if (AguKizunaBuff)
+                            {
                                 skillFactor += 10;
-                                break;
-                            case MemorySkillLevel.High:
-                                skillFactor += 15;
-                                break;
-                            case MemorySkillLevel.Highest:
+                            }
+                            if (Digimon.SkillIncreaseBuff)
+                            {
                                 skillFactor += 20;
-                                break;
-                            case MemorySkillLevel.None:
-                            default:
-                                break;
-                        }
-                        //Buffs
-                        if (Buff1h)
-                        {
-                            skillFactor += 100;
-                        }
-                        if (EvoBuff)
-                        {
-                            if (Digimon.Evolution == Evolution.Mega || Digimon.Evolution == Evolution.MegaX)
-                            {
-                                skillFactor += 50;
                             }
-                            else if (Digimon.Evolution == Evolution.BurstMode || Digimon.Evolution == Evolution.BurstModeX)
+                            skillFactor += _title.SkillDamage;
+                            skillFactor += _deck.SkillDamage;
+                            skillFactor += TamerStats.SkillDamage;
+                            double addedf1Damage = Math.Floor(f1BaseDamage * skillFactor / 100.0);
+                            double addedf2Damage = Math.Floor(f2BaseDamage * skillFactor / 100.0);
+                            double addedf3Damage = Math.Floor(f3BaseDamage * skillFactor / 100.0);
+                            double addedf4Damage = Math.Floor(f4BaseDamage * skillFactor / 100.0);
+                            if (Digimon.Skill1Base > 0 && Digimon.Skill1Increase > 0 && Digimon.Skill1Points > 0)
                             {
-                                skillFactor += 25;
+                                ResultSkill1Damage = (int)Math.Floor(f1BaseDamage + addedf1Damage + ResultAT + Ring.Skill + Necklace.Skill + Earrings.Skill + Bracelet.Skill);
+                                ResultSkill1DamageDoubleAdvantage = (int)Math.Floor(advantageFactor * ResultSkill1Damage);
+                            }
+                            else
+                            {
+                                ResultSkill1Damage = 0;
+                                ResultSkill1DamageDoubleAdvantage = 0;
+                            }
+                            if (Digimon.Skill2Base > 0 && Digimon.Skill2Increase > 0 && Digimon.Skill2Points > 0)
+                            {
+                                ResultSkill2Damage = (int)Math.Floor(f2BaseDamage + addedf2Damage + ResultAT + Ring.Skill + Necklace.Skill + Earrings.Skill + Bracelet.Skill);
+                                ResultSkill2DamageDoubleAdvantage = (int)Math.Floor(advantageFactor * ResultSkill2Damage);
+                            }
+                            else
+                            {
+                                ResultSkill2Damage = 0;
+                                ResultSkill2DamageDoubleAdvantage = 0;
+                            }
+                            if (Digimon.Skill3Base > 0 && Digimon.Skill3Increase > 0 && Digimon.Skill3Points > 0)
+                            {
+                                ResultSkill3Damage = (int)Math.Floor(f3BaseDamage + addedf3Damage + ResultAT + Ring.Skill + Necklace.Skill + Earrings.Skill + Bracelet.Skill);
+                                ResultSkill3DamageDoubleAdvantage = (int)Math.Floor(advantageFactor * ResultSkill3Damage);
+                            }
+                            else
+                            {
+                                ResultSkill3Damage = 0;
+                                ResultSkill3DamageDoubleAdvantage = 0;
+                            }
+                            if (Digimon.Skill4Base > 0 && Digimon.Skill4Increase > 0 && Digimon.Skill4Points > 0)
+                            {
+                                ResultSkill4Damage = (int)Math.Floor(f4BaseDamage + addedf4Damage + ResultAT + Ring.Skill + Necklace.Skill + Earrings.Skill + Bracelet.Skill);
+                                ResultSkill4DamageDoubleAdvantage = (int)Math.Floor(advantageFactor * ResultSkill4Damage);
+                            }
+                            else
+                            {
+                                ResultSkill4Damage = 0;
+                                ResultSkill4DamageDoubleAdvantage = 0;
                             }
                         }
-                        skillFactor += (FamilyBuffs * 20);
-                        if (AguKizunaBuff)
-                        {
-                            skillFactor += 10;
-                        }
-                        if (Digimon.SkillIncreaseBuff)
-                        {
-                            skillFactor += 20;
-                        }
-                        skillFactor += _title.SkillDamage;
-                        skillFactor += _deck.SkillDamage;
-                        skillFactor += TamerStats.SkillDamage;
-                        double addedf1Damage = Math.Floor(f1BaseDamage * skillFactor / 100.0);
-                        double addedf2Damage = Math.Floor(f2BaseDamage * skillFactor / 100.0);
-                        double addedf3Damage = Math.Floor(f3BaseDamage * skillFactor / 100.0);
-                        double addedf4Damage = Math.Floor(f4BaseDamage * skillFactor / 100.0);
-                        ResultSkill1Damage = (int)Math.Floor(f1BaseDamage + addedf1Damage + ResultAT + Ring.Skill + Necklace.Skill + Earrings.Skill + Bracelet.Skill);
-                        ResultSkill2Damage = (int)Math.Floor(f2BaseDamage + addedf2Damage + ResultAT + Ring.Skill + Necklace.Skill + Earrings.Skill + Bracelet.Skill);
-                        ResultSkill3Damage = (int)Math.Floor(f3BaseDamage + addedf3Damage + ResultAT + Ring.Skill + Necklace.Skill + Earrings.Skill + Bracelet.Skill);
-                        ResultSkill4Damage = (int)Math.Floor(f4BaseDamage + addedf4Damage + ResultAT + Ring.Skill + Necklace.Skill + Earrings.Skill + Bracelet.Skill);
-                        ResultSkill1DamageDoubleAdvantage = (int)Math.Floor(advantageFactor * ResultSkill1Damage);
-                        ResultSkill2DamageDoubleAdvantage = (int)Math.Floor(advantageFactor * ResultSkill2Damage);
-                        ResultSkill3DamageDoubleAdvantage = (int)Math.Floor(advantageFactor * ResultSkill3Damage);
-                        ResultSkill4DamageDoubleAdvantage = (int)Math.Floor(advantageFactor * ResultSkill4Damage);
-                    }
-                }));
-                #endregion
-                tasks.Add(Task.Run(() =>
-                {
-                    #region AttackSpeed
-                    ResultAttackSpeed = Digimon.AS * (1 - ((Ring.AttackSpeed + Necklace.AttackSpeed + Earrings.AttackSpeed + Bracelet.AttackSpeed + _deck.AS + TamerStats.ASReduction) / 100.0));
+                    }));
                     #endregion
-                    #region DS
-                    if (Digimon.BaseDS > 0)
+                    tasks.Add(Task.Run(() =>
                     {
-                        double baseDSMaxLevel = Digimon.BaseDS + formulas.First(x => x.Type == Digimon.Type).DS;
-                        double addedDS = 0;
-                        //Buffs
-                        if (Buff1h)
+                        #region AttackSpeed
+                        ResultAttackSpeed = Digimon.AS * (1 - ((Ring.AttackSpeed + Necklace.AttackSpeed + Earrings.AttackSpeed + Bracelet.AttackSpeed + _deck.AS + TamerStats.ASReduction) / 100.0));
+                        #endregion
+                        #region DS
+                        if (Digimon.BaseDS > 0)
                         {
-                            addedDS += Math.Floor(baseDSMaxLevel * 0.5);
-                        }
-                        if (Buff2h)
-                        {
-                            addedDS += Math.Floor(baseDSMaxLevel * 0.5);
-                        }
-                        switch (TOL)
-                        {
-                            case MemorySkillLevel.Low:
-                            case MemorySkillLevel.Lv2:
-                                addedDS += Math.Floor(baseDSMaxLevel * 0.15);
-                                break;
-                            case MemorySkillLevel.Mid:
-                                addedDS += Math.Floor(baseDSMaxLevel * 0.3);
-                                break;
-                            case MemorySkillLevel.High:
+                            double baseDSMaxLevel = Digimon.BaseDS + formulas.First(x => x.Type == Digimon.Type).DS;
+                            double addedDS = 0;
+                            //Buffs
+                            if (Buff1h)
+                            {
                                 addedDS += Math.Floor(baseDSMaxLevel * 0.5);
-                                break;
-                            case MemorySkillLevel.Highest:
-                                addedDS += Math.Floor(baseDSMaxLevel * 0.65);
-                                break;
-                            case MemorySkillLevel.Lv1:
-                                addedDS += Math.Floor(baseDSMaxLevel * 0.1);
-                                break;
-                            case MemorySkillLevel.Lv3:
-                                addedDS += Math.Floor(baseDSMaxLevel * 0.25);
-                                break;
-                            case MemorySkillLevel.None:
-                            default:
-                                break;
+                            }
+                            if (Buff2h)
+                            {
+                                addedDS += Math.Floor(baseDSMaxLevel * 0.5);
+                            }
+                            switch (TOL)
+                            {
+                                case MemorySkillLevel.Low:
+                                case MemorySkillLevel.Lv2:
+                                    addedDS += Math.Floor(baseDSMaxLevel * 0.15);
+                                    break;
+                                case MemorySkillLevel.Mid:
+                                    addedDS += Math.Floor(baseDSMaxLevel * 0.3);
+                                    break;
+                                case MemorySkillLevel.High:
+                                    addedDS += Math.Floor(baseDSMaxLevel * 0.5);
+                                    break;
+                                case MemorySkillLevel.Highest:
+                                    addedDS += Math.Floor(baseDSMaxLevel * 0.65);
+                                    break;
+                                case MemorySkillLevel.Lv1:
+                                    addedDS += Math.Floor(baseDSMaxLevel * 0.1);
+                                    break;
+                                case MemorySkillLevel.Lv3:
+                                    addedDS += Math.Floor(baseDSMaxLevel * 0.25);
+                                    break;
+                                case MemorySkillLevel.None:
+                                default:
+                                    break;
+                            }
+                            if (IslandBuffs)
+                            {
+                                addedDS += Math.Floor(baseDSMaxLevel * 0.2);
+                            }
+                            //Static values
+                            addedDS += Math.Floor(TamerStats.DS * (TamerStats.Intimacy / 100.0));
+                            addedDS += Math.Floor(Ring.DS + Necklace.DS + Earrings.DS + Bracelet.DS + Digivice.DS + Seals.DS + _title.DS);
+                            //Results
+                            ResultDS = (int)(baseDSMaxLevel + addedDS);
                         }
-                        if (IslandBuffs)
+                        #endregion
+                        #region DE
+                        if (Digimon.BaseDE > 0)
                         {
-                            addedDS += Math.Floor(baseDSMaxLevel * 0.2);
+                            double baseDEMaxLevel = Math.Floor((Digimon.BaseDE * (Size / 100.0)) + formulas.First(x => x.Type == Digimon.Type).DE);
+                            double addedDE = 0.0;
+                            //Tamer Skill and passive Skills
+                            addedDE += _skill1.EnhancedDE;
+                            if (Skill1 != Skill2)
+                            {
+                                addedDE += _skill2.EnhancedDE;
+                            }
+                            if ((_tamerSkill.Name != Skill1 && _tamerSkill.Name != Skill2) || _tamerSkill.CanStack)
+                            {
+                                addedDE += _tamerSkill.DE;
+                            }
+                            //Buffs
+                            if (Buff1h)
+                            {
+                                addedDE += Math.Floor(baseDEMaxLevel * 0.5);
+                            }
+                            if (Buff2h)
+                            {
+                                addedDE += Math.Floor(baseDEMaxLevel * 0.5);
+                            }
+                            addedDE += Math.Floor(TamerStats.DE * (TamerStats.Intimacy / 100.0));
+                            addedDE += Math.Floor(Ring.Defense + Necklace.Defense + Earrings.Defense + Bracelet.Defense + Digivice.Defense + Seals.DE + _title.DE);
+                            ResultDE = (int)(baseDEMaxLevel + addedDE);
                         }
-                        //Static values
-                        addedDS += Math.Floor(TamerStats.DS * (TamerStats.Intimacy / 100.0));
-                        addedDS += Math.Floor(Ring.DS + Necklace.DS + Earrings.DS + Bracelet.DS + Digivice.DS + Seals.DS + _title.DS);
-                        //Results
-                        ResultDS = (int)(baseDSMaxLevel + addedDS);
-                    }
-                    #endregion
-                    #region DE
-                    if (Digimon.BaseDE > 0)
-                    {
-                        double baseDEMaxLevel = Math.Floor((Digimon.BaseDE * (Size / 100.0)) + formulas.First(x => x.Type == Digimon.Type).DE);
-                        double addedDE = 0.0;
-                        //Tamer Skill and passive Skills
-                        addedDE += _skill1.EnhancedDE;
-                        if (Skill1 != Skill2)
+                        #endregion
+                        #region Critical Chance
+                        if (Digimon.BaseCT > 0)
                         {
-                            addedDE += _skill2.EnhancedDE;
+                            double baseCTMaxLevel = (Digimon.BaseCT * (Size / 100.0)) + (formulas.First(x => x.Type == Digimon.Type).CT);
+                            //Clone
+                            double addedCT = baseCTMaxLevel * (CriticalClone / 100.0);
+                            //Tamer Skills
+                            addedCT += (baseCTMaxLevel * (_skill1.EnhancedCT / 100.0));
+                            if (Skill1 != Skill2)
+                            {
+                                addedCT += (baseCTMaxLevel * (_skill2.EnhancedCT / 100.0));
+                            }
+                            if ((_tamerSkill.Name != Skill1 && _tamerSkill.Name != Skill2) || _tamerSkill.CanStack)
+                            {
+                                addedCT += (baseCTMaxLevel * (_tamerSkill.CT / 100.0));
+                            }
+                            ResultCT = Math.Round((baseCTMaxLevel + addedCT + _title.CT + Seals.CT + Ring.Critical + Necklace.Critical + Earrings.Critical + Bracelet.Critical + Digivice.Critical + TamerStats.CT), 2);
                         }
-                        if ((_tamerSkill.Name != Skill1 && _tamerSkill.Name != Skill2) || _tamerSkill.CanStack)
+                        #endregion
+                        #region HitRate
+                        if (Digimon.HT > 0)
                         {
-                            addedDE += _tamerSkill.DE;
+                            double addedByTamerSkills = Math.Floor(Digimon.HT * (_skill1.EnhancedHT / 100.0));
+                            if (Skill1 != Skill2)
+                            {
+                                addedByTamerSkills += Math.Floor(Digimon.HT * (_skill2.EnhancedHT / 100.0));
+                            }
+                            if ((_tamerSkill.Name != Skill1 && _tamerSkill.Name != Skill2) || _tamerSkill.CanStack)
+                            {
+                                addedByTamerSkills += Math.Floor(Digimon.HT * (_tamerSkill.HT / 100.0));
+                            }
+                            ResultHT = (int)Math.Floor(Digimon.HT + addedByTamerSkills + _title.HT + Seals.HT + TamerStats.HT + Ring.HitRate + Necklace.HitRate + Earrings.HitRate + Bracelet.HitRate + Digivice.HitRate);
                         }
-                        //Buffs
-                        if (Buff1h)
+                        #endregion
+                        #region Evasion
+                        if (Digimon.EV > 0)
                         {
-                            addedDE += Math.Floor(baseDEMaxLevel * 0.5);
+                            double addedEV = Digimon.EV * (EvadeClone / 100.0);
+                            addedEV += (Digimon.EV * _skill1.EnhancedEV / 100.0);
+                            if (Skill1 != Skill2)
+                            {
+                                addedEV += (Digimon.EV * _skill2.EnhancedEV / 100.0);
+                            }
+                            if ((_tamerSkill.Name != Skill1 && _tamerSkill.Name != Skill2) || _tamerSkill.CanStack)
+                            {
+                                addedEV += (Digimon.EV * _tamerSkill.EV / 100.0);
+                            }
+                            ResultEV = Math.Round((Digimon.EV + addedEV + Ring.Evade + Necklace.Evade + Earrings.Evade + Bracelet.Evade + Seals.EV + Digivice.Evade), 2);
                         }
-                        if (Buff2h)
-                        {
-                            addedDE += Math.Floor(baseDEMaxLevel * 0.5);
-                        }
-                        addedDE += Math.Floor(TamerStats.DE * (TamerStats.Intimacy / 100.0));
-                        addedDE += Math.Floor(Ring.Defense + Necklace.Defense + Earrings.Defense + Bracelet.Defense + Digivice.Defense + Seals.DE + _title.DE);
-                        ResultDE = (int)(baseDEMaxLevel + addedDE);
-                    }
-                    #endregion
-                    #region Critical Chance
-                    if (Digimon.BaseCT > 0)
-                    {
-                        double baseCTMaxLevel = (Digimon.BaseCT * (Size / 100.0)) + (formulas.First(x => x.Type == Digimon.Type).CT);
-                        //Clone
-                        double addedCT = baseCTMaxLevel * (CriticalClone / 100.0);
-                        //Tamer Skills
-                        addedCT += (baseCTMaxLevel * (_skill1.EnhancedCT / 100.0));
-                        if (Skill1 != Skill2)
-                        {
-                            addedCT += (baseCTMaxLevel * (_skill2.EnhancedCT / 100.0));
-                        }
-                        if ((_tamerSkill.Name != Skill1 && _tamerSkill.Name != Skill2) || _tamerSkill.CanStack)
-                        {
-                            addedCT += (baseCTMaxLevel * (_tamerSkill.CT / 100.0));
-                        }
-                        ResultCT = Math.Round((baseCTMaxLevel + addedCT + _title.CT + Seals.CT + Ring.Critical + Necklace.Critical + Earrings.Critical + Bracelet.Critical + Digivice.Critical + TamerStats.CT), 2);
-                    }
-                    #endregion
-                    #region HitRate
-                    if (Digimon.HT > 0)
-                    {
-                        double addedByTamerSkills = Math.Floor(Digimon.HT * (_skill1.EnhancedHT / 100.0));
-                        if (Skill1 != Skill2)
-                        {
-                            addedByTamerSkills += Math.Floor(Digimon.HT * (_skill2.EnhancedHT / 100.0));
-                        }
-                        if ((_tamerSkill.Name != Skill1 && _tamerSkill.Name != Skill2) || _tamerSkill.CanStack)
-                        {
-                            addedByTamerSkills += Math.Floor(Digimon.HT * (_tamerSkill.HT / 100.0));
-                        }
-                        ResultHT = (int)Math.Floor(Digimon.HT + addedByTamerSkills + _title.HT + Seals.HT + TamerStats.HT + Ring.HitRate + Necklace.HitRate + Earrings.HitRate + Bracelet.HitRate + Digivice.HitRate);
-                    }
-                    #endregion
-                    #region Evasion
-                    if (Digimon.EV > 0)
-                    {
-                        double addedEV = Digimon.EV * (EvadeClone / 100.0);
-                        addedEV += (Digimon.EV * _skill1.EnhancedEV / 100.0);
-                        if (Skill1 != Skill2)
-                        {
-                            addedEV += (Digimon.EV * _skill2.EnhancedEV / 100.0);
-                        }
-                        if ((_tamerSkill.Name != Skill1 && _tamerSkill.Name != Skill2) || _tamerSkill.CanStack)
-                        {
-                            addedEV += (Digimon.EV * _tamerSkill.EV / 100.0);
-                        }
-                        ResultEV = Math.Round((Digimon.EV + addedEV + Ring.Evade + Necklace.Evade + Earrings.Evade + Bracelet.Evade + Seals.EV + Digivice.Evade), 2);
-                    }
-                    #endregion
-                }));
-                Task.WhenAll(tasks);
+                        #endregion
+                    }));
+                    Task.WhenAll(tasks);
+                }
             }
         }
 
@@ -1111,7 +1171,6 @@ namespace DMOHelper.Models
                 output.CriticalClone = statInfo.CriticalClone;
                 output.HPClone = statInfo.HPClone;
                 output.EvadeClone = statInfo.EvadeClone;
-                output.LastPresetUpdate = statInfo.LastPresetUpdate;
             }
             #region Accessories
             var accessories = SQLiteDatabaseManager.Database.Table<Accessory>().ToListAsync().Result;
@@ -1236,7 +1295,6 @@ namespace DMOHelper.Models
         public MemorySkillLevel Ruler { get; set; }
         public MemorySkillLevel Guardian { get; set; }
 
-        public DateTime LastPresetUpdate { get; set; }
         public StatInfoDatabase()
         {
             Id = 0;
@@ -1268,7 +1326,6 @@ namespace DMOHelper.Models
             CriticalClone = statInfo.CriticalClone;
             HPClone = statInfo.HPClone;
             EvadeClone = statInfo.EvadeClone;
-            LastPresetUpdate = statInfo.LastPresetUpdate;
         }
     }
 }
