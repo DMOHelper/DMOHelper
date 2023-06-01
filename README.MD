@@ -14,6 +14,9 @@ If you clone my code and change it, you have to get your own Syncfusion license 
 ### Download link
 You can get your latest version from [here](https://github.com/DMOHelper/DMOHelper/raw/master/Installer/setup.exe) via ClickOnce Distribution and Updates.
 
+### Virus Total Check
+You can find the VirusTotal check of the file [here](https://www.virustotal.com/gui/file-analysis/ZDEzNzdhNTEyNDUzZmU3NDI5MjZlNDZlZDc2NzE3Nzg6MTY4NTY0MzAwMA==).
+
 ### License
 Please refer to the [License](LICENSE.txt).
 
