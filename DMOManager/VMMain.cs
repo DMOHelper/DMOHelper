@@ -14,6 +14,7 @@ using System.Net.Http;
 using System.Reflection;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Controls;
 
 namespace DMOHelper
 {
@@ -190,11 +191,11 @@ namespace DMOHelper
         {
             get
             {
-                List<string> output = new List<string>();
+                List<string> output = new List<string>() { "None" };
                 var skills = SQLiteDatabaseManager.Database.Table<TamerSkill>().ToListAsync().Result;
                 foreach (TamerSkill skill in skills)
                 {
-                    if (skill.EnhancedCooldown > 0 || skill.UltimateCooldown > 0) //Filters Tamer Skills that are not available as Enhanced/Ultimate
+                    if (skill.Name != "None" && (skill.EnhancedCooldown > 0 || skill.UltimateCooldown > 0)) //Filters Tamer Skills that are not available as Enhanced/Ultimate
                     {
                         output.Add(skill.Name);
                     }
@@ -310,7 +311,7 @@ namespace DMOHelper
             Initialized = false;
             StatEnabled = true;
             presetInformation = SQLiteDatabaseManager.Database.Table<PresetInformation>().FirstOrDefaultAsync().Result;
-            if(presetInformation == null )
+            if (presetInformation == null)
             {
                 presetInformation = new PresetInformation();
             }

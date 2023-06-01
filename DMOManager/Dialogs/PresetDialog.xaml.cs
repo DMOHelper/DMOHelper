@@ -1,5 +1,6 @@
 ﻿using DMOHelper.Helper;
 using Syncfusion.Windows.Shared;
+using System.ComponentModel;
 using System.Windows;
 using System.Windows.Data;
 
@@ -17,6 +18,8 @@ namespace DMOHelper.Dialogs
             {
                 PropertyGroupDescription group = new PropertyGroupDescription(groupDescription);
                 view.GroupDescriptions.Add(group);
+                view.SortDescriptions.Add(new SortDescription(groupDescription, ListSortDirection.Descending));
+                view.SortDescriptions.Add(new SortDescription("Name", ListSortDirection.Ascending));
             }
         }
         private void btnDialogOk_Click(object sender, RoutedEventArgs e)

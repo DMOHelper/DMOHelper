@@ -27,7 +27,7 @@ name,rank,evolution,attribute,element,type,baseHP,baseDS,baseAT,AS,baseCT,HT,bas
 "Jesmon X",SSS,BurstModeX,Data,Steel,ShortAttacker,8170,2990,3165,240,1000,428,241,4250,16175,473,2,60030,2180,3,32986,723,3,0,0,0,false
 "Lilithmon X",SSS,BurstModeX,Virus,PitchBlack,ShortAttacker,9040,3230,3353,220,1070,486,259,4880,14445,317,2,36114,792,3,61060,2218,4,0,0,0,false
 "Apocalymon (Psychic)",SS+,Variant,Unknown,PitchBlack,ShortAttacker,7750,2550,2551,209,840,530,195,2620,7305,160,2,19871,569,2,3223,246,3,0,0,0,false
-"Armageddemon (Conflation",SS+,Variant,Unknown,PitchBlack,ShortAttacker,8070,2660,3126,240,880,530,203,2760,8080,271,2,23511,597,2,0,0,0,0,0,0,false
+"Armageddemon (Conflation)",SS+,Variant,Unknown,PitchBlack,ShortAttacker,8070,2660,3126,240,880,530,203,2760,8080,271,2,23511,597,2,0,0,0,0,0,0,false
 "Beelzemon X",SS+,MegaX,Virus,PitchBlack,QuickAttacker,6090,2480,2064,200,1180,1071,52,6310,9517,213,2,21415,480,3,67267,2535,3,0,0,0,false
 "Chaosdramon X",SS+,BurstModeX,Virus,Steel,ShortAttacker,5650,2560,3546,250,920,441,221,3880,12304,270,2,28711,630,3,114318,4153,3,0,0,0,false
 "Chaosmon",SS+,Jogress,Vaccine,PitchBlack,ShortAttacker,7610,2660,2806,230,910,500,203,3710,9627,239,2,20125,441,3,25849,939,4,0,0,0,false
@@ -35,7 +35,7 @@ name,rank,evolution,attribute,element,type,baseHP,baseDS,baseAT,AS,baseCT,HT,bas
 "Dynasmon X",SS+,MegaX,Data,Wind,ShortAttacker,6070,2430,2360,220,1220,500,194,6850,9243,202,2,21895,480,3,37892,1376,3,0,0,0,false
 "Fanglongmon",SS+,Jogress,Data,Land,Defender,8650,2848,3807,270,1180,440,287,3200,6391,256,1,14697,398,1,2565,196,1,0,0,0,false
 "Gallantmon X",SS+,MegaX,Virus,Fire,ShortAttacker,6200,2000,2167,220,1160,500,189,5860,19677,435,3,9929,217,2,27753,1008,3,0,0,0,false
-"Imperialdramon (PM)(Jogress)",SS+,Jogress,Vaccine,Light,ShortAttacker,7090,2550,2969,250,910,490,208,3360,6915,204,2,14620,374,3,3697,431,3,0,0,0,false
+"Imperialdramon PM (Jogress)",SS+,Jogress,Vaccine,Light,ShortAttacker,7090,2550,2969,250,910,490,208,3360,6915,204,2,14620,374,3,3697,431,3,0,0,0,false
 "JetMervamon",SS+,Jogress,Virus,Steel,QuickAttacker,5920,2380,2387,240,820,515,205,3080,8127,237,2,18081,396,3,0,0,0,0,0,0,false
 "LordKnightmon X",SS+,MegaX,Virus,Steel,ShortAttacker,6340,2430,2473,235,1130,475,182,5520,12623,277,2,25247,554,3,95956,3486,3,0,0,0,false
 "MedievalGallantmon",SS+,MegaX,Data,Wind,ShortAttacker,5740,2220,3013,250,1340,450,194,6230,10948,240,2,26761,587,3,53848,1956,3,0,0,0,false
