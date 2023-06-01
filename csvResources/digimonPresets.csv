@@ -15,3 +15,40 @@ name,rank,evolution,attribute,element,type,baseHP,baseDS,baseAT,AS,baseCT,HT,bas
 "Omegamon Alter-S",SS+,Jogress,Virus,Light,ShortAttacker,7310,2550,2969,250,840,500,208,3360,6625,255,2,13957,408,3,0,0,0,0,0,0,false
 "Omegamon",SS+,Jogress,Vaccine,Light,QuickAttacker,6400,2650,2407,210,1010,488,193,3820,5483,160,2,16265,356,3,0,0,0,0,0,0,false
 "Examon",SS+,Jogress,Data,Light,ShortAttacker,7750,2550,3002,240,920,455,208,2980,6567,192,2,18081,396,3,0,0,0,0,0,0,false
+"Gallantmon (Shin)",SSS,BurstMode,Virus,Light,ShortAttacker,9750,2610,3316,230,890,525,197,3640,16082,0,2,33043,0,3,133447,0,4,0,0,0,true
+"Ogudomon",SSS,Variant,Virus,PitchBlack,ShortAttacker,10550,3890,5191,280,700,510,358,2930,13365,332,2,26823,588,3,68716,2496,4,0,0,0,false
+"Ordinemon",SSS,Jogress,Unknown,PitchBlack,ShortAttacker,8100,3040,3553,260,930,475,231,3560,9773,243,2,22474,493,3,92117,3346,3,3140,114,3,false
+"Shoutmon DX",SSS,Jogress,Data,Fire,ShortAttacker,8070,2930,3126,240,970,490,2006,1820,9108,274,2,22457,503,3,82451,3108,4,0,0,0,false
+"Susanoomon",SSS,Jogress,Vaccine,Thunder,ShortAttacker,7820,2930,2583,199,930,510,253,3970,6480,281,1,18476,480,1,3144,114,1,0,0,0,false
+"Barbamon X",SSS,BurstModeX,Virus,PitchBlack,ShortAttacker,6740,2990,3726,220,0,340,241,4530,20151,442,2,36944,810,3,132157,4801,4,0,0,0,false
+"Craniamon X",SSS,BurstModeX,Vaccine,Steel,ShortAttacker,9040,3230,4095,240,1120,450,259,2580,20508,450,2,37598,825,3,56037,2035,3,0,0,0,false
+"Demon X",SSS,BurstModeX,Virus,Fire,ShortAttacker,10850,3230,4071,260,1120,486,243,3620,22829,501,2,45658,1001,3,131002,4759,4,0,0,0,true
+"Gankoomon X",SSS,BurstModeX,Data,Steel,ShortAttacker,9040,3230,3759,255,1120,450,259,5170,17090,375,2,34179,750,3,134492,4886,4,0,0,0,false
+"Jesmon X",SSS,BurstModeX,Data,Steel,ShortAttacker,8170,2990,3165,240,1000,428,241,4250,16175,473,2,60030,2180,3,32986,723,3,0,0,0,false
+"Lilithmon X",SSS,BurstModeX,Virus,PitchBlack,ShortAttacker,9040,3230,3353,220,1070,486,259,4880,14445,317,2,36114,792,3,61060,2218,4,0,0,0,false
+"Apocalymon (Psychic)",SS+,Variant,Unknown,PitchBlack,ShortAttacker,7750,2550,2551,209,840,530,195,2620,7305,160,2,19871,569,2,3223,246,3,0,0,0,false
+"Armageddemon (Conflation",SS+,Variant,Unknown,PitchBlack,ShortAttacker,8070,2660,3126,240,880,530,203,2760,8080,271,2,23511,597,2,0,0,0,0,0,0,false
+"Beelzemon X",SS+,MegaX,Virus,PitchBlack,QuickAttacker,6090,2480,2064,200,1180,1071,52,6310,9517,213,2,21415,480,3,67267,2535,3,0,0,0,false
+"Chaosdramon X",SS+,BurstModeX,Virus,Steel,ShortAttacker,5650,2560,3546,250,920,441,221,3880,12304,270,2,28711,630,3,114318,4153,3,0,0,0,false
+"Chaosmon",SS+,Jogress,Vaccine,PitchBlack,ShortAttacker,7610,2660,2806,230,910,500,203,3710,9627,239,2,20125,441,3,25849,939,4,0,0,0,false
+"Duftmon X",SS+,MegaX,Data,Steel,QuickAttacker,5750,2270,1615,180,1170,515,202,5630,8919,195,2,19624,430,3,24737,898,3,0,0,0,false
+"Dynasmon X",SS+,MegaX,Data,Wind,ShortAttacker,6070,2430,2360,220,1220,500,194,6850,9243,202,2,21895,480,3,37892,1376,3,0,0,0,false
+"Fanglongmon",SS+,Jogress,Data,Land,Defender,8650,2848,3807,270,1180,440,287,3200,6391,256,1,14697,398,1,2565,196,1,0,0,0,false
+"Gallantmon X",SS+,MegaX,Virus,Fire,ShortAttacker,6200,2000,2167,220,1160,500,189,5860,19677,435,3,9929,217,2,27753,1008,3,0,0,0,false
+"Imperialdramon (PM)(Jogress)",SS+,Jogress,Vaccine,Light,ShortAttacker,7090,2550,2969,250,910,490,208,3360,6915,204,2,14620,374,3,3697,431,3,0,0,0,false
+"JetMervamon",SS+,Jogress,Virus,Steel,QuickAttacker,5920,2380,2387,240,820,515,205,3080,8127,237,2,18081,396,3,0,0,0,0,0,0,false
+"LordKnightmon X",SS+,MegaX,Virus,Steel,ShortAttacker,6340,2430,2473,235,1130,475,182,5520,12623,277,2,25247,554,3,95956,3486,3,0,0,0,false
+"MedievalGallantmon",SS+,MegaX,Data,Wind,ShortAttacker,5740,2220,3013,250,1340,450,194,6230,10948,240,2,26761,587,3,53848,1956,3,0,0,0,false
+"Megidramon X",SS+,BurstModeX,Virus,Fire,ShortAttacker,6840,2560,2818,240,820,475,234,3990,10937,240,2,27343,600,3,100868,3664,3,0,0,0,false
+"Moon Milleniummon",SS+,Jogress,Virus,PitchBlack,Defender,7390,2700,2437,210,920,413,261,3150,6792,203,2,16676,458,3,0,0,0,0,0,0,false
+"Rafflesimon",SS+,Jogress,Data,Wood,NearAttacker,6680,2850,2632,230,910,475,196,3760,5466,136,2,17142,376,3,39036,1418,3,0,0,0,false
+"RustTyrannomon",SS+,Jogress,Virus,Steel,ShortAttacker,7380,2660,3520,280,910,490,231,3310,9110,226,2,20952,459,3,85879,3119,3,0,0,0,false
+"SlashAngemon",SS+,Jogress,Vaccine,Steel,ShortAttacker,7310,2550,2147,190,840,500,208,3360,11495,338,2,21917,480,3,0,0,0,0,0,0,false
+"Sleipmon X",SS+,MegaX,Vaccine,Ice,QuickAttacker,6470,2480,2064,200,1270,788,93,6490,7298,160,2,21895,480,3,65814,2391,3,0,0,0,false
+"ToyAgumon (BM)",SS+,BurstMode,Vaccine,Fire,ShortAttacker,5840,2140,2059,216,1170,490,184,4250,8777,257,2,14463,317,3,0,0,0,0,0,0,false
+"UlforceVeedramon X",SS+,MegaX,Vaccine,Light,QuickAttacker,7540,2480,2126,200,330,499,186,6860,10759,236,2,23134,507,3,46359,1684,3,0,0,0,false
+"Valkyrimon",SS+,Jogress,Vaccine,Ice,QuickAttacker,5920,2380,2044,200,850,499,172,3450,7815,171,2,13894,304,3,10143,368,4,0,0,0,false
+"Omegamon Zwart",SS,Jogress,Vaccine,PitchBlack,QuickAttacker,5800,2270,2117,220,780,525,163,3110,4355,138,2,13185,225,3,0,0,0,0,0,0,false
+"Alphamon Ouryuken",SS,Jogress,Vaccine,Light,ShortAttacker,6300,2170,2441,240,720,500,178,2860,4470,143,2,13158,247,3,0,0,0,0,0,0,false
+"Lucemon Satan Mode",SS,BurstMode,Virus,PitchBlack,ShortAttacker,5510,1830,2057,232,970,530,139,3530,5761,260,2,12143,238,2,0,0,0,0,0,0,false
+"Shoutmon X5",SS,Jogress,Unknown,Steel,ShortAttacker,6110,2170,2368,240,750,490,201,2860,7912,97,2,16541,363,3,0,0,0,0,0,0,false

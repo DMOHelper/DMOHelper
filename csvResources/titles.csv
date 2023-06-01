@@ -4,3 +4,12 @@ name,at,de,ht,hp,ds,ct,ev,skilldamage,skillAttribute
 "A new World",0,0,500,1000,0,0,0,15,EqualDigimon
 "Royal",0,200,0,1500,0,0,0,12,EqualDigimon
 "Lucky Bomb",0,0,0,1500,0,10,0,15,EqualDigimon
+"Magna Hyper Spirit",0,0,0,1000,0,0,0,15,Light
+"God of Destruction",0,0,0,1500,0,0,0,15,Thunder
+"Master of Twelve Heavenly Generals",0,0,0,2000,2000,0,0,0,Neutral
+"Saviour of Real World",0,0,0,1000,0,0,0,10,EqualDigimon
+"Thunder God has Acknowledged",100,0,0,0,0,0,0,12,EqualDigimon
+"King Of Black Steel Test",100,0,0,0,0,0,0,12,EqualDigimon
+"Great Power of Uprising Flame",100,0,0,0,0,0,0,12,EqualDigimon
+"Master of Water Crystal",100,0,0,0,0,0,0,12,EqualDigimon
+"Arena Dynast",200,0,0,3000,0,0,0,15,EqualDigimon
