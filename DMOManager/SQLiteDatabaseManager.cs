@@ -2,6 +2,7 @@
 using System.IO;
 using System.Globalization;
 using DMOHelper.Models;
+using System;
 
 namespace DMOHelper
 {
@@ -16,7 +17,8 @@ namespace DMOHelper
             {
                 if (database == null)
                 {
-                    database = new SQLiteAsyncConnection(Path.Combine("./DMOHelper_Database.db3"), SQLiteOpenFlags.ReadWrite | SQLiteOpenFlags.Create);
+                    Directory.CreateDirectory(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "DMOHelper"));
+                    database = new SQLiteAsyncConnection(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "DMOHelper\\DMOHelper_Database.db3"), SQLiteOpenFlags.ReadWrite | SQLiteOpenFlags.Create);
 
                     database.CreateTableAsync<Account>().Wait();
                     database.CreateTableAsync<Item>().Wait();

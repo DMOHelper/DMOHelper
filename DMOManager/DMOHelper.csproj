@@ -6,8 +6,8 @@
     <Nullable>enable</Nullable>
     <UseWPF>true</UseWPF>
     <ApplicationIcon>Images\Icon.ico</ApplicationIcon>
-    <AssemblyVersion>2.0.206.8552</AssemblyVersion>
-    <FileVersion>2.0.206.8552</FileVersion>
+    <AssemblyVersion>2.0.210.8552</AssemblyVersion>
+    <FileVersion>2.0.210.8552</FileVersion>
     <Title>DMOHelper</Title>
     <Version>2.0.0</Version>
   </PropertyGroup>
