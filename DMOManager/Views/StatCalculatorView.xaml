@@ -288,11 +288,11 @@
                 <!--Labels Damages-->
                 <Label Content="Attack every" Grid.Row="6" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center"/>
 
-                <Label Content="&#x24D8;" Grid.Row="7" ToolTip="Damage Values are meant to be neutral damage (so no enemy stats are considered in calculation)&#x0a;Damage Values have a random deviation of &#x00B1; a few percent around shown value.&#x0a;" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+                <Label Content="&#x24D8;" Grid.Row="7" ToolTip="Damage Values are meant to be neutral damage (so no enemy stats are considered in calculation)&#x0a;Damage Values have a random deviation of &#x00B1; a few percent around shown value.&#x0a;No advantage also covers disadvantage, as disadvantage only increases damage you take from enemy." Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center"/>
                 <Label Content="No Advantage" Grid.Row="7" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                 <Label Content="Double Advantage" Grid.Row="7" Grid.Column="3" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                <Label Content="Normal Attack" Grid.Row="8" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center" />
-                <Label Content="Critical Attack" Grid.Row="9" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center" />
+                <Label Content="Normal Hit" Grid.Row="8" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center" />
+                <Label Content="Critical Hit" Grid.Row="9" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center" />
                 <Label Content="F1" Grid.Row="10" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center" />
                 <Label Content="F2" Grid.Row="11" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center" />
                 <Label Content="F3" Grid.Row="12" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center" />

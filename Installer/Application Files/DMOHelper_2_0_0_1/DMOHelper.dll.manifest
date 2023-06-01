@@ -4,7 +4,7 @@
   <description asmv2:iconFile="Images\Icon.ico" xmlns="urn:schemas-microsoft-com:asm.v1" />
   <application />
   <entryPoint>
-    <assemblyIdentity name="Launcher" version="8.0.0.0" language="neutral" processorArchitecture="msil" />
+    <assemblyIdentity name="Launcher" version="7.0.0.0" language="neutral" processorArchitecture="msil" />
     <commandLine file="Launcher.exe" parameters="" />
   </entryPoint>
   <trustInfo>
@@ -43,14 +43,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Launcher.exe" size="16384">
-      <assemblyIdentity name="Launcher" version="8.0.0.0" language="neutral" processorArchitecture="msil" />
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Launcher.exe" size="15872">
+      <assemblyIdentity name="Launcher" version="7.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>5X+xQDjtgMJ/YZZqR7YYKrK+xwod8poHE6Heh8Zn87o=</dsig:DigestValue>
+        <dsig:DigestValue>qSNK5PcVwWPp3kv3x3Q1I8zAxXFeW0wEms3PD4trhp4=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -63,31 +63,31 @@
       <dsig:DigestValue>oh395MqwHOdv87ggl0L2cpWEDZZGFYe3CVUXnzSo8rY=</dsig:DigestValue>
     </hash>
   </file>
-  <file name="DMOHelper.deps.json" size="12627">
+  <file name="DMOHelper.deps.json" size="14319">
     <hash>
       <dsig:Transforms>
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>pha01GnaqqqFz0zVVeVqTCS8qjxiMsdjshMPadYNTII=</dsig:DigestValue>
+      <dsig:DigestValue>Y9HgNUVjkKQbPxWho5DUtsymk+RYZO8iF2bxcghyeko=</dsig:DigestValue>
     </hash>
   </file>
-  <file name="DMOHelper.dll" size="696320">
+  <file name="DMOHelper.dll" size="712704">
     <hash>
       <dsig:Transforms>
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>A1JtMCu1oi4eWPjlfl93JFOuVGYTpGiMyb0Ce6L4Hjg=</dsig:DigestValue>
+      <dsig:DigestValue>yi1TD/jSciYRYnvp98fCywHBK+IcqXbR7/XHsyQrXRA=</dsig:DigestValue>
     </hash>
   </file>
-  <file name="DMOHelper.exe" size="290816">
+  <file name="DMOHelper.exe" size="297984">
     <hash>
       <dsig:Transforms>
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>dMnXlcVOQUnxUnimDpXxDcveV1owTuBotqJa3Xkg0gE=</dsig:DigestValue>
+      <dsig:DigestValue>SQCNu0bmVv2VDpkCVW/kBzqsGivhRucvWha3hfPk2Wg=</dsig:DigestValue>
     </hash>
   </file>
   <file name="DMOHelper.runtimeconfig.json" size="372">
@@ -96,7 +96,16 @@
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>HsoPDHAHCqg7tgnkt0mybctECXhDJgMnJjlHIiJKCYo=</dsig:DigestValue>
+      <dsig:DigestValue>DSp4MGmJyWjNc/SmtGLu8DcWOcu4eQJIAo4Sy6A1RFo=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="ICSharpCode.AvalonEdit.dll" size="616960">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>JBfhFu0js8t97ZdZvffb3Prg99WNcbHdXiZPVRDT7qE=</dsig:DigestValue>
     </hash>
   </file>
   <file name="Images\Icon.ico" size="142384">
@@ -124,6 +133,24 @@
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
       <dsig:DigestValue>Wp7UJTLIgfePU9YitkMlzHUPNDQga+UOb+dHmHQMp+Q=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="MdXaml.dll" size="144384">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>1olqIl5Ta+Qdy+jzb2of/0K4HoBUTcvzivjalAO1BLQ=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="MdXaml.Plugins.dll" size="11264">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>sIiBj9KR3LH2McZuCJ2uplwTB3S/lN0qnyNPOvwJtX4=</dsig:DigestValue>
     </hash>
   </file>
   <file name="Newtonsoft.Json.dll" size="712464">

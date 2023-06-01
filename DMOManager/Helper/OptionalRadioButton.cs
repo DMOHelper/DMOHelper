@@ -29,7 +29,6 @@ namespace DMOHelper.Helper
         }
         private void OnIsOptionalChanged(DependencyPropertyChangedEventArgs args)
         {
-            // TODO: Add event handler if needed
         }
         #endregion
 

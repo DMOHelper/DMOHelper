@@ -680,11 +680,11 @@ namespace DMOHelper.Models
                             //Applies if Party has Hikari or Encouragement but hasn't already applied by Tamer
                             if (Tamer != "Hikari" && Hikari)
                             {
-                                addedHP += Math.Floor(baseHPwithDeck * tamerSkills.First(x => x.Name == "Encouragement").HP);
+                                addedHP += Math.Floor(baseHPwithDeck * tamerSkills.First(x => x.Name == "Encouragement").HP / 100.0);
                             }
                             if (Encouragement && Skill1 != "Encouragement" && Skill2 != "Encouragement")
                             {
-                                addedHP += Math.Floor(baseHPwithDeck * tamerSkills.First(x => x.Name == "Encouragement").EnhancedHP);
+                                addedHP += Math.Floor(baseHPwithDeck * tamerSkills.First(x => x.Name == "Encouragement").EnhancedHP / 100.0);
                             }
                             //Buffs
                             if (Buff1h)
@@ -764,6 +764,10 @@ namespace DMOHelper.Models
                             {
                                 ResultDamageReduction += (int)Math.Floor(_tamerSkill.DamageResist);
                             }
+                            if (Henry && Tamer != "Henry" && Skill1 != "Guard" && Skill2 != "Guard")
+                            {
+                                ResultDamageReduction += 30;
+                            }
                             //Results
                             ResultHP = (int)(baseHPwithDeck + Math.Floor(addedHP));
                             ResultPseudoHP = (int)Math.Floor(ResultHP * (1 / (1 - (ResultDamageReduction / 100.0))));
@@ -776,8 +780,7 @@ namespace DMOHelper.Models
                         if (Digimon.BaseAT > 0)
                         {
                             double baseATMaxLevel = Math.Floor((Digimon.BaseAT * Size / 100) + formulas.First(x => x.Type == Digimon.Type).AT);
-                            double criticalDamageValue = 50.0; //Base Damage Up for Critical Hits
-                            criticalDamageValue += Ring.CriticalDamage + Necklace.CriticalDamage + Earrings.CriticalDamage + Bracelet.CriticalDamage;
+                            double criticalDamageValue = Ring.CriticalDamage + Necklace.CriticalDamage + Earrings.CriticalDamage + Bracelet.CriticalDamage;
                             double addedAT = 0.0;
                             //Clone
                             addedAT += Math.Floor(baseATMaxLevel * (AttackClone / 100));
@@ -822,6 +825,7 @@ namespace DMOHelper.Models
                             //Results
                             ResultAT = (int)Math.Floor(baseATMaxLevel + addedAT);
                             double addedDamage = Math.Floor(ResultAT * (_deck.Damage / 100.0));
+                            addedDamage += Math.Floor(ResultAT * (FamilyBuffs * 0.2));
                             if (EvoBuff)
                             {
                                 if (Digimon.Evolution == Evolution.Mega || Digimon.Evolution == Evolution.MegaX)
@@ -833,12 +837,14 @@ namespace DMOHelper.Models
                                     addedDamage += Math.Floor(ResultAT * 0.25);
                                 }
                             }
-                            addedDamage += Math.Floor(ResultAT * (FamilyBuffs * 0.2));
+                            //TODO: Figured out through trying, might be wrong
                             double advantageFactor = (2 + ((Ring.Attribute + Necklace.Attribute + Earrings.Attribute + Bracelet.Attribute) / 200.0));
                             ResultDamage = ResultAT + (int)Math.Floor(addedDamage);
                             ResultDamageDoubleAdvantage = (int)Math.Floor(addedDamage + (advantageFactor * ResultAT));
-                            ResultCriticalDamage = (int)Math.Floor(ResultDamage * ((criticalDamageValue + _deck.CriticalDamage) / 100.0));
-                            ResultCriticalDamageDoubleAdvantage = (int)Math.Floor(ResultDamageDoubleAdvantage * ((criticalDamageValue + _deck.CriticalDamage) / 100.0));
+                            double addedCriticalDamage = ResultDamage; //Base Damage Up for Critical Hits without any CD is Double Damage
+                            addedCriticalDamage += (ResultDamage * (criticalDamageValue + _deck.CriticalDamage) / 100.0);
+                            ResultCriticalDamage = ResultDamage + (int)Math.Floor(addedCriticalDamage);
+                            ResultCriticalDamageDoubleAdvantage = ResultDamageDoubleAdvantage + (int)Math.Floor(addedCriticalDamage);
 
                             //Skill Damage
                             double f1BaseDamage = Digimon.Skill1Base + ((Digimon.Skill1Level - 1) * Digimon.Skill1Increase);
@@ -847,7 +853,7 @@ namespace DMOHelper.Models
                             double f4BaseDamage = Digimon.Skill4Base + ((Digimon.Skill4Level - 1) * Digimon.Skill4Increase);
                             //TODO: Figured out through trying, might be wrong
                             double factorFromPF = 144.0 / AttackClone;
-                            double cloneFactor = Math.Round((1.0 + (0.43 / factorFromPF)), 2);
+                            double cloneFactor = Math.Round(1.0 + (0.43 / factorFromPF), 2);
                             f1BaseDamage = Math.Floor(f1BaseDamage * cloneFactor);
                             f2BaseDamage = Math.Floor(f2BaseDamage * cloneFactor);
                             f3BaseDamage = Math.Floor(f3BaseDamage * cloneFactor);

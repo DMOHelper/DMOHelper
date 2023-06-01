@@ -1,5 +1,5 @@
 name,canStack,partyEffect,CT,EnhancedCT,DamageResist,EnhancedDamageResist,CriticalDamage,EnhancedCriticalDamage,AT,EnhancedAT,SkillDamage,EnhancedSkillDamage,Heal,EnhancedHeal,DSHeal,EnhancedDSHeal,HP,EnhancedHP,EV,EnhancedEV,HT,EnhancedHT,DE,EnhancedDE,cooldown,enhancedCooldown,ultimateCooldown
-None,false,false,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+None,false,false,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1
 Bash,false,false,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 Insight,true,false,100,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,180,0,0
 Protection,false,false,0,0,100,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,180,180,120

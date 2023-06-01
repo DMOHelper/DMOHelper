@@ -30,8 +30,8 @@
         <syncfusion:SfDataGrid x:Name="AccountsList" HeaderStyle="{StaticResource SfHeaderStyle}" SelectionUnit="Row" AutoGenerateColumns="False" SelectedIndex="{Binding AccIndex, Mode=TwoWay}" SelectionChanged="AccountsList_SelectionChanged" ItemsSource="{Binding Accounts}" Margin="1" Grid.Row="1" Grid.Column="0" Grid.RowSpan="2">
             <syncfusion:SfDataGrid.Columns>
                 <syncfusion:GridTextColumn TextAlignment="Center" MappingName="Name" />
-                <syncfusion:GridTextColumn TextAlignment="Center" MappingName="MaintenanceCoins" HeaderText="MT Coins" Width="100"/>
-                <syncfusion:GridTemplateColumn HeaderText="Money">
+                <syncfusion:GridTextColumn TextAlignment="Center" MappingName="MaintenanceCoins" HeaderText="MT Coins" Width="70"/>
+                <syncfusion:GridTemplateColumn HeaderText="Money" Width="100">
                     <syncfusion:GridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <TextBlock TextAlignment="Center" Text="{Binding Money, Converter={StaticResource CurrencyConverter}}"/>
@@ -58,12 +58,12 @@
         <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center" Grid.Row="0" Grid.Column="1">
             <TextBlock Text="Total (all Accounts): " Visibility="{Binding Suspicious, Converter={StaticResource InvertedVisibilityConverter}, FallbackValue=Visible}" FontWeight="Bold" VerticalAlignment="Center"/>
             <TextBlock Text="{Binding TotalAll, Converter={StaticResource CurrencyConverter}}" Visibility="{Binding Suspicious, Converter={StaticResource InvertedVisibilityConverter}, FallbackValue=Visible}" FontWeight="Bold" VerticalAlignment="Center"/>
-            <Button x:Name="susButton" Click="susButton_Click" Content="suspicious button..." Visibility="{Binding Suspicious, Converter={StaticResource VisibilityConverter}, FallbackValue=Collapsed}"/>
+            <Button x:Name="susButton" Click="susButton_Click" Content="suspicious..." Visibility="{Binding Suspicious, Converter={StaticResource VisibilityConverter}, FallbackValue=Collapsed}"/>
         </WrapPanel>
         <syncfusion:SfDataGrid x:Name="StackList" HeaderStyle="{StaticResource SfHeaderStyle}" SelectionUnit="Row" AutoGenerateColumns="False" ItemsSource="{Binding SelectedAccountStacks}" Grid.Row="1" Grid.Column="1" Grid.RowSpan="2" Margin="1">
             <syncfusion:SfDataGrid.Columns>
                 <syncfusion:GridTextColumn MappingName="Type" TextAlignment="Center"/>
-                <syncfusion:GridTextColumn MappingName="Amount" TextAlignment="Center" Width="90"/>
+                <syncfusion:GridTextColumn MappingName="Amount" TextAlignment="Center" Width="80"/>
                 <syncfusion:GridTemplateColumn HeaderText="Buy Price ea">
                     <syncfusion:GridTemplateColumn.CellTemplate>
                         <DataTemplate>
@@ -78,7 +78,7 @@
                         </DataTemplate>
                     </syncfusion:GridTemplateColumn.CellTemplate>
                 </syncfusion:GridTemplateColumn>
-                <syncfusion:GridTextColumn HeaderText="Profit Factor ea" Width="110" MappingName="MarginText"/>
+                <syncfusion:GridTextColumn HeaderText="Profit" Width="60" MappingName="MarginText"/>
             </syncfusion:SfDataGrid.Columns>
         </syncfusion:SfDataGrid>
     </Grid>

@@ -29,7 +29,7 @@
         <StackPanel Margin="15,0,15,0" Grid.Column="1" Grid.Row="1">
         <TextBlock TextAlignment="Justify" Margin="0,0,0,10" TextWrapping="Wrap" FontWeight="DemiBold" VerticalAlignment="Top">
                     DMO Helper is a free program (as in "free speech" and also
-                    as in "free beer"). <LineBreak/><LineBreak/>
+                    as in "free beer"). <LineBreak/>
                     This application has no commercial use.
                     <LineBreak/><LineBreak/>
                     For more information please visit
