@@ -20,7 +20,7 @@ name,rank,evolution,attribute,element,type,baseHP,baseDS,baseAT,AS,baseCT,HT,bas
 "Ordinemon",SSS,Jogress,Unknown,PitchBlack,ShortAttacker,8100,3040,3553,260,930,475,231,3560,9773,243,2,22474,493,3,92117,3346,3,3140,114,3,false
 "Shoutmon DX",SSS,Jogress,Data,Fire,ShortAttacker,8070,2930,3126,240,970,490,2006,1820,9108,274,2,22457,503,3,82451,3108,4,0,0,0,false
 "Susanoomon",SSS,Jogress,Vaccine,Thunder,ShortAttacker,7820,2930,2583,199,930,510,253,3970,6480,281,1,18476,480,1,3144,114,1,0,0,0,false
-"Barbamon X",SSS,BurstModeX,Virus,PitchBlack,ShortAttacker,6740,2990,3726,220,0,340,241,4530,20151,442,2,36944,810,3,132157,4801,4,0,0,0,false
+"Barbamon X",SSS,BurstModeX,Virus,PitchBlack,ShortAttacker,6740,2990,3726,220,1290,340,241,4530,20151,442,2,36944,810,3,132157,4801,4,0,0,0,false
 "Craniamon X",SSS,BurstModeX,Vaccine,Steel,ShortAttacker,9040,3230,4095,240,1120,450,259,2580,20508,450,2,37598,825,3,56037,2035,3,0,0,0,false
 "Demon X",SSS,BurstModeX,Virus,Fire,ShortAttacker,10850,3230,4071,260,1120,486,243,3620,22829,501,2,45658,1001,3,131002,4759,4,0,0,0,true
 "Gankoomon X",SSS,BurstModeX,Data,Steel,ShortAttacker,9040,3230,3759,255,1120,450,259,5170,17090,375,2,34179,750,3,134492,4886,4,0,0,0,false
