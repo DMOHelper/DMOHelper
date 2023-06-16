@@ -6,10 +6,10 @@
     <Nullable>enable</Nullable>
     <UseWPF>true</UseWPF>
     <ApplicationIcon>Images\Icon.ico</ApplicationIcon>
-    <AssemblyVersion>2.0.210.8552</AssemblyVersion>
-    <FileVersion>2.0.210.8552</FileVersion>
+    <AssemblyVersion>2.1.215.8567</AssemblyVersion>
+    <FileVersion>2.1.215.8567</FileVersion>
     <Title>DMOHelper</Title>
-    <Version>2.0.0</Version>
+    <Version>2.1.0</Version>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">

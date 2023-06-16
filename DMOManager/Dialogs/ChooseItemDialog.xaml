@@ -26,7 +26,7 @@
             <ComboBox.ItemTemplate>
                 <DataTemplate>
                     <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="{Binding Type}" />
+                        <TextBlock Text="{Binding Type}" Foreground="Black"/>
                     </StackPanel>
                 </DataTemplate>
             </ComboBox.ItemTemplate>

@@ -841,8 +841,8 @@ namespace DMOHelper.Models
                             double advantageFactor = (2 + ((Ring.Attribute + Necklace.Attribute + Earrings.Attribute + Bracelet.Attribute) / 200.0));
                             ResultDamage = ResultAT + (int)Math.Floor(addedDamage);
                             ResultDamageDoubleAdvantage = (int)Math.Floor(addedDamage + (advantageFactor * ResultAT));
-                            double addedCriticalDamage = ResultDamage; //Base Damage Up for Critical Hits without any CD is Double Damage
-                            addedCriticalDamage += (ResultDamage * (criticalDamageValue + _deck.CriticalDamage) / 100.0);
+                            double addedCriticalDamage = ResultDamage * 0.8;
+                            addedCriticalDamage *= (1 + ((criticalDamageValue + _deck.CriticalDamage) / 100.0));
                             ResultCriticalDamage = ResultDamage + (int)Math.Floor(addedCriticalDamage);
                             ResultCriticalDamageDoubleAdvantage = ResultDamageDoubleAdvantage + (int)Math.Floor(addedCriticalDamage);
 
@@ -940,7 +940,10 @@ namespace DMOHelper.Models
                             {
                                 skillFactor += 20;
                             }
-                            skillFactor += _title.SkillDamage;
+                            if (_title.SkillAttribute == Digimon.Elemental || _title.SkillAttribute == ElementalAttribute.EqualDigimon)
+                            {
+                                skillFactor += _title.SkillDamage;
+                            }
                             skillFactor += _deck.SkillDamage;
                             skillFactor += TamerStats.SkillDamage;
                             double addedf1Damage = Math.Floor(f1BaseDamage * skillFactor / 100.0);
