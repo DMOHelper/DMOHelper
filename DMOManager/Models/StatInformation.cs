@@ -37,6 +37,7 @@ namespace DMOHelper.Models
         private bool takato;
         private bool focus;
         private bool aguKizunaBuff;
+        private bool gabuKizunaBuff;
         private int resultLevel;
         private int resultHP;
         private int resultDamageReduction;
@@ -63,6 +64,7 @@ namespace DMOHelper.Models
         private MemorySkillLevel tol;
         private MemorySkillLevel ruler;
         private MemorySkillLevel guardian;
+        private bool tamerSkillActive;
 
         public Ring Ring
         {
@@ -225,6 +227,16 @@ namespace DMOHelper.Models
                 Calculate();
             }
         }
+        public bool TamerSkillActive
+        {
+            get { return tamerSkillActive; }
+            set
+            {
+                tamerSkillActive = value;
+                OnPropertyChanged();
+                Calculate();
+            }
+        }
         public bool Buff1h
         {
             get { return buff1h; }
@@ -321,6 +333,16 @@ namespace DMOHelper.Models
             set
             {
                 aguKizunaBuff = value;
+                OnPropertyChanged();
+                Calculate();
+            }
+        }
+        public bool GabuKizunaBuff
+        {
+            get { return gabuKizunaBuff; }
+            set
+            {
+                gabuKizunaBuff = value;
                 OnPropertyChanged();
                 Calculate();
             }
@@ -665,9 +687,12 @@ namespace DMOHelper.Models
                             {
                                 addedHP += Math.Floor(baseHPwithDeck * (_skill2.EnhancedHP / 100.0));
                             }
-                            if ((_tamerSkill.Name != Skill1 && _tamerSkill.Name != Skill2) || _tamerSkill.CanStack)
+                            if (TamerSkillActive)
                             {
-                                addedHP += Math.Floor(baseHPwithDeck * (_tamerSkill.HP / 100.0));
+                                if ((_tamerSkill.Name != Skill1 && _tamerSkill.Name != Skill2) || _tamerSkill.CanStack)
+                                {
+                                    addedHP += Math.Floor(baseHPwithDeck * (_tamerSkill.HP / 100.0));
+                                }
                             }
                             if (_tamer.PassiveStat1 == "HP" && _tamer.PassiveAttribute1 == Digimon.Attribute)
                             {
@@ -760,9 +785,12 @@ namespace DMOHelper.Models
                             {
                                 ResultDamageReduction += (int)Math.Floor(_skill2.EnhancedDamageResist);
                             }
-                            if ((_tamerSkill.Name != Skill1 && _tamerSkill.Name != Skill2) || _tamerSkill.CanStack)
+                            if (TamerSkillActive)
                             {
-                                ResultDamageReduction += (int)Math.Floor(_tamerSkill.DamageResist);
+                                if ((_tamerSkill.Name != Skill1 && _tamerSkill.Name != Skill2) || _tamerSkill.CanStack)
+                                {
+                                    ResultDamageReduction += (int)Math.Floor(_tamerSkill.DamageResist);
+                                }
                             }
                             if (Henry && Tamer != "Henry" && Skill1 != "Guard" && Skill2 != "Guard")
                             {
@@ -792,10 +820,13 @@ namespace DMOHelper.Models
                                 addedAT += Math.Floor(baseATMaxLevel * (_skill2.EnhancedAT / 100.0));
                                 criticalDamageValue += _skill2.EnhancedCriticalDamage;
                             }
-                            if ((_tamerSkill.Name != Skill1 && _tamerSkill.Name != Skill2) || _tamerSkill.CanStack)
+                            if (TamerSkillActive)
                             {
-                                addedAT += Math.Floor(baseATMaxLevel * (_tamerSkill.AT / 100.0));
-                                criticalDamageValue += _tamerSkill.CriticalDamage;
+                                if ((_tamerSkill.Name != Skill1 && _tamerSkill.Name != Skill2) || _tamerSkill.CanStack)
+                                {
+                                    addedAT += Math.Floor(baseATMaxLevel * (_tamerSkill.AT / 100.0));
+                                    criticalDamageValue += _tamerSkill.CriticalDamage;
+                                }
                             }
                             if (_tamer.PassiveStat1 == "AT" && _tamer.PassiveAttribute1 == Digimon.Attribute)
                             {
@@ -818,6 +849,10 @@ namespace DMOHelper.Models
                             if (IslandBuffs)
                             {
                                 addedAT += Math.Floor(baseATMaxLevel * 0.1);
+                            }
+                            if (GabuKizunaBuff)
+                            {
+                                criticalDamageValue += 10.0;
                             }
                             //Static Values
                             addedAT += Math.Floor(TamerStats.AT * (TamerStats.Intimacy / 100.0));
@@ -864,9 +899,12 @@ namespace DMOHelper.Models
                             {
                                 skillFactor += _skill2.EnhancedSkillDamage;
                             }
-                            if ((Skill1 != _tamerSkill.Name && Skill2 != _tamerSkill.Name) || _tamerSkill.CanStack)
+                            if (TamerSkillActive)
                             {
-                                skillFactor += _tamerSkill.SkillDamage;
+                                if ((Skill1 != _tamerSkill.Name && Skill2 != _tamerSkill.Name) || _tamerSkill.CanStack)
+                                {
+                                    skillFactor += _tamerSkill.SkillDamage;
+                                }
                             }
                             //Check if Party has Takato or Focus but hasn't already applied by Tamer
                             if (Skill1 != "Focus" && Skill2 != "Focus")
@@ -1059,9 +1097,12 @@ namespace DMOHelper.Models
                             {
                                 addedDE += _skill2.EnhancedDE;
                             }
-                            if ((_tamerSkill.Name != Skill1 && _tamerSkill.Name != Skill2) || _tamerSkill.CanStack)
+                            if (TamerSkillActive)
                             {
-                                addedDE += _tamerSkill.DE;
+                                if ((_tamerSkill.Name != Skill1 && _tamerSkill.Name != Skill2) || _tamerSkill.CanStack)
+                                {
+                                    addedDE += _tamerSkill.DE;
+                                }
                             }
                             //Buffs
                             if (Buff1h)
@@ -1089,9 +1130,12 @@ namespace DMOHelper.Models
                             {
                                 addedCT += (baseCTMaxLevel * (_skill2.EnhancedCT / 100.0));
                             }
-                            if ((_tamerSkill.Name != Skill1 && _tamerSkill.Name != Skill2) || _tamerSkill.CanStack)
+                            if (TamerSkillActive)
                             {
-                                addedCT += (baseCTMaxLevel * (_tamerSkill.CT / 100.0));
+                                if ((_tamerSkill.Name != Skill1 && _tamerSkill.Name != Skill2) || _tamerSkill.CanStack)
+                                {
+                                    addedCT += (baseCTMaxLevel * (_tamerSkill.CT / 100.0));
+                                }
                             }
                             ResultCT = Math.Round((baseCTMaxLevel + addedCT + _title.CT + Seals.CT + Ring.Critical + Necklace.Critical + Earrings.Critical + Bracelet.Critical + Digivice.Critical + TamerStats.CT), 2);
                         }
@@ -1104,9 +1148,12 @@ namespace DMOHelper.Models
                             {
                                 addedByTamerSkills += Math.Floor(Digimon.HT * (_skill2.EnhancedHT / 100.0));
                             }
-                            if ((_tamerSkill.Name != Skill1 && _tamerSkill.Name != Skill2) || _tamerSkill.CanStack)
+                            if (TamerSkillActive)
                             {
-                                addedByTamerSkills += Math.Floor(Digimon.HT * (_tamerSkill.HT / 100.0));
+                                if ((_tamerSkill.Name != Skill1 && _tamerSkill.Name != Skill2) || _tamerSkill.CanStack)
+                                {
+                                    addedByTamerSkills += Math.Floor(Digimon.HT * (_tamerSkill.HT / 100.0));
+                                }
                             }
                             ResultHT = (int)Math.Floor(Digimon.HT + addedByTamerSkills + _title.HT + Seals.HT + TamerStats.HT + Ring.HitRate + Necklace.HitRate + Earrings.HitRate + Bracelet.HitRate + Digivice.HitRate);
                         }
@@ -1120,9 +1167,12 @@ namespace DMOHelper.Models
                             {
                                 addedEV += (Digimon.EV * _skill2.EnhancedEV / 100.0);
                             }
-                            if ((_tamerSkill.Name != Skill1 && _tamerSkill.Name != Skill2) || _tamerSkill.CanStack)
+                            if (TamerSkillActive)
                             {
-                                addedEV += (Digimon.EV * _tamerSkill.EV / 100.0);
+                                if ((_tamerSkill.Name != Skill1 && _tamerSkill.Name != Skill2) || _tamerSkill.CanStack)
+                                {
+                                    addedEV += (Digimon.EV * _tamerSkill.EV / 100.0);
+                                }
                             }
                             ResultEV = Math.Round((Digimon.EV + addedEV + Ring.Evade + Necklace.Evade + Earrings.Evade + Bracelet.Evade + Seals.EV + Digivice.Evade), 2);
                         }
@@ -1156,6 +1206,7 @@ namespace DMOHelper.Models
             var statInfo = SQLiteDatabaseManager.Database.Table<StatInfoDatabase>().FirstOrDefaultAsync().Result;
             if (statInfo != null)
             {
+                output.TamerSkillActive = statInfo.TamerSkillActive;
                 output.Size = statInfo.Size;
                 output.Tamer = statInfo.Tamer;
                 output.Skill1 = statInfo.Skill1;
@@ -1300,6 +1351,7 @@ namespace DMOHelper.Models
         public bool Takato { get; set; }
         public bool Focus { get; set; }
         public bool AguKizunaBuff { get; set; }
+        public bool TamerSkillActive { get; set; }
         public MemorySkillLevel TOL { get; set; }
         public MemorySkillLevel Ruler { get; set; }
         public MemorySkillLevel Guardian { get; set; }
@@ -1335,6 +1387,7 @@ namespace DMOHelper.Models
             CriticalClone = statInfo.CriticalClone;
             HPClone = statInfo.HPClone;
             EvadeClone = statInfo.EvadeClone;
+            TamerSkillActive = statInfo.TamerSkillActive;
         }
     }
 }

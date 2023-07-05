@@ -129,7 +129,7 @@ namespace DMOHelper.Views
                 availablePoints -= viewModel.StatInformation.Digimon.Skill4Points * (viewModel.StatInformation.Digimon.Skill4Level - 1);
                 if (((UpDown)sender).Name == "skillLevel1")
                 {
-                    if(availablePoints < viewModel.StatInformation.Digimon.Skill1Points)
+                    if (availablePoints < viewModel.StatInformation.Digimon.Skill1Points)
                     {
                         e.Cancel = true;
                     }
@@ -155,6 +155,14 @@ namespace DMOHelper.Views
                         e.Cancel = true;
                     }
                 }
+            }
+        }
+
+        private void ExEvo_IsEnabledChanged(object sender, DependencyPropertyChangedEventArgs e)
+        {
+            if ((bool)e.NewValue == false)
+            {
+                VMMain.GetInstance().StatInformation.EvoBuff = false;
             }
         }
     }

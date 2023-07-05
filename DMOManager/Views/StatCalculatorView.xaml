@@ -36,6 +36,7 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <Label ToolTip="BaseStats on Level 1 and 100% Size; visit dmowiki.com to get them" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Left" VerticalAlignment="Center" Content="Digimon Base Information" FontWeight="Bold"/>
         <!--Size-->
@@ -136,21 +137,25 @@
 
         <!--Buffs-->
         <Label Grid.Row="3" Grid.Column="2" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Bottom" Content="Applied Buffs" FontWeight="Bold"/>
-        <Label Grid.Row="3" Grid.Column="4" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Bottom" Content="Party Tamer Skills" FontWeight="Bold"/>
         <CheckBox Content="1h Buffs" IsChecked="{Binding StatInformation.Buff1h, Mode=TwoWay}" Grid.Row="4" Grid.Column="2" HorizontalAlignment="Left" VerticalAlignment="Center"/>
         <CheckBox Content="2h Buffs" IsChecked="{Binding StatInformation.Buff2h, Mode=TwoWay}" Grid.Row="5" Grid.Column="2" HorizontalAlignment="Left" VerticalAlignment="Center"/>
         <CheckBox Content="File Isl. Buffs" IsChecked="{Binding StatInformation.IslandBuffs, Mode=TwoWay}" Grid.Row="4" Grid.Column="3" HorizontalAlignment="Left" VerticalAlignment="Center"/>
-        <CheckBox Content="Extreme Evo / Peak of X Evo" IsChecked="{Binding StatInformation.EvoBuff, Mode=TwoWay}" IsEnabled="{Binding ElementName=EvoBox, Path=SelectedItem, Converter={StaticResource ExtremePeakEvoConverter}}" Grid.Row="5" Grid.Column="3" Grid.ColumnSpan="2" HorizontalAlignment="Left" VerticalAlignment="Center"/>
-        <CheckBox Content="Hikari's" IsChecked="{Binding StatInformation.Hikari, Mode=TwoWay}" Grid.Row="4" Grid.Column="4" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,10,0"/>
-        <CheckBox Content="Henry's / Enh./Ult. Guard" IsChecked="{Binding StatInformation.Henry, Mode=TwoWay}" Grid.Row="5" Grid.Column="5" HorizontalAlignment="Left" VerticalAlignment="Center"/>
-        <helper:OptionalRadioButton IsOptional="True" GroupName="Takato" Content="Takato's" IsChecked="{Binding StatInformation.Takato, Mode=TwoWay}" Grid.Row="6" Grid.Column="4" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,10,0"/>
-        <CheckBox Content="Enh./Ult. Encouragement" IsChecked="{Binding StatInformation.Encouragement, Mode=TwoWay}" Grid.Row="4" Grid.Column="5" HorizontalAlignment="Left" VerticalAlignment="Center"/>
-        <helper:OptionalRadioButton IsOptional="True" GroupName="Takato" Content="Enh./Ult. Focus" IsChecked="{Binding StatInformation.Focus, Mode=TwoWay}" Grid.Row="6" Grid.Column="5" HorizontalAlignment="Left" VerticalAlignment="Center"/>
-
+        <CheckBox Content="Extreme Evo / Peak of X Evo" IsChecked="{Binding StatInformation.EvoBuff, Mode=TwoWay}" IsEnabledChanged="ExEvo_IsEnabledChanged" IsEnabled="{Binding ElementName=EvoBox, Path=SelectedItem, Converter={StaticResource ExtremePeakEvoConverter}}" Grid.Row="5" Grid.Column="3" Grid.ColumnSpan="2" HorizontalAlignment="Left" VerticalAlignment="Center"/>
         <StackPanel Orientation="Horizontal" Grid.Row="6" Grid.Column="3" Grid.ColumnSpan="2">
             <syncfusion:UpDown AllowEdit="False" ApplyZeroColor="False" TextAlignment="Center" Step="1" MinValue="0" MaxValue="3" NumberDecimalDigits="0" Value="{Binding StatInformation.FamilyBuffs, Mode=TwoWay}" Height="28" Width="40"/>
             <Label Content="Family Buffs" HorizontalAlignment="Left" VerticalAlignment="Center"/>
         </StackPanel>
+
+        <!--Party Tamer Skills-->
+        <Label Grid.Row="3" Grid.Column="4" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Bottom" Content="Party Tamer Skills" FontWeight="Bold"/>
+        <CheckBox Content="Hikari's" IsChecked="{Binding StatInformation.Hikari, Mode=TwoWay}" Grid.Row="4" Grid.Column="4" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,10,0"/>
+        <CheckBox Content="Enh./Ult. Encouragement" IsChecked="{Binding StatInformation.Encouragement, Mode=TwoWay}" Grid.Row="4" Grid.Column="5" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+        <CheckBox Content="Henry's / Enh./Ult. Guard" IsChecked="{Binding StatInformation.Henry, Mode=TwoWay}" Grid.Row="5" Grid.Column="5" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+        <helper:OptionalRadioButton IsOptional="True" GroupName="Takato" Content="Takato's" IsChecked="{Binding StatInformation.Takato, Mode=TwoWay}" Grid.Row="6" Grid.Column="4" HorizontalAlignment="Right" VerticalAlignment="Center" VerticalContentAlignment="Center" Margin="0,0,10,0"/>
+        <helper:OptionalRadioButton IsOptional="True" GroupName="Takato" Content="Enh./Ult. Focus" IsChecked="{Binding StatInformation.Focus, Mode=TwoWay}" Grid.Row="6" Grid.Column="5" HorizontalAlignment="Left" VerticalAlignment="Center" VerticalContentAlignment="Center"/>
+        <CheckBox Content="Own Tamer Skill Active" IsChecked="{Binding StatInformation.TamerSkillActive, Mode=TwoWay}" Grid.Row="7" Grid.Column="5" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+
+        <!--Memory Skills-->
         <StackPanel Orientation="Horizontal" Grid.Row="6" Grid.Column="2" Grid.ColumnSpan="2" HorizontalAlignment="Left" VerticalAlignment="Center">
             <ComboBox FontWeight="SemiBold" SelectedItem="{Binding StatInformation.TOL, Mode=TwoWay}" ItemsSource="{Binding MemoryRates}" Height="28" Width="75"/>
             <Label Content="ToL" FontWeight="Bold"/>
@@ -163,90 +168,95 @@
             <ComboBox FontWeight="SemiBold" SelectedItem="{Binding StatInformation.Guardian, Mode=TwoWay}" ItemsSource="{Binding ElementName=EvoBox,Path=SelectedItem,Converter={StaticResource EvoMemorySkillConverter}}" Height="28" Width="75"/>
             <Label Content="Guardian Skill" FontWeight="Bold"/>
         </StackPanel>
-        <StackPanel Orientation="Horizontal" Grid.Row="7" Grid.Column="5" HorizontalAlignment="Left" VerticalAlignment="Center">
-            <CheckBox Content="Agumon Kizuna Buff" HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="SemiBold" IsChecked="{Binding StatInformation.AguKizunaBuff, Mode=TwoWay}" />
-        </StackPanel>
+
         <!--Deck and Title-->
-        <StackPanel Orientation="Horizontal" Grid.Row="8" Grid.Column="4" Grid.ColumnSpan="2" HorizontalAlignment="Left" VerticalAlignment="Center">
-            <ComboBox FontWeight="SemiBold" SelectedItem="{Binding StatInformation.Title, Mode=TwoWay}" ItemsSource="{Binding Titles}" Height="28" Width="240"/>
+        <StackPanel Orientation="Horizontal" Grid.Row="9" Grid.Column="2" Grid.ColumnSpan="3" HorizontalAlignment="Left" VerticalAlignment="Center">
+            <ComboBox FontWeight="SemiBold" SelectedItem="{Binding StatInformation.Title, Mode=TwoWay}" ItemsSource="{Binding Titles}" Height="28" Width="220"/>
             <Label Content="Title" FontWeight="Bold"/>
         </StackPanel>
-        <StackPanel Orientation="Horizontal" Grid.Row="9" Grid.Column="4" Grid.ColumnSpan="2" HorizontalAlignment="Left" VerticalAlignment="Center">
-            <ComboBox FontWeight="SemiBold" SelectedItem="{Binding StatInformation.Deck, Mode=TwoWay}" ItemsSource="{Binding Decks}" Height="28" Width="240"/>
+        <StackPanel Orientation="Horizontal" Grid.Row="10" Grid.Column="2" Grid.ColumnSpan="3" HorizontalAlignment="Left" VerticalAlignment="Center">
+            <ComboBox FontWeight="SemiBold" SelectedItem="{Binding StatInformation.Deck, Mode=TwoWay}" ItemsSource="{Binding Decks}" Height="28" Width="220"/>
             <Label Content="Deck" FontWeight="Bold"/>
         </StackPanel>
-        <!--Skill Buff Effect-->
-        <StackPanel Orientation="Horizontal" Grid.Row="9" Grid.Column="2" Grid.ColumnSpan="2" HorizontalAlignment="Left" VerticalAlignment="Center">
-            <CheckBox Content="20% Skill Damage Buff by Skill" HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="SemiBold" IsChecked="{Binding StatInformation.Digimon.SkillIncreaseBuff, Mode=TwoWay}" />
+        <!--Skill Buff Effect / Kizuna-->
+        <Label Content="Special Skill Buffs" FontWeight="Bold" Grid.Row="8" Grid.Column="4" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Bottom"/>
+        <StackPanel Orientation="Horizontal" Grid.Row="9" Grid.Column="5" HorizontalAlignment="Left" VerticalAlignment="Center">
+            <CheckBox Content="Agumon Kizuna Buff" HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="SemiBold" IsChecked="{Binding StatInformation.AguKizunaBuff, Mode=TwoWay}" />
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" Grid.Row="10" Grid.Column="5" HorizontalAlignment="Left" VerticalAlignment="Center">
+            <CheckBox Content="Gabumon Kizuna Buff" HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="SemiBold" IsChecked="{Binding StatInformation.GabuKizunaBuff, Mode=TwoWay}" />
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" Grid.Row="11" Grid.Column="5" Grid.ColumnSpan="2" HorizontalAlignment="Left" VerticalAlignment="Center">
+            <CheckBox Content="20% Skill Buff by own Skill" HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="SemiBold" IsChecked="{Binding StatInformation.Digimon.SkillIncreaseBuff, Mode=TwoWay}" />
         </StackPanel>
 
         <!--Skills-->
-        <Label Content="Digimon Skill Information" Grid.Row="10" Grid.Column="2" Grid.ColumnSpan="3" HorizontalAlignment="Center" VerticalAlignment="Bottom" />
-        <Label Content="Base Damage" Grid.Row="11" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center" />
-        <Label Content="Increase per Level" Grid.Row="11" Grid.Column="2" Grid.ColumnSpan="3" HorizontalAlignment="Center" VerticalAlignment="Center" />
-        <Label Content="Skill Points req." Grid.Row="11" Grid.Column="4" HorizontalAlignment="Center" VerticalAlignment="Center" />
-        <Label Content="Skill Level" Grid.Row="11" Margin="10,0,0,0" Grid.Column="5" HorizontalAlignment="Left" VerticalAlignment="Center" />
+        <Label Content="Digimon Skill Information" Grid.Row="11" Grid.Column="2" Grid.ColumnSpan="3" HorizontalAlignment="Center" VerticalAlignment="Bottom" />
+        <Label Content="Base Damage" Grid.Row="12" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center" />
+        <Label Content="Increase per Level" Grid.Row="12" Grid.Column="2" Grid.ColumnSpan="3" HorizontalAlignment="Center" VerticalAlignment="Center" />
+        <Label Content="Skill Points req." Grid.Row="12" Grid.Column="4" HorizontalAlignment="Center" VerticalAlignment="Center" />
+        <Label Content="Skill Level" Grid.Row="12" Margin="10,0,0,0" Grid.Column="5" HorizontalAlignment="Left" VerticalAlignment="Center" />
 
         <!--F1-->
-        <Label Grid.Row="12" Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Center" Content="F1" />
-        <StackPanel Orientation="Horizontal" Grid.Row="12" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center">
+        <Label Grid.Row="13" Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Center" Content="F1" />
+        <StackPanel Orientation="Horizontal" Grid.Row="13" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center">
             <syncfusion:IntegerTextBox Value="{Binding StatInformation.Digimon.Skill1Base, Mode=TwoWay}" MaxValue="999999" MinValue="0" MinValueOnExceedMinDigit="True" MaxValueOnExceedMaxDigit="True" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Text="0" Height="28" Width="100"/>
         </StackPanel>
-        <StackPanel Orientation="Horizontal" Grid.Row="12" Grid.Column="3" HorizontalAlignment="Center" VerticalAlignment="Center">
+        <StackPanel Orientation="Horizontal" Grid.Row="13" Grid.Column="3" HorizontalAlignment="Center" VerticalAlignment="Center">
             <syncfusion:IntegerTextBox Value="{Binding StatInformation.Digimon.Skill1Increase, Mode=TwoWay}" MaxValue="9999" MinValue="0" MinValueOnExceedMinDigit="True" MaxValueOnExceedMaxDigit="True" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Text="0" Height="28" Width="100"/>
         </StackPanel>
-        <StackPanel Orientation="Horizontal" Grid.Row="12" Grid.Column="4" HorizontalAlignment="Center" VerticalAlignment="Center">
+        <StackPanel Orientation="Horizontal" Grid.Row="13" Grid.Column="4" HorizontalAlignment="Center" VerticalAlignment="Center">
             <syncfusion:UpDown x:Name="skill1PointsBox" AllowEdit="False" TextAlignment="Center" ApplyZeroColor="False" Step="1" MinValue="0" MaxValue="4" NumberDecimalDigits="0" Value="{Binding StatInformation.Digimon.Skill1Points, Mode=TwoWay}" Height="28" Width="100"/>
         </StackPanel>
-        <StackPanel Orientation="Horizontal" Grid.Row="12" Grid.Column="5" HorizontalAlignment="Left" VerticalAlignment="Center">
+        <StackPanel Orientation="Horizontal" Grid.Row="13" Grid.Column="5" HorizontalAlignment="Left" VerticalAlignment="Center">
             <syncfusion:UpDown x:Name="skillLevel1" AllowEdit="False" TextAlignment="Center" ApplyZeroColor="False" Step="1" MinValue="1" ValueChanging="SkillLevel_ValueChanging" MaxValue="{Binding ElementName=skill1PointsBox, Path=Value, Converter={StaticResource SkillPointsMaxLevelConverter}}" NumberDecimalDigits="0" Value="{Binding StatInformation.Digimon.Skill1Level, Mode=TwoWay}" Height="28" Width="100"/>
         </StackPanel>
         <!--F2-->
-        <Label Grid.Row="13" Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Center" Content="F2" />
-        <StackPanel Orientation="Horizontal" Grid.Row="13" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center">
+        <Label Grid.Row="14" Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Center" Content="F2" />
+        <StackPanel Orientation="Horizontal" Grid.Row="14" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center">
             <syncfusion:IntegerTextBox Value="{Binding StatInformation.Digimon.Skill2Base, Mode=TwoWay}" MaxValue="999999" MinValue="0" MinValueOnExceedMinDigit="True" MaxValueOnExceedMaxDigit="True" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Text="0" Height="28" Width="100"/>
         </StackPanel>
-        <StackPanel Orientation="Horizontal" Grid.Row="13" Grid.Column="3" HorizontalAlignment="Center" VerticalAlignment="Center">
+        <StackPanel Orientation="Horizontal" Grid.Row="14" Grid.Column="3" HorizontalAlignment="Center" VerticalAlignment="Center">
             <syncfusion:IntegerTextBox Value="{Binding StatInformation.Digimon.Skill2Increase, Mode=TwoWay}" MaxValue="9999" MinValue="0" MinValueOnExceedMinDigit="True" MaxValueOnExceedMaxDigit="True" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Text="0" Height="28" Width="100"/>
         </StackPanel>
-        <StackPanel Orientation="Horizontal" Grid.Row="13" Grid.Column="4" HorizontalAlignment="Center" VerticalAlignment="Center">
+        <StackPanel Orientation="Horizontal" Grid.Row="14" Grid.Column="4" HorizontalAlignment="Center" VerticalAlignment="Center">
             <syncfusion:UpDown x:Name="skill2PointsBox" AllowEdit="False" TextAlignment="Center" ApplyZeroColor="False" Step="1" MinValue="0" MaxValue="4" NumberDecimalDigits="0" Value="{Binding StatInformation.Digimon.Skill2Points, Mode=TwoWay}" Height="28" Width="100"/>
         </StackPanel>
-        <StackPanel Orientation="Horizontal" Grid.Row="13" Grid.Column="5" HorizontalAlignment="Left" VerticalAlignment="Center">
+        <StackPanel Orientation="Horizontal" Grid.Row="14" Grid.Column="5" HorizontalAlignment="Left" VerticalAlignment="Center">
             <syncfusion:UpDown x:Name="skillLevel2" AllowEdit="False" TextAlignment="Center" ApplyZeroColor="False" Step="1" MinValue="1" ValueChanging="SkillLevel_ValueChanging" MaxValue="{Binding ElementName=skill2PointsBox, Path=Value, Converter={StaticResource SkillPointsMaxLevelConverter}}" NumberDecimalDigits="0" Value="{Binding StatInformation.Digimon.Skill2Level, Mode=TwoWay}" Height="28" Width="100"/>
         </StackPanel>
         <!--F3-->
-        <Label Grid.Row="14" Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Center" Content="F3" />
-        <StackPanel Orientation="Horizontal" Grid.Row="14" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center">
+        <Label Grid.Row="15" Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Center" Content="F3" />
+        <StackPanel Orientation="Horizontal" Grid.Row="15" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center">
             <syncfusion:IntegerTextBox Value="{Binding StatInformation.Digimon.Skill3Base, Mode=TwoWay}" MaxValue="999999" MinValue="0" MinValueOnExceedMinDigit="True" MaxValueOnExceedMaxDigit="True" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Text="0" Height="28" Width="100"/>
         </StackPanel>
-        <StackPanel Orientation="Horizontal" Grid.Row="14" Grid.Column="3" HorizontalAlignment="Center" VerticalAlignment="Center">
+        <StackPanel Orientation="Horizontal" Grid.Row="15" Grid.Column="3" HorizontalAlignment="Center" VerticalAlignment="Center">
             <syncfusion:IntegerTextBox Value="{Binding StatInformation.Digimon.Skill3Increase, Mode=TwoWay}" MaxValue="9999" MinValue="0" MinValueOnExceedMinDigit="True" MaxValueOnExceedMaxDigit="True" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Text="0" Height="28" Width="100"/>
         </StackPanel>
-        <StackPanel Orientation="Horizontal" Grid.Row="14" Grid.Column="4" HorizontalAlignment="Center" VerticalAlignment="Center">
+        <StackPanel Orientation="Horizontal" Grid.Row="15" Grid.Column="4" HorizontalAlignment="Center" VerticalAlignment="Center">
             <syncfusion:UpDown x:Name="skill3PointsBox" AllowEdit="False" TextAlignment="Center" ApplyZeroColor="False" Step="1" MinValue="0" MaxValue="4" NumberDecimalDigits="0" Value="{Binding StatInformation.Digimon.Skill3Points, Mode=TwoWay}" Height="28" Width="100"/>
         </StackPanel>
-        <StackPanel Orientation="Horizontal" Grid.Row="14" Grid.Column="5" HorizontalAlignment="Left" VerticalAlignment="Center">
+        <StackPanel Orientation="Horizontal" Grid.Row="15" Grid.Column="5" HorizontalAlignment="Left" VerticalAlignment="Center">
             <syncfusion:UpDown x:Name="skillLevel3" AllowEdit="False" TextAlignment="Center" ApplyZeroColor="False" Step="1" MinValue="1" ValueChanging="SkillLevel_ValueChanging" MaxValue="{Binding ElementName=skill3PointsBox, Path=Value, Converter={StaticResource SkillPointsMaxLevelConverter}}" NumberDecimalDigits="0" Value="{Binding StatInformation.Digimon.Skill3Level, Mode=TwoWay}" Height="28" Width="100"/>
         </StackPanel>
         <!--F4-->
-        <Label Grid.Row="15" Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Center" Content="F4" />
-        <StackPanel Orientation="Horizontal" Grid.Row="15" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center">
+        <Label Grid.Row="16" Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Center" Content="F4" />
+        <StackPanel Orientation="Horizontal" Grid.Row="16" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center">
             <syncfusion:IntegerTextBox Value="{Binding StatInformation.Digimon.Skill4Base, Mode=TwoWay}" MaxValue="999999" MinValue="0" MinValueOnExceedMinDigit="True" MaxValueOnExceedMaxDigit="True" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Text="0" Height="28" Width="100"/>
         </StackPanel>
-        <StackPanel Orientation="Horizontal" Grid.Row="15" Grid.Column="3" HorizontalAlignment="Center" VerticalAlignment="Center">
+        <StackPanel Orientation="Horizontal" Grid.Row="16" Grid.Column="3" HorizontalAlignment="Center" VerticalAlignment="Center">
             <syncfusion:IntegerTextBox Value="{Binding StatInformation.Digimon.Skill4Increase, Mode=TwoWay}" MaxValue="9999" MinValue="0" MinValueOnExceedMinDigit="True" MaxValueOnExceedMaxDigit="True" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Text="0" Height="28" Width="100"/>
         </StackPanel>
-        <StackPanel Orientation="Horizontal" Grid.Row="15" Grid.Column="4" HorizontalAlignment="Center" VerticalAlignment="Center">
+        <StackPanel Orientation="Horizontal" Grid.Row="16" Grid.Column="4" HorizontalAlignment="Center" VerticalAlignment="Center">
             <syncfusion:UpDown x:Name="skill4PointsBox" AllowEdit="False" TextAlignment="Center" ApplyZeroColor="False" Step="1" MinValue="0" MaxValue="4" NumberDecimalDigits="0" Value="{Binding StatInformation.Digimon.Skill4Points, Mode=TwoWay}" Height="28" Width="100"/>
         </StackPanel>
-        <StackPanel Orientation="Horizontal" Grid.Row="15" Grid.Column="5" HorizontalAlignment="Left" VerticalAlignment="Center">
+        <StackPanel Orientation="Horizontal" Grid.Row="16" Grid.Column="5" HorizontalAlignment="Left" VerticalAlignment="Center">
             <syncfusion:UpDown x:Name="skillLevel4" AllowEdit="False" TextAlignment="Center" ApplyZeroColor="False" Step="1" MinValue="1" ValueChanging="SkillLevel_ValueChanging" MaxValue="{Binding ElementName=skill4PointsBox, Path=Value, Converter={StaticResource SkillPointsMaxLevelConverter}}" NumberDecimalDigits="0" Value="{Binding StatInformation.Digimon.Skill4Level, Mode=TwoWay}" Height="28" Width="100"/>
         </StackPanel>
 
 
         <!--Results-->
-        <Border Grid.Column="6" Grid.Row="0" Grid.RowSpan="16" Margin="5,0,0,0" BorderThickness="1,0,0,0" BorderBrush="{StaticResource Foreground}">
+        <Border Grid.Column="6" Grid.Row="0" Grid.RowSpan="17" Margin="5,0,0,0" BorderThickness="1,0,0,0" BorderBrush="{StaticResource Foreground}">
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto"/>
