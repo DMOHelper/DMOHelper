@@ -78,7 +78,7 @@
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>oDcs6DTQE3GIJ0V/ruReuARtSkrdih5KnrLL9HFvHW4=</dsig:DigestValue>
+      <dsig:DigestValue>Xpo+Nt9TYA7M+vH8XaZv7fiS9OkhDulQleLDngrgZEU=</dsig:DigestValue>
     </hash>
   </file>
   <file name="DMOHelper.exe" size="297984">
@@ -87,7 +87,7 @@
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>Hnr1cXQ+L4UJc1JX8AzCBej+zWGZKTe7sI24YwTpDiA=</dsig:DigestValue>
+      <dsig:DigestValue>jr4OEiM0ZjbgB5vywtIbBxQNpZ6YOnber37DqiyWvls=</dsig:DigestValue>
     </hash>
   </file>
   <file name="DMOHelper.runtimeconfig.json" size="372">

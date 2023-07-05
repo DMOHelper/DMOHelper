@@ -310,6 +310,7 @@ namespace DMOHelper
         {
             Initialized = false;
             StatEnabled = true;
+            bool presetsRunned = false;
             presetInformation = SQLiteDatabaseManager.Database.Table<PresetInformation>().FirstOrDefaultAsync().Result;
             if (presetInformation == null)
             {
@@ -333,6 +334,7 @@ namespace DMOHelper
                         StatEnabled = false;
                     }
                 }
+                presetsRunned = true;
             }
             StatInformation = StatInformation.LoadFromDatabase();
             Source = "/Images/Beer.png";
@@ -370,6 +372,11 @@ namespace DMOHelper
                         }
                     }
                     catch { }
+                    //Run Presets didn't update because of being inside 24h interval, still force an update, when MainProgram was updated.
+                    if (!presetsRunned)
+                    {
+                        await Task.Run(UpdatePresets);
+                    }
                 }).Wait();
                 if (!string.IsNullOrWhiteSpace(markdown))
                 {
