@@ -273,7 +273,7 @@
                 <StackPanel Orientation="Horizontal" Grid.Column="0" ToolTip="Stats are rounded and can deviate minimally from the Stat Window in-game.&#x0a;Stats and Damages only valid for the duration of all activated Buffs.&#x0a;This especially counts for Tamer Skills and Deck Buffs, which applies only for short time periods." Grid.ColumnSpan="4" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center">
                     <Label Content="Your Digimon's Stats on Level"/>
                     <Label Margin="-5,0,-5,0" Content="{Binding StatInformation.ResultLevel, Mode=OneWay}"/>
-                    <Label Content="&#x24D8;"/>
+                    <Label Content="(beta) &#x24D8;"/>
                 </StackPanel>
 
                 <!--Labels Stats-->

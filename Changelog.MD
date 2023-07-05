@@ -1,5 +1,8 @@
 ## What's new?
 
+### Version 2.2
+- Changed stat calculation to level 140 (currently beta, as it needs verification)
+
 ### Version 2.1
 - Fixed an issue, where Element-specific Skill Damage Buffs from Titles were added to Digimon from other Element-types
 - Improved accuracy of Damage Calculation
