@@ -38,6 +38,7 @@ namespace DMOHelper.Models
         private bool focus;
         private bool aguKizunaBuff;
         private bool gabuKizunaBuff;
+        private bool x2Stats;
         private int resultLevel;
         private int resultHP;
         private int resultDamageReduction;
@@ -343,6 +344,17 @@ namespace DMOHelper.Models
             set
             {
                 gabuKizunaBuff = value;
+                OnPropertyChanged();
+                Calculate();
+            }
+        }
+
+        public bool X2Stats
+        {
+            get { return x2Stats; }
+            set
+            {
+                x2Stats = value;
                 OnPropertyChanged();
                 Calculate();
             }
@@ -670,13 +682,19 @@ namespace DMOHelper.Models
                     Title _title = SQLiteDatabaseManager.Database.Table<Title>().FirstAsync(x => x.Name == Title).Result;
                     Deck _deck = SQLiteDatabaseManager.Database.Table<Deck>().FirstAsync(x => x.Name == Deck).Result;
                     #endregion
+                    //X2 Stat Event
+                    int x2 = 1;
+                    if (X2Stats)
+                    {
+                        x2 = 2;
+                    }
                     List<Task> tasks = new List<Task>();
                     #region HP, DamageReduction and PseudoHP
                     tasks.Add(Task.Run(() =>
                     {
                         if (Digimon.BaseHP > 0)
                         {
-                            double baseHPMaxLevel = Math.Floor((Digimon.BaseHP * Size / 100) + formulas.First(x => x.Type == Digimon.Type).HP);
+                            double baseHPMaxLevel = Math.Floor((Digimon.BaseHP * x2 * Size / 100) + formulas.First(x => x.Type == Digimon.Type).HP);
                             double baseHPwithDeck = Math.Floor(baseHPMaxLevel * (1 + (_deck.HP / 100.0)));
                             double addedHP = 0;
                             //Clone
@@ -807,7 +825,7 @@ namespace DMOHelper.Models
                     {
                         if (Digimon.BaseAT > 0)
                         {
-                            double baseATMaxLevel = Math.Floor((Digimon.BaseAT * Size / 100) + formulas.First(x => x.Type == Digimon.Type).AT);
+                            double baseATMaxLevel = Math.Floor((Digimon.BaseAT * x2 * Size / 100) + formulas.First(x => x.Type == Digimon.Type).AT);
                             double criticalDamageValue = Ring.CriticalDamage + Necklace.CriticalDamage + Earrings.CriticalDamage + Bracelet.CriticalDamage;
                             double addedAT = 0.0;
                             //Clone
@@ -882,10 +900,10 @@ namespace DMOHelper.Models
                             ResultCriticalDamageDoubleAdvantage = ResultDamageDoubleAdvantage + (int)Math.Floor(addedCriticalDamage);
 
                             //Skill Damage
-                            double f1BaseDamage = Digimon.Skill1Base + ((Digimon.Skill1Level - 1) * Digimon.Skill1Increase);
-                            double f2BaseDamage = Digimon.Skill2Base + ((Digimon.Skill2Level - 1) * Digimon.Skill2Increase);
-                            double f3BaseDamage = Digimon.Skill3Base + ((Digimon.Skill3Level - 1) * Digimon.Skill3Increase);
-                            double f4BaseDamage = Digimon.Skill4Base + ((Digimon.Skill4Level - 1) * Digimon.Skill4Increase);
+                            double f1BaseDamage = (Digimon.Skill1Base * x2) + ((Digimon.Skill1Level - 1) * Digimon.Skill1Increase);
+                            double f2BaseDamage = (Digimon.Skill2Base * x2) + ((Digimon.Skill2Level - 1) * Digimon.Skill2Increase);
+                            double f3BaseDamage = (Digimon.Skill3Base * x2) + ((Digimon.Skill3Level - 1) * Digimon.Skill3Increase);
+                            double f4BaseDamage = (Digimon.Skill4Base * x2) + ((Digimon.Skill4Level - 1) * Digimon.Skill4Increase);
                             //TODO: Figured out through trying, might be wrong
                             double factorFromPF = 144.0 / AttackClone;
                             double cloneFactor = Math.Round(1.0 + (0.43 / factorFromPF), 2);
@@ -1039,7 +1057,7 @@ namespace DMOHelper.Models
                         #region DS
                         if (Digimon.BaseDS > 0)
                         {
-                            double baseDSMaxLevel = Digimon.BaseDS + formulas.First(x => x.Type == Digimon.Type).DS;
+                            double baseDSMaxLevel = (Digimon.BaseDS * x2) + formulas.First(x => x.Type == Digimon.Type).DS;
                             double addedDS = 0;
                             //Buffs
                             if (Buff1h)
@@ -1089,7 +1107,7 @@ namespace DMOHelper.Models
                         #region DE
                         if (Digimon.BaseDE > 0)
                         {
-                            double baseDEMaxLevel = Math.Floor((Digimon.BaseDE * (Size / 100.0)) + formulas.First(x => x.Type == Digimon.Type).DE);
+                            double baseDEMaxLevel = Math.Floor((Digimon.BaseDE * x2 * (Size / 100.0)) + formulas.First(x => x.Type == Digimon.Type).DE);
                             double addedDE = 0.0;
                             //Tamer Skill and passive Skills
                             addedDE += _skill1.EnhancedDE;
@@ -1225,12 +1243,14 @@ namespace DMOHelper.Models
                 output.Takato = statInfo.Takato;
                 output.Focus = statInfo.Focus;
                 output.AguKizunaBuff = statInfo.AguKizunaBuff;
+                output.GabuKizunaBuff = statInfo.GabuKizunaBuff;
                 output.Deck = statInfo.Deck;
                 output.Title = statInfo.Title;
                 output.AttackClone = statInfo.AttackClone;
                 output.CriticalClone = statInfo.CriticalClone;
                 output.HPClone = statInfo.HPClone;
                 output.EvadeClone = statInfo.EvadeClone;
+                output.X2Stats = statInfo.X2Stats;
             }
             #region Accessories
             var accessories = SQLiteDatabaseManager.Database.Table<Accessory>().ToListAsync().Result;
@@ -1351,6 +1371,8 @@ namespace DMOHelper.Models
         public bool Takato { get; set; }
         public bool Focus { get; set; }
         public bool AguKizunaBuff { get; set; }
+        public bool GabuKizunaBuff { get; set; }
+        public bool X2Stats { get; set; }
         public bool TamerSkillActive { get; set; }
         public MemorySkillLevel TOL { get; set; }
         public MemorySkillLevel Ruler { get; set; }
@@ -1381,6 +1403,8 @@ namespace DMOHelper.Models
             Takato = statInfo.Takato;
             Focus = statInfo.Focus;
             AguKizunaBuff = statInfo.AguKizunaBuff;
+            GabuKizunaBuff = statInfo.GabuKizunaBuff;
+            X2Stats = statInfo.X2Stats;
             Deck = statInfo.Deck;
             Title = statInfo.Title;
             AttackClone = statInfo.AttackClone;

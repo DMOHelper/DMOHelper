@@ -109,6 +109,8 @@
             <Button Content="Presets" x:Name="PresetsButton" IsEnabled="{Binding StatEnabled}" Click="Presets_Click"  MinWidth="80" MinHeight="30"/>
             <Button  Margin="3,0,0,0"  Content="Clone" x:Name="CloneButton" Click="Clone_Click"  MinWidth="80" MinHeight="30"/>
         </StackPanel>
+        <!--X2 Stat Event-->
+        <CheckBox Content="x2 Stat Event" Margin="5,0,0,0" IsChecked="{Binding StatInformation.X2Stats, Mode=TwoWay}" Grid.Row="15" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Center"/>
 
         <!--Tamer Informations-->
         <Label Content="Tamer Informations" Grid.Row="0" Grid.Column="2" Grid.ColumnSpan="3" HorizontalAlignment="Center" VerticalAlignment="Center" />
@@ -178,6 +180,7 @@
             <ComboBox FontWeight="SemiBold" SelectedItem="{Binding StatInformation.Deck, Mode=TwoWay}" ItemsSource="{Binding Decks}" Height="28" Width="220"/>
             <Label Content="Deck" FontWeight="Bold"/>
         </StackPanel>
+
         <!--Skill Buff Effect / Kizuna-->
         <Label Content="Special Skill Buffs" FontWeight="Bold" Grid.Row="8" Grid.Column="4" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Bottom"/>
         <StackPanel Orientation="Horizontal" Grid.Row="9" Grid.Column="5" HorizontalAlignment="Left" VerticalAlignment="Center">

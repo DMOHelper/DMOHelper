@@ -1,5 +1,9 @@
 ## What's new?
 
+### Version 2.3
+- Added option for x2 Stat Events
+- Fixed an issue, where last used option for Gabumon Kizuna Buff was not saved
+
 ### Version 2.2
 - Changed stat calculation to level 140 (currently beta, as it needs verification)
 - Added Gabumon Kizuna Buff
